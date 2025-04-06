@@ -16,12 +16,14 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-core</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <!-- RuoYi Common Redis-->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-redis</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <!-- Sa-Token 权限认证, 在线文档：http://sa-token.dev33.cn/ -->

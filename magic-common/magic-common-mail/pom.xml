@@ -7,6 +7,7 @@
         <artifactId>magic-common</artifactId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>magic-common-mail</artifactId>
@@ -19,16 +20,19 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-core</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.mail</groupId>
             <artifactId>jakarta.mail-api</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.eclipse.angus</groupId>
             <artifactId>jakarta.mail</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

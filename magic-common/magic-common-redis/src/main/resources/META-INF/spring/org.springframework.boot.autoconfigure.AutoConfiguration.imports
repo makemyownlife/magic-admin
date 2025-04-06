@@ -1,2 +1,2 @@
-org.dromara.common.redis.config.RedisConfig
-org.dromara.common.redis.config.CacheConfig
+cn.javayong.magic.common.redis.config.RedisConfig
+cn.javayong.magic.common.redis.config.CacheConfig

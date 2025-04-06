@@ -19,18 +19,22 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-core</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-redis</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-satoken</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-json</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

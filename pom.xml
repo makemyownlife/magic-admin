@@ -6,14 +6,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.javayong</groupId>
-    <artifactId>ruoyi-vue-plus</artifactId>
+    <artifactId>magic-admin-all</artifactId>
     <version>${revision}</version>
 
-    <name>RuoYi-Vue-Plus</name>
-    <description>Dromara RuoYi-Vue-Plus多租户管理系统</description>
+    <name>magic-admin-all</name>
 
     <properties>
+
         <revision>0.0.1</revision>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
@@ -119,32 +120,11 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Warm-Flow国产工作流引擎, 在线文档：http://warm-flow.cn/ -->
-            <dependency>
-                <groupId>org.dromara.warm</groupId>
-                <artifactId>warm-flow-mybatis-plus-sb3-starter</artifactId>
-                <version>${warm-flow.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dromara.warm</groupId>
-                <artifactId>warm-flow-plugin-ui-sb-web</artifactId>
-                <version>${warm-flow.version}</version>
-            </dependency>
-
             <!-- JustAuth 的依赖配置-->
             <dependency>
                 <groupId>me.zhyd.oauth</groupId>
                 <artifactId>JustAuth</artifactId>
                 <version>${justauth.version}</version>
-            </dependency>
-
-            <!-- common 的依赖配置-->
-            <dependency>
-                <groupId>cn.javayong</groupId>
-                <artifactId>magic-common-bom</artifactId>
-                <version>${revision}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <dependency>
@@ -371,7 +351,7 @@
         <module>magic-admin</module>
         <module>magic-common</module>
         <module>magic-extend</module>
-        <module>ruoyi-modules</module>
+        <module>magic-modules</module>
     </modules>
     <packaging>pom</packaging>
 

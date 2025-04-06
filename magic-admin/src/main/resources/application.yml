@@ -204,7 +204,7 @@ springdoc:
     - group: 1.演示模块
       packages-to-scan: org.dromara.demo
     - group: 2.通用模块
-      packages-to-scan: org.dromara.web
+      packages-to-scan: cn.javayong.admin.web
     - group: 3.系统模块
       packages-to-scan: org.dromara.system
     - group: 4.代码生成模块

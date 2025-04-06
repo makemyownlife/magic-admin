@@ -24,11 +24,14 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-json</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-redis</artifactId>
+            <version>${revision}</version>
         </dependency>
+
     </dependencies>
 </project>

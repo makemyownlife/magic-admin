@@ -2,11 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
-        <artifactId>ruoyi-vue-plus</artifactId>
+        <artifactId>magic-admin-all</artifactId>
         <groupId>cn.javayong</groupId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
     <artifactId>magic-admin</artifactId>
@@ -23,63 +25,48 @@
             <artifactId>mysql-connector-j</artifactId>
         </dependency>
 
-<!--        &lt;!&ndash; mp支持的数据库均支持 只需要增加对应的jdbc依赖即可 &ndash;&gt;-->
-<!--        &lt;!&ndash; Oracle &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.oracle.database.jdbc</groupId>-->
-<!--            <artifactId>ojdbc8</artifactId>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; 兼容oracle低版本 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.oracle.database.nls</groupId>-->
-<!--            <artifactId>orai18n</artifactId>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; PostgreSql &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.postgresql</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; SqlServer &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.microsoft.sqlserver</groupId>-->
-<!--            <artifactId>mssql-jdbc</artifactId>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-doc</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-social</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-ratelimiter</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-mail</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>ruoyi-system</artifactId>
+            <artifactId>magic-system</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <!-- 代码生成-->
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>ruoyi-generator</artifactId>
+            <artifactId>magic-generator</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <!--  demo模块  -->
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>ruoyi-demo</artifactId>
+            <artifactId>magic-demo</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
@@ -92,18 +79,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- skywalking 整合 logback -->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.skywalking</groupId>-->
-<!--            <artifactId>apm-toolkit-logback-1.x</artifactId>-->
-<!--            <version>${与你的agent探针版本保持一致}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.skywalking</groupId>-->
-<!--            <artifactId>apm-toolkit-trace</artifactId>-->
-<!--            <version>${与你的agent探针版本保持一致}</version>-->
-<!--        </dependency>-->
 
     </dependencies>
 

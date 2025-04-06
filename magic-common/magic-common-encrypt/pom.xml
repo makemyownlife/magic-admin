@@ -20,6 +20,7 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common-core</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
