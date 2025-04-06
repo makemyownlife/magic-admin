@@ -12,8 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>ruoyi-monitor-admin</module>
-        <module>ruoyi-snailjob-server</module>
+
+
     </modules>
 
 </project>
