@@ -54,7 +54,6 @@ public class CaptchaController {
 
     /**
      * 短信验证码
-     *
      * @param phonenumber 用户手机号
      */
     @RateLimiter(key = "#phonenumber", time = 60, count = 1)

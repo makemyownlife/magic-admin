@@ -35,9 +35,8 @@ captcha:
 # 日志配置
 logging:
   level:
-    org.dromara: @logging.level@
     org.springframework: warn
-    org.mybatis.spring.mapper: error
+    org.mybatis.spring.mapper: warn
     org.apache.fury: warn
   config: classpath:logback-admin.xml
 
@@ -52,7 +51,7 @@ user:
 # Spring配置
 spring:
   application:
-    name: RuoYi-Vue-Plus
+    name: magic-admin
   threads:
     # 开启虚拟线程 仅jdk21可用
     virtual:
@@ -110,7 +109,6 @@ security:
     - /error
     - /*/api-docs
     - /*/api-docs/**
-    - /warm-flow-ui/token-name
 
 # 多租户配置
 tenant:
@@ -134,11 +132,11 @@ mybatis-plus:
   # 自定义配置 是否全局开启逻辑删除 关闭后 所有逻辑删除功能将失效
   enableLogicDelete: true
   # 多包名使用 例如 org.dromara.**.mapper,org.xxx.**.mapper
-  mapperPackage: org.dromara.**.mapper
+  mapperPackage: cn.javayong.magic.**.mapper
   # 对应的 XML 文件位置
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: org.dromara.**.domain
+  typeAliasesPackage: cn.javayong.magic.**.domain
   global-config:
     dbConfig:
       # 主键类型
@@ -182,16 +180,16 @@ springdoc:
 #    persistAuthorization: true
   info:
     # 标题
-    title: '标题：RuoYi-Vue-Plus多租户管理系统_接口文档'
+    title: '标题：magic-admin 多租户管理系统_接口文档'
     # 描述
     description: '描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...'
     # 版本
     version: '版本号: ${ruoyi.version}'
     # 作者信息
     contact:
-      name: Lion Li
-      email: crazylionli@163.com
-      url: https://gitee.com/dromara/RuoYi-Vue-Plus
+      name: zhangyong
+      email: zhangyong7120180@163.com
+      url: https://github.com/makemyownlife/magic-admin
   components:
     # 鉴权方式配置
     security-schemes:
@@ -202,15 +200,13 @@ springdoc:
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
     - group: 1.演示模块
-      packages-to-scan: org.dromara.demo
+      packages-to-scan: cn.javayong.admin.demo
     - group: 2.通用模块
       packages-to-scan: cn.javayong.admin.web
     - group: 3.系统模块
-      packages-to-scan: org.dromara.system
+      packages-to-scan: cn.javayong.admin.system
     - group: 4.代码生成模块
-      packages-to-scan: org.dromara.generator
-    - group: 5.工作流模块
-      packages-to-scan: org.dromara.workflow
+      packages-to-scan: cn.javayong.admin.generator
 
 # 防止XSS攻击
 xss:
@@ -263,19 +259,3 @@ websocket:
   # 设置访问源地址
   allowedOrigins: '*'
 
---- # warm-flow工作流配置
-warm-flow:
-  # 是否开启工作流，默认true
-  enabled: true
-  # 是否开启设计器ui
-  ui: true
-  # 默认Authorization，如果有多个token，用逗号分隔
-  token-name: ${sa-token.token-name},clientid
-  # 流程状态对应的三元色
-  chart-status-color:
-    ## 未办理
-    - 62,62,62
-    ## 待办理
-    - 255,205,23
-    ## 已办理
-    - 157,255,0
