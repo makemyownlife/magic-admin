@@ -39,7 +39,7 @@ logging:
     org.springframework: warn
     org.mybatis.spring.mapper: error
     org.apache.fury: warn
-  config: classpath:logback-plus.xml
+  config: classpath:logback-admin.xml
 
 # 用户配置
 user:
