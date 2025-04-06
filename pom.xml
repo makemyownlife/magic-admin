@@ -369,8 +369,8 @@
 
     <modules>
         <module>magic-admin</module>
-        <module>ruoyi-common</module>
-        <module>ruoyi-extend</module>
+        <module>magic-common</module>
+        <module>magic-extend</module>
         <module>ruoyi-modules</module>
     </modules>
     <packaging>pom</packaging>
