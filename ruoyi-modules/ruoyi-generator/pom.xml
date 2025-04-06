@@ -2,11 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
-        <groupId>org.dromara</groupId>
+        <groupId>cn.javayong</groupId>
         <artifactId>ruoyi-modules</artifactId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ruoyi-generator</artifactId>
@@ -18,28 +20,28 @@
     <dependencies>
         <!-- 通用工具-->
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-core</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-core</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-doc</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-doc</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-mybatis</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-mybatis</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-web</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-web</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-log</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-log</artifactId>
         </dependency>
 
         <!--velocity代码生成使用模板 -->

@@ -4,36 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>ruoyi-vue-plus</artifactId>
-        <groupId>org.dromara</groupId>
+        <groupId>cn.javayong</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>ruoyi-common-bom</module>
-        <module>ruoyi-common-social</module>
-        <module>ruoyi-common-core</module>
-        <module>ruoyi-common-doc</module>
-        <module>ruoyi-common-excel</module>
-        <module>ruoyi-common-idempotent</module>
-        <module>ruoyi-common-job</module>
-        <module>ruoyi-common-log</module>
-        <module>ruoyi-common-mail</module>
-        <module>ruoyi-common-mybatis</module>
-        <module>ruoyi-common-oss</module>
-        <module>ruoyi-common-ratelimiter</module>
-        <module>ruoyi-common-redis</module>
-        <module>ruoyi-common-satoken</module>
-        <module>ruoyi-common-security</module>
-        <module>ruoyi-common-sms</module>
-        <module>ruoyi-common-web</module>
-        <module>ruoyi-common-translation</module>
-        <module>ruoyi-common-sensitive</module>
-        <module>ruoyi-common-json</module>
-        <module>ruoyi-common-encrypt</module>
-        <module>ruoyi-common-tenant</module>
-        <module>ruoyi-common-websocket</module>
-        <module>ruoyi-common-sse</module>
+        <module>magic-common-bom</module>
+        <module>magic-common-social</module>
+        <module>magic-common-core</module>
+        <module>magic-common-doc</module>
+        <module>magic-common-excel</module>
+        <module>magic-common-idempotent</module>
+        <module>magic-common-log</module>
+        <module>magic-common-mail</module>
+        <module>magic-common-mybatis</module>
+        <module>magic-common-oss</module>
+        <module>magic-common-ratelimiter</module>
+        <module>magic-common-redis</module>
+        <module>magic-common-satoken</module>
+        <module>magic-common-security</module>
+        <module>magic-common-sms</module>
+        <module>magic-common-web</module>
+        <module>magic-common-translation</module>
+        <module>magic-common-sensitive</module>
+        <module>magic-common-json</module>
+        <module>magic-common-encrypt</module>
+        <module>magic-common-tenant</module>
+        <module>magic-common-websocket</module>
+        <module>magic-common-sse</module>
     </modules>
 
     <artifactId>magic-common</artifactId>

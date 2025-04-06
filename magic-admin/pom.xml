@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>ruoyi-vue-plus</artifactId>
-        <groupId>org.dromara</groupId>
+        <groupId>cn.javayong</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -46,51 +46,40 @@
 <!--        </dependency>-->
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-doc</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-doc</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-social</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-social</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-ratelimiter</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-ratelimiter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-mail</artifactId>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common-mail</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.dromara</groupId>
+            <groupId>cn.javayong</groupId>
             <artifactId>ruoyi-system</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-job</artifactId>
         </dependency>
 
         <!-- 代码生成-->
         <dependency>
-            <groupId>org.dromara</groupId>
+            <groupId>cn.javayong</groupId>
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
         <!--  demo模块  -->
         <dependency>
-            <groupId>org.dromara</groupId>
+            <groupId>cn.javayong</groupId>
             <artifactId>ruoyi-demo</artifactId>
-        </dependency>
-
-        <!--  工作流模块  -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-workflow</artifactId>
         </dependency>
 
         <dependency>
