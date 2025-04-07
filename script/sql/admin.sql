@@ -69,7 +69,7 @@ create table sys_tenant
 -- 初始化-租户表数据
 -- ----------------------------
 
-insert into sys_tenant values(1, '000000', '管理组', '15888888888', 'XXX有限公司', null, null, '多租户通用后台管理管理系统', null, null, null, null, -1, '0', '0', 103, 1, sysdate(), null, null);
+insert into sys_tenant values(1, '000000', '管理组', '15888888888', '勇哥Java实战', null, null, '多租户通用后台管理管理系统', null, null, null, null, -1, '0', '0', 103, 1, sysdate(), null, null);
 
 
 -- ----------------------------
