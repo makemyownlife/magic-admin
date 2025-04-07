@@ -1,1 +1,1 @@
-> https://github.com/makemyownlife/magic-admin-ui
+> https://github.com/makemyownlife/magic-ui
