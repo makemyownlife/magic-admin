@@ -1,0 +1,2 @@
+cn.javayong.magic.framework.tracer.config.MagicTracerAutoConfiguration
+cn.javayong.magic.framework.tracer.config.MagicMetricsAutoConfiguration

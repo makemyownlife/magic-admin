@@ -1,0 +1,2 @@
+cn.javayong.magic.framework.quartz.config.MagicQuartzAutoConfiguration
+cn.javayong.magic.framework.quartz.config.MagicAsyncAutoConfiguration

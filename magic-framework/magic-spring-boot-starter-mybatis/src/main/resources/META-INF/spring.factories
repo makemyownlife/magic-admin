@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  cn.javayong.magic.framework.mybatis.config.IdTypeEnvironmentPostProcessor

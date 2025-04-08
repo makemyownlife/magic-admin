@@ -1,0 +1,2 @@
+cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration
+cn.javayong.magic.framework.redis.config.MagicCacheAutoConfiguration

@@ -1,0 +1,3 @@
+cn.javayong.magic.framework.mq.redis.config.MagicRedisMQProducerAutoConfiguration
+cn.javayong.magic.framework.mq.redis.config.MagicRedisMQConsumerAutoConfiguration
+cn.javayong.magic.framework.mq.rabbitmq.config.MagicRabbitMQAutoConfiguration

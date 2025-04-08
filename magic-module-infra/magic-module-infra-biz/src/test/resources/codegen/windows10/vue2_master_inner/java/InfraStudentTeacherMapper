@@ -1,0 +1,28 @@
+package cn.javayong.magic.module.infra.dal.mysql.demo;
+
+import java.util.*;
+
+import cn.javayong.magic.framework.common.pojo.PageResult;
+import cn.javayong.magic.framework.common.pojo.PageParam;
+import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
+import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
+import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentTeacherDO;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * 学生班主任 Mapper
+ *
+ * @author 芋道源码
+ */
+@Mapper
+public interface InfraStudentTeacherMapper extends BaseMapperX<InfraStudentTeacherDO> {
+
+    default InfraStudentTeacherDO selectByStudentId(Long studentId) {
+        return selectOne(InfraStudentTeacherDO::getStudentId, studentId);
+    }
+
+    default int deleteByStudentId(Long studentId) {
+        return delete(InfraStudentTeacherDO::getStudentId, studentId);
+    }
+
+}

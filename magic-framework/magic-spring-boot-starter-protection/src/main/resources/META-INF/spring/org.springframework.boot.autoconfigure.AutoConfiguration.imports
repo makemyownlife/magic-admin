@@ -1,0 +1,4 @@
+cn.javayong.magic.framework.idempotent.config.MagicIdempotentConfiguration
+cn.javayong.magic.framework.lock4j.config.MagicLock4jConfiguration
+cn.javayong.magic.framework.ratelimiter.config.MagicRateLimiterConfiguration
+cn.javayong.magic.framework.signature.config.MagicApiSignatureAutoConfiguration

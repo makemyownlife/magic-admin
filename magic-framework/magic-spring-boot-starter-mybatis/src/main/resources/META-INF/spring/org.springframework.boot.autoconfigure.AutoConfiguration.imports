@@ -1,0 +1,3 @@
+cn.javayong.magic.framework.datasource.config.MagicDataSourceAutoConfiguration
+cn.javayong.magic.framework.mybatis.config.MagicMybatisAutoConfiguration
+cn.javayong.magic.framework.translate.config.MagicTranslateAutoConfiguration
