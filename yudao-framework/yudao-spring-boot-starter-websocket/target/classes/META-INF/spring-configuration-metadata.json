@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "yudao.websocket",
+      "type": "cn.iocoder.yudao.framework.websocket.config.WebSocketProperties",
+      "sourceType": "cn.iocoder.yudao.framework.websocket.config.WebSocketProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "yudao.websocket.path",
+      "type": "java.lang.String",
+      "description": "WebSocket 的连接路径",
+      "sourceType": "cn.iocoder.yudao.framework.websocket.config.WebSocketProperties"
+    },
+    {
+      "name": "yudao.websocket.sender-type",
+      "type": "java.lang.String",
+      "description": "消息发送器的类型 可选值：local、redis、rocketmq、kafka、rabbitmq",
+      "sourceType": "cn.iocoder.yudao.framework.websocket.config.WebSocketProperties"
+    }
+  ],
+  "hints": []
+}

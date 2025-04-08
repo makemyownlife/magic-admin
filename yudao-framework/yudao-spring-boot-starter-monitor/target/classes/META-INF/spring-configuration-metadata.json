@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "yudao.tracer",
+      "type": "cn.iocoder.yudao.framework.tracer.config.TracerProperties",
+      "sourceType": "cn.iocoder.yudao.framework.tracer.config.TracerProperties"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

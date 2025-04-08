@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "yudao.sms-code",
+      "type": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties",
+      "sourceType": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "yudao.sms-code.begin-code",
+      "type": "java.lang.Integer",
+      "description": "验证码最小值",
+      "sourceType": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties"
+    },
+    {
+      "name": "yudao.sms-code.end-code",
+      "type": "java.lang.Integer",
+      "description": "验证码最大值",
+      "sourceType": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties"
+    },
+    {
+      "name": "yudao.sms-code.expire-times",
+      "type": "java.time.Duration",
+      "description": "过期时间",
+      "sourceType": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties"
+    },
+    {
+      "name": "yudao.sms-code.send-frequency",
+      "type": "java.time.Duration",
+      "description": "短信发送频率",
+      "sourceType": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties"
+    },
+    {
+      "name": "yudao.sms-code.send-maximum-quantity-per-day",
+      "type": "java.lang.Integer",
+      "description": "每日发送最大数量",
+      "sourceType": "cn.iocoder.yudao.module.system.framework.sms.config.SmsCodeProperties"
+    }
+  ],
+  "hints": []
+}

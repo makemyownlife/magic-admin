@@ -1,0 +1,127 @@
+{
+  "groups": [
+    {
+      "name": "yudao.swagger",
+      "type": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.web",
+      "type": "cn.iocoder.yudao.framework.web.config.WebProperties",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties"
+    },
+    {
+      "name": "yudao.web.admin-api",
+      "type": "cn.iocoder.yudao.framework.web.config.WebProperties$Api",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties"
+    },
+    {
+      "name": "yudao.web.admin-ui",
+      "type": "cn.iocoder.yudao.framework.web.config.WebProperties$Ui",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties"
+    },
+    {
+      "name": "yudao.web.app-api",
+      "type": "cn.iocoder.yudao.framework.web.config.WebProperties$Api",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties"
+    },
+    {
+      "name": "yudao.xss",
+      "type": "cn.iocoder.yudao.framework.xss.config.XssProperties",
+      "sourceType": "cn.iocoder.yudao.framework.xss.config.XssProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "yudao.swagger.author",
+      "type": "java.lang.String",
+      "description": "作者",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.description",
+      "type": "java.lang.String",
+      "description": "描述",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.email",
+      "type": "java.lang.String",
+      "description": "email",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.license",
+      "type": "java.lang.String",
+      "description": "license",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.license-url",
+      "type": "java.lang.String",
+      "description": "license-url",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.title",
+      "type": "java.lang.String",
+      "description": "标题",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.url",
+      "type": "java.lang.String",
+      "description": "url",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.swagger.version",
+      "type": "java.lang.String",
+      "description": "版本",
+      "sourceType": "cn.iocoder.yudao.framework.swagger.config.SwaggerProperties"
+    },
+    {
+      "name": "yudao.web.admin-api.controller",
+      "type": "java.lang.String",
+      "description": "Controller 所在包的 Ant 路径规则 主要目的是，给该 Controller 设置指定的 {@link #prefix}",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties$Api"
+    },
+    {
+      "name": "yudao.web.admin-api.prefix",
+      "type": "java.lang.String",
+      "description": "API 前缀，实现所有 Controller 提供的 RESTFul API 的统一前缀 意义：通过该前缀，避免 Swagger、Actuator 意外通过 Nginx 暴露出来给外部，带来安全性问题      这样，Nginx 只需要配置转发到 \/api\/* 的所有接口即可。 @see YudaoWebAutoConfiguration#configurePathMatch(PathMatchConfigurer)",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties$Api"
+    },
+    {
+      "name": "yudao.web.admin-ui.url",
+      "type": "java.lang.String",
+      "description": "访问地址",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties$Ui"
+    },
+    {
+      "name": "yudao.web.app-api.controller",
+      "type": "java.lang.String",
+      "description": "Controller 所在包的 Ant 路径规则 主要目的是，给该 Controller 设置指定的 {@link #prefix}",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties$Api"
+    },
+    {
+      "name": "yudao.web.app-api.prefix",
+      "type": "java.lang.String",
+      "description": "API 前缀，实现所有 Controller 提供的 RESTFul API 的统一前缀 意义：通过该前缀，避免 Swagger、Actuator 意外通过 Nginx 暴露出来给外部，带来安全性问题      这样，Nginx 只需要配置转发到 \/api\/* 的所有接口即可。 @see YudaoWebAutoConfiguration#configurePathMatch(PathMatchConfigurer)",
+      "sourceType": "cn.iocoder.yudao.framework.web.config.WebProperties$Api"
+    },
+    {
+      "name": "yudao.xss.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启，默认为 true",
+      "sourceType": "cn.iocoder.yudao.framework.xss.config.XssProperties"
+    },
+    {
+      "name": "yudao.xss.exclude-urls",
+      "type": "java.util.List<java.lang.String>",
+      "description": "需要排除的 URL，默认为空",
+      "sourceType": "cn.iocoder.yudao.framework.xss.config.XssProperties"
+    }
+  ],
+  "hints": []
+}

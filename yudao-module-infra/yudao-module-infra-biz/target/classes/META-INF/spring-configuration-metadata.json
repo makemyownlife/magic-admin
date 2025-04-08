@@ -1,0 +1,36 @@
+{
+  "groups": [
+    {
+      "name": "yudao.codegen",
+      "type": "cn.iocoder.yudao.module.infra.framework.codegen.config.CodegenProperties",
+      "sourceType": "cn.iocoder.yudao.module.infra.framework.codegen.config.CodegenProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "yudao.codegen.base-package",
+      "type": "java.lang.String",
+      "description": "生成的 Java 代码的基础包",
+      "sourceType": "cn.iocoder.yudao.module.infra.framework.codegen.config.CodegenProperties"
+    },
+    {
+      "name": "yudao.codegen.db-schemas",
+      "type": "java.util.Collection<java.lang.String>",
+      "description": "数据库名数组",
+      "sourceType": "cn.iocoder.yudao.module.infra.framework.codegen.config.CodegenProperties"
+    },
+    {
+      "name": "yudao.codegen.front-type",
+      "type": "java.lang.Integer",
+      "description": "代码生成的前端类型（默认） 枚举 {@link CodegenFrontTypeEnum#getType()}",
+      "sourceType": "cn.iocoder.yudao.module.infra.framework.codegen.config.CodegenProperties"
+    },
+    {
+      "name": "yudao.codegen.unit-test-enable",
+      "type": "java.lang.Boolean",
+      "description": "是否生成单元测试",
+      "sourceType": "cn.iocoder.yudao.module.infra.framework.codegen.config.CodegenProperties"
+    }
+  ],
+  "hints": []
+}

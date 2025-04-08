@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Annotation profile for magic-common" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc-scribe/0.15.0/therapi-runtime-javadoc-scribe-0.15.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc/0.15.0/therapi-runtime-javadoc-0.15.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.4/spring-boot-configuration-processor-3.4.4.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus-processor/1.4.6/mapstruct-plus-processor-1.4.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus/1.4.6/mapstruct-plus-1.4.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus-object-convert/1.4.6/mapstruct-plus-object-convert-1.4.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/baidu/lbsyun/javapoet/1.9.0/javapoet-1.9.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/tools/gem/gem-api/1.0.0.Alpha3/gem-api-1.0.0.Alpha3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc-scribe/0.15.0/therapi-runtime-javadoc-scribe-0.15.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc/0.15.0/therapi-runtime-javadoc-0.15.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.4/spring-boot-configuration-processor-3.4.4.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus-processor/1.4.6/mapstruct-plus-processor-1.4.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus/1.4.6/mapstruct-plus-1.4.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus-object-convert/1.4.6/mapstruct-plus-object-convert-1.4.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/baidu/lbsyun/javapoet/1.9.0/javapoet-1.9.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/tools/gem/gem-api/1.0.0.Alpha3/gem-api-1.0.0.Alpha3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+        </processorPath>
+        <module name="magic-common-mybatis" />
+        <module name="magic-common-sse" />
+        <module name="magic-common-log" />
+        <module name="magic-common-excel" />
+        <module name="magic-common-oss" />
+        <module name="magic-common-tenant" />
+        <module name="magic-common-encrypt" />
+        <module name="magic-common-security" />
+        <module name="magic-common-satoken" />
+        <module name="magic-common-idempotent" />
+        <module name="magic-common-sms" />
+        <module name="magic-common-websocket" />
+        <module name="magic-common-doc" />
+        <module name="magic-common-ratelimiter" />
+        <module name="magic-common-redis" />
+        <module name="magic-common-translation" />
+        <module name="magic-common-json" />
+        <module name="magic-common-sensitive" />
+        <module name="magic-common-social" />
+        <module name="magic-common-web" />
+        <module name="magic-common-mail" />
+        <module name="magic-common-core" />
+      </profile>
+      <profile name="Annotation profile for yudao" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/2.7.18/spring-boot-configuration-processor-2.7.18.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+        </processorPath>
+        <module name="yudao-spring-boot-starter-job" />
+        <module name="yudao-server" />
+        <module name="yudao-module-system-biz" />
+        <module name="yudao-spring-boot-starter-test" />
+        <module name="yudao-spring-boot-starter-biz-data-permission" />
+        <module name="yudao-spring-boot-starter-security" />
+        <module name="yudao-spring-boot-starter-redis" />
+        <module name="yudao-spring-boot-starter-mybatis" />
+        <module name="yudao-spring-boot-starter-protection" />
+        <module name="yudao-spring-boot-starter-web" />
+        <module name="yudao-spring-boot-starter-biz-ip" />
+        <module name="yudao-spring-boot-starter-biz-tenant" />
+        <module name="yudao-module-infra-api" />
+        <module name="yudao-spring-boot-starter-monitor" />
+        <module name="yudao-spring-boot-starter-websocket" />
+        <module name="yudao-module-infra-biz" />
+        <module name="yudao-spring-boot-starter-mq" />
+        <module name="yudao-common" />
+        <module name="yudao-spring-boot-starter-excel" />
+        <module name="yudao-module-system-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-bom" target="1.5" />
+      <module name="common-core" target="17" />
+      <module name="common-doc" target="17" />
+      <module name="common-encrypt" target="17" />
+      <module name="common-excel" target="17" />
+      <module name="common-idempotent" target="17" />
+      <module name="common-json" target="17" />
+      <module name="common-log" target="17" />
+      <module name="common-mail" target="17" />
+      <module name="common-mybatis" target="17" />
+      <module name="common-oss" target="17" />
+      <module name="common-ratelimiter" target="17" />
+      <module name="common-redis" target="17" />
+      <module name="common-satoken" target="17" />
+      <module name="common-security" target="17" />
+      <module name="common-sensitive" target="17" />
+      <module name="common-sms" target="17" />
+      <module name="common-social" target="17" />
+      <module name="common-sse" target="17" />
+      <module name="common-tenant" target="17" />
+      <module name="common-translation" target="17" />
+      <module name="common-web" target="17" />
+      <module name="common-websocket" target="17" />
+      <module name="magic-admin" target="17" />
+      <module name="magic-common" target="17" />
+      <module name="magic-demo" target="17" />
+      <module name="magic-extend" target="17" />
+      <module name="magic-generator" target="17" />
+      <module name="magic-modules" target="17" />
+      <module name="magic-system" target="17" />
+      <module name="magic-ui" target="17" />
+      <module name="module-demo" target="1.5" />
+      <module name="module-generator" target="1.5" />
+      <module name="module-system" target="1.5" />
+      <module name="ruoyi-admin" target="17" />
+      <module name="ruoyi-common" target="17" />
+      <module name="ruoyi-common-bom" target="1.5" />
+      <module name="ruoyi-common-core" target="17" />
+      <module name="ruoyi-common-doc" target="17" />
+      <module name="ruoyi-common-encrypt" target="17" />
+      <module name="ruoyi-common-excel" target="17" />
+      <module name="ruoyi-common-idempotent" target="17" />
+      <module name="ruoyi-common-job" target="17" />
+      <module name="ruoyi-common-json" target="17" />
+      <module name="ruoyi-common-log" target="17" />
+      <module name="ruoyi-common-mail" target="17" />
+      <module name="ruoyi-common-mybatis" target="17" />
+      <module name="ruoyi-common-oss" target="17" />
+      <module name="ruoyi-common-ratelimiter" target="17" />
+      <module name="ruoyi-common-redis" target="17" />
+      <module name="ruoyi-common-satoken" target="17" />
+      <module name="ruoyi-common-security" target="17" />
+      <module name="ruoyi-common-sensitive" target="17" />
+      <module name="ruoyi-common-sms" target="17" />
+      <module name="ruoyi-common-social" target="17" />
+      <module name="ruoyi-common-sse" target="17" />
+      <module name="ruoyi-common-tenant" target="17" />
+      <module name="ruoyi-common-translation" target="17" />
+      <module name="ruoyi-common-web" target="17" />
+      <module name="ruoyi-common-websocket" target="17" />
+      <module name="ruoyi-demo" target="17" />
+      <module name="ruoyi-extend" target="17" />
+      <module name="ruoyi-generator" target="17" />
+      <module name="ruoyi-job" target="17" />
+      <module name="ruoyi-modules" target="17" />
+      <module name="ruoyi-monitor-admin" target="17" />
+      <module name="ruoyi-snailjob-server" target="17" />
+      <module name="ruoyi-system" target="17" />
+      <module name="ruoyi-workflow" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common-core" options="-parameters" />
+      <module name="common-doc" options="-parameters" />
+      <module name="common-encrypt" options="-parameters" />
+      <module name="common-excel" options="-parameters" />
+      <module name="common-idempotent" options="-parameters" />
+      <module name="common-json" options="-parameters" />
+      <module name="common-log" options="-parameters" />
+      <module name="common-mail" options="-parameters" />
+      <module name="common-mybatis" options="-parameters" />
+      <module name="common-oss" options="-parameters" />
+      <module name="common-ratelimiter" options="-parameters" />
+      <module name="common-redis" options="-parameters" />
+      <module name="common-satoken" options="-parameters" />
+      <module name="common-security" options="-parameters" />
+      <module name="common-sensitive" options="-parameters" />
+      <module name="common-sms" options="-parameters" />
+      <module name="common-social" options="-parameters" />
+      <module name="common-sse" options="-parameters" />
+      <module name="common-tenant" options="-parameters" />
+      <module name="common-translation" options="-parameters" />
+      <module name="common-web" options="-parameters" />
+      <module name="common-websocket" options="-parameters" />
+      <module name="magic-admin" options="-parameters" />
+      <module name="magic-admin-all" options="" />
+      <module name="magic-common" options="-parameters" />
+      <module name="magic-common-core" options="-parameters" />
+      <module name="magic-common-doc" options="-parameters" />
+      <module name="magic-common-encrypt" options="-parameters" />
+      <module name="magic-common-excel" options="-parameters" />
+      <module name="magic-common-idempotent" options="-parameters" />
+      <module name="magic-common-json" options="-parameters" />
+      <module name="magic-common-log" options="-parameters" />
+      <module name="magic-common-mail" options="-parameters" />
+      <module name="magic-common-mybatis" options="-parameters" />
+      <module name="magic-common-oss" options="-parameters" />
+      <module name="magic-common-ratelimiter" options="-parameters" />
+      <module name="magic-common-redis" options="-parameters" />
+      <module name="magic-common-satoken" options="-parameters" />
+      <module name="magic-common-security" options="-parameters" />
+      <module name="magic-common-sensitive" options="-parameters" />
+      <module name="magic-common-sms" options="-parameters" />
+      <module name="magic-common-social" options="-parameters" />
+      <module name="magic-common-sse" options="-parameters" />
+      <module name="magic-common-tenant" options="-parameters" />
+      <module name="magic-common-translation" options="-parameters" />
+      <module name="magic-common-web" options="-parameters" />
+      <module name="magic-common-websocket" options="-parameters" />
+      <module name="magic-demo" options="-parameters" />
+      <module name="magic-extend" options="-parameters" />
+      <module name="magic-generator" options="-parameters" />
+      <module name="magic-modules" options="-parameters" />
+      <module name="magic-system" options="-parameters" />
+      <module name="ruoyi-admin" options="-parameters" />
+      <module name="ruoyi-common" options="-parameters" />
+      <module name="ruoyi-common-core" options="-parameters" />
+      <module name="ruoyi-common-doc" options="-parameters" />
+      <module name="ruoyi-common-encrypt" options="-parameters" />
+      <module name="ruoyi-common-excel" options="-parameters" />
+      <module name="ruoyi-common-idempotent" options="-parameters" />
+      <module name="ruoyi-common-job" options="-parameters" />
+      <module name="ruoyi-common-json" options="-parameters" />
+      <module name="ruoyi-common-log" options="-parameters" />
+      <module name="ruoyi-common-mail" options="-parameters" />
+      <module name="ruoyi-common-mybatis" options="-parameters" />
+      <module name="ruoyi-common-oss" options="-parameters" />
+      <module name="ruoyi-common-ratelimiter" options="-parameters" />
+      <module name="ruoyi-common-redis" options="-parameters" />
+      <module name="ruoyi-common-satoken" options="-parameters" />
+      <module name="ruoyi-common-security" options="-parameters" />
+      <module name="ruoyi-common-sensitive" options="-parameters" />
+      <module name="ruoyi-common-sms" options="-parameters" />
+      <module name="ruoyi-common-social" options="-parameters" />
+      <module name="ruoyi-common-sse" options="-parameters" />
+      <module name="ruoyi-common-tenant" options="-parameters" />
+      <module name="ruoyi-common-translation" options="-parameters" />
+      <module name="ruoyi-common-web" options="-parameters" />
+      <module name="ruoyi-common-websocket" options="-parameters" />
+      <module name="ruoyi-demo" options="-parameters" />
+      <module name="ruoyi-extend" options="-parameters" />
+      <module name="ruoyi-generator" options="-parameters" />
+      <module name="ruoyi-job" options="-parameters" />
+      <module name="ruoyi-modules" options="-parameters" />
+      <module name="ruoyi-monitor-admin" options="-parameters" />
+      <module name="ruoyi-snailjob-server" options="-parameters" />
+      <module name="ruoyi-system" options="-parameters" />
+      <module name="ruoyi-workflow" options="-parameters" />
+    </option>
+  </component>
+</project>
