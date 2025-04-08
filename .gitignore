@@ -19,3 +19,5 @@ jtester.properties
 *.dat
 conf/
 .vscode
+
+target/

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: yudao-server
+    name: magic-admin
 
   profiles:
     active: local
