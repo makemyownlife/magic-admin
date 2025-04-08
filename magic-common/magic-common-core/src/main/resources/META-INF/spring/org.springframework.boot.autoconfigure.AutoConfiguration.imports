@@ -1,5 +1,0 @@
-cn.javayong.magic.common.core.config.ApplicationConfig
-cn.javayong.magic.common.core.config.AsyncConfig
-cn.javayong.magic.common.core.config.ThreadPoolConfig
-cn.javayong.magic.common.core.config.ValidatorConfig
-cn.javayong.magic.common.core.utils.SpringUtils

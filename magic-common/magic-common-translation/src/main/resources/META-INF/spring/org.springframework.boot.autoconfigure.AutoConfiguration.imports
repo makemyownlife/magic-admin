@@ -1,6 +1,0 @@
-cn.javayong.magic.common.translation.config.TranslationConfig
-cn.javayong.magic.common.translation.core.impl.DeptNameTranslationImpl
-cn.javayong.magic.common.translation.core.impl.DictTypeTranslationImpl
-cn.javayong.magic.common.translation.core.impl.OssUrlTranslationImpl
-cn.javayong.magic.common.translation.core.impl.UserNameTranslationImpl
-cn.javayong.magic.common.translation.core.impl.NicknameTranslationImpl
