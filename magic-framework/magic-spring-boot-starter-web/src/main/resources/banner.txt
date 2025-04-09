@@ -1,4 +1,3 @@
-芋道源码 http://www.iocoder.cn
 Application Version: ${magic.info.version}
 Spring Boot Version: ${spring-boot.version}
 
