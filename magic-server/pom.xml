@@ -20,7 +20,7 @@
         从而实现提供 RESTful API 给 magic-ui-admin、magic-ui-user 等前端项目。
         本质上来说，它就是个空壳（容器）！
     </description>
-    <url>https://github.com/YunaiV/ruoyi-vue-pro</url>
+    <url>https://github.com/makemyownlife/magic-admin</url>
 
     <dependencies>
         <dependency>
