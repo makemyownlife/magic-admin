@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-infra-biz</artifactId>
+            <artifactId>magic-module-infra</artifactId>
             <version>${revision}</version>
         </dependency>
 

@@ -25,21 +25,17 @@
             <version>${revision}</version>
         </dependency>
 
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-infra-api</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
         <!-- 业务组件 -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-data-permission</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-ip</artifactId>
@@ -118,7 +114,7 @@
         </dependency>
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-infra-biz</artifactId>
+            <artifactId>magic-module-infra</artifactId>
             <version>0.0.1-jdk8-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
