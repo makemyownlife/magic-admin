@@ -120,26 +120,6 @@ lock4j:
 
 --- #################### 监控相关配置 ####################
 
-# Actuator 监控端点的配置项
-management:
-  endpoints:
-    web:
-      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
-      exposure:
-        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
-
-# Spring Boot Admin 配置项
-spring:
-  boot:
-    admin:
-      # Spring Boot Admin Client 客户端的相关配置
-      client:
-        url: http://127.0.0.1:${server.port}/${spring.boot.admin.context-path} # 设置 Spring Boot Admin Server 地址
-        instance:
-          service-host-type: IP # 注册实例时，优先使用 IP [IP, HOST_NAME, CANONICAL_HOST_NAME]
-      # Spring Boot Admin Server 服务端的相关配置
-      context-path: /admin # 配置 Spring
-
 # 日志文件配置
 logging:
   file:
@@ -201,25 +181,6 @@ justauth:
     type: REDIS
     prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
     timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
-
-
---- #################### iot相关配置 TODO 芋艿：再瞅瞅 ####################
-iot:
-  emq:
-    # 账号
-    username: anhaohao
-    # 密码
-    password: ahh@123456
-    # 主机地址
-    hostUrl: tcp://chaojiniu.top:1883
-    # 客户端Id，不能相同，采用随机数 ${random.value}
-    client-id: ${random.int}
-    # 默认主题
-    default-topic: test
-    # 保持连接
-    keepalive: 60
-    # 清除会话(设置为false,断开连接，重连后使用原来的会话 保留订阅的主题，能接收离线期间的消息)
-    clearSession: true
 
 
 # 插件配置
