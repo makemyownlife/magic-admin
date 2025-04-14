@@ -19,7 +19,7 @@ import cn.javayong.magic.module.infra.dal.mysql.demo.InfraStudentContactMapper;
 import cn.javayong.magic.module.infra.dal.mysql.demo.InfraStudentTeacherMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 
 /**
  * 学生 Service 实现类

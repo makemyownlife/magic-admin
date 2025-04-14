@@ -34,7 +34,7 @@ import java.util.stream.IntStream;
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertSet;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 
 /**
  * 代码生成 Service 实现类

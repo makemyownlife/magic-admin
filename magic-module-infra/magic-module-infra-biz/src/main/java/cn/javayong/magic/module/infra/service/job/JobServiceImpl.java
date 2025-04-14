@@ -24,7 +24,7 @@ import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.containsAny;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 
 /**
  * 定时任务 Service 实现类

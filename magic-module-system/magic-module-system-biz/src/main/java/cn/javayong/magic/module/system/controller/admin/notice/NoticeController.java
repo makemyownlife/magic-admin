@@ -1,11 +1,9 @@
 package cn.javayong.magic.module.system.controller.admin.notice;
 
 import cn.hutool.core.lang.Assert;
-import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.infra.api.websocket.WebSocketSenderApi;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticePageReqVO;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticeRespVO;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticeSaveReqVO;
@@ -31,9 +29,6 @@ public class NoticeController {
 
     @Resource
     private NoticeService noticeService;
-
-    @Resource
-    private WebSocketSenderApi webSocketSenderApi;
 
     @PostMapping("/create")
     @Operation(summary = "创建通知公告")
@@ -84,8 +79,6 @@ public class NoticeController {
     public CommonResult<Boolean> push(@RequestParam("id") Long id) {
         NoticeDO notice = noticeService.getNotice(id);
         Assert.notNull(notice, "公告不能为空");
-        // 通过 websocket 推送给在线的用户
-        webSocketSenderApi.sendObject(UserTypeEnum.ADMIN.getValue(), "notice-push", notice);
         return success(true);
     }
 

@@ -20,7 +20,6 @@ import cn.javayong.magic.module.system.enums.logger.LoginResultEnum;
 import cn.javayong.magic.module.system.enums.oauth2.OAuth2ClientConstants;
 import cn.javayong.magic.module.system.enums.sms.SmsSceneEnum;
 import cn.javayong.magic.module.system.service.logger.LoginLogService;
-import cn.javayong.magic.module.system.service.member.MemberService;
 import cn.javayong.magic.module.system.service.oauth2.OAuth2TokenService;
 import cn.javayong.magic.module.system.service.social.SocialUserService;
 import cn.javayong.magic.module.system.service.user.AdminUserService;
@@ -59,8 +58,7 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     private OAuth2TokenService oauth2TokenService;
     @Resource
     private SocialUserService socialUserService;
-    @Resource
-    private MemberService memberService;
+
     @Resource
     private Validator validator;
     @Resource
@@ -187,8 +185,6 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         reqDTO.setUserType(userType);
         if (ObjectUtil.equal(getUserType().getValue(), userType)) {
             reqDTO.setUsername(getUsername(userId));
-        } else {
-            reqDTO.setUsername(memberService.getMemberUserMobile(userId));
         }
         reqDTO.setUserAgent(ServletUtils.getUserAgent());
         reqDTO.setUserIp(ServletUtils.getClientIP());

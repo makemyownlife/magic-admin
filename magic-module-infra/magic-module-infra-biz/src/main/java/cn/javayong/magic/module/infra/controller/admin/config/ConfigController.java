@@ -7,7 +7,7 @@ import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.infra.controller.admin.config.vo.*;
 import cn.javayong.magic.module.infra.convert.config.ConfigConvert;
 import cn.javayong.magic.module.infra.dal.dataobject.config.ConfigDO;
-import cn.javayong.magic.module.infra.enums.ErrorCodeConstants;
+import cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants;
 import cn.javayong.magic.module.infra.service.config.ConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

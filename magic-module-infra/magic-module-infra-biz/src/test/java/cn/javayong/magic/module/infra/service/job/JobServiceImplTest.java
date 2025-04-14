@@ -23,7 +23,7 @@ import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertPojoE
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertServiceException;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.randomPojo;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.randomString;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mockStatic;

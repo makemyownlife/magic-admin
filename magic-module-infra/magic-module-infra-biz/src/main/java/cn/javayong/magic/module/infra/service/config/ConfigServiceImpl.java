@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.annotation.Resource;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 
 /**
  * 参数配置 Service 实现类

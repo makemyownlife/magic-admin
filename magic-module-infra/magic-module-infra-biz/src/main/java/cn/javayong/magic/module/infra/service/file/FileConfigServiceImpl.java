@@ -31,8 +31,8 @@ import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.cache.CacheUtils.buildAsyncReloadingCache;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.FILE_CONFIG_DELETE_FAIL_MASTER;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.FILE_CONFIG_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_CONFIG_DELETE_FAIL_MASTER;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_CONFIG_NOT_EXISTS;
 
 /**
  * 文件配置 Service 实现类

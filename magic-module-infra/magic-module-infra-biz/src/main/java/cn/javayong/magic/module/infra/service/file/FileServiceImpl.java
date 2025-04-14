@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.FILE_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_NOT_EXISTS;
 
 /**
  * 文件 Service 实现类

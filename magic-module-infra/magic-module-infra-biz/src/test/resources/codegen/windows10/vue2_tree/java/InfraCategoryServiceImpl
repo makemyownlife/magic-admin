@@ -15,7 +15,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.infra.dal.mysql.demo.InfraCategoryMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 
 /**
  * 分类 Service 实现类

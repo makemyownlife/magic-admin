@@ -81,8 +81,4 @@ public interface AuthConvert {
 
     SocialUserBindReqDTO convert(Long userId, Integer userType, AuthSocialLoginReqVO reqVO);
 
-    SmsCodeSendReqDTO convert(AuthSmsSendReqVO reqVO);
-
-    SmsCodeUseReqDTO convert(AuthSmsLoginReqVO reqVO, Integer scene, String usedIp);
-
 }

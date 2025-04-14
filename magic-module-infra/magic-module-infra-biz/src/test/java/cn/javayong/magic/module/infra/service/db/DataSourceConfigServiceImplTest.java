@@ -25,7 +25,7 @@ import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertPojoE
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertServiceException;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.randomLongId;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.randomPojo;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.DATA_SOURCE_CONFIG_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.DATA_SOURCE_CONFIG_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;

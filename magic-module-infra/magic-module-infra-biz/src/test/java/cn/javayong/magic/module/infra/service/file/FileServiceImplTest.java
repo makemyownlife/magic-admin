@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 import static cn.javayong.magic.framework.common.util.date.LocalDateTimeUtils.buildTime;
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertServiceException;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.*;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.FILE_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;

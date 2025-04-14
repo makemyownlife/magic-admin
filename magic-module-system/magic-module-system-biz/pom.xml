@@ -18,11 +18,13 @@
     </description>
 
     <dependencies>
+
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-system-api</artifactId>
+            <artifactId>magic-module-system-biz</artifactId>
             <version>${revision}</version>
         </dependency>
+
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-module-infra-api</artifactId>
@@ -113,6 +115,12 @@
         <dependency>
             <groupId>com.xingyuv</groupId>
             <artifactId>spring-boot-starter-captcha-plus</artifactId> <!-- 验证码，一般用于登录使用 -->
+        </dependency>
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-module-infra-biz</artifactId>
+            <version>0.0.1-jdk8-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

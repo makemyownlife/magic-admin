@@ -40,7 +40,7 @@ import static cn.javayong.magic.framework.common.util.object.ObjectUtils.cloneIg
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertPojoEquals;
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertServiceException;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.*;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;

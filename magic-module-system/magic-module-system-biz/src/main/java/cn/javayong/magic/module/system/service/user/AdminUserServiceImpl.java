@@ -11,8 +11,9 @@ import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
 import cn.javayong.magic.framework.datapermission.core.util.DataPermissionUtils;
-import cn.javayong.magic.module.infra.api.config.ConfigApi;
-import cn.javayong.magic.module.infra.api.file.FileApi;
+import cn.javayong.magic.module.infra.dal.dataobject.config.ConfigDO;
+import cn.javayong.magic.module.infra.service.config.ConfigService;
+import cn.javayong.magic.module.infra.service.file.FileService;
 import cn.javayong.magic.module.system.controller.admin.auth.vo.AuthRegisterReqVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileUpdatePasswordReqVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileUpdateReqVO;
@@ -80,9 +81,10 @@ public class AdminUserServiceImpl implements AdminUserService {
     private UserPostMapper userPostMapper;
 
     @Resource
-    private FileApi fileApi;
+    private FileService fileApi;
+
     @Resource
-    private ConfigApi configApi;
+    private ConfigService configApi;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -202,7 +204,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     public String updateUserAvatar(Long id, InputStream avatarFile) {
         validateUserExists(id);
         // 存储文件
-        String avatar = fileApi.createFile(IoUtil.readBytes(avatarFile));
+        String avatar = fileApi.createFile(null, null, IoUtil.readBytes(avatarFile));
         // 更新路径
         AdminUserDO sysUserDO = new AdminUserDO();
         sysUserDO.setId(id);
@@ -353,7 +355,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     private AdminUserDO validateUserForCreateOrUpdate(Long id, String username, String mobile, String email,
-                                               Long deptId, Set<Long> postIds) {
+                                                      Long deptId, Set<Long> postIds) {
         // 关闭数据权限，避免因为没有数据权限，查询不到数据，进而导致唯一校验不正确
         return DataPermissionUtils.executeIgnore(() -> {
             // 校验用户存在
@@ -440,6 +442,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     /**
      * 校验旧密码
+     *
      * @param id          用户 id
      * @param oldPassword 旧密码
      */
@@ -462,7 +465,8 @@ public class AdminUserServiceImpl implements AdminUserService {
             throw exception(USER_IMPORT_LIST_IS_EMPTY);
         }
         // 1.2 初始化密码不能为空
-        String initPassword = configApi.getConfigValueByKey(USER_INIT_PASSWORD_KEY);
+        ConfigDO config = configApi.getConfigByKey(USER_INIT_PASSWORD_KEY);
+        String initPassword = (config != null)? config.getValue() : null;
         if (StrUtil.isEmpty(initPassword)) {
             throw exception(USER_IMPORT_INIT_PASSWORD);
         }
@@ -474,7 +478,7 @@ public class AdminUserServiceImpl implements AdminUserService {
             // 2.1.1 校验字段是否符合要求
             try {
                 ValidationUtils.validate(BeanUtils.toBean(importUser, UserSaveReqVO.class).setPassword(initPassword));
-            } catch (ConstraintViolationException ex){
+            } catch (ConstraintViolationException ex) {
                 respVO.getFailureUsernames().put(importUser.getUsername(), ex.getMessage());
                 return;
             }

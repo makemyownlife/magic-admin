@@ -6,7 +6,6 @@ import cn.javayong.magic.framework.web.core.filter.DemoFilter;
 import cn.javayong.magic.framework.web.core.handler.GlobalExceptionHandler;
 import cn.javayong.magic.framework.web.core.handler.GlobalResponseBodyHandler;
 import cn.javayong.magic.framework.web.core.util.WebFrameworkUtils;
-import cn.javayong.magic.module.infra.api.logger.ApiErrorLogApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.datapermission.core.annotation.DataPermission;
+import cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileRespVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileUpdatePasswordReqVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileUpdateReqVO;
@@ -33,7 +34,6 @@ import java.util.List;
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 import static cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.FILE_IS_EMPTY;
 
 @Tag(name = "管理后台 - 用户个人中心")
 @RestController
@@ -91,7 +91,7 @@ public class UserProfileController {
     @Operation(summary = "上传用户个人头像")
     public CommonResult<String> updateUserAvatar(@RequestParam("avatarFile") MultipartFile file) throws Exception {
         if (file.isEmpty()) {
-            throw exception(FILE_IS_EMPTY);
+            throw exception(ErrorCodeConstants.FILE_IS_EMPTY);
         }
         String avatar = userService.updateUserAvatar(getLoginUserId(), file.getInputStream());
         return success(avatar);

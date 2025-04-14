@@ -22,8 +22,8 @@ import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertPojoE
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.assertServiceException;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.randomLongId;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.randomPojo;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.API_ERROR_LOG_NOT_FOUND;
-import static cn.javayong.magic.module.infra.enums.ErrorCodeConstants.API_ERROR_LOG_PROCESSED;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.API_ERROR_LOG_NOT_FOUND;
+import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.API_ERROR_LOG_PROCESSED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
