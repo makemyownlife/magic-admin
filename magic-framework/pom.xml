@@ -17,7 +17,6 @@
         <module>magic-spring-boot-starter-security</module>
         <module>magic-spring-boot-starter-websocket</module>
 
-        <module>magic-spring-boot-starter-monitor</module>
         <module>magic-spring-boot-starter-protection</module>
         <module>magic-spring-boot-starter-job</module>
         <module>magic-spring-boot-starter-mq</module>
