@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.infra.controller.admin.job;
 
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
@@ -26,7 +25,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 定时任务日志")
@@ -58,7 +56,6 @@ public class JobLogController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出定时任务日志 Excel")
     @PreAuthorize("@ss.hasPermission('infra:job:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void exportJobLogExcel(@Valid JobLogPageReqVO exportReqVO,
                                   HttpServletResponse response) throws IOException {
         exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.system.controller.admin.dept;
 
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
@@ -27,8 +26,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 岗位")
@@ -94,7 +91,6 @@ public class PostController {
     @GetMapping("/export")
     @Operation(summary = "岗位管理")
     @PreAuthorize("@ss.hasPermission('system:post:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void export(HttpServletResponse response, @Validated PostPageReqVO reqVO) throws IOException {
         reqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
         List<PostDO> list = postService.getPostPage(reqVO).getList();

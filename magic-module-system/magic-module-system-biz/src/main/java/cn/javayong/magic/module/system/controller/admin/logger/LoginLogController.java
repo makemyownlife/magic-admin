@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.system.controller.admin.logger;
 
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
@@ -24,7 +23,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 登录日志")
@@ -47,7 +45,6 @@ public class LoginLogController {
     @GetMapping("/export")
     @Operation(summary = "导出登录日志 Excel")
     @PreAuthorize("@ss.hasPermission('system:login-log:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void exportLoginLog(HttpServletResponse response, @Valid LoginLogPageReqVO exportReqVO) throws IOException {
         exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
         List<LoginLogDO> list = loginLogService.getLoginLogPage(exportReqVO).getList();

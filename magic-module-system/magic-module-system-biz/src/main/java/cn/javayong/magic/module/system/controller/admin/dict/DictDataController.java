@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.system.controller.admin.dict;
 
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
@@ -26,7 +25,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 字典数据")
@@ -92,7 +90,6 @@ public class DictDataController {
     @GetMapping("/export")
     @Operation(summary = "导出字典数据")
     @PreAuthorize("@ss.hasPermission('system:dict:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void export(HttpServletResponse response, @Valid DictDataPageReqVO exportReqVO) throws IOException {
         exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
         List<DictDataDO> list = dictDataService.getDictDataPage(exportReqVO).getList();

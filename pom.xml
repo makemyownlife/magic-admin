@@ -7,6 +7,7 @@
     <artifactId>magic-admin-all</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>magic-dependencies</module>
         <module>magic-framework</module>
@@ -22,6 +23,7 @@
 
     <name>${project.artifactId}</name>
     <description>magic-admin基础脚手架</description>
+
     <url>https://github.com/makemyownlife/magic-admin</url>
 
     <properties>

@@ -1,7 +1,6 @@
 package cn.javayong.magic.module.system.controller.admin.user;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
@@ -31,7 +30,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 
@@ -130,7 +128,6 @@ public class UserController {
     @GetMapping("/export")
     @Operation(summary = "导出用户")
     @PreAuthorize("@ss.hasPermission('system:user:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void exportUserList(@Validated UserPageReqVO exportReqVO,
                                HttpServletResponse response) throws IOException {
         exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

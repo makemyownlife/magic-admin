@@ -40,29 +40,6 @@ public interface AdminAuthService {
     void logout(String token, Integer logType);
 
     /**
-     * 短信验证码发送
-     *
-     * @param reqVO 发送请求
-     */
-    void sendSmsCode(AuthSmsSendReqVO reqVO);
-
-    /**
-     * 短信登录
-     *
-     * @param reqVO 登录信息
-     * @return 登录结果
-     */
-    AuthLoginRespVO smsLogin(AuthSmsLoginReqVO reqVO);
-
-    /**
-     * 社交快捷登录，使用 code 授权码
-     *
-     * @param reqVO 登录信息
-     * @return 登录结果
-     */
-    AuthLoginRespVO socialLogin(@Valid AuthSocialLoginReqVO reqVO);
-
-    /**
      * 刷新访问令牌
      *
      * @param refreshToken 刷新令牌

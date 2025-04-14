@@ -60,8 +60,8 @@ public class MagicWebAutoConfiguration implements WebMvcConfigurer {
 
     @Bean
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public GlobalExceptionHandler globalExceptionHandler(ApiErrorLogApi apiErrorLogApi) {
-        return new GlobalExceptionHandler(applicationName, apiErrorLogApi);
+    public GlobalExceptionHandler globalExceptionHandler() {
+        return new GlobalExceptionHandler(applicationName);
     }
 
     @Bean

@@ -1,4 +1,3 @@
-cn.javayong.magic.framework.apilog.config.MagicApiLogAutoConfiguration
 cn.javayong.magic.framework.jackson.config.MagicJacksonAutoConfiguration
 cn.javayong.magic.framework.swagger.config.MagicSwaggerAutoConfiguration
 cn.javayong.magic.framework.web.config.MagicWebAutoConfiguration

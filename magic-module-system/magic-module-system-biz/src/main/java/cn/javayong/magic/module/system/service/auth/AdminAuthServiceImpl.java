@@ -65,8 +65,6 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     private Validator validator;
     @Resource
     private CaptchaService captchaService;
-    @Resource
-    private SmsCodeApi smsCodeApi;
 
     /**
      * 验证码的开关，默认为 true
@@ -113,39 +111,6 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         return createTokenAfterLoginSuccess(user.getId(), reqVO.getUsername(), LoginLogTypeEnum.LOGIN_USERNAME);
     }
 
-    @Override
-    public void sendSmsCode(AuthSmsSendReqVO reqVO) {
-        // 如果是重置密码场景，需要校验图形验证码是否正确
-        if (Objects.equals(SmsSceneEnum.ADMIN_MEMBER_RESET_PASSWORD.getScene(), reqVO.getScene())) {
-            ResponseModel response = doValidateCaptcha(reqVO);
-            if (!response.isSuccess()) {
-                throw exception(AUTH_REGISTER_CAPTCHA_CODE_ERROR, response.getRepMsg());
-            }
-        }
-
-        // 登录场景，验证是否存在
-        if (userService.getUserByMobile(reqVO.getMobile()) == null) {
-            throw exception(AUTH_MOBILE_NOT_EXISTS);
-        }
-        // 发送验证码
-        smsCodeApi.sendSmsCode(AuthConvert.INSTANCE.convert(reqVO).setCreateIp(getClientIP()));
-    }
-
-    @Override
-    public AuthLoginRespVO smsLogin(AuthSmsLoginReqVO reqVO) {
-        // 校验验证码
-        smsCodeApi.useSmsCode(AuthConvert.INSTANCE.convert(reqVO, SmsSceneEnum.ADMIN_MEMBER_LOGIN.getScene(), getClientIP()));
-
-        // 获得用户信息
-        AdminUserDO user = userService.getUserByMobile(reqVO.getMobile());
-        if (user == null) {
-            throw exception(USER_NOT_EXISTS);
-        }
-
-        // 创建 Token 令牌，记录登录日志
-        return createTokenAfterLoginSuccess(user.getId(), reqVO.getMobile(), LoginLogTypeEnum.LOGIN_MOBILE);
-    }
-
     private void createLoginLog(Long userId, String username,
                                 LoginLogTypeEnum logTypeEnum, LoginResultEnum loginResult) {
         // 插入登录日志
@@ -163,25 +128,6 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         if (userId != null && Objects.equals(LoginResultEnum.SUCCESS.getResult(), loginResult.getResult())) {
             userService.updateUserLogin(userId, ServletUtils.getClientIP());
         }
-    }
-
-    @Override
-    public AuthLoginRespVO socialLogin(AuthSocialLoginReqVO reqVO) {
-        // 使用 code 授权码，进行登录。然后，获得到绑定的用户编号
-        SocialUserRespDTO socialUser = socialUserService.getSocialUserByCode(UserTypeEnum.ADMIN.getValue(), reqVO.getType(),
-                reqVO.getCode(), reqVO.getState());
-        if (socialUser == null || socialUser.getUserId() == null) {
-            throw exception(AUTH_THIRD_LOGIN_NOT_BIND);
-        }
-
-        // 获得用户
-        AdminUserDO user = userService.getUser(socialUser.getUserId());
-        if (user == null) {
-            throw exception(USER_NOT_EXISTS);
-        }
-
-        // 创建 Token 令牌，记录登录日志
-        return createTokenAfterLoginSuccess(user.getId(), user.getUsername(), LoginLogTypeEnum.LOGIN_SOCIAL);
     }
 
     @VisibleForTesting
@@ -290,13 +236,6 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         if (userByMobile == null) {
             throw exception(USER_MOBILE_NOT_EXISTS);
         }
-
-        smsCodeApi.useSmsCode(new SmsCodeUseReqDTO()
-                .setCode(reqVO.getCode())
-                .setMobile(reqVO.getMobile())
-                .setScene(SmsSceneEnum.ADMIN_MEMBER_RESET_PASSWORD.getScene())
-                .setUsedIp(getClientIP())
-        );
 
         userService.updateUserPassword(userByMobile.getId(), reqVO.getPassword());
     }

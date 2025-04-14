@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.infra.controller.admin.config;
 
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
@@ -23,7 +22,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
@@ -93,7 +91,6 @@ public class ConfigController {
     @GetMapping("/export")
     @Operation(summary = "导出参数配置")
     @PreAuthorize("@ss.hasPermission('infra:config:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void exportConfig(ConfigPageReqVO exportReqVO,
                              HttpServletResponse response) throws IOException {
         exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

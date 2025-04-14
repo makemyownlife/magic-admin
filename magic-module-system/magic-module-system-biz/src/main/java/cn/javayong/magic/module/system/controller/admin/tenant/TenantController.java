@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.system.controller.admin.tenant;
 
-import cn.javayong.magic.framework.apilog.core.annotation.ApiAccessLog;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
@@ -25,7 +24,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-import static cn.javayong.magic.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 
@@ -111,7 +109,6 @@ public class TenantController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出租户 Excel")
     @PreAuthorize("@ss.hasPermission('system:tenant:export')")
-    @ApiAccessLog(operateType = EXPORT)
     public void exportTenantExcel(@Valid TenantPageReqVO exportReqVO, HttpServletResponse response) throws IOException {
         exportReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
         List<TenantDO> list = tenantService.getTenantPage(exportReqVO).getList();
