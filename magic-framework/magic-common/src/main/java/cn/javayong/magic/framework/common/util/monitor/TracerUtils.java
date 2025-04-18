@@ -1,6 +1,6 @@
 package cn.javayong.magic.framework.common.util.monitor;
 
-import org.apache.skywalking.apm.toolkit.trace.TraceContext;
+import cn.hutool.core.lang.UUID;
 
 /**
  * 链路追踪工具类
@@ -24,7 +24,7 @@ public class TracerUtils {
      * @return 链路追踪编号
      */
     public static String getTraceId() {
-        return TraceContext.traceId();
+        return UUID.randomUUID().toString();
     }
 
 }
