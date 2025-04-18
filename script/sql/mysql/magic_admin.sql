@@ -2369,37 +2369,6 @@ CREATE TABLE `system_social_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='社交用户表';
 
 -- ----------------------------
--- Records of system_social_user
--- ----------------------------
-BEGIN;
-COMMIT;
-
--- ----------------------------
--- Table structure for system_social_user_bind
--- ----------------------------
-DROP TABLE IF EXISTS `system_social_user_bind`;
-CREATE TABLE `system_social_user_bind` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键(自增策略)',
-  `user_id` bigint NOT NULL COMMENT '用户编号',
-  `user_type` tinyint NOT NULL COMMENT '用户类型',
-  `social_type` tinyint NOT NULL COMMENT '社交平台的类型',
-  `social_user_id` bigint NOT NULL COMMENT '社交用户的编号',
-  `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
-  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='社交绑定表';
-
--- ----------------------------
--- Records of system_social_user_bind
--- ----------------------------
-BEGIN;
-COMMIT;
-
--- ----------------------------
 -- Table structure for system_tenant
 -- ----------------------------
 DROP TABLE IF EXISTS `system_tenant`;
