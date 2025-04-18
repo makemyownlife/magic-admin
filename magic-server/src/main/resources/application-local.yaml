@@ -144,18 +144,6 @@ management:
       exposure:
         include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
 
-# Spring Boot Admin 配置项
-spring:
-  boot:
-    admin:
-      # Spring Boot Admin Client 客户端的相关配置
-      client:
-        url: http://127.0.0.1:${server.port}/${spring.boot.admin.context-path} # 设置 Spring Boot Admin Server 地址
-        instance:
-          service-host-type: IP # 注册实例时，优先使用 IP [IP, HOST_NAME, CANONICAL_HOST_NAME]
-      # Spring Boot Admin Server 服务端的相关配置
-      context-path: /admin # 配置 Spring
-
 # 日志文件配置
 logging:
   file:
@@ -164,24 +152,9 @@ logging:
     # 配置自己写的 MyBatis Mapper 打印日志
     cn.javayong.magic.module.bpm.dal.mysql: debug
     cn.javayong.magic.module.infra.dal.mysql: debug
-    cn.javayong.magic.module.infra.dal.mysql.logger.ApiErrorLogMapper: INFO # 配置 ApiErrorLogMapper 的日志级别为 info，避免和 GlobalExceptionHandler 重复打印
     cn.javayong.magic.module.infra.dal.mysql.job.JobLogMapper: INFO # 配置 JobLogMapper 的日志级别为 info
     cn.javayong.magic.module.infra.dal.mysql.file.FileConfigMapper: INFO # 配置 FileConfigMapper 的日志级别为 info
-    cn.javayong.magic.module.pay.dal.mysql: debug
-    cn.javayong.magic.module.pay.dal.mysql.notify.PayNotifyTaskMapper: INFO # 配置 PayNotifyTaskMapper 的日志级别为 info
     cn.javayong.magic.module.system.dal.mysql: debug
-    cn.javayong.magic.module.system.dal.mysql.sms.SmsChannelMapper: INFO # 配置 SmsChannelMapper 的日志级别为 info
-    cn.javayong.magic.module.tool.dal.mysql: debug
-    cn.javayong.magic.module.member.dal.mysql: debug
-    cn.javayong.magic.module.trade.dal.mysql: debug
-    cn.javayong.magic.module.promotion.dal.mysql: debug
-    cn.javayong.magic.module.statistics.dal.mysql: debug
-    cn.javayong.magic.module.crm.dal.mysql: debug
-    cn.javayong.magic.module.erp.dal.mysql: debug
-    cn.javayong.magic.module.iot.dal.mysql: debug
-    cn.javayong.magic.module.iot.dal.tdengine: DEBUG
-    cn.javayong.magic.module.ai.dal.mysql: debug
-    org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO 芋艿：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
 
 debug: false
 
