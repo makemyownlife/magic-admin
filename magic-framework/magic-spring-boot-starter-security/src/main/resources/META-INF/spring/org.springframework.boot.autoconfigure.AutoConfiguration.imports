@@ -1,3 +1,2 @@
 cn.javayong.magic.framework.security.config.MagicSecurityAutoConfiguration
 cn.javayong.magic.framework.security.config.MagicWebSecurityConfigurerAdapter
-cn.javayong.magic.framework.operatelog.config.MagicOperateLogConfiguration
