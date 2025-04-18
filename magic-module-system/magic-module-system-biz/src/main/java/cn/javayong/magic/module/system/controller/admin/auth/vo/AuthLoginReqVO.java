@@ -14,7 +14,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-@Schema(description = "管理后台 - 账号密码登录 Request VO，如果登录并绑定社交用户，需要传递 social 开头的参数")
+@Schema(description = "管理后台 - 账号密码登录 Request VO")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
