@@ -3,7 +3,6 @@ package cn.javayong.magic.module.system.controller.admin.auth;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
-import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.security.config.SecurityProperties;
 import cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils;
@@ -17,11 +16,9 @@ import cn.javayong.magic.module.system.service.auth.AdminAuthService;
 import cn.javayong.magic.module.system.service.permission.MenuService;
 import cn.javayong.magic.module.system.service.permission.PermissionService;
 import cn.javayong.magic.module.system.service.permission.RoleService;
-import cn.javayong.magic.module.system.service.social.SocialClientService;
 import cn.javayong.magic.module.system.service.user.AdminUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -56,8 +53,6 @@ public class AuthController {
     private MenuService menuService;
     @Resource
     private PermissionService permissionService;
-    @Resource
-    private SocialClientService socialClientService;
 
     @Resource
     private SecurityProperties securityProperties;

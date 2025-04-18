@@ -21,9 +21,6 @@ public class WebProperties {
     @NotNull(message = "Admin API 不能为空")
     private Api adminApi = new Api("/admin-api", "**.controller.admin.**");
 
-    @NotNull(message = "Admin UI 不能为空")
-    private Ui adminUi;
-
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

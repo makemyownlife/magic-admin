@@ -7,10 +7,6 @@ import cn.javayong.magic.framework.common.util.monitor.TracerUtils;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
 import cn.javayong.magic.module.system.api.logger.dto.LoginLogCreateReqDTO;
-import cn.javayong.magic.module.system.api.sms.SmsCodeApi;
-import cn.javayong.magic.module.system.api.sms.dto.code.SmsCodeUseReqDTO;
-import cn.javayong.magic.module.system.api.social.dto.SocialUserBindReqDTO;
-import cn.javayong.magic.module.system.api.social.dto.SocialUserRespDTO;
 import cn.javayong.magic.module.system.controller.admin.auth.vo.*;
 import cn.javayong.magic.module.system.convert.auth.AuthConvert;
 import cn.javayong.magic.module.system.dal.dataobject.oauth2.OAuth2AccessTokenDO;
@@ -18,10 +14,8 @@ import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
 import cn.javayong.magic.module.system.enums.logger.LoginLogTypeEnum;
 import cn.javayong.magic.module.system.enums.logger.LoginResultEnum;
 import cn.javayong.magic.module.system.enums.oauth2.OAuth2ClientConstants;
-import cn.javayong.magic.module.system.enums.sms.SmsSceneEnum;
 import cn.javayong.magic.module.system.service.logger.LoginLogService;
 import cn.javayong.magic.module.system.service.oauth2.OAuth2TokenService;
-import cn.javayong.magic.module.system.service.social.SocialUserService;
 import cn.javayong.magic.module.system.service.user.AdminUserService;
 import com.google.common.annotations.VisibleForTesting;
 import com.xingyuv.captcha.model.common.ResponseModel;
@@ -56,11 +50,10 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     private LoginLogService loginLogService;
     @Resource
     private OAuth2TokenService oauth2TokenService;
-    @Resource
-    private SocialUserService socialUserService;
 
     @Resource
     private Validator validator;
+
     @Resource
     private CaptchaService captchaService;
 

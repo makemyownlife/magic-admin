@@ -1,7 +1,6 @@
 package cn.javayong.magic.module.system.controller.admin.user;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.datapermission.core.annotation.DataPermission;
 import cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants;
@@ -12,13 +11,11 @@ import cn.javayong.magic.module.system.convert.user.UserConvert;
 import cn.javayong.magic.module.system.dal.dataobject.dept.DeptDO;
 import cn.javayong.magic.module.system.dal.dataobject.dept.PostDO;
 import cn.javayong.magic.module.system.dal.dataobject.permission.RoleDO;
-import cn.javayong.magic.module.system.dal.dataobject.social.SocialUserDO;
 import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
 import cn.javayong.magic.module.system.service.dept.DeptService;
 import cn.javayong.magic.module.system.service.dept.PostService;
 import cn.javayong.magic.module.system.service.permission.PermissionService;
 import cn.javayong.magic.module.system.service.permission.RoleService;
-import cn.javayong.magic.module.system.service.social.SocialUserService;
 import cn.javayong.magic.module.system.service.user.AdminUserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
@@ -52,8 +49,6 @@ public class UserProfileController {
     private PermissionService permissionService;
     @Resource
     private RoleService roleService;
-    @Resource
-    private SocialUserService socialService;
 
     @GetMapping("/get")
     @Operation(summary = "获得登录用户信息")
@@ -67,9 +62,7 @@ public class UserProfileController {
         DeptDO dept = user.getDeptId() != null ? deptService.getDept(user.getDeptId()) : null;
         // 获得岗位信息
         List<PostDO> posts = CollUtil.isNotEmpty(user.getPostIds()) ? postService.getPostList(user.getPostIds()) : null;
-        // 获得社交用户信息
-        List<SocialUserDO> socialUsers = socialService.getSocialUserList(user.getId(), UserTypeEnum.ADMIN.getValue());
-        return success(UserConvert.INSTANCE.convert(user, userRoles, dept, posts, socialUsers));
+        return success(UserConvert.INSTANCE.convert(user, userRoles, dept, posts));
     }
 
     @PutMapping("/update")
