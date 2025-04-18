@@ -1,6 +1,5 @@
 package cn.javayong.magic.framework.tenant.core.context;
 
-import cn.javayong.magic.framework.common.enums.DocumentEnum;
 import com.alibaba.ttl.TransmittableThreadLocal;
 
 /**
@@ -37,8 +36,7 @@ public class TenantContextHolder {
     public static Long getRequiredTenantId() {
         Long tenantId = getTenantId();
         if (tenantId == null) {
-            throw new NullPointerException("TenantContextHolder 不存在租户编号！可参考文档："
-                + DocumentEnum.TENANT.getUrl());
+            throw new NullPointerException("TenantContextHolder 不存在租户编号！");
         }
         return tenantId;
     }
