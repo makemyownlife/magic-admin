@@ -81,7 +81,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     private UserPostMapper userPostMapper;
 
     @Resource
-    private FileService fileApi;
+    private FileService fileService;
 
     @Resource
     private ConfigService configApi;
@@ -204,7 +204,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     public String updateUserAvatar(Long id, InputStream avatarFile) {
         validateUserExists(id);
         // 存储文件
-        String avatar = fileApi.createFile(null, null, IoUtil.readBytes(avatarFile));
+        String avatar = fileService.createFile(null, null, IoUtil.readBytes(avatarFile));
         // 更新路径
         AdminUserDO sysUserDO = new AdminUserDO();
         sysUserDO.setId(id);
