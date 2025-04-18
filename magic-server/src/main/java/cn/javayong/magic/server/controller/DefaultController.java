@@ -16,6 +16,7 @@ import static cn.javayong.magic.framework.common.exception.enums.GlobalErrorCode
  * 例如说，/bpm/** 路径，工作流
  *
  * @author 芋道源码
+ * @author zhangyong
  */
 @RestController
 @Slf4j
