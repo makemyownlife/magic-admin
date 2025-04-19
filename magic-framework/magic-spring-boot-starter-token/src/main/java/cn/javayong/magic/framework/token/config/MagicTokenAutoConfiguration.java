@@ -11,7 +11,7 @@ public class MagicTokenAutoConfiguration {
 
     @Bean(value = "securityTokenService")
     public SecurityTokenService createSecurityTokenService(StringRedisTemplate stringRedisTemplate) {
-        return null;
+        return new SecurityTokenService(stringRedisTemplate);
     }
 
 }

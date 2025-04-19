@@ -7,6 +7,7 @@
         <artifactId>magic-framework</artifactId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>magic-spring-boot-starter-security</artifactId>
     <packaging>jar</packaging>
@@ -39,7 +40,8 @@
 
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-spring-boot-starter-redis</artifactId>
+            <artifactId>magic-spring-boot-starter-token</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <!-- spring boot 配置所需依赖  -->

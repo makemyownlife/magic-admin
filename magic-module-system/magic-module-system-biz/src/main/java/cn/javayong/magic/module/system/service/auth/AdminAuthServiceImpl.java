@@ -32,13 +32,10 @@ import javax.validation.Validator;
 import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.framework.common.util.servlet.ServletUtils.getClientIP;
 import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
 
 /**
  * Auth Service 实现类
- *
-
  */
 @Service
 @Slf4j
@@ -46,8 +43,10 @@ public class AdminAuthServiceImpl implements AdminAuthService {
 
     @Resource
     private AdminUserService userService;
+
     @Resource
     private LoginLogService loginLogService;
+
     @Resource
     private OAuth2TokenService oauth2TokenService;
 

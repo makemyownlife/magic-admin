@@ -10,5 +10,10 @@ public class SecurityTokenService {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 
+    public void createAccessToken(){
+        System.out.println("createAccessToken");
+        stringRedisTemplate.opsForValue().set("hello" , "1");
+    }
+
 
 }

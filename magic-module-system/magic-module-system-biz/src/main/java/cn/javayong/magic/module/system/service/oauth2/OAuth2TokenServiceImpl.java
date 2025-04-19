@@ -13,6 +13,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.security.core.LoginUser;
 import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
 import cn.javayong.magic.framework.tenant.core.util.TenantUtils;
+import cn.javayong.magic.framework.token.core.SecurityTokenService;
 import cn.javayong.magic.module.system.controller.admin.oauth2.vo.token.OAuth2AccessTokenPageReqVO;
 import cn.javayong.magic.module.system.dal.dataobject.oauth2.OAuth2AccessTokenDO;
 import cn.javayong.magic.module.system.dal.dataobject.oauth2.OAuth2ClientDO;
@@ -57,12 +58,18 @@ public class OAuth2TokenServiceImpl implements OAuth2TokenService {
     @Lazy // 懒加载，避免循环依赖
     private AdminUserService adminUserService;
 
+    @Resource
+    private SecurityTokenService securityTokenService;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public OAuth2AccessTokenDO createAccessToken(Long userId, Integer userType, String clientId, List<String> scopes) {
         OAuth2ClientDO clientDO = oauth2ClientService.validOAuthClientFromCache(clientId);
         // 创建刷新令牌
         OAuth2RefreshTokenDO refreshTokenDO = createOAuth2RefreshToken(userId, userType, clientDO, scopes);
+
+        securityTokenService.createAccessToken();
+
         // 创建访问令牌
         return createOAuth2AccessToken(refreshTokenDO, clientDO);
     }
