@@ -17,6 +17,8 @@
 
         <module>magic-spring-boot-starter-redis</module>
 
+        <module>magic-spring-boot-starter-token</module>
+
         <module>magic-spring-boot-starter-web</module>
 
         <module>magic-spring-boot-starter-security</module>

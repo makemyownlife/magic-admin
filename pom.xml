@@ -152,6 +152,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -160,6 +161,7 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
+
     </repositories>
 
 </project>

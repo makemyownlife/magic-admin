@@ -43,8 +43,6 @@
         <lock4j.version>2.2.7</lock4j.version>
         <!-- 监控相关 -->
         <skywalking.version>8.12.0</skywalking.version>
-        <spring-boot-admin.version>2.7.15</spring-boot-admin.version>
-        <opentracing.version>0.33.0</opentracing.version>
         <!-- Test 测试相关 -->
         <podam.version>7.2.11.RELEASE</podam.version> <!-- Spring Boot 2.X 最多使用 7.2.11 版本 -->
         <jedis-mock.version>1.1.8</jedis-mock.version>
@@ -66,11 +64,12 @@
         <jsch.version>0.1.55</jsch.version>
         <tika-core.version>2.9.3</tika-core.version> <!-- JDK8 不能从 2.9.3 升级到 3.X，会报 JDK8 不支持 -->
         <ip2region.version>2.7.0</ip2region.version>
-        <bizlog-sdk.version>3.0.6</bizlog-sdk.version>
+
         <netty.version>4.1.116.Final</netty.version>
-        <mqtt.version>1.2.5</mqtt.version>
+
         <pf4j-spring.version>0.9.0</pf4j-spring.version>
         <vertx.version>4.5.13</vertx.version>
+
         <!-- 三方云服务相关 -->
         <commons-io.version>2.17.0</commons-io.version>
         <commons-compress.version>1.27.1</commons-compress.version>
@@ -115,17 +114,6 @@
             </dependency>
 
             <!-- 业务组件 -->
-            <dependency>
-                <groupId>io.github.mouzt</groupId>
-                <artifactId>bizlog-sdk</artifactId>
-                <version>${bizlog-sdk.version}</version>
-                <exclusions>
-                    <exclusion> <!-- 排除掉springboot依赖使用项目的 -->
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
 
             <dependency>
                 <groupId>cn.javayong</groupId>
