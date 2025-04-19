@@ -11,16 +11,14 @@
     </parent>
 
     <artifactId>magic-spring-boot-starter-token</artifactId>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <packaging>jar</packaging>
+    <version>${parent.version}</version>
 
     <dependencies>
 
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-spring-boot-starter-token</artifactId>
+            <artifactId>magic-spring-boot-starter-redis</artifactId>
         </dependency>
 
     </dependencies>

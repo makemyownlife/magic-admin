@@ -36,12 +36,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Test 测试相关 -->
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>
