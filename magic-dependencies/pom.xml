@@ -164,12 +164,6 @@
             </dependency>
 
             <dependency>
-                <groupId>cn.javayong</groupId>
-                <artifactId>magic-spring-boot-starter-websocket</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>

@@ -40,11 +40,6 @@
             <artifactId>magic-spring-boot-starter-security</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-spring-boot-starter-websocket</artifactId>
-        </dependency>
-
         <!-- DB 相关 -->
         <dependency>
             <groupId>cn.javayong</groupId>
