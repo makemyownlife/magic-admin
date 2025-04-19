@@ -6,7 +6,6 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
-import cn.javayong.magic.framework.datapermission.core.annotation.DataPermission;
 import cn.javayong.magic.module.system.api.permission.dto.DeptDataPermissionRespDTO;
 import cn.javayong.magic.module.system.dal.dataobject.permission.MenuDO;
 import cn.javayong.magic.module.system.dal.dataobject.permission.RoleDO;
@@ -273,7 +272,6 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    @DataPermission(enable = false) // 关闭数据权限，不然就会出现递归获取数据权限的问题
     public DeptDataPermissionRespDTO getDeptDataPermission(Long userId) {
         // 获得用户的角色
         List<RoleDO> roles = getEnableUserRoleListByUserIdFromCache(userId);

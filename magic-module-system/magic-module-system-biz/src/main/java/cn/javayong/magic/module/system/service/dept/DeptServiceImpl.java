@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.framework.datapermission.core.annotation.DataPermission;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.dept.DeptListReqVO;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.dept.DeptSaveReqVO;
 import cn.javayong.magic.module.system.dal.dataobject.dept.DeptDO;
@@ -194,7 +193,6 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    @DataPermission(enable = false) // 禁用数据权限，避免建立不正确的缓存
     @Cacheable(cacheNames = RedisKeyConstants.DEPT_CHILDREN_ID_LIST, key = "#id")
     public Set<Long> getChildDeptIdListFromCache(Long id) {
         List<DeptDO> children = getChildDeptList(id);

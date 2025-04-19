@@ -10,7 +10,6 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
-import cn.javayong.magic.framework.datapermission.core.util.DataPermissionUtils;
 import cn.javayong.magic.module.infra.dal.dataobject.config.ConfigDO;
 import cn.javayong.magic.module.infra.service.config.ConfigService;
 import cn.javayong.magic.module.infra.service.file.FileService;
@@ -356,22 +355,19 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     private AdminUserDO validateUserForCreateOrUpdate(Long id, String username, String mobile, String email,
                                                       Long deptId, Set<Long> postIds) {
-        // 关闭数据权限，避免因为没有数据权限，查询不到数据，进而导致唯一校验不正确
-        return DataPermissionUtils.executeIgnore(() -> {
-            // 校验用户存在
-            AdminUserDO user = validateUserExists(id);
-            // 校验用户名唯一
-            validateUsernameUnique(id, username);
-            // 校验手机号唯一
-            validateMobileUnique(id, mobile);
-            // 校验邮箱唯一
-            validateEmailUnique(id, email);
-            // 校验部门处于开启状态
-            deptService.validateDeptList(CollectionUtils.singleton(deptId));
-            // 校验岗位处于开启状态
-            postService.validatePostList(postIds);
-            return user;
-        });
+        // 校验用户存在
+        AdminUserDO user = validateUserExists(id);
+        // 校验用户名唯一
+        validateUsernameUnique(id, username);
+        // 校验手机号唯一
+        validateMobileUnique(id, mobile);
+        // 校验邮箱唯一
+        validateEmailUnique(id, email);
+        // 校验部门处于开启状态
+        deptService.validateDeptList(CollectionUtils.singleton(deptId));
+        // 校验岗位处于开启状态
+        postService.validatePostList(postIds);
+        return user;
     }
 
     @VisibleForTesting

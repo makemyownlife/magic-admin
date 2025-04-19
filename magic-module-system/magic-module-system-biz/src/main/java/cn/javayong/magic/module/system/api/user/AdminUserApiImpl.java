@@ -3,7 +3,6 @@ package cn.javayong.magic.module.system.api.user;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.framework.datapermission.core.util.DataPermissionUtils;
 import cn.javayong.magic.module.system.api.user.dto.AdminUserRespDTO;
 import cn.javayong.magic.module.system.dal.dataobject.dept.DeptDO;
 import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
@@ -60,10 +59,8 @@ public class AdminUserApiImpl implements AdminUserApi {
 
     @Override
     public List<AdminUserRespDTO> getUserList(Collection<Long> ids) {
-        return DataPermissionUtils.executeIgnore(() -> { // 禁用数据权限。原因是，一般基于指定 id 的 API 查询，都是数据拼接为主
-            List<AdminUserDO> users = userService.getUserList(ids);
-            return BeanUtils.toBean(users, AdminUserRespDTO.class);
-        });
+        List<AdminUserDO> users = userService.getUserList(ids);
+        return BeanUtils.toBean(users, AdminUserRespDTO.class);
     }
 
     @Override

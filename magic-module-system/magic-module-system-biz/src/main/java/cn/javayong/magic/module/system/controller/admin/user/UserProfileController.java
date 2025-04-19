@@ -2,7 +2,6 @@ package cn.javayong.magic.module.system.controller.admin.user;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
-import cn.javayong.magic.framework.datapermission.core.annotation.DataPermission;
 import cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileRespVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.profile.UserProfileUpdatePasswordReqVO;
@@ -52,7 +51,6 @@ public class UserProfileController {
 
     @GetMapping("/get")
     @Operation(summary = "获得登录用户信息")
-    @DataPermission(enable = false) // 关闭数据权限，避免只查看自己时，查询不到部门。
     public CommonResult<UserProfileRespVO> getUserProfile() {
         // 获得用户基本信息
         AdminUserDO user = userService.getUser(getLoginUserId());
