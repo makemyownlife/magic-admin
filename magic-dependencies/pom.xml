@@ -69,6 +69,7 @@
 
         <pf4j-spring.version>0.9.0</pf4j-spring.version>
         <vertx.version>4.5.13</vertx.version>
+        <bizlog-sdk.version>3.0.6</bizlog-sdk.version>
 
         <!-- 三方云服务相关 -->
         <commons-io.version>2.17.0</commons-io.version>
@@ -114,6 +115,17 @@
             </dependency>
 
             <!-- 业务组件 -->
+            <dependency>
+                <groupId>io.github.mouzt</groupId>
+                <artifactId>bizlog-sdk</artifactId>
+                <version>${bizlog-sdk.version}</version>
+                <exclusions>
+                    <exclusion> <!-- 排除掉springboot依赖使用项目的 -->
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
             <dependency>
                 <groupId>cn.javayong</groupId>
