@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * 参数配置 Service 接口
  *
- * @author 芋道源码
+
  */
 public interface ConfigService {
 

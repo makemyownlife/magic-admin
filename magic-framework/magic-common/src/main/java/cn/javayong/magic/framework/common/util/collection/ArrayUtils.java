@@ -13,7 +13,7 @@ import static cn.javayong.magic.framework.common.util.collection.CollectionUtils
 /**
  * Array 工具类
  *
- * @author 芋道源码
+
  */
 public class ArrayUtils {
 

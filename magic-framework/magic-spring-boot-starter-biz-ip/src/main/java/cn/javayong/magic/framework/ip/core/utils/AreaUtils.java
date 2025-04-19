@@ -22,7 +22,7 @@ import static cn.javayong.magic.framework.common.util.collection.CollectionUtils
 /**
  * 区域工具类
  *
- * @author 芋道源码
+
  */
 @Slf4j
 public class AreaUtils {

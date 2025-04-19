@@ -12,7 +12,7 @@ import static cn.javayong.magic.framework.common.util.collection.CollectionUtils
 /**
  * 字典数据 API 接口
  *
- * @author 芋道源码
+
  */
 public interface DictDataApi {
 

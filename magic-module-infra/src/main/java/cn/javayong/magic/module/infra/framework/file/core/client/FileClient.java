@@ -5,7 +5,7 @@ import cn.javayong.magic.module.infra.framework.file.core.client.s3.FilePresigne
 /**
  * 文件客户端
  *
- * @author 芋道源码
+
  */
 public interface FileClient {
 

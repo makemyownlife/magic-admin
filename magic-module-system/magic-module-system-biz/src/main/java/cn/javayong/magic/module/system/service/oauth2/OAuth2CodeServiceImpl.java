@@ -18,7 +18,7 @@ import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.OAUTH2_CO
 /**
  * OAuth2.0 授权码 Service 实现类
  *
- * @author 芋道源码
+
  */
 @Service
 @Validated

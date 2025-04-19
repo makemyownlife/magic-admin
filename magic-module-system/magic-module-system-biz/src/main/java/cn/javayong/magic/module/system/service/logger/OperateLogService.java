@@ -9,7 +9,7 @@ import cn.javayong.magic.module.system.dal.dataobject.logger.OperateLogDO;
 /**
  * 操作日志 Service 接口
  *
- * @author 芋道源码
+
  */
 public interface OperateLogService {
 

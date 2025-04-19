@@ -11,7 +11,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 /**
  * 验证码的配置类
  *
- * @author 芋道源码
+
  */
 @Configuration(proxyBeanMethods = false)
 public class MagicCaptchaConfiguration {

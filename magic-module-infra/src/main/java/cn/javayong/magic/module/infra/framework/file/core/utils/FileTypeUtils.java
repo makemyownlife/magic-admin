@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * 文件类型 Utils
  *
- * @author 芋道源码
+
  */
 public class FileTypeUtils {
 

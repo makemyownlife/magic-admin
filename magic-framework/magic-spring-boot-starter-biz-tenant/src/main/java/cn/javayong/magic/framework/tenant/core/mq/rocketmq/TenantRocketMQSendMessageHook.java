@@ -11,7 +11,7 @@ import static cn.javayong.magic.framework.web.core.util.WebFrameworkUtils.HEADER
  *
  * Producer 发送消息时，将 {@link TenantContextHolder} 租户编号，添加到消息的 Header 中
  *
- * @author 芋道源码
+
  */
 public class TenantRocketMQSendMessageHook implements SendMessageHook {
 

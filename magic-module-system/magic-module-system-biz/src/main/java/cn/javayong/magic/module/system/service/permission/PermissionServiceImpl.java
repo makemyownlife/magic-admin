@@ -38,7 +38,7 @@ import static cn.javayong.magic.framework.common.util.json.JsonUtils.toJsonStrin
 /**
  * 权限 Service 实现类
  *
- * @author 芋道源码
+
  */
 @Service
 @Slf4j

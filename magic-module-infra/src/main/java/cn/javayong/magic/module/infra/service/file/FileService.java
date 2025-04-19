@@ -9,7 +9,7 @@ import cn.javayong.magic.module.infra.dal.dataobject.file.FileDO;
 /**
  * 文件 Service 接口
  *
- * @author 芋道源码
+
  */
 public interface FileService {
 

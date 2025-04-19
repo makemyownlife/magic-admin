@@ -17,7 +17,7 @@ import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.NOTICE_NO
 /**
  * 通知公告 Service 实现类
  *
- * @author 芋道源码
+
  */
 @Service
 public class NoticeServiceImpl implements NoticeService {

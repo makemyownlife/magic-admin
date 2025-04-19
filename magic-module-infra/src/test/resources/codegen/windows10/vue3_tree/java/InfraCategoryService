@@ -10,7 +10,7 @@ import cn.javayong.magic.framework.common.pojo.PageParam;
 /**
  * 分类 Service 接口
  *
- * @author 芋道源码
+
  */
 public interface InfraCategoryService {
 

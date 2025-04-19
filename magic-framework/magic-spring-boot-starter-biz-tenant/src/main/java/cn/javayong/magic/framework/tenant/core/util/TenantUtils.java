@@ -10,7 +10,7 @@ import static cn.javayong.magic.framework.web.core.util.WebFrameworkUtils.HEADER
 /**
  * 多租户 Util
  *
- * @author 芋道源码
+
  */
 public class TenantUtils {
 
