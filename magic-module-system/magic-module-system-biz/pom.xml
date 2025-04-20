@@ -21,12 +21,6 @@
 
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-system-biz</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
         </dependency>
 

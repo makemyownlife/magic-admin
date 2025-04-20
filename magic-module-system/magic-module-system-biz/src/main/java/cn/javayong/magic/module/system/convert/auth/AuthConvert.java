@@ -2,6 +2,7 @@ package cn.javayong.magic.module.system.convert.auth;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
+import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
 import cn.javayong.magic.module.system.api.sms.dto.code.SmsCodeSendReqDTO;
 import cn.javayong.magic.module.system.api.sms.dto.code.SmsCodeUseReqDTO;
 import cn.javayong.magic.module.system.api.social.dto.SocialUserBindReqDTO;
@@ -27,6 +28,8 @@ public interface AuthConvert {
     AuthConvert INSTANCE = Mappers.getMapper(AuthConvert.class);
 
     AuthLoginRespVO convert(OAuth2AccessTokenDO bean);
+
+    AuthLoginRespVO convert(SecurityAccessTokenDTO securityAccessTokenDTO);
 
     default AuthPermissionInfoRespVO convert(AdminUserDO user, List<RoleDO> roleList, List<MenuDO> menuList) {
         return AuthPermissionInfoRespVO.builder()

@@ -1,0 +1,48 @@
+package cn.javayong.magic.framework.token.core.dto;
+
+import cn.javayong.magic.framework.common.enums.UserTypeEnum;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class SecurityAccessTokenDTO {
+
+    /**
+     * 多租户编号
+     */
+    private Long tenantId;
+
+    /**
+     * 访问令牌
+     */
+    private String accessToken;
+
+    /**
+     * 刷新令牌
+     */
+    private String refreshToken;
+
+    /**
+     * 用户编号
+     */
+    private Long userId;
+
+    /**
+     * 用户类型
+     * <p>
+     * 枚举 {@link UserTypeEnum}
+     */
+    private Integer userType;
+
+    /**
+     * 客户端编号
+     */
+    private String clientId;
+
+    /**
+     * 过期时间
+     */
+    private LocalDateTime expiresTime;
+
+}

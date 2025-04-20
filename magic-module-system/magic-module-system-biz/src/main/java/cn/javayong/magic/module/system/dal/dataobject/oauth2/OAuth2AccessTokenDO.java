@@ -45,22 +45,24 @@ public class OAuth2AccessTokenDO extends TenantBaseDO {
      * 用户编号
      */
     private Long userId;
+
     /**
      * 用户类型
      *
      * 枚举 {@link UserTypeEnum}
      */
     private Integer userType;
+
     /**
      * 用户信息
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private Map<String, String> userInfo;
+
     /**
      * 客户端编号
      *
-     * 关联 {@link OAuth2ClientDO#getId()}
-     */
+     * */
     private String clientId;
     /**
      * 授权范围

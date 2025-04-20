@@ -6,6 +6,9 @@ import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.util.monitor.TracerUtils;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
+import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
+import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
+import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.module.system.api.logger.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.controller.admin.auth.vo.*;
 import cn.javayong.magic.module.system.convert.auth.AuthConvert;
@@ -62,6 +65,9 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     @Value("${magic.captcha.enable:true}")
     @Setter // 为了单测：开启或者关闭验证码
     private Boolean captchaEnable;
+
+    @Resource
+    private SecurityTokenService securityTokenService;
 
     @Override
     public AdminUserDO authenticate(String username, String password) {
@@ -143,14 +149,18 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         // 创建访问令牌
         OAuth2AccessTokenDO accessTokenDO = oauth2TokenService.createAccessToken(userId, getUserType().getValue(),
                 OAuth2ClientConstants.CLIENT_ID_DEFAULT, null);
+
+        SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.createAccessToken(userId, TenantContextHolder.getTenantId());
+
         // 构建返回结果
-        return AuthConvert.INSTANCE.convert(accessTokenDO);
+        return AuthConvert.INSTANCE.convert(securityAccessTokenDTO);
     }
 
     @Override
     public AuthLoginRespVO refreshToken(String refreshToken) {
-        OAuth2AccessTokenDO accessTokenDO = oauth2TokenService.refreshAccessToken(refreshToken, OAuth2ClientConstants.CLIENT_ID_DEFAULT);
-        return AuthConvert.INSTANCE.convert(accessTokenDO);
+         OAuth2AccessTokenDO accessTokenDO = oauth2TokenService.refreshAccessToken(refreshToken, OAuth2ClientConstants.CLIENT_ID_DEFAULT);
+        SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.refreshAccessToken(refreshToken);
+        return AuthConvert.INSTANCE.convert(securityAccessTokenDTO);
     }
 
     @Override
