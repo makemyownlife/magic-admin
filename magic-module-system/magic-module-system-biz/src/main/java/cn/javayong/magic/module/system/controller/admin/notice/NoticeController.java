@@ -8,7 +8,7 @@ import cn.javayong.magic.module.system.domain.vo.NoticePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.NoticeRespVO;
 import cn.javayong.magic.module.system.domain.vo.NoticeSaveReqVO;
 import cn.javayong.magic.module.system.domain.NoticeDO;
-import cn.javayong.magic.module.system.service.notice.NoticeService;
+import cn.javayong.magic.module.system.service.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -11,7 +11,7 @@ import cn.javayong.magic.module.system.domain.vo.DictDataRespVO;
 import cn.javayong.magic.module.system.domain.vo.DictDataSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.DictDataSimpleRespVO;
 import cn.javayong.magic.module.system.domain.DictDataDO;
-import cn.javayong.magic.module.system.service.dict.DictDataService;
+import cn.javayong.magic.module.system.service.DictDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

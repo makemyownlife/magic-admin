@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.api.permission;
 
 import cn.javayong.magic.module.system.api.permission.dto.DeptDataPermissionRespDTO;
-import cn.javayong.magic.module.system.service.permission.PermissionService;
+import cn.javayong.magic.module.system.service.PermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

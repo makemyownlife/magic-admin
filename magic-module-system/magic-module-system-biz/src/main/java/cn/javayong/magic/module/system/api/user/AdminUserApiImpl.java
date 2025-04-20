@@ -6,8 +6,8 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.api.user.dto.AdminUserRespDTO;
 import cn.javayong.magic.module.system.domain.DeptDO;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
-import cn.javayong.magic.module.system.service.dept.DeptService;
-import cn.javayong.magic.module.system.service.user.AdminUserService;
+import cn.javayong.magic.module.system.service.DeptService;
+import cn.javayong.magic.module.system.service.AdminUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

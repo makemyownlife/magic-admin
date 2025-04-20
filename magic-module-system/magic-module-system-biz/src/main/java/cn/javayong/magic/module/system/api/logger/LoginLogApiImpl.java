@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.api.logger;
 
 import cn.javayong.magic.module.system.api.logger.dto.LoginLogCreateReqDTO;
-import cn.javayong.magic.module.system.service.logger.LoginLogService;
+import cn.javayong.magic.module.system.service.LoginLogService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

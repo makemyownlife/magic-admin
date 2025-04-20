@@ -11,7 +11,7 @@ import cn.javayong.magic.module.system.domain.vo.PostRespVO;
 import cn.javayong.magic.module.system.domain.vo.PostSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.PostSimpleRespVO;
 import cn.javayong.magic.module.system.domain.PostDO;
-import cn.javayong.magic.module.system.service.dept.PostService;
+import cn.javayong.magic.module.system.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

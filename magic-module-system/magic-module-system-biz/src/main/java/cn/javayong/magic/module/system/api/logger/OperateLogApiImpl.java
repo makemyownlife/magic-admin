@@ -6,7 +6,7 @@ import cn.javayong.magic.module.system.api.logger.dto.OperateLogCreateReqDTO;
 import cn.javayong.magic.module.system.api.logger.dto.OperateLogPageReqDTO;
 import cn.javayong.magic.module.system.api.logger.dto.OperateLogRespDTO;
 import cn.javayong.magic.module.system.domain.OperateLogDO;
-import cn.javayong.magic.module.system.service.logger.OperateLogService;
+import cn.javayong.magic.module.system.service.OperateLogService;
 import com.fhs.core.trans.anno.TransMethodResult;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

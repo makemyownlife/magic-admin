@@ -8,7 +8,7 @@ import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.system.domain.vo.LoginLogPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.LoginLogRespVO;
 import cn.javayong.magic.module.system.domain.LoginLogDO;
-import cn.javayong.magic.module.system.service.logger.LoginLogService;
+import cn.javayong.magic.module.system.service.LoginLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;

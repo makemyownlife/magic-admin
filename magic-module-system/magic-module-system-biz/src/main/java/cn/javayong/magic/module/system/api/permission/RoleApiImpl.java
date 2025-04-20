@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.system.api.permission;
 
-import cn.javayong.magic.module.system.service.permission.RoleService;
+import cn.javayong.magic.module.system.service.RoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

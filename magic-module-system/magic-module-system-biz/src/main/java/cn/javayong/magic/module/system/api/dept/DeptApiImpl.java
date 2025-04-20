@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.api.dept;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.api.dept.dto.DeptRespDTO;
 import cn.javayong.magic.module.system.domain.DeptDO;
-import cn.javayong.magic.module.system.service.dept.DeptService;
+import cn.javayong.magic.module.system.service.DeptService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

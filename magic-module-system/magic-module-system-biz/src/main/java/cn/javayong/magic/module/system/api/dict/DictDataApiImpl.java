@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.api.dict;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.api.dict.dto.DictDataRespDTO;
 import cn.javayong.magic.module.system.domain.DictDataDO;
-import cn.javayong.magic.module.system.service.dict.DictDataService;
+import cn.javayong.magic.module.system.service.DictDataService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

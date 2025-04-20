@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.framework.operatelog.core;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.module.system.domain.PostDO;
-import cn.javayong.magic.module.system.service.dept.PostService;
+import cn.javayong.magic.module.system.service.PostService;
 import com.mzt.logapi.service.IParseFunction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

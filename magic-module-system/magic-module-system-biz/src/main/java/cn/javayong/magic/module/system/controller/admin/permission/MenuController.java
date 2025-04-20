@@ -8,7 +8,7 @@ import cn.javayong.magic.module.system.domain.vo.MenuRespVO;
 import cn.javayong.magic.module.system.domain.vo.MenuSaveVO;
 import cn.javayong.magic.module.system.domain.vo.MenuSimpleRespVO;
 import cn.javayong.magic.module.system.domain.MenuDO;
-import cn.javayong.magic.module.system.service.permission.MenuService;
+import cn.javayong.magic.module.system.service.MenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

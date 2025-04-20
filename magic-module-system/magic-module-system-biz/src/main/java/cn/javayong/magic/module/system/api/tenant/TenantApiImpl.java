@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.system.api.tenant;
 
-import cn.javayong.magic.module.system.service.tenant.TenantService;
+import cn.javayong.magic.module.system.service.TenantService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

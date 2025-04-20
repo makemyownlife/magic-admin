@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.vo.RolePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.RoleRespVO;
 import cn.javayong.magic.module.system.domain.vo.RoleSaveReqVO;
-import cn.javayong.magic.module.system.service.permission.RoleService;
+import cn.javayong.magic.module.system.service.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

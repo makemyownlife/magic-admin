@@ -9,7 +9,7 @@ import cn.javayong.magic.module.system.domain.vo.TenantPackagePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.TenantPackageRespVO;
 import cn.javayong.magic.module.system.domain.vo.TenantPackageSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.TenantPackageSimpleRespVO;
-import cn.javayong.magic.module.system.service.tenant.TenantPackageService;
+import cn.javayong.magic.module.system.service.TenantPackageService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
