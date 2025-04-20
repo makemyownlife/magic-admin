@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.infra.service.db;
 
 import cn.javayong.magic.module.infra.controller.admin.db.vo.DataSourceConfigSaveReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.db.DataSourceConfigDO;
+import cn.javayong.magic.module.infra.domain.DataSourceConfigDO;
 
 import javax.validation.Valid;
 import java.util.List;

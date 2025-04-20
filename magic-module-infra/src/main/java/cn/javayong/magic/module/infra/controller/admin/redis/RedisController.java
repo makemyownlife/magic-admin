@@ -2,7 +2,7 @@ package cn.javayong.magic.module.infra.controller.admin.redis;
 
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.module.infra.controller.admin.redis.vo.RedisMonitorRespVO;
-import cn.javayong.magic.module.infra.convert.redis.RedisConvert;
+import cn.javayong.magic.module.infra.domain.convert.RedisConvert;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.redis.connection.RedisServerCommands;

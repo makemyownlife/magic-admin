@@ -5,7 +5,7 @@ import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.admin.tenant.vo.packages.*;
-import cn.javayong.magic.module.system.dal.dataobject.tenant.TenantPackageDO;
+import cn.javayong.magic.module.system.domain.TenantPackageDO;
 import cn.javayong.magic.module.system.service.tenant.TenantPackageService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;

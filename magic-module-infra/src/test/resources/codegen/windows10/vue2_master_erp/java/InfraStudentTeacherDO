@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.dal.dataobject.demo;
+package cn.javayong.magic.module.infra.mapper.dataobject.demo;
 
 import lombok.*;
 import java.util.*;

@@ -3,7 +3,7 @@ package cn.javayong.magic.module.infra.service.job;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobPageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobSaveReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.job.JobDO;
+import cn.javayong.magic.module.infra.domain.JobDO;
 import org.quartz.SchedulerException;
 
 import javax.validation.Valid;

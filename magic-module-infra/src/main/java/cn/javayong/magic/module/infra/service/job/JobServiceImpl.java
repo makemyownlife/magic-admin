@@ -8,9 +8,9 @@ import cn.javayong.magic.framework.quartz.core.scheduler.SchedulerManager;
 import cn.javayong.magic.framework.quartz.core.util.CronUtils;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobPageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobSaveReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.job.JobDO;
-import cn.javayong.magic.module.infra.dal.mysql.job.JobMapper;
-import cn.javayong.magic.module.infra.enums.job.JobStatusEnum;
+import cn.javayong.magic.module.infra.domain.JobDO;
+import cn.javayong.magic.module.infra.mapper.JobMapper;
+import cn.javayong.magic.module.infra.domain.enums.JobStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -24,7 +24,7 @@ import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.containsAny;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 定时任务 Service 实现类

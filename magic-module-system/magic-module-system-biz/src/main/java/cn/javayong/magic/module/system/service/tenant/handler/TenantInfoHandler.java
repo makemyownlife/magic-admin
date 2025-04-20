@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.system.service.tenant.handler;
 
-import cn.javayong.magic.module.system.dal.dataobject.tenant.TenantDO;
+import cn.javayong.magic.module.system.domain.TenantDO;
 
 /**
  * 租户信息处理

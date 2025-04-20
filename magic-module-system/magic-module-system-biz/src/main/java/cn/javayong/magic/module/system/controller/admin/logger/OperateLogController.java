@@ -8,7 +8,7 @@ import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.framework.translate.core.TranslateUtils;
 import cn.javayong.magic.module.system.controller.admin.logger.vo.operatelog.OperateLogPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.logger.vo.operatelog.OperateLogRespVO;
-import cn.javayong.magic.module.system.dal.dataobject.logger.OperateLogDO;
+import cn.javayong.magic.module.system.domain.OperateLogDO;
 import cn.javayong.magic.module.system.service.logger.OperateLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

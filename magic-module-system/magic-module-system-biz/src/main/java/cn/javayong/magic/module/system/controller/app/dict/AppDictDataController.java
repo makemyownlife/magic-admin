@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.app.dict.vo.AppDictDataRespVO;
-import cn.javayong.magic.module.system.dal.dataobject.dict.DictDataDO;
+import cn.javayong.magic.module.system.domain.DictDataDO;
 import cn.javayong.magic.module.system.service.dict.DictDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

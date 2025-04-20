@@ -4,8 +4,8 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticePageReqVO;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticeSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.notice.NoticeDO;
-import cn.javayong.magic.module.system.dal.mysql.notice.NoticeMapper;
+import cn.javayong.magic.module.system.domain.NoticeDO;
+import cn.javayong.magic.module.system.mapper.NoticeMapper;
 import com.google.common.annotations.VisibleForTesting;
 import org.springframework.stereotype.Service;
 

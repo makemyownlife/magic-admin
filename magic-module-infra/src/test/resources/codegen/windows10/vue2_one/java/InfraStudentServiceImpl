@@ -7,15 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import cn.javayong.magic.module.infra.controller.admin.demo.vo.*;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraStudentDO;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 
-import cn.javayong.magic.module.infra.dal.mysql.demo.InfraStudentMapper;
+import cn.javayong.magic.module.infra.mapper.mysql.demo.InfraStudentMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.domain.config.enums.ErrorCodeConstants.*;
 
 /**
  * 学生 Service 实现类

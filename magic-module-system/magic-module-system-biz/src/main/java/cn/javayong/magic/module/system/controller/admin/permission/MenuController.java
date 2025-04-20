@@ -7,7 +7,7 @@ import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuL
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuRespVO;
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuSaveVO;
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuSimpleRespVO;
-import cn.javayong.magic.module.system.dal.dataobject.permission.MenuDO;
+import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.service.permission.MenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

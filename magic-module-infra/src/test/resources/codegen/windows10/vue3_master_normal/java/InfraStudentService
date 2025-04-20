@@ -3,9 +3,9 @@ package cn.javayong.magic.module.infra.service.demo;
 import java.util.*;
 import javax.validation.*;
 import cn.javayong.magic.module.infra.controller.admin.demo.vo.*;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentDO;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentContactDO;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentTeacherDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraStudentDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraStudentContactDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraStudentTeacherDO;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 

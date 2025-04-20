@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.infra.framework.codegen.config;
 
-import cn.javayong.magic.module.infra.enums.codegen.CodegenFrontTypeEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenFrontTypeEnum;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;

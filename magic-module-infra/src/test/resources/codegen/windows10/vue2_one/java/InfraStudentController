@@ -26,7 +26,7 @@ import cn.javayong.magic.framework.operatelog.core.annotations.OperateLog;
 import static cn.javayong.magic.framework.operatelog.core.enums.OperateTypeEnum.*;
 
 import cn.javayong.magic.module.infra.controller.admin.demo.vo.*;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraStudentDO;
 import cn.javayong.magic.module.infra.service.demo.InfraStudentService;
 
 @Tag(name = "管理后台 - 学生")

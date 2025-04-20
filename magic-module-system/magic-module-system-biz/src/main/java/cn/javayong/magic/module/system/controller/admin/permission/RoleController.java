@@ -7,7 +7,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.system.controller.admin.permission.vo.role.*;
-import cn.javayong.magic.module.system.dal.dataobject.permission.RoleDO;
+import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.service.permission.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

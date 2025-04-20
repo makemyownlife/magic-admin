@@ -7,7 +7,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.system.controller.admin.logger.vo.loginlog.LoginLogPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.logger.vo.loginlog.LoginLogRespVO;
-import cn.javayong.magic.module.system.dal.dataobject.logger.LoginLogDO;
+import cn.javayong.magic.module.system.domain.LoginLogDO;
 import cn.javayong.magic.module.system.service.logger.LoginLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

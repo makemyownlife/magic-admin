@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.service.permission;
 
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuSaveVO;
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuListReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.permission.MenuDO;
+import cn.javayong.magic.module.system.domain.MenuDO;
 
 import java.util.Collection;
 import java.util.List;

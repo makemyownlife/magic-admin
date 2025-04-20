@@ -2,9 +2,8 @@ package cn.javayong.magic.module.system.api.dept;
 
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.api.dept.dto.DeptRespDTO;
-import cn.javayong.magic.module.system.dal.dataobject.dept.DeptDO;
+import cn.javayong.magic.module.system.domain.DeptDO;
 import cn.javayong.magic.module.system.service.dept.DeptService;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

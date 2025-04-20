@@ -4,8 +4,8 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.api.logger.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.controller.admin.logger.vo.loginlog.LoginLogPageReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.logger.LoginLogDO;
-import cn.javayong.magic.module.system.dal.mysql.logger.LoginLogMapper;
+import cn.javayong.magic.module.system.domain.LoginLogDO;
+import cn.javayong.magic.module.system.mapper.LoginLogMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

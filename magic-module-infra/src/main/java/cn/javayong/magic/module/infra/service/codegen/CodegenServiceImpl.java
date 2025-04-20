@@ -8,12 +8,12 @@ import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenCreateL
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenUpdateReqVO;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.CodegenTablePageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.DatabaseTableRespVO;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenColumnDO;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenTableDO;
-import cn.javayong.magic.module.infra.dal.mysql.codegen.CodegenColumnMapper;
-import cn.javayong.magic.module.infra.dal.mysql.codegen.CodegenTableMapper;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenSceneEnum;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenTemplateTypeEnum;
+import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
+import cn.javayong.magic.module.infra.domain.CodegenTableDO;
+import cn.javayong.magic.module.infra.mapper.CodegenColumnMapper;
+import cn.javayong.magic.module.infra.mapper.CodegenTableMapper;
+import cn.javayong.magic.module.infra.domain.enums.CodegenSceneEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenTemplateTypeEnum;
 import cn.javayong.magic.module.infra.framework.codegen.config.CodegenProperties;
 import cn.javayong.magic.module.infra.service.codegen.inner.CodegenBuilder;
 import cn.javayong.magic.module.infra.service.codegen.inner.CodegenEngine;
@@ -34,7 +34,7 @@ import java.util.stream.IntStream;
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertSet;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 代码生成 Service 实现类

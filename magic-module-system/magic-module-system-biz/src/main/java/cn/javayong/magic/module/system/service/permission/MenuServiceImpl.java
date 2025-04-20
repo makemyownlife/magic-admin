@@ -7,9 +7,9 @@ import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuListReqVO;
 import cn.javayong.magic.module.system.controller.admin.permission.vo.menu.MenuSaveVO;
-import cn.javayong.magic.module.system.dal.dataobject.permission.MenuDO;
-import cn.javayong.magic.module.system.dal.mysql.permission.MenuMapper;
-import cn.javayong.magic.module.system.dal.redis.RedisKeyConstants;
+import cn.javayong.magic.module.system.domain.MenuDO;
+import cn.javayong.magic.module.system.mapper.MenuMapper;
+import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.enums.permission.MenuTypeEnum;
 import cn.javayong.magic.module.system.service.tenant.TenantService;
 import com.google.common.annotations.VisibleForTesting;
@@ -27,7 +27,7 @@ import java.util.*;
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
-import static cn.javayong.magic.module.system.dal.dataobject.permission.MenuDO.ID_ROOT;
+import static cn.javayong.magic.module.system.domain.MenuDO.ID_ROOT;
 import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
 
 /**

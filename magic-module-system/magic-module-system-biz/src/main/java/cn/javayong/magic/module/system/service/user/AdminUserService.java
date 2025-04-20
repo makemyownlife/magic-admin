@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.controller.admin.user.vo.user.UserImportE
 import cn.javayong.magic.module.system.controller.admin.user.vo.user.UserImportRespVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.user.UserPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.user.vo.user.UserSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
+import cn.javayong.magic.module.system.domain.AdminUserDO;
 
 import javax.validation.Valid;
 import java.io.InputStream;

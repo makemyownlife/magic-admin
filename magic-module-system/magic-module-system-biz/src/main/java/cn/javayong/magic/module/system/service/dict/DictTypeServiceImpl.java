@@ -6,8 +6,8 @@ import cn.javayong.magic.framework.common.util.date.LocalDateTimeUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.admin.dict.vo.type.DictTypePageReqVO;
 import cn.javayong.magic.module.system.controller.admin.dict.vo.type.DictTypeSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.dict.DictTypeDO;
-import cn.javayong.magic.module.system.dal.mysql.dict.DictTypeMapper;
+import cn.javayong.magic.module.system.domain.DictTypeDO;
+import cn.javayong.magic.module.system.mapper.DictTypeMapper;
 import com.google.common.annotations.VisibleForTesting;
 import org.springframework.stereotype.Service;
 

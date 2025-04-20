@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.service.dept;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.dept.DeptListReqVO;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.dept.DeptSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.dept.DeptDO;
+import cn.javayong.magic.module.system.domain.DeptDO;
 
 import java.util.*;
 

@@ -6,8 +6,8 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.dept.PostDO;
-import cn.javayong.magic.module.system.dal.mysql.dept.PostMapper;
+import cn.javayong.magic.module.system.domain.PostDO;
+import cn.javayong.magic.module.system.mapper.PostMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

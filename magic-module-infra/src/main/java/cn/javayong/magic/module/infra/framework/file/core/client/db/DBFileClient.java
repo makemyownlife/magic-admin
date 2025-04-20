@@ -2,8 +2,8 @@ package cn.javayong.magic.module.infra.framework.file.core.client.db;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.extra.spring.SpringUtil;
-import cn.javayong.magic.module.infra.dal.dataobject.file.FileContentDO;
-import cn.javayong.magic.module.infra.dal.mysql.file.FileContentMapper;
+import cn.javayong.magic.module.infra.domain.FileContentDO;
+import cn.javayong.magic.module.infra.mapper.FileContentMapper;
 import cn.javayong.magic.module.infra.framework.file.core.client.AbstractFileClient;
 
 import java.util.Comparator;

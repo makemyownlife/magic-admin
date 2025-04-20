@@ -4,7 +4,6 @@ import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
-import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
 import cn.javayong.magic.module.infra.framework.file.core.client.FileClient;
 import cn.javayong.magic.module.infra.framework.file.core.client.FileClientConfig;
@@ -12,9 +11,9 @@ import cn.javayong.magic.module.infra.framework.file.core.client.FileClientFacto
 import cn.javayong.magic.module.infra.framework.file.core.enums.FileStorageEnum;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigPageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigSaveReqVO;
-import cn.javayong.magic.module.infra.convert.file.FileConfigConvert;
-import cn.javayong.magic.module.infra.dal.dataobject.file.FileConfigDO;
-import cn.javayong.magic.module.infra.dal.mysql.file.FileConfigMapper;
+import cn.javayong.magic.module.infra.domain.convert.FileConfigConvert;
+import cn.javayong.magic.module.infra.domain.FileConfigDO;
+import cn.javayong.magic.module.infra.mapper.FileConfigMapper;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.Getter;
@@ -31,8 +30,8 @@ import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.cache.CacheUtils.buildAsyncReloadingCache;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_CONFIG_DELETE_FAIL_MASTER;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_CONFIG_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.FILE_CONFIG_DELETE_FAIL_MASTER;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.FILE_CONFIG_NOT_EXISTS;
 
 /**
  * 文件配置 Service 实现类

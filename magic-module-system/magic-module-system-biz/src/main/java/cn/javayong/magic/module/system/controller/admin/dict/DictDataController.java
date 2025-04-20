@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataPag
 import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataRespVO;
 import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataSaveReqVO;
 import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataSimpleRespVO;
-import cn.javayong.magic.module.system.dal.dataobject.dict.DictDataDO;
+import cn.javayong.magic.module.system.domain.DictDataDO;
 import cn.javayong.magic.module.system.service.dict.DictDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

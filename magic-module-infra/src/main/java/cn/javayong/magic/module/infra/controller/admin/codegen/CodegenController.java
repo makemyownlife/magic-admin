@@ -12,9 +12,9 @@ import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenUpdateR
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.CodegenTablePageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.CodegenTableRespVO;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.DatabaseTableRespVO;
-import cn.javayong.magic.module.infra.convert.codegen.CodegenConvert;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenColumnDO;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenTableDO;
+import cn.javayong.magic.module.infra.domain.convert.CodegenConvert;
+import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
+import cn.javayong.magic.module.infra.domain.CodegenTableDO;
 import cn.javayong.magic.module.infra.service.codegen.CodegenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

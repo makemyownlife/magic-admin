@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostPageReq
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostRespVO;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostSaveReqVO;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostSimpleRespVO;
-import cn.javayong.magic.module.system.dal.dataobject.dept.PostDO;
+import cn.javayong.magic.module.system.domain.PostDO;
 import cn.javayong.magic.module.system.service.dept.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

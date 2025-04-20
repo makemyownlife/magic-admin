@@ -2,9 +2,9 @@ package cn.javayong.magic.module.infra.service.job;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.log.JobLogPageReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.job.JobLogDO;
-import cn.javayong.magic.module.infra.dal.mysql.job.JobLogMapper;
-import cn.javayong.magic.module.infra.enums.job.JobLogStatusEnum;
+import cn.javayong.magic.module.infra.domain.JobLogDO;
+import cn.javayong.magic.module.infra.mapper.JobLogMapper;
+import cn.javayong.magic.module.infra.domain.enums.JobLogStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

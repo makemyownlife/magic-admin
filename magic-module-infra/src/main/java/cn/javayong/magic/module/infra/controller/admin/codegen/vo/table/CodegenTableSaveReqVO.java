@@ -1,8 +1,8 @@
 package cn.javayong.magic.module.infra.controller.admin.codegen.vo.table;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenSceneEnum;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenTemplateTypeEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenSceneEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenTemplateTypeEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

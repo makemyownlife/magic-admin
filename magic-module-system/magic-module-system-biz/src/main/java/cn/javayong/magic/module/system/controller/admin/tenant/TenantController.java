@@ -9,7 +9,7 @@ import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.system.controller.admin.tenant.vo.tenant.TenantPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.tenant.vo.tenant.TenantRespVO;
 import cn.javayong.magic.module.system.controller.admin.tenant.vo.tenant.TenantSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.tenant.TenantDO;
+import cn.javayong.magic.module.system.domain.TenantDO;
 import cn.javayong.magic.module.system.service.tenant.TenantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

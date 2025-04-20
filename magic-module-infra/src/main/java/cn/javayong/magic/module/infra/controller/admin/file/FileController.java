@@ -7,7 +7,7 @@ import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.*;
-import cn.javayong.magic.module.infra.dal.dataobject.file.FileDO;
+import cn.javayong.magic.module.infra.domain.FileDO;
 import cn.javayong.magic.module.infra.service.file.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

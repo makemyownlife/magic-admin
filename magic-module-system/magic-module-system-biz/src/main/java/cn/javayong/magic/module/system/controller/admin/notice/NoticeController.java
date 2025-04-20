@@ -7,7 +7,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticePageReqVO;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticeRespVO;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticeSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.notice.NoticeDO;
+import cn.javayong.magic.module.system.domain.NoticeDO;
 import cn.javayong.magic.module.system.service.notice.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

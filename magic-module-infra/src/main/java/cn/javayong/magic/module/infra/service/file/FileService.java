@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FileCreateReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePresignedUrlRespVO;
-import cn.javayong.magic.module.infra.dal.dataobject.file.FileDO;
+import cn.javayong.magic.module.infra.domain.FileDO;
 
 /**
  * 文件 Service 接口

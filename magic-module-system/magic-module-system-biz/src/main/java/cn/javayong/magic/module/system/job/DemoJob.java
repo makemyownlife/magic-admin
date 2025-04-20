@@ -3,8 +3,8 @@ package cn.javayong.magic.module.system.job;
 import cn.javayong.magic.framework.quartz.core.handler.JobHandler;
 import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
 import cn.javayong.magic.framework.tenant.core.job.TenantJob;
-import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
-import cn.javayong.magic.module.system.dal.mysql.user.AdminUserMapper;
+import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.mapper.AdminUserMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

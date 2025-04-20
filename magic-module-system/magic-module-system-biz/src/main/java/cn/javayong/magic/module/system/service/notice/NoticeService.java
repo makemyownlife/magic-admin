@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.service.notice;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticePageReqVO;
 import cn.javayong.magic.module.system.controller.admin.notice.vo.NoticeSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.notice.NoticeDO;
+import cn.javayong.magic.module.system.domain.NoticeDO;
 
 /**
  * 通知公告 Service 接口

@@ -129,9 +129,6 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityAccessTokenDTO securityAccessTokenDTO = JsonUtils.parseObject(
                 stringRedisTemplate.opsForValue().get(accessTokenKey),
                 SecurityAccessTokenDTO.class);
-        if (securityAccessTokenDTO == null) {
-            return null;
-        }
         return securityAccessTokenDTO;
     }
 

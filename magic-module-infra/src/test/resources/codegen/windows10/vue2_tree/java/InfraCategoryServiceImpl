@@ -7,15 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import cn.javayong.magic.module.infra.controller.admin.demo.vo.*;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraCategoryDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraCategoryDO;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 
-import cn.javayong.magic.module.infra.dal.mysql.demo.InfraCategoryMapper;
+import cn.javayong.magic.module.infra.mapper.mysql.demo.InfraCategoryMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.domain.config.enums.ErrorCodeConstants.*;
 
 /**
  * 分类 Service 实现类

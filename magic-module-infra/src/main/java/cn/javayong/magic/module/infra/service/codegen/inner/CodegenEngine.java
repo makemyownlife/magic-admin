@@ -24,11 +24,11 @@ import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.framework.mybatis.core.dataobject.BaseDO;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenColumnDO;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenTableDO;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenFrontTypeEnum;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenSceneEnum;
-import cn.javayong.magic.module.infra.enums.codegen.CodegenTemplateTypeEnum;
+import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
+import cn.javayong.magic.module.infra.domain.CodegenTableDO;
+import cn.javayong.magic.module.infra.domain.enums.CodegenFrontTypeEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenSceneEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenTemplateTypeEnum;
 import cn.javayong.magic.module.infra.framework.codegen.config.CodegenProperties;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableTable;
@@ -68,15 +68,15 @@ public class CodegenEngine {
             .put(javaTemplatePath("controller/vo/respVO"), javaModuleImplVOFilePath("RespVO"))
             .put(javaTemplatePath("controller/vo/saveReqVO"), javaModuleImplVOFilePath("SaveReqVO"))
             .put(javaTemplatePath("controller/controller"), javaModuleImplControllerFilePath())
-            .put(javaTemplatePath("dal/do"),
-                    javaModuleImplMainFilePath("dal/dataobject/${table.businessName}/${table.className}DO"))
-            .put(javaTemplatePath("dal/do_sub"), // 特殊：主子表专属逻辑
-                    javaModuleImplMainFilePath("dal/dataobject/${table.businessName}/${subTable.className}DO"))
-            .put(javaTemplatePath("dal/mapper"),
-                    javaModuleImplMainFilePath("dal/mysql/${table.businessName}/${table.className}Mapper"))
-            .put(javaTemplatePath("dal/mapper_sub"), // 特殊：主子表专属逻辑
-                    javaModuleImplMainFilePath("dal/mysql/${table.businessName}/${subTable.className}Mapper"))
-            .put(javaTemplatePath("dal/mapper.xml"), mapperXmlFilePath())
+            .put(javaTemplatePath("mapper/do"),
+                    javaModuleImplMainFilePath("mapper/dataobject/${table.businessName}/${table.className}DO"))
+            .put(javaTemplatePath("mapper/do_sub"), // 特殊：主子表专属逻辑
+                    javaModuleImplMainFilePath("mapper/dataobject/${table.businessName}/${subTable.className}DO"))
+            .put(javaTemplatePath("mapper/mapper"),
+                    javaModuleImplMainFilePath("mapper/mysql/${table.businessName}/${table.className}Mapper"))
+            .put(javaTemplatePath("mapper/mapper_sub"), // 特殊：主子表专属逻辑
+                    javaModuleImplMainFilePath("mapper/mysql/${table.businessName}/${subTable.className}Mapper"))
+            .put(javaTemplatePath("mapper/mapper.xml"), mapperXmlFilePath())
             .put(javaTemplatePath("service/serviceImpl"),
                     javaModuleImplMainFilePath("service/${table.businessName}/${table.className}ServiceImpl"))
             .put(javaTemplatePath("service/service"),

@@ -29,7 +29,7 @@ spring:
 
 mybatis-plus:
   lazy-initialization: true # 单元测试，设置 MyBatis Mapper 延迟加载，加速每个单元测试
-  type-aliases-package: ${magic.info.base-package}.module.*.dal.dataobject
+  type-aliases-package: ${magic.info.base-package}.module.*.mapper.dataobject
 
 --- #################### 定时任务相关配置 ####################
 

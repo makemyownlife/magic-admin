@@ -3,10 +3,10 @@ package cn.javayong.magic.module.infra.service.config;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.config.vo.ConfigPageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.config.vo.ConfigSaveReqVO;
-import cn.javayong.magic.module.infra.convert.config.ConfigConvert;
-import cn.javayong.magic.module.infra.dal.dataobject.config.ConfigDO;
-import cn.javayong.magic.module.infra.dal.mysql.config.ConfigMapper;
-import cn.javayong.magic.module.infra.enums.config.ConfigTypeEnum;
+import cn.javayong.magic.module.infra.domain.convert.ConfigConvert;
+import cn.javayong.magic.module.infra.domain.ConfigDO;
+import cn.javayong.magic.module.infra.mapper.ConfigMapper;
+import cn.javayong.magic.module.infra.domain.enums.ConfigTypeEnum;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.annotation.Resource;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 参数配置 Service 实现类

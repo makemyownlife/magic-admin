@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.framework.mybatis.core.util.JdbcUtils;
-import cn.javayong.magic.module.infra.dal.dataobject.db.DataSourceConfigDO;
+import cn.javayong.magic.module.infra.domain.DataSourceConfigDO;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;

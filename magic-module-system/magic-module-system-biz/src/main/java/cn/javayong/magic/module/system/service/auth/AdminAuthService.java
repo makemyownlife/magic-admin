@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.service.auth;
 
 import cn.javayong.magic.module.system.controller.admin.auth.vo.*;
-import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
+import cn.javayong.magic.module.system.domain.AdminUserDO;
 
 import javax.validation.Valid;
 

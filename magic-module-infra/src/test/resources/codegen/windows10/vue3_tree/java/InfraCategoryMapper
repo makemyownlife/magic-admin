@@ -1,11 +1,11 @@
-package cn.javayong.magic.module.infra.dal.mysql.demo;
+package cn.javayong.magic.module.infra.mapper.mysql.demo;
 
 import java.util.*;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraCategoryDO;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraCategoryDO;
 import org.apache.ibatis.annotations.Mapper;
 import cn.javayong.magic.module.infra.controller.admin.demo.vo.*;
 

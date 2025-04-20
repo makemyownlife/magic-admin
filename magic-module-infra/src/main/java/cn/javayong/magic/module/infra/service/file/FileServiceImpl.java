@@ -11,15 +11,15 @@ import cn.javayong.magic.module.infra.framework.file.core.utils.FileTypeUtils;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FileCreateReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePresignedUrlRespVO;
-import cn.javayong.magic.module.infra.dal.dataobject.file.FileDO;
-import cn.javayong.magic.module.infra.dal.mysql.file.FileMapper;
+import cn.javayong.magic.module.infra.domain.FileDO;
+import cn.javayong.magic.module.infra.mapper.FileMapper;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.FILE_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.FILE_NOT_EXISTS;
 
 /**
  * 文件 Service 实现类

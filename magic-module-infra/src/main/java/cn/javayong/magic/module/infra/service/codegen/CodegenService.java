@@ -5,8 +5,8 @@ import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenCreateL
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenUpdateReqVO;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.CodegenTablePageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.DatabaseTableRespVO;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenColumnDO;
-import cn.javayong.magic.module.infra.dal.dataobject.codegen.CodegenTableDO;
+import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
+import cn.javayong.magic.module.infra.domain.CodegenTableDO;
 
 import java.util.List;
 import java.util.Map;

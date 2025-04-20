@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.service.dept;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.dept.vo.post.PostSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.dept.PostDO;
+import cn.javayong.magic.module.system.domain.PostDO;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;

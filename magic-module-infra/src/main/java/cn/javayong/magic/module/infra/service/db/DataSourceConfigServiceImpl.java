@@ -3,8 +3,8 @@ package cn.javayong.magic.module.infra.service.db;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.mybatis.core.util.JdbcUtils;
 import cn.javayong.magic.module.infra.controller.admin.db.vo.DataSourceConfigSaveReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.db.DataSourceConfigDO;
-import cn.javayong.magic.module.infra.dal.mysql.db.DataSourceConfigMapper;
+import cn.javayong.magic.module.infra.domain.DataSourceConfigDO;
+import cn.javayong.magic.module.infra.mapper.DataSourceConfigMapper;
 import com.baomidou.dynamic.datasource.creator.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.DATA_SOURCE_CONFIG_NOT_EXISTS;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.DATA_SOURCE_CONFIG_NOT_OK;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.DATA_SOURCE_CONFIG_NOT_EXISTS;
+import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.DATA_SOURCE_CONFIG_NOT_OK;
 
 /**
  * 数据源配置 Service 实现类

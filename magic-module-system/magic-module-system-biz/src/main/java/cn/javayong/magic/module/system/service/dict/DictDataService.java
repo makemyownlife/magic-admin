@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.service.dict;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataPageReqVO;
 import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataSaveReqVO;
-import cn.javayong.magic.module.system.dal.dataobject.dict.DictDataDO;
+import cn.javayong.magic.module.system.domain.DictDataDO;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;

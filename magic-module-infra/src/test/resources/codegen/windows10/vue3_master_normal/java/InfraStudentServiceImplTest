@@ -9,8 +9,8 @@ import javax.annotation.Resource;
 import cn.javayong.magic.framework.test.core.ut.BaseDbUnitTest;
 
 import cn.javayong.magic.module.infra.controller.admin.demo.vo.*;
-import cn.javayong.magic.module.infra.dal.dataobject.demo.InfraStudentDO;
-import cn.javayong.magic.module.infra.dal.mysql.demo.InfraStudentMapper;
+import cn.javayong.magic.module.infra.mapper.dataobject.demo.InfraStudentDO;
+import cn.javayong.magic.module.infra.mapper.mysql.demo.InfraStudentMapper;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 
 import javax.annotation.Resource;
@@ -19,7 +19,7 @@ import java.util.*;
 import java.time.LocalDateTime;
 
 import static cn.hutool.core.util.RandomUtil.*;
-import static cn.javayong.magic.module.infra.enums.config.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.infra.domain.config.enums.ErrorCodeConstants.*;
 import static cn.javayong.magic.framework.test.core.util.AssertUtils.*;
 import static cn.javayong.magic.framework.test.core.util.RandomUtils.*;
 import static cn.javayong.magic.framework.common.util.date.LocalDateTimeUtils.*;

@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.infra.controller.admin.db.vo.DataSourceConfigRespVO;
 import cn.javayong.magic.module.infra.controller.admin.db.vo.DataSourceConfigSaveReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.db.DataSourceConfigDO;
+import cn.javayong.magic.module.infra.domain.DataSourceConfigDO;
 import cn.javayong.magic.module.infra.service.db.DataSourceConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

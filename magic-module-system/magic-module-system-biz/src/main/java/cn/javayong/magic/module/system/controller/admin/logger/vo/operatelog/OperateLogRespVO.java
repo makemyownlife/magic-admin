@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.system.controller.admin.logger.vo.operatelog;
 
-import cn.javayong.magic.module.system.dal.dataobject.user.AdminUserDO;
+import cn.javayong.magic.module.system.domain.AdminUserDO;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.fhs.core.trans.anno.Trans;

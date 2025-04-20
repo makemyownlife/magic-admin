@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigPageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigRespVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigSaveReqVO;
-import cn.javayong.magic.module.infra.dal.dataobject.file.FileConfigDO;
+import cn.javayong.magic.module.infra.domain.FileConfigDO;
 import cn.javayong.magic.module.infra.service.file.FileConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
