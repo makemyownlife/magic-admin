@@ -146,10 +146,8 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     private AuthLoginRespVO createTokenAfterLoginSuccess(Long userId, String username, LoginLogTypeEnum logType) {
         // 插入登陆日志
         createLoginLog(userId, username, logType, LoginResultEnum.SUCCESS);
-        // 创建访问令牌
-        OAuth2AccessTokenDO accessTokenDO = oauth2TokenService.createAccessToken(userId, getUserType().getValue(),
-                OAuth2ClientConstants.CLIENT_ID_DEFAULT, null);
 
+        // 创建访问令牌
         SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.createAccessToken(userId, TenantContextHolder.getTenantId());
 
         // 构建返回结果
@@ -158,7 +156,6 @@ public class AdminAuthServiceImpl implements AdminAuthService {
 
     @Override
     public AuthLoginRespVO refreshToken(String refreshToken) {
-         OAuth2AccessTokenDO accessTokenDO = oauth2TokenService.refreshAccessToken(refreshToken, OAuth2ClientConstants.CLIENT_ID_DEFAULT);
         SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.refreshAccessToken(refreshToken);
         return AuthConvert.INSTANCE.convert(securityAccessTokenDTO);
     }
@@ -166,12 +163,12 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     @Override
     public void logout(String token, Integer logType) {
         // 删除访问令牌
-        OAuth2AccessTokenDO accessTokenDO = oauth2TokenService.removeAccessToken(token);
-        if (accessTokenDO == null) {
+        SecurityAccessTokenDTO accessTokenDTO = securityTokenService.removeAccessToken(token);
+        if (accessTokenDTO == null) {
             return;
         }
         // 删除成功，则记录登出日志
-        createLogoutLog(accessTokenDO.getUserId(), accessTokenDO.getUserType(), logType);
+        createLogoutLog(accessTokenDTO.getUserId(), accessTokenDTO.getUserType(), logType);
     }
 
     private void createLogoutLog(Long userId, Integer userType, Integer logType) {

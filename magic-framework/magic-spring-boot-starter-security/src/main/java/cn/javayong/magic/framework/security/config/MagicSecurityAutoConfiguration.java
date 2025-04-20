@@ -6,6 +6,7 @@ import cn.javayong.magic.framework.security.core.handler.AccessDeniedHandlerImpl
 import cn.javayong.magic.framework.security.core.handler.AuthenticationEntryPointImpl;
 import cn.javayong.magic.framework.security.core.service.SecurityFrameworkService;
 import cn.javayong.magic.framework.security.core.service.SecurityFrameworkServiceImpl;
+import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.framework.web.core.handler.GlobalExceptionHandler;
 import cn.javayong.magic.module.system.api.oauth2.OAuth2TokenApi;
 import cn.javayong.magic.module.system.api.permission.PermissionApi;
@@ -70,8 +71,8 @@ public class MagicSecurityAutoConfiguration {
      */
     @Bean
     public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
-                                                               OAuth2TokenApi oauth2TokenApi) {
-        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, oauth2TokenApi);
+                                                               SecurityTokenService securityTokenService) {
+        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, securityTokenService);
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用
