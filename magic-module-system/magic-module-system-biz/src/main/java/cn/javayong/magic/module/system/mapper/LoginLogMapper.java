@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.mapper;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.system.controller.admin.logger.vo.loginlog.LoginLogPageReqVO;
+import cn.javayong.magic.module.system.domain.vo.LoginLogPageReqVO;
 import cn.javayong.magic.module.system.domain.LoginLogDO;
 import cn.javayong.magic.module.system.enums.logger.LoginResultEnum;
 import org.apache.ibatis.annotations.Mapper;

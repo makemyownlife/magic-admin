@@ -1,7 +1,10 @@
 package cn.javayong.magic.module.system.service.auth;
 
-import cn.javayong.magic.module.system.controller.admin.auth.vo.*;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.vo.AuthLoginReqVO;
+import cn.javayong.magic.module.system.domain.vo.AuthLoginRespVO;
+import cn.javayong.magic.module.system.domain.vo.AuthRegisterReqVO;
+import cn.javayong.magic.module.system.domain.vo.AuthResetPasswordReqVO;
 
 import javax.validation.Valid;
 

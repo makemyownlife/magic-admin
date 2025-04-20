@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.mapper;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataPageReqVO;
+import cn.javayong.magic.module.system.domain.vo.DictDataPageReqVO;
 import cn.javayong.magic.module.system.domain.DictDataDO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.apache.ibatis.annotations.Mapper;

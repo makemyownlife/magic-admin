@@ -1,8 +1,8 @@
 package cn.javayong.magic.module.system.service.dict;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.module.system.controller.admin.dict.vo.type.DictTypePageReqVO;
-import cn.javayong.magic.module.system.controller.admin.dict.vo.type.DictTypeSaveReqVO;
+import cn.javayong.magic.module.system.domain.vo.DictTypePageReqVO;
+import cn.javayong.magic.module.system.domain.vo.DictTypeSaveReqVO;
 import cn.javayong.magic.module.system.domain.DictTypeDO;
 
 import java.util.List;

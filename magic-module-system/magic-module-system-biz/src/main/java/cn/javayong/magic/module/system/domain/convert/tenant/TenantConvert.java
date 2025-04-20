@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.domain.convert.tenant;
 
-import cn.javayong.magic.module.system.controller.admin.tenant.vo.tenant.TenantSaveReqVO;
-import cn.javayong.magic.module.system.controller.admin.user.vo.user.UserSaveReqVO;
+import cn.javayong.magic.module.system.domain.vo.TenantSaveReqVO;
+import cn.javayong.magic.module.system.domain.vo.UserSaveReqVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

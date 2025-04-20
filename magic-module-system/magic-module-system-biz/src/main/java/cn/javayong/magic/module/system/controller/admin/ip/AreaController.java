@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.ip.core.Area;
 import cn.javayong.magic.framework.ip.core.utils.AreaUtils;
 import cn.javayong.magic.framework.ip.core.utils.IPUtils;
-import cn.javayong.magic.module.system.controller.admin.ip.vo.AreaNodeRespVO;
+import cn.javayong.magic.module.system.domain.vo.AreaNodeRespVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

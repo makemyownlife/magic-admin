@@ -1,8 +1,8 @@
 package cn.javayong.magic.module.system.service.tenant;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.module.system.controller.admin.tenant.vo.packages.TenantPackagePageReqVO;
-import cn.javayong.magic.module.system.controller.admin.tenant.vo.packages.TenantPackageSaveReqVO;
+import cn.javayong.magic.module.system.domain.vo.TenantPackagePageReqVO;
+import cn.javayong.magic.module.system.domain.vo.TenantPackageSaveReqVO;
 import cn.javayong.magic.module.system.domain.TenantPackageDO;
 
 import javax.validation.Valid;

@@ -2,9 +2,9 @@ package cn.javayong.magic.module.system.controller.admin.permission;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
-import cn.javayong.magic.module.system.controller.admin.permission.vo.permission.PermissionAssignRoleDataScopeReqVO;
-import cn.javayong.magic.module.system.controller.admin.permission.vo.permission.PermissionAssignRoleMenuReqVO;
-import cn.javayong.magic.module.system.controller.admin.permission.vo.permission.PermissionAssignUserRoleReqVO;
+import cn.javayong.magic.module.system.domain.vo.PermissionAssignRoleDataScopeReqVO;
+import cn.javayong.magic.module.system.domain.vo.PermissionAssignRoleMenuReqVO;
+import cn.javayong.magic.module.system.domain.vo.PermissionAssignUserRoleReqVO;
 import cn.javayong.magic.module.system.service.permission.PermissionService;
 import cn.javayong.magic.module.system.service.tenant.TenantService;
 import io.swagger.v3.oas.annotations.tags.Tag;

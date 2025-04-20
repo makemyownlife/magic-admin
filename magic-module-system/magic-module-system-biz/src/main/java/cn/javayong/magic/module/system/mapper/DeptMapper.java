@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.mapper;
 
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.system.controller.admin.dept.vo.dept.DeptListReqVO;
+import cn.javayong.magic.module.system.domain.vo.DeptListReqVO;
 import cn.javayong.magic.module.system.domain.DeptDO;
 import org.apache.ibatis.annotations.Mapper;
 

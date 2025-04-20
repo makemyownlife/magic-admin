@@ -2,8 +2,8 @@ package cn.javayong.magic.module.system.service.tenant;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
-import cn.javayong.magic.module.system.controller.admin.tenant.vo.tenant.TenantPageReqVO;
-import cn.javayong.magic.module.system.controller.admin.tenant.vo.tenant.TenantSaveReqVO;
+import cn.javayong.magic.module.system.domain.vo.TenantPageReqVO;
+import cn.javayong.magic.module.system.domain.vo.TenantSaveReqVO;
 import cn.javayong.magic.module.system.domain.TenantDO;
 import cn.javayong.magic.module.system.service.tenant.handler.TenantInfoHandler;
 import cn.javayong.magic.module.system.service.tenant.handler.TenantMenuHandler;

@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.api.logger.dto.OperateLogCreateReqDTO;
 import cn.javayong.magic.module.system.api.logger.dto.OperateLogPageReqDTO;
-import cn.javayong.magic.module.system.controller.admin.logger.vo.operatelog.OperateLogPageReqVO;
+import cn.javayong.magic.module.system.domain.vo.OperateLogPageReqVO;
 import cn.javayong.magic.module.system.domain.OperateLogDO;
 import cn.javayong.magic.module.system.mapper.OperateLogMapper;
 import lombok.extern.slf4j.Slf4j;

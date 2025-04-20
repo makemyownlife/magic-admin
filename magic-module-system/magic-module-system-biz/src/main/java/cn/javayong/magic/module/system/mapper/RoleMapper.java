@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.dataobject.BaseDO;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.system.controller.admin.permission.vo.role.RolePageReqVO;
+import cn.javayong.magic.module.system.domain.vo.RolePageReqVO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.lang.Nullable;

@@ -1,8 +1,8 @@
 package cn.javayong.magic.module.system.service.dict;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataPageReqVO;
-import cn.javayong.magic.module.system.controller.admin.dict.vo.data.DictDataSaveReqVO;
+import cn.javayong.magic.module.system.domain.vo.DictDataPageReqVO;
+import cn.javayong.magic.module.system.domain.vo.DictDataSaveReqVO;
 import cn.javayong.magic.module.system.domain.DictDataDO;
 import org.springframework.lang.Nullable;
 
