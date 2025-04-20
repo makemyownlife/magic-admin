@@ -5,7 +5,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.infra.controller.admin.db.vo.DataSourceConfigRespVO;
 import cn.javayong.magic.module.infra.controller.admin.db.vo.DataSourceConfigSaveReqVO;
 import cn.javayong.magic.module.infra.domain.DataSourceConfigDO;
-import cn.javayong.magic.module.infra.service.db.DataSourceConfigService;
+import cn.javayong.magic.module.infra.service.DataSourceConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

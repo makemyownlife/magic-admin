@@ -1,10 +1,11 @@
-package cn.javayong.magic.module.infra.service.job;
+package cn.javayong.magic.module.infra.service.impl;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.log.JobLogPageReqVO;
 import cn.javayong.magic.module.infra.domain.JobLogDO;
 import cn.javayong.magic.module.infra.mapper.JobLogMapper;
 import cn.javayong.magic.module.infra.domain.enums.JobLogStatusEnum;
+import cn.javayong.magic.module.infra.service.JobLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

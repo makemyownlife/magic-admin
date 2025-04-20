@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.job;
+package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.quartz.core.service.JobLogFrameworkService;

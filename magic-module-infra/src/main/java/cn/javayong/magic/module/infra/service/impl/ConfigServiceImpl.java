@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.config;
+package cn.javayong.magic.module.infra.service.impl;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.config.vo.ConfigPageReqVO;
@@ -7,6 +7,7 @@ import cn.javayong.magic.module.infra.domain.convert.ConfigConvert;
 import cn.javayong.magic.module.infra.domain.ConfigDO;
 import cn.javayong.magic.module.infra.mapper.ConfigMapper;
 import cn.javayong.magic.module.infra.domain.enums.ConfigTypeEnum;
+import cn.javayong.magic.module.infra.service.ConfigService;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

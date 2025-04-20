@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.file;
+package cn.javayong.magic.module.infra.service.impl;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.IdUtil;
@@ -14,6 +14,7 @@ import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfig
 import cn.javayong.magic.module.infra.domain.convert.FileConfigConvert;
 import cn.javayong.magic.module.infra.domain.FileConfigDO;
 import cn.javayong.magic.module.infra.mapper.FileConfigMapper;
+import cn.javayong.magic.module.infra.service.FileConfigService;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.Getter;

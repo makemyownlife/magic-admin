@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.codegen;
+package cn.javayong.magic.module.infra.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
@@ -15,9 +15,10 @@ import cn.javayong.magic.module.infra.mapper.CodegenTableMapper;
 import cn.javayong.magic.module.infra.domain.enums.CodegenSceneEnum;
 import cn.javayong.magic.module.infra.domain.enums.CodegenTemplateTypeEnum;
 import cn.javayong.magic.module.infra.framework.codegen.config.CodegenProperties;
-import cn.javayong.magic.module.infra.service.codegen.inner.CodegenBuilder;
-import cn.javayong.magic.module.infra.service.codegen.inner.CodegenEngine;
-import cn.javayong.magic.module.infra.service.db.DatabaseTableService;
+import cn.javayong.magic.module.infra.service.CodegenService;
+import cn.javayong.magic.module.infra.service.DatabaseTableService;
+import cn.javayong.magic.module.infra.util.CodegenBuilder;
+import cn.javayong.magic.module.infra.util.CodegenEngine;
 import cn.javayong.magic.module.system.api.user.AdminUserApi;
 import com.baomidou.mybatisplus.generator.config.po.TableField;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;

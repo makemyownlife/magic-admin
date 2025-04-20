@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.db;
+package cn.javayong.magic.module.infra.service;
 
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 

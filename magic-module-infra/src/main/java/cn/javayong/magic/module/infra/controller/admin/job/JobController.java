@@ -10,7 +10,7 @@ import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobPageReqVO;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobRespVO;
 import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobSaveReqVO;
 import cn.javayong.magic.module.infra.domain.JobDO;
-import cn.javayong.magic.module.infra.service.job.JobService;
+import cn.javayong.magic.module.infra.service.JobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;

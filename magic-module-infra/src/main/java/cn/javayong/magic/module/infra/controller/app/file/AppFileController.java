@@ -5,7 +5,7 @@ import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FileCreateReqVO;
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePresignedUrlRespVO;
 import cn.javayong.magic.module.infra.controller.app.file.vo.AppFileUploadReqVO;
-import cn.javayong.magic.module.infra.service.file.FileService;
+import cn.javayong.magic.module.infra.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;

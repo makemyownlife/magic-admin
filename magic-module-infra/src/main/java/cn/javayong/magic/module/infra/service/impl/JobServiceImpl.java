@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.job;
+package cn.javayong.magic.module.infra.service.impl;
 
 import cn.hutool.extra.spring.SpringUtil;
 import cn.javayong.magic.framework.common.pojo.PageResult;
@@ -11,6 +11,7 @@ import cn.javayong.magic.module.infra.controller.admin.job.vo.job.JobSaveReqVO;
 import cn.javayong.magic.module.infra.domain.JobDO;
 import cn.javayong.magic.module.infra.mapper.JobMapper;
 import cn.javayong.magic.module.infra.domain.enums.JobStatusEnum;
+import cn.javayong.magic.module.infra.service.JobService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

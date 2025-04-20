@@ -8,7 +8,7 @@ import cn.javayong.magic.module.infra.controller.admin.config.vo.*;
 import cn.javayong.magic.module.infra.domain.convert.ConfigConvert;
 import cn.javayong.magic.module.infra.domain.ConfigDO;
 import cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants;
-import cn.javayong.magic.module.infra.service.config.ConfigService;
+import cn.javayong.magic.module.infra.service.ConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.codegen.inner;
+package cn.javayong.magic.module.infra.util;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;

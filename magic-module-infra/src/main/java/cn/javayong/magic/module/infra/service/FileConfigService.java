@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.file;
+package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.framework.file.core.client.FileClient;

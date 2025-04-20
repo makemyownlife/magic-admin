@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.file;
+package cn.javayong.magic.module.infra.service.impl;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
@@ -13,6 +13,8 @@ import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePageReqV
 import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePresignedUrlRespVO;
 import cn.javayong.magic.module.infra.domain.FileDO;
 import cn.javayong.magic.module.infra.mapper.FileMapper;
+import cn.javayong.magic.module.infra.service.FileConfigService;
+import cn.javayong.magic.module.infra.service.FileService;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 

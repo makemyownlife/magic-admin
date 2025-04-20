@@ -15,7 +15,7 @@ import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.Database
 import cn.javayong.magic.module.infra.domain.convert.CodegenConvert;
 import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
 import cn.javayong.magic.module.infra.domain.CodegenTableDO;
-import cn.javayong.magic.module.infra.service.codegen.CodegenService;
+import cn.javayong.magic.module.infra.service.CodegenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;

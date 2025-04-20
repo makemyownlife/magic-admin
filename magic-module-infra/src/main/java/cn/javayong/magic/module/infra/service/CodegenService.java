@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.infra.service.codegen;
+package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenCreateListReqVO;
