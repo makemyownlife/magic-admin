@@ -2,8 +2,8 @@ package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.framework.file.core.client.FileClient;
-import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigPageReqVO;
-import cn.javayong.magic.module.infra.controller.admin.file.vo.config.FileConfigSaveReqVO;
+import cn.javayong.magic.module.infra.domain.vo.FileConfigPageReqVO;
+import cn.javayong.magic.module.infra.domain.vo.FileConfigSaveReqVO;
 import cn.javayong.magic.module.infra.domain.FileConfigDO;
 
 import javax.validation.Valid;

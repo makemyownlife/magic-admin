@@ -3,7 +3,7 @@ package cn.javayong.magic.module.infra.mapper;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePageReqVO;
+import cn.javayong.magic.module.infra.domain.vo.FilePageReqVO;
 import cn.javayong.magic.module.infra.domain.FileDO;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,10 +1,10 @@
 package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenCreateListReqVO;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenUpdateReqVO;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.CodegenTablePageReqVO;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.DatabaseTableRespVO;
+import cn.javayong.magic.module.infra.domain.vo.CodegenCreateListReqVO;
+import cn.javayong.magic.module.infra.domain.vo.CodegenUpdateReqVO;
+import cn.javayong.magic.module.infra.domain.vo.table.CodegenTablePageReqVO;
+import cn.javayong.magic.module.infra.domain.vo.table.DatabaseTableRespVO;
 import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
 import cn.javayong.magic.module.infra.domain.CodegenTableDO;
 

@@ -2,7 +2,7 @@ package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.quartz.core.service.JobLogFrameworkService;
-import cn.javayong.magic.module.infra.controller.admin.job.vo.log.JobLogPageReqVO;
+import cn.javayong.magic.module.infra.domain.vo.JobLogPageReqVO;
 import cn.javayong.magic.module.infra.domain.JobLogDO;
 
 /**

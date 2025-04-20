@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.infra.service.impl;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.module.infra.controller.admin.job.vo.log.JobLogPageReqVO;
+import cn.javayong.magic.module.infra.domain.vo.JobLogPageReqVO;
 import cn.javayong.magic.module.infra.domain.JobLogDO;
 import cn.javayong.magic.module.infra.mapper.JobLogMapper;
 import cn.javayong.magic.module.infra.domain.enums.JobLogStatusEnum;

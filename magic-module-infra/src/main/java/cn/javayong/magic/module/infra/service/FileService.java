@@ -1,9 +1,9 @@
 package cn.javayong.magic.module.infra.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FileCreateReqVO;
-import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePageReqVO;
-import cn.javayong.magic.module.infra.controller.admin.file.vo.file.FilePresignedUrlRespVO;
+import cn.javayong.magic.module.infra.domain.vo.FileCreateReqVO;
+import cn.javayong.magic.module.infra.domain.vo.FilePageReqVO;
+import cn.javayong.magic.module.infra.domain.vo.FilePresignedUrlRespVO;
 import cn.javayong.magic.module.infra.domain.FileDO;
 
 /**

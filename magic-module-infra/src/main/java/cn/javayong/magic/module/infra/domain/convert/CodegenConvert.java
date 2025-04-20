@@ -2,10 +2,10 @@ package cn.javayong.magic.module.infra.domain.convert;
 
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenDetailRespVO;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.CodegenPreviewRespVO;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.column.CodegenColumnRespVO;
-import cn.javayong.magic.module.infra.controller.admin.codegen.vo.table.CodegenTableRespVO;
+import cn.javayong.magic.module.infra.domain.vo.CodegenDetailRespVO;
+import cn.javayong.magic.module.infra.domain.vo.CodegenPreviewRespVO;
+import cn.javayong.magic.module.infra.domain.vo.column.CodegenColumnRespVO;
+import cn.javayong.magic.module.infra.domain.vo.table.CodegenTableRespVO;
 import cn.javayong.magic.module.infra.domain.CodegenColumnDO;
 import cn.javayong.magic.module.infra.domain.CodegenTableDO;
 import com.baomidou.mybatisplus.generator.config.po.TableField;
