@@ -152,10 +152,6 @@ public class MagicWebSecurityConfigurerAdapter {
         return httpSecurity.build();
     }
 
-    private String buildAppApi(String url) {
-        return webProperties.getAppApi().getPrefix() + url;
-    }
-
     private Multimap<HttpMethod, String> getPermitAllUrlsFromAnnotations() {
         Multimap<HttpMethod, String> result = HashMultimap.create();
         // 获得接口对应的 HandlerMethod 集合

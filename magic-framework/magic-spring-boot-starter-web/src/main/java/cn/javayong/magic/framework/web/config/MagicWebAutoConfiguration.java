@@ -42,7 +42,6 @@ public class MagicWebAutoConfiguration implements WebMvcConfigurer {
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurePathMatch(configurer, webProperties.getAdminApi());
-        configurePathMatch(configurer, webProperties.getAppApi());
     }
 
     /**

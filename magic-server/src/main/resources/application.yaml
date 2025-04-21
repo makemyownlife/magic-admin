@@ -48,7 +48,7 @@ springdoc:
   default-flat-param-object: true # 参见 https://doc.xiaominfo.com/docs/faq/v4/knife4j-parameterobject-flat-param 文档
 
 knife4j:
-  enable: false # TODO 芋艿：需要关闭增强，具体原因见：https://github.com/xiaoymin/knife4j/issues/874
+  enable: false # TODO 需要关闭增强，具体原因见：https://github.com/xiaoymin/knife4j/issues/874
   setting:
     language: zh_cn
 
@@ -146,19 +146,6 @@ magic:
   security:
     permit-all_urls:
       - /admin-api/mp/open/** # 微信公众号开放平台，微信回调接口，不需要登录
-  websocket:
-    enable: true # websocket的开关
-    path: /infra/ws # 路径
-    sender-type: local # 消息发送的类型，可选值为 local、redis、rocketmq、kafka、rabbitmq
-    sender-rocketmq:
-      topic: ${spring.application.name}-websocket # 消息发送的 RocketMQ Topic
-      consumer-group: ${spring.application.name}-websocket-consumer # 消息发送的 RocketMQ Consumer Group
-    sender-rabbitmq:
-      exchange: ${spring.application.name}-websocket-exchange # 消息发送的 RabbitMQ Exchange
-      queue: ${spring.application.name}-websocket-queue # 消息发送的 RabbitMQ Queue
-    sender-kafka:
-      topic: ${spring.application.name}-websocket # 消息发送的 Kafka Topic
-      consumer-group: ${spring.application.name}-websocket-consumer # 消息发送的 Kafka Consumer Group
   swagger:
     title: magic-admin 快速开发平台
     description: 提供管理后台、用户 App 的所有功能
