@@ -1,17 +1,10 @@
-package cn.javayong.magic.module.system.api.logger.dto;
+package cn.javayong.magic.module.system.domain.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-/**
- * 登录日志创建 Request DTO
- *
-
- */
 @Data
 public class LoginLogCreateReqDTO {
 

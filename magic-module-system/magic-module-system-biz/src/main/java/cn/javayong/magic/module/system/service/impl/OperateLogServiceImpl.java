@@ -1,9 +1,6 @@
 package cn.javayong.magic.module.system.service.impl;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.system.api.logger.dto.OperateLogCreateReqDTO;
-import cn.javayong.magic.module.system.api.logger.dto.OperateLogPageReqDTO;
 import cn.javayong.magic.module.system.domain.vo.OperateLogPageReqVO;
 import cn.javayong.magic.module.system.domain.OperateLogDO;
 import cn.javayong.magic.module.system.mapper.OperateLogMapper;
@@ -28,19 +25,8 @@ public class OperateLogServiceImpl implements OperateLogService {
     private OperateLogMapper operateLogMapper;
 
     @Override
-    public void createOperateLog(OperateLogCreateReqDTO createReqDTO) {
-        OperateLogDO log = BeanUtils.toBean(createReqDTO, OperateLogDO.class);
-        operateLogMapper.insert(log);
-    }
-
-    @Override
     public PageResult<OperateLogDO> getOperateLogPage(OperateLogPageReqVO pageReqVO) {
         return operateLogMapper.selectPage(pageReqVO);
-    }
-
-    @Override
-    public PageResult<OperateLogDO> getOperateLogPage(OperateLogPageReqDTO pageReqDTO) {
-        return operateLogMapper.selectPage(pageReqDTO);
     }
 
 }
