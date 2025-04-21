@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.controller.admin.dict;
+package cn.javayong.magic.module.system.controller;
 
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;

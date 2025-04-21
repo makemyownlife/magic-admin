@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.controller.admin.dept;
+package cn.javayong.magic.module.system.controller;
 
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;

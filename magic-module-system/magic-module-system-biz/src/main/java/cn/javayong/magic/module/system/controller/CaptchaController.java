@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.controller.admin.captcha;
+package cn.javayong.magic.module.system.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;

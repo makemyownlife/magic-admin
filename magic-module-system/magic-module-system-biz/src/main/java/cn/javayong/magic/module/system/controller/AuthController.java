@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.controller.admin.auth;
+package cn.javayong.magic.module.system.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;

@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.controller.admin.ip;
+package cn.javayong.magic.module.system.controller;
 
 import cn.hutool.core.lang.Assert;
 import cn.javayong.magic.framework.common.pojo.CommonResult;

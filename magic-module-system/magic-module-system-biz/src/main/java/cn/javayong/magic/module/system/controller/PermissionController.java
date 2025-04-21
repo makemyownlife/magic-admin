@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.controller.admin.permission;
+package cn.javayong.magic.module.system.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
