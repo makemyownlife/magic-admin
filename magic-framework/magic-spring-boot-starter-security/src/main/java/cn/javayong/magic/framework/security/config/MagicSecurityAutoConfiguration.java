@@ -1,5 +1,6 @@
 package cn.javayong.magic.framework.security.config;
 
+import cn.javayong.magic.framework.security.core.adapter.PermissionAdapter;
 import cn.javayong.magic.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
 import cn.javayong.magic.framework.security.core.filter.TokenAuthenticationFilter;
 import cn.javayong.magic.framework.security.core.handler.AccessDeniedHandlerImpl;
@@ -8,7 +9,6 @@ import cn.javayong.magic.framework.security.core.service.SecurityFrameworkServic
 import cn.javayong.magic.framework.security.core.service.impl.SecurityFrameworkServiceImpl;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.framework.web.core.handler.GlobalExceptionHandler;
-import cn.javayong.magic.module.system.api.permission.PermissionApi;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -28,7 +28,6 @@ import javax.annotation.Resource;
  * 注意，不能和 {@link MagicWebSecurityConfigurerAdapter} 用一个，原因是会导致初始化报错。
  * 参见 https://stackoverflow.com/questions/53847050/spring-boot-delegatebuilder-cannot-be-null-on-autowiring-authenticationmanager 文档。
  *
-
  */
 @AutoConfiguration
 @AutoConfigureOrder(-1) // 目的：先于 Spring Security 自动配置，避免一键改包后，org.* 基础包无法生效
@@ -75,8 +74,8 @@ public class MagicSecurityAutoConfiguration {
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用
-    public SecurityFrameworkService securityFrameworkService(PermissionApi permissionApi) {
-        return new SecurityFrameworkServiceImpl(permissionApi);
+    public SecurityFrameworkService securityFrameworkService(PermissionAdapter permissionAdapter) {
+        return new SecurityFrameworkServiceImpl(permissionAdapter);
     }
 
     /**

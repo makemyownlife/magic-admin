@@ -2,6 +2,7 @@ package cn.javayong.magic.framework.security.core.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.security.core.LoginUser;
+import cn.javayong.magic.framework.security.core.adapter.PermissionAdapter;
 import cn.javayong.magic.framework.security.core.service.SecurityFrameworkService;
 import cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils;
 import cn.javayong.magic.module.system.api.permission.PermissionApi;
@@ -19,7 +20,7 @@ import static cn.javayong.magic.framework.security.core.util.SecurityFrameworkUt
 @AllArgsConstructor
 public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
 
-    private final PermissionApi permissionApi;
+    private final PermissionAdapter permissionAdapter;
 
     @Override
     public boolean hasPermission(String permission) {
@@ -32,7 +33,7 @@ public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
         if (userId == null) {
             return false;
         }
-        return permissionApi.hasAnyPermissions(userId, permissions);
+        return permissionAdapter.hasAnyPermissions(userId, permissions);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
         if (userId == null) {
             return false;
         }
-        return permissionApi.hasAnyRoles(userId, roles);
+        return permissionAdapter.hasAnyRoles(userId, roles);
     }
 
     @Override

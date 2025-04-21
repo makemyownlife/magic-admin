@@ -1,8 +1,9 @@
-package cn.javayong.magic.module.system.api.permission;
+package cn.javayong.magic.module.system.framework.web.adapter;
 
+import cn.javayong.magic.framework.security.core.adapter.PermissionAdapter;
 import cn.javayong.magic.module.system.api.permission.dto.DeptDataPermissionRespDTO;
 import cn.javayong.magic.module.system.service.PermissionService;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Collection;
@@ -13,28 +14,24 @@ import java.util.Set;
  *
 
  */
-@Service
-public class PermissionApiImpl implements PermissionApi {
+@Component
+public class SystemPermissionAdapter implements PermissionAdapter {
 
     @Resource
     private PermissionService permissionService;
 
-    @Override
     public Set<Long> getUserRoleIdListByRoleIds(Collection<Long> roleIds) {
         return permissionService.getUserRoleIdListByRoleId(roleIds);
     }
 
-    @Override
     public boolean hasAnyPermissions(Long userId, String... permissions) {
         return permissionService.hasAnyPermissions(userId, permissions);
     }
 
-    @Override
     public boolean hasAnyRoles(Long userId, String... roles) {
         return permissionService.hasAnyRoles(userId, roles);
     }
 
-    @Override
     public DeptDataPermissionRespDTO getDeptDataPermission(Long userId) {
         return permissionService.getDeptDataPermission(userId);
     }
