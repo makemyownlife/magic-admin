@@ -1,8 +1,8 @@
-package cn.javayong.magic.module.system.api.dict;
+package cn.javayong.magic.framework.dict.core.adapter;
 
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.javayong.magic.module.system.api.dict.dto.DictDataRespDTO;
+import cn.javayong.magic.framework.dict.core.dto.DictDataRespDTO;
 
 import java.util.Collection;
 import java.util.List;

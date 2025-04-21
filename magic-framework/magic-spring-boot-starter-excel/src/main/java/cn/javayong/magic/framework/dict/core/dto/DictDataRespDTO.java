@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.api.dict.dto;
+package cn.javayong.magic.framework.dict.core.dto;
 
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import lombok.Data;

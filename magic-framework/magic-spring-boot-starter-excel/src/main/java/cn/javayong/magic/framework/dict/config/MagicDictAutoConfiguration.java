@@ -1,7 +1,7 @@
 package cn.javayong.magic.framework.dict.config;
 
 import cn.javayong.magic.framework.dict.core.DictFrameworkUtils;
-import cn.javayong.magic.module.system.api.dict.DictDataApi;
+import cn.javayong.magic.framework.dict.core.adapter.DictDataApi;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
