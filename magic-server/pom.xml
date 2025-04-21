@@ -15,17 +15,19 @@
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
+
     <description>
         后端 Server 的主项目，通过引入需要 magic-module-xxx 的依赖，
         从而实现提供 RESTful API 给 magic-ui-admin、magic-ui-user 等前端项目。
         本质上来说，它就是个空壳（容器）！
     </description>
+
     <url>https://github.com/makemyownlife/magic-admin</url>
 
     <dependencies>
         <dependency>
             <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-system-biz</artifactId>
+            <artifactId>magic-module-system</artifactId>
             <version>${revision}</version>
         </dependency>
 

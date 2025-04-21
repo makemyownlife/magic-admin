@@ -62,12 +62,6 @@
             <artifactId>guava</artifactId>
         </dependency>
 
-        <!-- 业务组件 -->
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-system-api</artifactId> <!-- 需要使用它，进行 Token 的校验 -->
-            <version>${revision}</version>
-        </dependency>
     </dependencies>
 
 </project>

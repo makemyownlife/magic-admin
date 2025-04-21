@@ -22,12 +22,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-system-api</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
         <!-- 业务组件 -->
         <dependency>
             <groupId>cn.javayong</groupId>
