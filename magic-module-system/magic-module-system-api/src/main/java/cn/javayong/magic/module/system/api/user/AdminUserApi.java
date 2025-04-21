@@ -11,7 +11,6 @@ import java.util.Map;
 /**
  * Admin 用户 API 接口
  *
-
  */
 public interface AdminUserApi {
 
