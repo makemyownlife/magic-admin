@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.domain.vo;
 
 import cn.javayong.magic.framework.excel.core.annotations.DictFormat;
 import cn.javayong.magic.framework.excel.core.convert.DictConvert;
-import cn.javayong.magic.module.system.enums.DictTypeConstants;
+import cn.javayong.magic.module.system.domain.enums.DictTypeConstants;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;

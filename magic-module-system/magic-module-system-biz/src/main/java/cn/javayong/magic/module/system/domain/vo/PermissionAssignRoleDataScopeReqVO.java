@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.domain.vo;
 
 import cn.javayong.magic.framework.common.validation.InEnum;
-import cn.javayong.magic.module.system.enums.permission.DataScopeEnum;
+import cn.javayong.magic.module.system.domain.enums.DataScopeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

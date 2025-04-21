@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.domain;
 
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.tenant.core.db.TenantBaseDO;
-import cn.javayong.magic.module.system.enums.common.SexEnum;
+import cn.javayong.magic.module.system.domain.enums.SexEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

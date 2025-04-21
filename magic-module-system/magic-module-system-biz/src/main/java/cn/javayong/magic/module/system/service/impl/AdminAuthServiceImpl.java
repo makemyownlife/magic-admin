@@ -13,8 +13,8 @@ import cn.javayong.magic.module.system.domain.convert.auth.AuthConvert;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
 import cn.javayong.magic.module.system.domain.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.domain.vo.*;
-import cn.javayong.magic.module.system.enums.logger.LoginLogTypeEnum;
-import cn.javayong.magic.module.system.enums.logger.LoginResultEnum;
+import cn.javayong.magic.module.system.domain.enums.LoginLogTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.LoginResultEnum;
 import cn.javayong.magic.module.system.service.AdminAuthService;
 import cn.javayong.magic.module.system.service.AdminUserService;
 import cn.javayong.magic.module.system.service.LoginLogService;
@@ -33,7 +33,7 @@ import javax.validation.Validator;
 import java.util.Objects;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
 
 /**
  * Auth Service 实现类

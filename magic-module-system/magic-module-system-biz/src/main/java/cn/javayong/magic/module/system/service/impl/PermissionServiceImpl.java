@@ -14,7 +14,7 @@ import cn.javayong.magic.module.system.domain.UserRoleDO;
 import cn.javayong.magic.module.system.mapper.RoleMenuMapper;
 import cn.javayong.magic.module.system.mapper.UserRoleMapper;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
-import cn.javayong.magic.module.system.enums.permission.DataScopeEnum;
+import cn.javayong.magic.module.system.domain.enums.DataScopeEnum;
 import cn.javayong.magic.module.system.service.*;
 import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.google.common.annotations.VisibleForTesting;

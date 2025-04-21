@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.enums;
+package cn.javayong.magic.module.system.domain.enums;
 
 /**
  * System 操作日志枚举

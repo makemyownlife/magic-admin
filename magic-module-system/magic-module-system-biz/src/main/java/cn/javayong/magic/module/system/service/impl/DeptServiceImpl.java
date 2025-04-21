@@ -22,7 +22,7 @@ import java.util.*;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertSet;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 部门 Service 实现类

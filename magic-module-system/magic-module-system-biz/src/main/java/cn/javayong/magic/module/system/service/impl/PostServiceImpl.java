@@ -20,7 +20,7 @@ import java.util.Map;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 岗位 Service 实现类

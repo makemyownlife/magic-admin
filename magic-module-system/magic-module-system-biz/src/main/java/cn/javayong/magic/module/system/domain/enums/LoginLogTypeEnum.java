@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.enums.logger;
+package cn.javayong.magic.module.system.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.framework.operatelog.core;
 
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.framework.dict.core.DictFrameworkUtils;
-import cn.javayong.magic.module.system.enums.DictTypeConstants;
+import cn.javayong.magic.module.system.domain.enums.DictTypeConstants;
 import com.mzt.logapi.service.IParseFunction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

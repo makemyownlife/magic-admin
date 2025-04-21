@@ -21,8 +21,8 @@ import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.TenantDO;
 import cn.javayong.magic.module.system.domain.TenantPackageDO;
 import cn.javayong.magic.module.system.mapper.TenantMapper;
-import cn.javayong.magic.module.system.enums.permission.RoleCodeEnum;
-import cn.javayong.magic.module.system.enums.permission.RoleTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.RoleCodeEnum;
+import cn.javayong.magic.module.system.domain.enums.RoleTypeEnum;
 import cn.javayong.magic.module.system.service.*;
 import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
 import static java.util.Collections.singleton;
 
 /**

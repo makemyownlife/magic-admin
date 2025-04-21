@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.domain;
 
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.mybatis.core.dataobject.BaseDO;
-import cn.javayong.magic.module.system.enums.notice.NoticeTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.NoticeTypeEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

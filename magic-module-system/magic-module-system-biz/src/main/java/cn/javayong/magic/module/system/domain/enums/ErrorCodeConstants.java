@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.enums;
+package cn.javayong.magic.module.system.domain.enums;
 
 import cn.javayong.magic.framework.common.exception.ErrorCode;
 

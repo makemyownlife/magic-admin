@@ -5,7 +5,7 @@ import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.module.system.domain.vo.LoginLogPageReqVO;
 import cn.javayong.magic.module.system.domain.LoginLogDO;
-import cn.javayong.magic.module.system.enums.logger.LoginResultEnum;
+import cn.javayong.magic.module.system.domain.enums.LoginResultEnum;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

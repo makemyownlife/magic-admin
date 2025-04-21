@@ -11,7 +11,7 @@ import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
 import cn.javayong.magic.module.system.domain.vo.*;
-import cn.javayong.magic.module.system.enums.logger.LoginLogTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.LoginLogTypeEnum;
 import cn.javayong.magic.module.system.service.AdminAuthService;
 import cn.javayong.magic.module.system.service.MenuService;
 import cn.javayong.magic.module.system.service.PermissionService;

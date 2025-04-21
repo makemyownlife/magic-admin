@@ -2,8 +2,8 @@ package cn.javayong.magic.module.system.domain;
 
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.tenant.core.db.TenantBaseDO;
-import cn.javayong.magic.module.system.enums.permission.DataScopeEnum;
-import cn.javayong.magic.module.system.enums.permission.RoleTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.DataScopeEnum;
+import cn.javayong.magic.module.system.domain.enums.RoleTypeEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

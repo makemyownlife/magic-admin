@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.domain.vo.MenuSaveVO;
 import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.mapper.MenuMapper;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
-import cn.javayong.magic.module.system.enums.permission.MenuTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.MenuTypeEnum;
 import cn.javayong.magic.module.system.service.MenuService;
 import cn.javayong.magic.module.system.service.PermissionService;
 import cn.javayong.magic.module.system.service.TenantService;
@@ -30,7 +30,7 @@ import static cn.javayong.magic.framework.common.exception.util.ServiceException
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
 import static cn.javayong.magic.module.system.domain.MenuDO.ID_ROOT;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 菜单 Service 实现

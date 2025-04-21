@@ -2,8 +2,8 @@ package cn.javayong.magic.module.system.domain;
 
 import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.mybatis.core.dataobject.BaseDO;
-import cn.javayong.magic.module.system.enums.logger.LoginLogTypeEnum;
-import cn.javayong.magic.module.system.enums.logger.LoginResultEnum;
+import cn.javayong.magic.module.system.domain.enums.LoginLogTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.LoginResultEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

@@ -14,9 +14,9 @@ import cn.javayong.magic.module.system.domain.vo.RoleSaveReqVO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.mapper.RoleMapper;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
-import cn.javayong.magic.module.system.enums.permission.DataScopeEnum;
-import cn.javayong.magic.module.system.enums.permission.RoleCodeEnum;
-import cn.javayong.magic.module.system.enums.permission.RoleTypeEnum;
+import cn.javayong.magic.module.system.domain.enums.DataScopeEnum;
+import cn.javayong.magic.module.system.domain.enums.RoleCodeEnum;
+import cn.javayong.magic.module.system.domain.enums.RoleTypeEnum;
 import cn.javayong.magic.module.system.service.PermissionService;
 import cn.javayong.magic.module.system.service.RoleService;
 import com.google.common.annotations.VisibleForTesting;
@@ -35,8 +35,8 @@ import java.util.*;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.*;
-import static cn.javayong.magic.module.system.enums.LogRecordConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
+import static cn.javayong.magic.module.system.domain.enums.LogRecordConstants.*;
 
 /**
  * 角色 Service 实现类

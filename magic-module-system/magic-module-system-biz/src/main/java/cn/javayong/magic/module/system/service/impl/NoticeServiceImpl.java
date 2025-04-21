@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.module.system.enums.ErrorCodeConstants.NOTICE_NOT_FOUND;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.NOTICE_NOT_FOUND;
 
 /**
  * 通知公告 Service 实现类

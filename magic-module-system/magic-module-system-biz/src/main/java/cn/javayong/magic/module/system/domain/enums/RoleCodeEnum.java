@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.enums.permission;
+package cn.javayong.magic.module.system.domain.enums;
 
 import cn.javayong.magic.framework.common.util.object.ObjectUtils;
 import lombok.AllArgsConstructor;

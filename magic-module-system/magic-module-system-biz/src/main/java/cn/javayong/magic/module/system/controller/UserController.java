@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.domain.convert.user.UserConvert;
 import cn.javayong.magic.module.system.domain.DeptDO;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
 import cn.javayong.magic.module.system.domain.vo.*;
-import cn.javayong.magic.module.system.enums.common.SexEnum;
+import cn.javayong.magic.module.system.domain.enums.SexEnum;
 import cn.javayong.magic.module.system.service.DeptService;
 import cn.javayong.magic.module.system.service.AdminUserService;
 import io.swagger.v3.oas.annotations.Operation;
