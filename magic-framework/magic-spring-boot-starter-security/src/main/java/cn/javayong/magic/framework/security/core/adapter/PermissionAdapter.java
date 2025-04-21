@@ -1,6 +1,6 @@
 package cn.javayong.magic.framework.security.core.adapter;
 
-import cn.javayong.magic.module.system.api.permission.dto.DeptDataPermissionRespDTO;
+import cn.javayong.magic.framework.security.core.dto.DeptDataPermissionRespDTO;
 
 import java.util.Collection;
 import java.util.Set;

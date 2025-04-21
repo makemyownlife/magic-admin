@@ -6,7 +6,7 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
-import cn.javayong.magic.module.system.api.permission.dto.DeptDataPermissionRespDTO;
+import cn.javayong.magic.framework.security.core.dto.DeptDataPermissionRespDTO;
 import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.RoleMenuDO;

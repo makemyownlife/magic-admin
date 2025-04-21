@@ -5,7 +5,7 @@ import cn.javayong.magic.framework.security.core.LoginUser;
 import cn.javayong.magic.framework.security.core.adapter.PermissionAdapter;
 import cn.javayong.magic.framework.security.core.service.SecurityFrameworkService;
 import cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils;
-import cn.javayong.magic.module.system.api.permission.PermissionApi;
+
 import lombok.AllArgsConstructor;
 
 import java.util.Arrays;

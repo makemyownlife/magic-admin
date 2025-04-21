@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.framework.web.adapter;
 
 import cn.javayong.magic.framework.security.core.adapter.PermissionAdapter;
-import cn.javayong.magic.module.system.api.permission.dto.DeptDataPermissionRespDTO;
+import cn.javayong.magic.framework.security.core.dto.DeptDataPermissionRespDTO;
 import cn.javayong.magic.module.system.service.PermissionService;
 import org.springframework.stereotype.Component;
 
