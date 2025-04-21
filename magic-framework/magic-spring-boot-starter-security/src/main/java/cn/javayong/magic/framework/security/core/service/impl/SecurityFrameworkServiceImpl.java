@@ -1,7 +1,8 @@
-package cn.javayong.magic.framework.security.core.service;
+package cn.javayong.magic.framework.security.core.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.security.core.LoginUser;
+import cn.javayong.magic.framework.security.core.service.SecurityFrameworkService;
 import cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils;
 import cn.javayong.magic.module.system.api.permission.PermissionApi;
 import lombok.AllArgsConstructor;

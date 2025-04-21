@@ -5,10 +5,9 @@ import cn.javayong.magic.framework.security.core.filter.TokenAuthenticationFilte
 import cn.javayong.magic.framework.security.core.handler.AccessDeniedHandlerImpl;
 import cn.javayong.magic.framework.security.core.handler.AuthenticationEntryPointImpl;
 import cn.javayong.magic.framework.security.core.service.SecurityFrameworkService;
-import cn.javayong.magic.framework.security.core.service.SecurityFrameworkServiceImpl;
+import cn.javayong.magic.framework.security.core.service.impl.SecurityFrameworkServiceImpl;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.framework.web.core.handler.GlobalExceptionHandler;
-import cn.javayong.magic.module.system.api.oauth2.OAuth2TokenApi;
 import cn.javayong.magic.module.system.api.permission.PermissionApi;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
