@@ -14,7 +14,7 @@ import static cn.javayong.magic.framework.common.util.collection.CollectionUtils
  *
 
  */
-public interface DictDataApi {
+public interface DictDataAdapter {
 
     /**
      * 校验字典数据们是否有效。如下情况，视为无效：

@@ -3,7 +3,7 @@ package cn.javayong.magic.framework.dict.core;
 import cn.hutool.core.util.ObjectUtil;
 import cn.javayong.magic.framework.common.core.KeyValue;
 import cn.javayong.magic.framework.common.util.cache.CacheUtils;
-import cn.javayong.magic.framework.dict.core.adapter.DictDataApi;
+import cn.javayong.magic.framework.dict.core.adapter.DictDataAdapter;
 import cn.javayong.magic.framework.dict.core.dto.DictDataRespDTO;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -21,7 +21,7 @@ import java.util.List;
 @Slf4j
 public class DictFrameworkUtils {
 
-    private static DictDataApi dictDataApi;
+    private static DictDataAdapter dictDataApi;
 
     private static final DictDataRespDTO DICT_DATA_NULL = new DictDataRespDTO();
 
@@ -68,8 +68,8 @@ public class DictFrameworkUtils {
 
             });
 
-    public static void init(DictDataApi dictDataApi) {
-        DictFrameworkUtils.dictDataApi = dictDataApi;
+    public static void init(DictDataAdapter dictDataAdapter) {
+        DictFrameworkUtils.dictDataApi = dictDataAdapter;
         log.info("[init][初始化 DictFrameworkUtils 成功]");
     }
 
