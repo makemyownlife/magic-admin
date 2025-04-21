@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.api.tenant;
+package cn.javayong.magic.framework.tenant.core.adapter;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  *
 
  */
-public interface TenantApi {
+public interface TenantAdapter {
 
     /**
      * 获得所有租户

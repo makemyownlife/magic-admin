@@ -1,5 +1,6 @@
-package cn.javayong.magic.module.system.api.tenant;
+package cn.javayong.magic.module.system.framework.web.adapter;
 
+import cn.javayong.magic.framework.tenant.core.adapter.TenantAdapter;
 import cn.javayong.magic.module.system.service.TenantService;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
  */
 @Service
-public class TenantApiImpl implements TenantApi {
+public class SystemTenantAdapter implements TenantAdapter {
 
     @Resource
     private TenantService tenantService;

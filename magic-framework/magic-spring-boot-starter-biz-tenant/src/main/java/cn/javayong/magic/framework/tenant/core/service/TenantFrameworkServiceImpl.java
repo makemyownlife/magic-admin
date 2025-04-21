@@ -2,7 +2,7 @@ package cn.javayong.magic.framework.tenant.core.service;
 
 import cn.javayong.magic.framework.common.exception.ServiceException;
 import cn.javayong.magic.framework.common.util.cache.CacheUtils;
-import cn.javayong.magic.module.system.api.tenant.TenantApi;
+import cn.javayong.magic.framework.tenant.core.adapter.TenantAdapter;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class TenantFrameworkServiceImpl implements TenantFrameworkService {
 
     private static final ServiceException SERVICE_EXCEPTION_NULL = new ServiceException();
 
-    private final TenantApi tenantApi;
+    private final TenantAdapter tenantApi;
 
     /**
      * 针对 {@link #getTenantIds()} 的缓存

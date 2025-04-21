@@ -16,7 +16,7 @@ import cn.javayong.magic.framework.tenant.core.service.TenantFrameworkServiceImp
 import cn.javayong.magic.framework.tenant.core.web.TenantContextWebFilter;
 import cn.javayong.magic.framework.web.config.WebProperties;
 import cn.javayong.magic.framework.web.core.handler.GlobalExceptionHandler;
-import cn.javayong.magic.module.system.api.tenant.TenantApi;
+import cn.javayong.magic.framework.tenant.core.adapter.TenantAdapter;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -41,8 +41,8 @@ import java.util.Objects;
 public class MagicTenantAutoConfiguration {
 
     @Bean
-    public TenantFrameworkService tenantFrameworkService(TenantApi tenantApi) {
-        return new TenantFrameworkServiceImpl(tenantApi);
+    public TenantFrameworkService tenantFrameworkService(TenantAdapter tenantAdapter) {
+        return new TenantFrameworkServiceImpl(tenantAdapter);
     }
 
     // ========== AOP ==========
