@@ -15,7 +15,7 @@ import cn.javayong.magic.framework.tenant.core.util.TenantUtils;
 import cn.javayong.magic.module.system.domain.vo.RoleSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.TenantPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.TenantSaveReqVO;
-import cn.javayong.magic.module.system.domain.convert.tenant.TenantConvert;
+import cn.javayong.magic.module.system.domain.convert.TenantConvert;
 import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.TenantDO;

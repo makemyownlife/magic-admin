@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.security.config.SecurityProperties;
 import cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils;
-import cn.javayong.magic.module.system.domain.convert.auth.AuthConvert;
+import cn.javayong.magic.module.system.domain.convert.AuthConvert;
 import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.AdminUserDO;

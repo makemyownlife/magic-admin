@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.domain.convert.auth;
+package cn.javayong.magic.module.system.domain.convert;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;

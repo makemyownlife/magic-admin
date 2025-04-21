@@ -9,7 +9,7 @@ import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
 import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
-import cn.javayong.magic.module.system.domain.convert.auth.AuthConvert;
+import cn.javayong.magic.module.system.domain.convert.AuthConvert;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
 import cn.javayong.magic.module.system.domain.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.domain.vo.*;

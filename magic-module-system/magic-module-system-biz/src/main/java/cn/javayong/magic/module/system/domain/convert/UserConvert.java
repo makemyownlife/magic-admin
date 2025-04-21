@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.domain.convert.user;
+package cn.javayong.magic.module.system.domain.convert;
 
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.common.util.collection.MapUtils;

@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
-import cn.javayong.magic.module.system.domain.convert.user.UserConvert;
+import cn.javayong.magic.module.system.domain.convert.UserConvert;
 import cn.javayong.magic.module.system.domain.DeptDO;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
 import cn.javayong.magic.module.system.domain.vo.*;

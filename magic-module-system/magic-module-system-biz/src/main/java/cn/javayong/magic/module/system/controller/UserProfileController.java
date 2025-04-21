@@ -6,7 +6,7 @@ import cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants;
 import cn.javayong.magic.module.system.domain.vo.UserProfileRespVO;
 import cn.javayong.magic.module.system.domain.vo.UserProfileUpdatePasswordReqVO;
 import cn.javayong.magic.module.system.domain.vo.UserProfileUpdateReqVO;
-import cn.javayong.magic.module.system.domain.convert.user.UserConvert;
+import cn.javayong.magic.module.system.domain.convert.UserConvert;
 import cn.javayong.magic.module.system.domain.DeptDO;
 import cn.javayong.magic.module.system.domain.PostDO;
 import cn.javayong.magic.module.system.domain.RoleDO;

@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.domain.convert.tenant;
+package cn.javayong.magic.module.system.domain.convert;
 
 import cn.javayong.magic.module.system.domain.vo.TenantSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.UserSaveReqVO;
