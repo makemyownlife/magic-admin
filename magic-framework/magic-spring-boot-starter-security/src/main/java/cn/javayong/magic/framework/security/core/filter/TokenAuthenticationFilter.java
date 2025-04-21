@@ -12,8 +12,6 @@ import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.framework.web.core.handler.GlobalExceptionHandler;
 import cn.javayong.magic.framework.web.core.util.WebFrameworkUtils;
-import cn.javayong.magic.module.system.api.oauth2.OAuth2TokenApi;
-import cn.javayong.magic.module.system.api.oauth2.dto.OAuth2AccessTokenCheckRespDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.filter.OncePerRequestFilter;

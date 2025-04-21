@@ -3,7 +3,6 @@ package cn.javayong.magic.module.system.domain.convert.auth;
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
-import cn.javayong.magic.module.system.api.social.dto.SocialUserBindReqDTO;
 import cn.javayong.magic.module.system.domain.MenuDO;
 import cn.javayong.magic.module.system.domain.RoleDO;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
@@ -78,7 +77,5 @@ public interface AuthConvert {
         // 获得到所有的根节点
         return filterList(treeNodeMap.values(), node -> ID_ROOT.equals(node.getParentId()));
     }
-
-    SocialUserBindReqDTO convert(Long userId, Integer userType, AuthSocialLoginReqVO reqVO);
 
 }
