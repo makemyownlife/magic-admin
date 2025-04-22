@@ -63,8 +63,6 @@
             <artifactId>magic-spring-boot-starter-mq</artifactId>
         </dependency>
 
-
-
         <!-- 工具类相关 -->
         <dependency>
             <groupId>cn.javayong</groupId>
@@ -80,16 +78,6 @@
         <dependency>
             <groupId>com.xingyuv</groupId>
             <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>wx-java-mp-spring-boot-starter</artifactId> <!-- 微信登录（公众号） -->
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>  <!-- 微信登录（小程序） -->
         </dependency>
 
         <dependency>
