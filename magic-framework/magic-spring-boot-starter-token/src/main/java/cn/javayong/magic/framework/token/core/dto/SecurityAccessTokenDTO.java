@@ -2,10 +2,12 @@ package cn.javayong.magic.framework.token.core.dto;
 
 import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
 @Data
+@Accessors(chain = true)
 public class SecurityAccessTokenDTO {
 
     /**
