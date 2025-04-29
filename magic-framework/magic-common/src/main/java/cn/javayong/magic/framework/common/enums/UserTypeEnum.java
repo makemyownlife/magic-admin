@@ -20,6 +20,7 @@ public enum UserTypeEnum implements ArrayValuable<Integer> {
 
     public static final Integer[] ARRAYS = Arrays.stream(values()).map(UserTypeEnum::getValue).toArray(Integer[]::new);
 
+
     /**
      * 类型
      */

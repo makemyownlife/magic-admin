@@ -1,14 +1,11 @@
 package cn.javayong.magic.framework.token.core.service;
 
-import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
-import cn.javayong.magic.framework.common.util.date.DateUtils;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
-
-import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception0;
+import cn.javayong.magic.framework.token.core.dto.SecurityCreateTokenDTO;
 
 public interface SecurityTokenService {
 
-    SecurityAccessTokenDTO createAccessToken(Long userId, Long tenantId);
+    SecurityAccessTokenDTO createAccessToken(SecurityCreateTokenDTO securityCreateTokenDTO);
 
     SecurityAccessTokenDTO refreshAccessToken(String refreshToken);
 

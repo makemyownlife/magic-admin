@@ -8,6 +8,7 @@ import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
 import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
+import cn.javayong.magic.framework.token.core.dto.SecurityCreateTokenDTO;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.module.system.domain.convert.AuthConvert;
 import cn.javayong.magic.module.system.domain.AdminUserDO;
@@ -143,7 +144,11 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         createLoginLog(userId, username, logType, LoginResultEnum.SUCCESS);
 
         // 创建访问令牌
-        SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.createAccessToken(userId, TenantContextHolder.getTenantId());
+        SecurityCreateTokenDTO securityCreateTokenDTO = new SecurityCreateTokenDTO();
+        securityCreateTokenDTO.setUserId(userId).
+                                setUserType(UserTypeEnum.ADMIN.getValue()).
+                                setTenantId(TenantContextHolder.getTenantId());
+        SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.createAccessToken(securityCreateTokenDTO);
 
         // 构建返回结果
         return AuthConvert.INSTANCE.convert(securityAccessTokenDTO);

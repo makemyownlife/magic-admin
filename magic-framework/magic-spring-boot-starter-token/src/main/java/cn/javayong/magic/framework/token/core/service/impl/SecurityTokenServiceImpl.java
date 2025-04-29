@@ -9,6 +9,7 @@ import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstan
 import cn.javayong.magic.framework.common.util.date.DateUtils;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
+import cn.javayong.magic.framework.token.core.dto.SecurityCreateTokenDTO;
 import cn.javayong.magic.framework.token.core.dto.SecurityRefreshTokenDTO;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -38,13 +39,16 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
     }
 
     //=========================================== 核心方法 start ===================================================
+
     @Override
-    public SecurityAccessTokenDTO createAccessToken(Long userId, Long tenantId) {
+    public SecurityAccessTokenDTO createAccessToken(SecurityCreateTokenDTO securityCreateTokenDTO) {
+
         // step1 ：创建 refreshToken
         SecurityRefreshTokenDTO refreshTokenDTO = new SecurityRefreshTokenDTO().setRefreshToken(generateRefreshToken())
-                .setUserId(userId).setUserType(UserTypeEnum.ADMIN.getValue())
+                .setUserId(securityCreateTokenDTO.getUserId())
+                .setUserType(UserTypeEnum.ADMIN.getValue())
                 .setClientId(DEFAULT_CLINET_ID)
-                .setExpiresTime(LocalDateTime.now().plusSeconds(2592000)).setTenantId(tenantId);
+                .setExpiresTime(LocalDateTime.now().plusSeconds(2592000)).setTenantId(securityCreateTokenDTO.getTenantId());
 
         // step2 : 保存 refreshToken 到 Redis
         String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, refreshTokenDTO.getRefreshToken());
@@ -58,7 +62,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
                 .setUserId(refreshTokenDTO.getUserId()).setUserType(refreshTokenDTO.getUserType())
                 .setClientId(refreshTokenDTO.getClientId())
                 .setRefreshToken(refreshTokenDTO.getRefreshToken())
-                .setExpiresTime(LocalDateTime.now().plusSeconds(1800)).setTenantId(tenantId);
+                .setExpiresTime(LocalDateTime.now().plusSeconds(1800)).setTenantId(securityCreateTokenDTO.getTenantId());
 
         // step4 : 保存 accessToken 到 Redis
         String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, accessTokenDTO.getAccessToken());
@@ -67,8 +71,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
             stringRedisTemplate.opsForValue().set(accessTokenKey, JsonUtils.toJsonString(accessTokenDTO), timeDiff2, TimeUnit.SECONDS);
         }
 
-        return accessTokenDTO;
-    }
+        return accessTokenDTO;    }
 
     @Override
     public SecurityAccessTokenDTO refreshAccessToken(String refreshToken) {

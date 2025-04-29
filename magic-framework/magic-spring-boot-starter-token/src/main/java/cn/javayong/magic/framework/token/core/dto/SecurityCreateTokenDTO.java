@@ -1,5 +1,6 @@
 package cn.javayong.magic.framework.token.core.dto;
 
+import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -17,6 +18,12 @@ public class SecurityCreateTokenDTO {
      */
     private Long tenantId;
 
+    /**
+     * 用户类型
+     * <p>
+     * 枚举 {@link UserTypeEnum}
+     */
+    private Integer userType;
 
 
 }
