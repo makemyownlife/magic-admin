@@ -22,6 +22,9 @@ import static cn.javayong.magic.framework.common.util.collection.CollectionUtils
 
 public class SecurityTokenServiceImpl implements SecurityTokenService {
 
+    // 默认 登录客户端平台  1： admin后台
+    private String DEFAULT_CLINET_ID =  "1";
+
     // 访问令牌
     private final static String SECURITY_ACCESS_TOKEN = "security_access_token:%s";
 
@@ -40,7 +43,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         // step1 ：创建 refreshToken
         SecurityRefreshTokenDTO refreshTokenDTO = new SecurityRefreshTokenDTO().setRefreshToken(generateRefreshToken())
                 .setUserId(userId).setUserType(UserTypeEnum.ADMIN.getValue())
-                .setClientId("default")
+                .setClientId(DEFAULT_CLINET_ID)
                 .setExpiresTime(LocalDateTime.now().plusSeconds(2592000)).setTenantId(tenantId);
 
         // step2 : 保存 refreshToken 到 Redis

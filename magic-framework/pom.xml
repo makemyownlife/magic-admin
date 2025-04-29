@@ -11,28 +11,43 @@
     <packaging>pom</packaging>
     <modules>
 
+        <!-- 基础通用模块，包含项目通用工具类、常量定义、基础DTO等 -->
         <module>magic-common</module>
 
+        <!-- MyBatis增强启动器，集成MyBatis-Plus及分页插件等 -->
         <module>magic-spring-boot-starter-mybatis</module>
 
+        <!-- Redis集成启动器，包含RedisTemplate封装和分布式锁等工具 -->
         <module>magic-spring-boot-starter-redis</module>
 
+        <!-- 分布式ID生成器启动器，集成雪花算法等ID生成方案 -->
+        <module>magic-spring-boot-starter-idgenerator</module>
+
+        <!-- 认证授权启动器，集成JWT或类似Sa-Token的认证方案 -->
         <module>magic-spring-boot-starter-token</module>
 
+        <!-- Web MVC启动器，增强Spring Web功能，包含全局异常处理等 -->
         <module>magic-spring-boot-starter-web</module>
 
+        <!-- 安全防护启动器，集成Spring Security或自定义安全策略 -->
         <module>magic-spring-boot-starter-security</module>
 
+        <!-- 系统保护启动器，包含防XSS、CSRF、SQL注入等防护功能 -->
         <module>magic-spring-boot-starter-protection</module>
 
+        <!-- 定时任务启动器，集成XXL-JOB或Quartz等调度框架 -->
         <module>magic-spring-boot-starter-job</module>
 
+        <!-- 消息队列启动器，支持RabbitMQ/Kafka/RocketMQ等 -->
         <module>magic-spring-boot-starter-mq</module>
 
+        <!-- Excel处理启动器，包含EasyExcel集成和导入导出工具 -->
         <module>magic-spring-boot-starter-excel</module>
 
+        <!-- 多租户业务模块，实现SaaS多租户隔离方案 -->
         <module>magic-spring-boot-starter-biz-tenant</module>
 
+        <!-- IP处理业务模块，包含IP解析、地域识别、黑白名单等功能 -->
         <module>magic-spring-boot-starter-biz-ip</module>
 
     </modules>
