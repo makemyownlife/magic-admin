@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * OAuth2 刷新令牌
- *
+ * 刷新令牌
  */
 @Data
 @Accessors(chain = true)
