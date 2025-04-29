@@ -309,6 +309,14 @@
                 <artifactId>magic-spring-boot-starter-mq</artifactId>
                 <version>${revision}</version>
             </dependency>
+
+            <!-- ID 生成器  -->
+            <dependency>
+                <groupId>cn.javayong</groupId>
+                <artifactId>magic-spring-boot-starter-idgenerator</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
