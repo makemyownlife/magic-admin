@@ -20,6 +20,7 @@
         <module>magic-module-system</module>
         <!-- 基础设施 -->
         <module>magic-module-infra</module>
+        <module>magic-module-ai</module>
         <!-- 各种 module 拓展  end -->
     </modules>
 
