@@ -17,4 +17,68 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-idgenerator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-biz-ip</artifactId>
+        </dependency>
+
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- DB 相关 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <!-- Job 定时任务相关 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-job</artifactId>
+        </dependency>
+
+        <!-- 消息队列相关 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-mq</artifactId>
+        </dependency>
+
+        <!-- 工具类相关 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-excel</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>
