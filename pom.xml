@@ -9,7 +9,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <!-- 依赖包 -->
         <module>magic-dependencies</module>
+        <!-- 基础框架 -->
         <module>magic-framework</module>
         <!-- Server 主项目 -->
         <module>magic-server</module>
