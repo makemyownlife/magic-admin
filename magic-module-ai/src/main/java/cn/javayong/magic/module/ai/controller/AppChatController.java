@@ -2,6 +2,8 @@ package cn.javayong.magic.module.ai.controller;
 
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
+import cn.javayong.magic.module.ai.adapter.AISupplierClient;
+import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierClient;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -67,6 +69,14 @@ public class AppChatController {
                         .event("custom-event")
                         .data("Event #" + sequence)
                         .build());
+    }
+
+    @RequestMapping(value = "/deepseek-stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @PermitAll
+    public Flux<ServerSentEvent<String>> deepseekstream() {
+        AISupplierClient aiSupplierClient = new DeepSeekAISupplierClient();
+        Flux<String> result = aiSupplierClient.chatCompletion();
+        return result.map(data -> ServerSentEvent.builder(data).build());
     }
 
 }
