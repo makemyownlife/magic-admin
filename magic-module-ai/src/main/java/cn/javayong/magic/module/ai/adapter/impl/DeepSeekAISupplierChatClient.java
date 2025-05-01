@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.ai.adapter.impl;
 
-import cn.javayong.magic.module.ai.adapter.AISupplierClient;
+import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.AISupplierConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
 /**
  * 标准 DeepSeek 供应商 API ，兼容 openai 协议
  */
-public class DeepSeekAISupplierClient implements AISupplierClient {
+public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
 
     private static final String API_URL = "https://api.deepseek.com/v1/chat/completions";
 

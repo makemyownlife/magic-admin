@@ -3,9 +3,9 @@ package cn.javayong.magic.module.ai.adapter;
 import reactor.core.publisher.Flux;
 
 /**
- * 供应商客户端
+ * 供应商对话客户端
  */
-public interface AISupplierClient {
+public interface AISupplierChatClient {
 
     void init(AISupplierConfig aiSupplierConfig);
 

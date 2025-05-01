@@ -1,21 +1,17 @@
 package cn.javayong.magic.module.ai.controller;
 
-import cn.javayong.magic.framework.common.pojo.CommonResult;
-import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
-import cn.javayong.magic.module.ai.adapter.AISupplierClient;
-import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierClient;
+import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierChatClient;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import reactor.core.publisher.Flux;
 
 import javax.annotation.security.PermitAll;
-import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -74,8 +70,8 @@ public class AppChatController {
     @RequestMapping(value = "/deepseek-stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @PermitAll
     public Flux<ServerSentEvent<String>> deepseekstream() {
-        AISupplierClient aiSupplierClient = new DeepSeekAISupplierClient();
-        Flux<String> result = aiSupplierClient.chatCompletion();
+        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
+        Flux<String> result = aiSupplierChatClient.chatCompletion();
         return result.map(data -> ServerSentEvent.builder(data).build());
     }
 

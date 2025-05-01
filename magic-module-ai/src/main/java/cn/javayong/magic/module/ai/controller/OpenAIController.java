@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.ai.controller;
 
-import cn.javayong.magic.module.ai.adapter.AISupplierClient;
-import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierClient;
+import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierChatClient;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 import javax.annotation.security.PermitAll;
-import java.time.Duration;
 
 @Tag(name = "兼容  openai 的核心接口")
 @RestController("OpenAIController")
@@ -25,8 +24,8 @@ public class OpenAIController {
     @RequestMapping(value = "/completions", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @PermitAll
     public Flux<ServerSentEvent<String>> streamCustomEvents() {
-        AISupplierClient aiSupplierClient = new DeepSeekAISupplierClient();
-        Flux<String> result = aiSupplierClient.chatCompletion();
+        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
+        Flux<String> result = aiSupplierChatClient.chatCompletion();
         return result.map(data -> ServerSentEvent.builder(data).build());
     }
 
