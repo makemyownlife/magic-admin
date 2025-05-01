@@ -5,6 +5,8 @@ package cn.javayong.magic.module.ai.adapter;
  */
 public interface AISupplierClient {
 
+    void init(AISupplierConfig aiSupplierConfig);
 
+    void destroy();
 
 }
