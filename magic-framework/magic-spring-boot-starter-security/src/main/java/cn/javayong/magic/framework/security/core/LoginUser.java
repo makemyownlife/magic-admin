@@ -18,35 +18,38 @@ import java.util.Map;
 @Data
 public class LoginUser {
 
-    public static final String INFO_KEY_NICKNAME = "nickname";
-    public static final String INFO_KEY_DEPT_ID = "deptId";
-
     /**
      * 用户编号
      */
     private Long id;
+
     /**
      * 用户类型
      *
      * 关联 {@link UserTypeEnum}
      */
     private Integer userType;
+
     /**
      * 额外的用户信息
      */
     private Map<String, String> info;
+
     /**
      * 租户编号
      */
     private Long tenantId;
+
     /**
      * 授权范围
      */
     private List<String> scopes;
+
     /**
      * 过期时间
      */
     private LocalDateTime expiresTime;
+
 
     // ========== 上下文 ==========
     /**
