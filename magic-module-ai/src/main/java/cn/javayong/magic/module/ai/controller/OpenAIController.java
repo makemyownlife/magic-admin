@@ -2,10 +2,13 @@ package cn.javayong.magic.module.ai.controller;
 
 import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierChatClient;
+import cn.javayong.magic.module.ai.domain.vo.OpenAIChatReqVO;
+import com.alibaba.druid.support.json.JSONUtils;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
@@ -23,7 +26,8 @@ public class OpenAIController {
      */
     @RequestMapping(value = "/completions", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @PermitAll
-    public Flux<ServerSentEvent<String>> streamCustomEvents() {
+    public Flux<ServerSentEvent<String>> completions(@RequestBody OpenAIChatReqVO openAIChatReqVO) {
+        log.info("openAIChatReqVO:" + JSONUtils.toJSONString(openAIChatReqVO));
         AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
         Flux<String> result = aiSupplierChatClient.chatCompletion();
         return result.map(data -> ServerSentEvent.builder(data).build());

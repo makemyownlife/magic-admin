@@ -9,7 +9,7 @@ public interface AISupplierChatClient {
 
     void init(AISupplierConfig aiSupplierConfig);
 
-
+    
     Flux<String> chatCompletion();
 
 

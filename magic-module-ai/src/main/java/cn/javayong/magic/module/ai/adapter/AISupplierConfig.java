@@ -6,5 +6,4 @@ package cn.javayong.magic.module.ai.adapter;
 public class AISupplierConfig {
 
 
-
 }
