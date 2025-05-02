@@ -40,7 +40,8 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
                 .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受SSE
                 .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
                 .retrieve()
-                .bodyToFlux(String.class);
+                .bodyToFlux(String.class)
+                .doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
 
         return sseStream;
     }

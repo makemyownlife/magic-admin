@@ -40,15 +40,9 @@ public class OpenAIController {
         AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
         Flux<String> result = aiSupplierChatClient.chatCompletion(openAIChatReqCommand);
 
-        if (acceptHeader != null && acceptHeader.contains(MediaType.APPLICATION_JSON_VALUE)) {
-            // 同步返回完整JSON（收集所有流数据后一次性返回）
-            return result.collectList()
-                    .map(list -> ServerSentEvent.builder(list.toString()).build())
-                    .flux();
-        } else {
-            // 默认返回SSE流
-            return result.map(data -> ServerSentEvent.builder(data).build());
-        }
+        // 默认返回SSE流
+        return result.map(data -> ServerSentEvent.builder(data).build());
+
     }
 
 }
