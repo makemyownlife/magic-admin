@@ -2,6 +2,7 @@ package cn.javayong.magic.module.ai.adapter.impl;
 
 import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.AISupplierConfig;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import reactor.core.publisher.Flux;
 
 /**
@@ -17,7 +18,7 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     }
 
     @Override
-    public Flux<String> chatCompletion() {
+    public Flux<String> chatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         return null;
     }
 

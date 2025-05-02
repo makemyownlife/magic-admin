@@ -34,7 +34,7 @@ public class OpenAIController {
         OpenAIChatReqCommand openAIChatReqCommand = ChatConvert.INSTANCE.convert(openAIChatReqVO);
 
         AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
-        Flux<String> result = aiSupplierChatClient.chatCompletion();
+        Flux<String> result = aiSupplierChatClient.chatCompletion(openAIChatReqCommand);
 
         return result.map(data -> ServerSentEvent.builder(data).build());
     }

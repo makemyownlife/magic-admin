@@ -16,6 +16,12 @@ public class OpenAIChatReqCommand {
 
     private Double temperature;
 
+    @JsonProperty("presence_penalty")
+    private Double presencePenalty;
+
+    @JsonProperty("frequency_penalty")
+    private Double frequencyPenalty;
+
     @JsonProperty("top_p")
     private Double topP;
 

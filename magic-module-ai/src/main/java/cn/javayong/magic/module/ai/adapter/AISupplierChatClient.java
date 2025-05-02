@@ -1,5 +1,6 @@
 package cn.javayong.magic.module.ai.adapter;
 
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import reactor.core.publisher.Flux;
 
 /**
@@ -9,9 +10,7 @@ public interface AISupplierChatClient {
 
     void init(AISupplierConfig aiSupplierConfig);
 
-    
-    Flux<String> chatCompletion();
-
+    Flux<String> chatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
 
     void destroy();
 

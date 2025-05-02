@@ -67,12 +67,4 @@ public class AppChatController {
                         .build());
     }
 
-    @RequestMapping(value = "/deepseek-stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    @PermitAll
-    public Flux<ServerSentEvent<String>> deepseekstream() {
-        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
-        Flux<String> result = aiSupplierChatClient.chatCompletion();
-        return result.map(data -> ServerSentEvent.builder(data).build());
-    }
-
 }
