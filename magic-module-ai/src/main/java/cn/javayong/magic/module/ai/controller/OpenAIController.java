@@ -30,8 +30,8 @@ public class OpenAIController {
     @RequestMapping(value = "/completions",
             produces = {MediaType.TEXT_EVENT_STREAM_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @PermitAll
-    public Flux<ServerSentEvent<String>> completions(@RequestBody OpenAIChatReqVO openAIChatReqVO,
-                                                     @RequestHeader(value = "Accept", required = false) String acceptHeader) {
+    public Flux completions(@RequestBody OpenAIChatReqVO openAIChatReqVO,
+                            @RequestHeader(value = "Accept", required = false) String acceptHeader) {
 
         log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO));
 
@@ -40,9 +40,12 @@ public class OpenAIController {
         AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
         Flux<String> result = aiSupplierChatClient.chatCompletion(openAIChatReqCommand);
 
-        // 默认返回SSE流
-        return result.map(data -> ServerSentEvent.builder(data).build());
-
+        if (openAIChatReqCommand.isStream()) {
+            // 默认返回SSE流
+            return result.map(data -> ServerSentEvent.builder(data).build());
+        } else {
+            return result;
+        }
     }
 
 }
