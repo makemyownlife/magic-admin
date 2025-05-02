@@ -27,7 +27,6 @@ public class OpenAIController {
     @RequestMapping(value = "/completions", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @PermitAll
     public Flux<ServerSentEvent<String>> completions(@RequestBody OpenAIChatReqVO openAIChatReqVO) {
-        log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO));
         AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
         Flux<String> result = aiSupplierChatClient.chatCompletion();
         return result.map(data -> ServerSentEvent.builder(data).build());
