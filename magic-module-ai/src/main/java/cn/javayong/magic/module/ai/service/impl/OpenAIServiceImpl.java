@@ -2,6 +2,7 @@ package cn.javayong.magic.module.ai.service.impl;
 
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.supplier.DeepSeekAISupplierChatClient;
@@ -27,11 +28,22 @@ public class OpenAIServiceImpl implements OpenAIService {
             Flux<String> result = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
             return result.map(data -> ServerSentEvent.builder(data).build());
         }
+
         // 返回 JSON 实体
         else {
-            String result = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
-            return JsonUtils.toJsonString(result);
+            OpenAIChatRespCommand<OpenAIChatCompletions> respCommand = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
+            if (respCommand.getData() != null) {
+                return JsonUtils.toJsonString(respCommand.getData());
+            } else {
+                // 异常格式：{
+                //  "code": 20012,
+                //  "message": "<string>",
+                //  "data": "<string>"
+                //}
+                return JsonUtils.toJsonString(respCommand);
+            }
         }
+
     }
 
 }

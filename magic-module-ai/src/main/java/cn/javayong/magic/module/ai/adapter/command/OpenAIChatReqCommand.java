@@ -27,8 +27,14 @@ public class OpenAIChatReqCommand {
 
     @Data
     public static class ChatMessage {
+
         private String role; // "system", "user", "assistant"
         private String content;
+
+        public ChatMessage(String role, String content) {
+            this.role = role;
+            this.content = content;
+        }
     }
 
 }
