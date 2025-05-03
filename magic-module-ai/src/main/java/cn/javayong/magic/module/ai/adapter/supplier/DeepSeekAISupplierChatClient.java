@@ -47,8 +47,12 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
                 .retrieve()
                 .bodyToFlux(String.class);
             //  .doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
-        
+
         return sseStream;
+    }
+
+    private boolean isStreamEnd(String event) {
+        return "[DONE]".equals(event.trim());
     }
 
     @Override
