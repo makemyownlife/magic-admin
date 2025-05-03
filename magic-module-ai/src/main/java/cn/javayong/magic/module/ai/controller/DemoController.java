@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 @RestController("AppChatController")
 @RequestMapping("/ai/app")
 @Slf4j
-public class AppChatController {
+public class DemoController {
 
     //最简单的线程池
     private final ExecutorService executorService = Executors.newCachedThreadPool();
