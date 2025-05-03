@@ -6,6 +6,7 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.supplier.DeepSeekAISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.supplier.QwenAISupplierChatClient;
 import cn.javayong.magic.module.ai.domain.convert.ChatConvert;
 import cn.javayong.magic.module.ai.domain.vo.OpenAIChatReqVO;
 import cn.javayong.magic.module.ai.service.OpenAIService;
@@ -21,7 +22,9 @@ public class OpenAIServiceImpl implements OpenAIService {
     @Override
     public Object completions(OpenAIChatReqVO openAIChatReqVO) {
         OpenAIChatReqCommand openAIChatReqCommand = ChatConvert.INSTANCE.convert(openAIChatReqVO);
-        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
+        //AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
+
+        AISupplierChatClient aiSupplierChatClient = new QwenAISupplierChatClient();
 
         // 封装 SSE 流
         if (openAIChatReqVO.isStream()) {
