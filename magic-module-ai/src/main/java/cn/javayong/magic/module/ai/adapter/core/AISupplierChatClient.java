@@ -1,6 +1,7 @@
-package cn.javayong.magic.module.ai.adapter;
+package cn.javayong.magic.module.ai.adapter.core;
 
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import reactor.core.publisher.Flux;
 
 /**

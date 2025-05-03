@@ -1,11 +1,10 @@
-package cn.javayong.magic.module.ai.adapter.impl;
+package cn.javayong.magic.module.ai.adapter.supplier;
 
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
-import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
-import cn.javayong.magic.module.ai.adapter.AISupplierConfig;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
+import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;

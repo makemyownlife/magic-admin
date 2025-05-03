@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.ai.adapter;
+package cn.javayong.magic.module.ai.adapter.core;
 
 /**
  *  AI 厂商配置

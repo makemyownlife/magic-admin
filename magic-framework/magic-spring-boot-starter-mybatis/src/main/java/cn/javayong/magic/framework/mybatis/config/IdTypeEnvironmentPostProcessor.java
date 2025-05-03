@@ -72,19 +72,19 @@ public class IdTypeEnvironmentPostProcessor implements EnvironmentPostProcessor 
         // 根据 dbType 类型，获取对应的 driverClass
         switch (dbType) {
             case POSTGRE_SQL:
-                driverClass = "org.quartz.impl.jdbcjobstore.PostgreSQLDelegate";
+                driverClass = "org.quartz.supplier.jdbcjobstore.PostgreSQLDelegate";
                 break;
             case ORACLE:
             case ORACLE_12C:
-                driverClass = "org.quartz.impl.jdbcjobstore.oracle.OracleDelegate";
+                driverClass = "org.quartz.supplier.jdbcjobstore.oracle.OracleDelegate";
                 break;
             case SQL_SERVER:
             case SQL_SERVER2005:
-                driverClass = "org.quartz.impl.jdbcjobstore.MSSQLDelegate";
+                driverClass = "org.quartz.supplier.jdbcjobstore.MSSQLDelegate";
                 break;
             case DM:
             case KINGBASE_ES:
-                driverClass = "org.quartz.impl.jdbcjobstore.StdJDBCDelegate";
+                driverClass = "org.quartz.supplier.jdbcjobstore.StdJDBCDelegate";
                 break;
         }
         // 设置 driverClass 变量

@@ -1,7 +1,5 @@
 package cn.javayong.magic.module.ai.controller;
 
-import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
-import cn.javayong.magic.module.ai.adapter.impl.DeepSeekAISupplierChatClient;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

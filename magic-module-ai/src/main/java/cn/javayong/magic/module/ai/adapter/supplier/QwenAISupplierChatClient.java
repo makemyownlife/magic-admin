@@ -1,8 +1,9 @@
-package cn.javayong.magic.module.ai.adapter.impl;
+package cn.javayong.magic.module.ai.adapter.supplier;
 
-import cn.javayong.magic.module.ai.adapter.AISupplierChatClient;
-import cn.javayong.magic.module.ai.adapter.AISupplierConfig;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
+import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
 import reactor.core.publisher.Flux;
 
 /**
