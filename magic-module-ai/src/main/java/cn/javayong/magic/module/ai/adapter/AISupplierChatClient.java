@@ -10,7 +10,9 @@ public interface AISupplierChatClient {
 
     void init(AISupplierConfig aiSupplierConfig);
 
-    Flux<String> chatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
+    Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
+
+    String blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
 
     void destroy();
 

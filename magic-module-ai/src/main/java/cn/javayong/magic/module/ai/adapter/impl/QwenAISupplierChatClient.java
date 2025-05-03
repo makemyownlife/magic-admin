@@ -18,7 +18,12 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     }
 
     @Override
-    public Flux<String> chatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+    public Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+        return null;
+    }
+
+    @Override
+    public String blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         return null;
     }
 

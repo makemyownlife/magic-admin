@@ -27,14 +27,14 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
     }
 
     @Override
-    public Flux<String> chatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+    public Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         // 1. 创建 WebClient (非Spring环境需手动构建)
         WebClient client = WebClient.builder()
                 .baseUrl(API_URL)
                 .defaultHeader("Authorization", "Bearer " + apiKey)
                 .build();
 
-        // 3. 发送流式请求并处理SSE响应
+        // 2. 发送流式请求并处理SSE响应
         Flux<String> sseStream = client.post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受SSE
@@ -44,6 +44,24 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
                 .doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
 
         return sseStream;
+    }
+
+    @Override
+    public String blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+        // 1. 创建 WebClient (非Spring环境需手动构建)
+        WebClient client = WebClient.builder()
+                .baseUrl(API_URL)
+                .defaultHeader("Authorization", "Bearer " + apiKey)
+                .build();
+
+        // 2. 发送阻塞请求并处理 JSON 响应
+        return client.post()
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
     }
 
     @Override
