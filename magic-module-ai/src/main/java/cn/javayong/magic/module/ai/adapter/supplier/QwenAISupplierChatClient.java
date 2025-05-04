@@ -22,6 +22,8 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
 
     private static final String API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
 
+    private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
+
     final static String apiKey = "sk-f49ab9cd447e433c8862dc9f66cf432a";
 
     private AISupplierConfig aiSupplierConfig;
@@ -35,19 +37,19 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     public Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         // 1. 创建 WebClient (非 Spring 环境需手动构建)
         WebClient client = WebClient.builder()
-                .baseUrl(API_URL)
-                .defaultHeader("Authorization", "Bearer " + apiKey)
+                .baseUrl(aiSupplierConfig.getBaseUrl())
+                .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                 .build();
 
-        openAIChatReqCommand.setModel("qwen-plus");
         // 2. 发送流式请求并处理 SSE 响应
         Flux<String> sseStream = client.post()
+                .uri(CHAT_COMPLETIONS_ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受SSE
                 .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
                 .retrieve()
-                .bodyToFlux(String.class)
-          .doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
+                .bodyToFlux(String.class);
+          //.doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
 
         return sseStream;
     }
