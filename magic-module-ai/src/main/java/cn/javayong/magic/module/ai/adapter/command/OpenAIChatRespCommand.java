@@ -8,7 +8,7 @@ public class OpenAIChatRespCommand<T> {
 
     public static Integer SUCCESS_CODE = 200;
 
-    public static Integer INTERNEL_ERROR_CODE = 500;
+    public static Integer INTERNAL_ERROR_CODE = 500;
 
     private Integer code;
 

@@ -21,12 +21,7 @@ import java.util.List;
 @Slf4j
 public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
 
-    // 1. 配置 API 基础路径和端点（更灵活）
-    private static final String BASE_URL = "https://api.deepseek.com/v1/";
-
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
-
-    final static String apiKey = "sk-31da87a7c6eb40188fb1a71f98fa6fbd";
 
     private AISupplierConfig aiSupplierConfig;
 
@@ -82,7 +77,7 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
             return respCommand;
         } catch (Exception e) {
             log.error("Deepseek blockChatCompletion invoke error:", e);
-            respCommand.setCode(OpenAIChatRespCommand.INTERNEL_ERROR_CODE);
+            respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setMessage("调用 deepseek 官网API服务异常，请确保 API KEY 正确 和网络正常!");
         }
         return respCommand;

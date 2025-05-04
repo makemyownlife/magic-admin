@@ -20,11 +20,7 @@ import java.util.List;
 @Slf4j
 public class QwenAISupplierChatClient implements AISupplierChatClient {
 
-    private static final String API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
-
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
-
-    final static String apiKey = "sk-f49ab9cd447e433c8862dc9f66cf432a";
 
     private AISupplierConfig aiSupplierConfig;
 
@@ -49,7 +45,7 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
                 .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
                 .retrieve()
                 .bodyToFlux(String.class);
-          //.doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
+        //.doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
 
         return sseStream;
     }
@@ -60,15 +56,14 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
         try {
             // 1. 创建 WebClient (非Spring环境需手动构建)
             WebClient client = WebClient.builder()
-                    .baseUrl(API_URL)
-                    .defaultHeader("Authorization", "Bearer " + apiKey)
+                    .baseUrl(aiSupplierConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                     .build();
-
-            openAIChatReqCommand.setModel("qwen-plus");
 
             // 2. 发送阻塞请求并处理 JSON 响应
             OpenAIChatCompletions completions =
                     client.post()
+                            .uri(CHAT_COMPLETIONS_ENDPOINT)
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON)
                             .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
@@ -76,12 +71,12 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
                             .bodyToMono(OpenAIChatCompletions.class)
                             .block();
 
-            respCommand.setCode(200);
+            respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
             respCommand.setData(completions);
             return respCommand;
         } catch (Exception e) {
             log.error("QianWen blockChatCompletion invoke error:", e);
-            respCommand.setCode(500);
+            respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setMessage("调用 阿里云千问官网API服务异常，请确保 API KEY 正确 和网络正常!");
         }
         return respCommand;
@@ -93,7 +88,13 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
+        AISupplierConfig aiSupplierConfig = new AISupplierConfig();
+        aiSupplierConfig.setBaseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1/");
+        aiSupplierConfig.setApiKey("sk-f49ab9cd447e433c8862dc9f66cf432a");
+
         AISupplierChatClient aiSupplierChatClient = new QwenAISupplierChatClient();
+        aiSupplierChatClient.init(aiSupplierConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
         openAIChatReqCommand.setModel("qwen-plus");
@@ -106,11 +107,13 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
         chatMessageList.add(chatMessage);
         openAIChatReqCommand.setMessages(chatMessageList);
 
-//       OpenAIChatRespCommand openAIChatCompletions = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
-//       System.out.println(JsonUtils.toJsonString(openAIChatCompletions));
+        // 调用同步阻塞接口
+        OpenAIChatRespCommand openAIChatCompletions = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
+        System.out.println(JsonUtils.toJsonString(openAIChatCompletions));
 
-        Flux<String> openAIChatCompletions = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
-        Thread.sleep(1000000);
+        // Flux<String> openAIChatCompletions = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
+
+        aiSupplierChatClient.destroy();
     }
 
 }
