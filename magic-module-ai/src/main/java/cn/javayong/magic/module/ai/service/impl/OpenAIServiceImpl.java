@@ -5,6 +5,7 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
 import cn.javayong.magic.module.ai.adapter.supplier.DeepSeekAISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.supplier.QwenAISupplierChatClient;
 import cn.javayong.magic.module.ai.domain.convert.ChatConvert;
@@ -22,9 +23,13 @@ public class OpenAIServiceImpl implements OpenAIService {
     @Override
     public Object completions(OpenAIChatReqVO openAIChatReqVO) {
         OpenAIChatReqCommand openAIChatReqCommand = ChatConvert.INSTANCE.convert(openAIChatReqVO);
-        //AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
 
-        AISupplierChatClient aiSupplierChatClient = new QwenAISupplierChatClient();
+        AISupplierConfig aiSupplierConfig = new AISupplierConfig();
+        aiSupplierConfig.setBaseUrl("https://api.deepseek.com/v1/");
+        aiSupplierConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
+
+        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
+        aiSupplierChatClient.init(aiSupplierConfig);
 
         // 封装 SSE 流
         if (openAIChatReqVO.isStream()) {

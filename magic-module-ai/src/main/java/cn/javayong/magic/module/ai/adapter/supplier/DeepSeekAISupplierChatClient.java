@@ -45,8 +45,17 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
                 .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受SSE
                 .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
                 .retrieve()
-                .bodyToFlux(String.class);
-        //  .doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
+                .bodyToFlux(String.class)
+                // 打印原始数据
+                .doOnNext(line -> System.out.println("RAW SSE LINE: " + line))
+                .doOnError(error -> {
+                    // 打印异常信息（包括堆栈）
+                    log.error("SSE Stream Error: " + error);
+                })
+                .onErrorResume(error -> {
+                    // 可选：返回一个备用的 Flux（例如错误提示或空流）
+                    return Flux.just("[ERROR] Stream failed , please rechat again !");
+                });
 
         return sseStream;
     }
