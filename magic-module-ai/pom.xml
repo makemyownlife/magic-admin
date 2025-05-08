@@ -14,17 +14,7 @@
     <artifactId>magic-module-ai</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.8</version>
-        </dependency>
 
         <dependency>
             <groupId>cn.javayong</groupId>
@@ -66,6 +56,11 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-common</artifactId>
         </dependency>
 
         <!-- Job 定时任务相关 -->
