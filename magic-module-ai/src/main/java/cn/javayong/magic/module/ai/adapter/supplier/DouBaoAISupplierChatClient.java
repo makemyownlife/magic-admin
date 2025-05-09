@@ -1,8 +1,8 @@
 package cn.javayong.magic.module.ai.adapter.supplier;
 
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
-import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
@@ -18,7 +18,7 @@ import java.util.List;
  * 阿里千问 AI 供应商 API 实现
  */
 @Slf4j
-public class QwenAISupplierChatClient implements AISupplierChatClient {
+public class DouBaoAISupplierChatClient implements AISupplierChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
@@ -90,14 +90,14 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     public static void main(String[] args) throws InterruptedException {
 
         AISupplierConfig aiSupplierConfig = new AISupplierConfig();
-        aiSupplierConfig.setBaseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1/");
-        aiSupplierConfig.setApiKey("sk-f49ab9cd447e433c8862dc9f66cf432a");
+        aiSupplierConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
+        aiSupplierConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
 
-        AISupplierChatClient aiSupplierChatClient = new QwenAISupplierChatClient();
+        AISupplierChatClient aiSupplierChatClient = new DouBaoAISupplierChatClient();
         aiSupplierChatClient.init(aiSupplierConfig);
 
-        OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
-        openAIChatReqCommand.setModel("qwen-turbo"); // 模型列表：https://www.alibabacloud.com/help/zh/model-studio/models
+        OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();  //https://www.volcengine.com/docs/82379/1494384?redirect=1
+        openAIChatReqCommand.setModel("doubao-1.5-pro-32k-250115"); // 模型列表：https://console.volcengine.com/ark/region:ark+cn-beijing/model?vendor=Bytedance&view=LIST_VIEW
         openAIChatReqCommand.setStream(false);
         openAIChatReqCommand.setTemperature(0.7);
 
