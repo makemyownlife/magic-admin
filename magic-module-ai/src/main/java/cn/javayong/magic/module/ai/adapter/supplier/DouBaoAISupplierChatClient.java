@@ -91,13 +91,13 @@ public class DouBaoAISupplierChatClient implements AISupplierChatClient {
 
         AISupplierConfig aiSupplierConfig = new AISupplierConfig();
         aiSupplierConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
-        aiSupplierConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
+        aiSupplierConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd31321");
 
         AISupplierChatClient aiSupplierChatClient = new DouBaoAISupplierChatClient();
         aiSupplierChatClient.init(aiSupplierConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();  //https://www.volcengine.com/docs/82379/1494384?redirect=1
-        openAIChatReqCommand.setModel("doubao-1.5-pro-32k-250115"); // 模型列表：https://console.volcengine.com/ark/region:ark+cn-beijing/model?vendor=Bytedance&view=LIST_VIEW
+        openAIChatReqCommand.setModel("doubao-1.5-pro-32k-250115"); // 选择真实的模型列表：https://www.volcengine.com/docs/82379/1330310#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90
         openAIChatReqCommand.setStream(false);
         openAIChatReqCommand.setTemperature(0.7);
 
@@ -110,8 +110,6 @@ public class DouBaoAISupplierChatClient implements AISupplierChatClient {
         // 调用同步阻塞接口
         OpenAIChatRespCommand openAIChatCompletions = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
         System.out.println(JsonUtils.toJsonString(openAIChatCompletions));
-
-        // Flux<String> openAIChatCompletions = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
 
         aiSupplierChatClient.destroy();
     }
