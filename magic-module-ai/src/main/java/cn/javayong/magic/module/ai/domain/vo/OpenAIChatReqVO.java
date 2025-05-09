@@ -9,10 +9,6 @@ import java.util.List;
 /**
  * 标准 AI 对话格式
  */
-
-/**
- * 标准 AI 对话格式
- */
 @Data
 @Schema(description = "OpenAI 聊天请求参数")
 public class OpenAIChatReqVO {
