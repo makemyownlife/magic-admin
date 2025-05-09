@@ -45,6 +45,7 @@ public class AiModelServiceImpl implements AiModelService {
 
         // 2. 插入
         AiModelDO model = BeanUtils.toBean(createReqVO, AiModelDO.class);
+        model.setDeleted(false);
         modelMapper.insert(model);
         return model.getId();
     }

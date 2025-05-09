@@ -17,10 +17,6 @@ public class AiModelSaveReqVO {
     @Schema(description = "编号", example = "2630")
     private Long id;
 
-    @Schema(description = "API 秘钥编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "22042")
-    @NotNull(message = "API 秘钥编号不能为空")
-    private Long keyId;
-
     @Schema(description = "模型名字", requiredMode = Schema.RequiredMode.REQUIRED, example = "张三")
     @NotEmpty(message = "模型名字不能为空")
     private String name;
@@ -48,7 +44,7 @@ public class AiModelSaveReqVO {
     @NotNull(message = "状态不能为空")
     private Integer status;
 
-    @Schema(description = "温度参数", example = "1")
+    @Schema(description = "温度参数", example = "0.7")
     private Double temperature;
 
     @Schema(description = "单条回复的最大 Token 数量", example = "4096")

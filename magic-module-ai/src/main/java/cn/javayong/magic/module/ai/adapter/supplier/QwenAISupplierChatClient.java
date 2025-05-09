@@ -97,7 +97,7 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
         aiSupplierChatClient.init(aiSupplierConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
-        openAIChatReqCommand.setModel("qwen-plus");
+        openAIChatReqCommand.setModel("qwen-plus"); // 模型列表：https://www.alibabacloud.com/help/zh/model-studio/models
         openAIChatReqCommand.setStream(false);
         openAIChatReqCommand.setTemperature(0.7);
 
