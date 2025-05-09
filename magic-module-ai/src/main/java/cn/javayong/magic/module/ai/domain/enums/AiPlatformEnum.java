@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 /**
  * AI 模型平台
- *
- * @author fansili
  */
 @Getter
 @AllArgsConstructor
@@ -45,6 +43,7 @@ public enum AiPlatformEnum implements ArrayValuable<String> {
      * 平台
      */
     private final String platform;
+
     /**
      * 平台名
      */

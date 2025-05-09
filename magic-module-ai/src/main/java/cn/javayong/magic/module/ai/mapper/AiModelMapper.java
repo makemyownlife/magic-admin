@@ -7,6 +7,9 @@ import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 /**
  * API 模型 Mapper
  */
@@ -34,6 +37,15 @@ public interface AiModelMapper extends BaseMapperX<AiModelDO> {
                         // 添加排序规则（按 sort 字段升序）
                         .orderByAsc(AiModelDO::getSort)
         );
+    }
+
+    default List<AiModelDO> selectListByStatusAndType(Integer status, Integer type,
+                                                      @Nullable String platform) {
+        return selectList(new LambdaQueryWrapperX<AiModelDO>()
+                .eq(AiModelDO::getStatus, status)
+                .eq(AiModelDO::getType, type)
+                .eqIfPresent(AiModelDO::getPlatform, platform)
+                .orderByAsc(AiModelDO::getSort));
     }
 
 }

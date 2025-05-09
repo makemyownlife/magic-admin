@@ -3,8 +3,10 @@ package cn.javayong.magic.module.ai.service;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
+import cn.javayong.magic.module.ai.domain.vo.AiModelSaveReqVO;
 
 import javax.annotation.Nullable;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -31,5 +33,46 @@ public interface AiModelService {
      * @throws IllegalArgumentException 如果分页参数不合法
      */
     PageResult<AiModelDO> getModelPage(AiModelPageReqVO pageReqVO);
+
+    /**
+     * 获得模型列表
+     *
+     * @param status 状态
+     * @param type 类型
+     * @param platform 平台，允许空
+     * @return 模型列表
+     */
+    List<AiModelDO> getModelListByStatusAndType(Integer status, Integer type,
+                                                @Nullable String platform);
+
+    /**
+     * 创建模型
+     *
+     * @param createReqVO 创建信息
+     * @return 编号
+     */
+    Long createModel(@Valid AiModelSaveReqVO createReqVO);
+
+    /**
+     * 更新模型
+     *
+     * @param updateReqVO 更新信息
+     */
+    void updateModel(@Valid AiModelSaveReqVO updateReqVO);
+
+    /**
+     * 删除模型
+     *
+     * @param id 编号
+     */
+    void deleteModel(Long id);
+
+    /**
+     * 获得模型
+     *
+     * @param id 编号
+     * @return 模型
+     */
+    AiModelDO getModel(Long id);
 
 }
