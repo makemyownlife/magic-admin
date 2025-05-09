@@ -2,7 +2,11 @@ package cn.javayong.magic.module.ai.controller;
 
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
+import cn.javayong.magic.framework.common.util.object.BeanUtils;
+import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
+import cn.javayong.magic.module.ai.domain.vo.AiModelRespVO;
+import cn.javayong.magic.module.ai.service.AiModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
@@ -21,12 +26,15 @@ import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 @Slf4j
 public class AdminAiModelController {
 
+    @Resource
+    private AiModelService modelService;
+
     @GetMapping("/page")
     @Operation(summary = "获得模型分页")
     @PreAuthorize("@ss.hasPermission('ai:model:query')")
     public CommonResult<PageResult> getModelPage(@Valid AiModelPageReqVO pageReqVO) {
-        PageResult pageResult = PageResult.empty();
-        return success(pageResult);
+        PageResult<AiModelDO> pageResult = modelService.getModelPage(pageReqVO);
+        return success(BeanUtils.toBean(pageResult, AiModelRespVO.class));
     }
 
 }

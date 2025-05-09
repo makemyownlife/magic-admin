@@ -42,13 +42,13 @@ public class AiModelDO extends BaseDO {
     /**
      * 平台
      *
-     * 枚举 {@link AiPlatformEnum}
+     * 枚举 {@link cn.javayong.magic.module.ai.domain.enums.AiPlatformEnum}
      */
     private String platform;
     /**
      * 类型
      *
-     * 枚举 {@link AiModelTypeEnum}
+     * 枚举 {@link cn.javayong.magic.module.ai.domain.enums.AiModelTypeEnum}
      */
     private Integer type;
 
@@ -59,7 +59,7 @@ public class AiModelDO extends BaseDO {
     /**
      * 状态
      *
-     * 枚举 {@link CommonStatusEnum}
+     * 枚举 {@link cn.javayong.magic.framework.common.enums.CommonStatusEnum}
      */
     private Integer status;
 

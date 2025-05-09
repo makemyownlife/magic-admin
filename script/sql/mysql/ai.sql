@@ -1,3 +1,22 @@
+CREATE TABLE `ai_model` (
+                            `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+                            `name` varchar(255) DEFAULT NULL COMMENT '模型名称',
+                            `model` varchar(255) DEFAULT NULL COMMENT '模型标志',
+                            `platform` varchar(50) DEFAULT NULL COMMENT '平台',
+                            `type` int DEFAULT NULL COMMENT '类型',
+                            `sort` int DEFAULT NULL COMMENT '排序值',
+                            `status` int DEFAULT NULL COMMENT '状态',
+                            `temperature` double DEFAULT NULL COMMENT '温度参数',
+                            `max_tokens` int DEFAULT NULL COMMENT '单条回复的最大 Token 数量',
+                            `max_contexts` int DEFAULT NULL COMMENT '上下文的最大 Message 数量',
+                            `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                            `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                            `creator` varchar(64) DEFAULT NULL COMMENT '创建者',
+                            `updater` varchar(64) DEFAULT NULL COMMENT '更新者',
+                            `deleted` bit(1) DEFAULT NULL COMMENT '是否删除',
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='AI模型表';
+
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2758, '幻视AI助手', '', 1, 400, 0, '/ai', 'fa:apple', '', '', 0, b'1', b'1', b'1', '1', '2024-05-07 15:07:56', '1', '2024-05-25 12:36:12', b'0');
 
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2767, '模型配置', '', 2, 0, 2758, 'model', 'fa-solid:abacus', 'ai/model/model/index.vue', 'AiModel', 0, b'1', b'1', b'1', '', '2024-05-10 14:42:48', '1', '2025-03-03 09:57:41', b'0');
