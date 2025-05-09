@@ -16,6 +16,7 @@
 
     <dependencies>
 
+        <!-- 依赖 framework 相关包 -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>

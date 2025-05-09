@@ -2,7 +2,6 @@ package cn.javayong.magic.module.ai.controller;
 
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
