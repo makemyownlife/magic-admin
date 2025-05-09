@@ -26,8 +26,8 @@ public class OpenAIServiceImpl implements OpenAIService {
         OpenAIChatReqCommand openAIChatReqCommand = ChatConvert.INSTANCE.convert(openAIChatReqVO);
 
         AISupplierConfig aiSupplierConfig = new AISupplierConfig();
-        aiSupplierConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
-        aiSupplierConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
+        aiSupplierConfig.setBaseUrl("https://api.deepseek.com/v1/");
+        aiSupplierConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
 
         AISupplierChatClient aiSupplierChatClient = new DouBaoAISupplierChatClient();
         aiSupplierChatClient.init(aiSupplierConfig);

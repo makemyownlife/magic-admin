@@ -9,7 +9,7 @@ public class OpenAIChatRespCommand<T> {
 
     public static Integer INTERNAL_ERROR_CODE = 500;
 
-    private Integer code;
+    private volatile Integer code;
 
     private String message;
 

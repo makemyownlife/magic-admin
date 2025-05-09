@@ -7,14 +7,18 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Sinks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 标准 DeepSeek 供应商 API ，兼容 openai 协议
@@ -31,9 +35,11 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
         this.aiSupplierConfig = aiSupplierConfig;
     }
 
-    @Override
     public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
+        OpenAIChatRespCommand<Flux<String>> respCommand = new OpenAIChatRespCommand<Flux<String>>();
+        Sinks.Many<String> sink = Sinks.many().unicast().onBackpressureBuffer();
+
+        CountDownLatch countDownLatch = new CountDownLatch(1);  // 用于阻塞，当返回 HTTP code = 200 才读取流，本来可以直接返回的，但还是细粒度的控制一下，看看后面有没有更好的方式。
         try {
             // 1. 创建 WebClient
             WebClient client = WebClient.builder()
@@ -41,49 +47,60 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
                     .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                     .build();
 
-            // 2. 发送流式请求并处理 SSE 响应
-            Flux<String> stringFlux = client.post()
+            // 2. 发送流式请求（阻塞直到响应完成）
+            client.post()
                     .uri(CHAT_COMPLETIONS_ENDPOINT)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受 SSE
+                    .accept(MediaType.TEXT_EVENT_STREAM)
                     .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
                     .retrieve()
-                    // 检查 HTTP 状态码，如果不是 200，则返回错误信息
                     .onStatus(
-                            status -> status != HttpStatus.OK,
-                            response -> {
-                                // 尝试读取错误信息（如 API 返回的错误 JSON）
-                                return response.bodyToMono(String.class)
-                                        .defaultIfEmpty("No error details provided")
-                                        .flatMap(errorBody -> {
-                                            log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
-                                            return Mono.error(new RuntimeException(
-                                                    "invoke deepSeek API Error: HTTP " + response.statusCode() + " - " + errorBody
-                                            ));
-                                        });
-                            }
+                            status -> {
+                                if (status == HttpStatus.OK) {
+                                    respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
+                                } else {
+                                    respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
+                                }
+                                countDownLatch.countDown();
+                                return status != HttpStatus.OK;  // 非 200 时触发错误处理
+                            },
+                            response -> response.bodyToMono(String.class)
+                                    .defaultIfEmpty("No error details")
+                                    .flatMap(errorBody -> {
+                                        respCommand.setMessage(errorBody);
+                                        log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
+                                        return Mono.error(new RuntimeException(
+                                                "API Error: HTTP " + response.statusCode() + " - " + errorBody
+                                        ));
+                                    })
                     )
                     .bodyToFlux(String.class)
-                    // 错误处理（如网络异常）
-                    .doOnError(error -> {
-                        log.error("SSE Stream Error: ", error);
-                    })
-                    // 如果发生错误，返回一个错误提示消息
-                    .onErrorResume(error -> {
-                        return Flux.just("[ERROR] Stream failed: " + error.getMessage());
-                    });
-            System.out.println(1111);
-            respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
-            respCommand.setData(stringFlux);
+                    .subscribe(
+                            data -> {
+                                // 3 在接收到数据后，实时推送到 Sinks
+                                sink.tryEmitNext(data);
+                            },
+                            error -> {
+                                log.error("SSE Stream Error: ", error);
+                                sink.tryEmitError(error);
+                            },
+                            () -> {
+                                sink.tryEmitComplete();
+                            }
+                    );
+
+            // 阻塞，直到接收到 HTTP 响应码
+            countDownLatch.await(5000L, TimeUnit.MILLISECONDS);  // 在这里进行阻塞，直到 Sinks 完成处理
+
+            // 将 Sinks 转为 Flux
+            respCommand.setData(sink.asFlux());
             return respCommand;
         } catch (Exception e) {
-            log.error("deepseek invoke api error:", e);
+            log.error("Deepseek invoke api error:", e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
-            respCommand.setData(e.getMessage());
             return respCommand;
         }
     }
-
 
     @Override
     public OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
@@ -137,7 +154,6 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
         openAIChatReqCommand.setMessages(chatMessageList);
 
         OpenAIChatRespCommand<Flux<String>> respCommand = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
-
 
         respCommand.getData().subscribe(
                 line -> System.out.println(line),       // onNext
