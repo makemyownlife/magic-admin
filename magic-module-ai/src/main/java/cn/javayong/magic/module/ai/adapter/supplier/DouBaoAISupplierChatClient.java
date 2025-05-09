@@ -77,7 +77,7 @@ public class DouBaoAISupplierChatClient implements AISupplierChatClient {
             respCommand.setData(stringFlux);
             return respCommand;
         } catch (Exception e) {
-            log.error("deepseek invoke api error:", e);
+            log.error("DouBao invoke api error:", e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setData(e.getMessage());
             return respCommand;
