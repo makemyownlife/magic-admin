@@ -7,6 +7,7 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
 import cn.javayong.magic.module.ai.adapter.supplier.DeepSeekAISupplierChatClient;
+import cn.javayong.magic.module.ai.adapter.supplier.DouBaoAISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.supplier.QwenAISupplierChatClient;
 import cn.javayong.magic.module.ai.domain.convert.ChatConvert;
 import cn.javayong.magic.module.ai.domain.vo.OpenAIChatReqVO;
@@ -25,16 +26,19 @@ public class OpenAIServiceImpl implements OpenAIService {
         OpenAIChatReqCommand openAIChatReqCommand = ChatConvert.INSTANCE.convert(openAIChatReqVO);
 
         AISupplierConfig aiSupplierConfig = new AISupplierConfig();
-        aiSupplierConfig.setBaseUrl("https://api.deepseek.com/v1/");
-        aiSupplierConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
+        aiSupplierConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
+        aiSupplierConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
 
-        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
+        AISupplierChatClient aiSupplierChatClient = new DouBaoAISupplierChatClient();
         aiSupplierChatClient.init(aiSupplierConfig);
 
         // 封装 SSE 流
         if (openAIChatReqVO.isStream()) {
-            Flux<String> result = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
-            return result.map(data -> ServerSentEvent.builder(data).build());
+            OpenAIChatRespCommand<Flux<String>> respCommand = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
+            if (respCommand.getCode() != OpenAIChatRespCommand.SUCCESS_CODE){
+                return JsonUtils.toJsonString(respCommand);
+            }
+            return respCommand.getData().map(data -> ServerSentEvent.builder(data).build());
         }
 
         // 返回 JSON 实体

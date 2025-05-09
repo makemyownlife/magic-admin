@@ -30,9 +30,7 @@ public class OpenAIController {
             produces = {MediaType.TEXT_EVENT_STREAM_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @PermitAll
     public Object completions(@RequestBody OpenAIChatReqVO openAIChatReqVO) {
-
         log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO));
-
         return openAIService.completions(openAIChatReqVO);
     }
 

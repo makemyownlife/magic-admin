@@ -7,9 +7,11 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,24 +32,56 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     }
 
     @Override
-    public Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        // 1. 创建 WebClient (非 Spring 环境需手动构建)
-        WebClient client = WebClient.builder()
-                .baseUrl(aiSupplierConfig.getBaseUrl())
-                .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
-                .build();
+    public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+        OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
+        try {
+            // 1. 创建 WebClient
+            WebClient client = WebClient.builder()
+                    .baseUrl(aiSupplierConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
+                    .build();
 
-        // 2. 发送流式请求并处理 SSE 响应
-        Flux<String> sseStream = client.post()
-                .uri(CHAT_COMPLETIONS_ENDPOINT)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受SSE
-                .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
-                .retrieve()
-                .bodyToFlux(String.class);
-        //.doOnNext(line -> System.out.println("RAW SSE LINE: " + line));  // 打印原始数据
+            // 2. 发送流式请求并处理 SSE 响应
+            Flux<String> stringFlux = client.post()
+                    .uri(CHAT_COMPLETIONS_ENDPOINT)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受 SSE
+                    .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
+                    .retrieve()
+                    // 检查 HTTP 状态码，如果不是 200，则返回错误信息
+                    .onStatus(
+                            status -> status != HttpStatus.OK,
+                            response -> {
+                                // 尝试读取错误信息（如 API 返回的错误 JSON）
+                                return response.bodyToMono(String.class)
+                                        .defaultIfEmpty("No error details provided")
+                                        .flatMap(errorBody -> {
+                                            log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
+                                            return Mono.error(new RuntimeException(
+                                                    "invoke Qwen API Error: HTTP " + response.statusCode() + " - " + errorBody
+                                            ));
+                                        });
+                            }
+                    )
+                    .bodyToFlux(String.class)
+                    // 错误处理（如网络异常）
+                    .doOnError(error -> {
+                        log.error("SSE Stream Error: ", error);
+                    })
+                    // 如果发生错误，返回一个错误提示消息
+                    .onErrorResume(error -> {
+                        return Flux.just("[ERROR] Stream failed: " + error.getMessage());
+                    });
 
-        return sseStream;
+            respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
+            respCommand.setData(stringFlux);
+            return respCommand;
+        } catch (Exception e) {
+            log.error("Qwen invoke api error:", e);
+            respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
+            respCommand.setData(e.getMessage());
+            return respCommand;
+        }
     }
 
     @Override
@@ -82,11 +116,6 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
         return respCommand;
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
     public static void main(String[] args) throws InterruptedException {
 
         AISupplierConfig aiSupplierConfig = new AISupplierConfig();
@@ -112,8 +141,6 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
         System.out.println(JsonUtils.toJsonString(openAIChatCompletions));
 
         // Flux<String> openAIChatCompletions = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
-
-        aiSupplierChatClient.destroy();
     }
 
 }

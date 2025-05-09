@@ -12,10 +12,8 @@ public interface AISupplierChatClient {
 
     void init(AISupplierConfig aiSupplierConfig);
 
-    Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
+    OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
 
     OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
-
-    void destroy();
 
 }

@@ -6,11 +6,12 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
 import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,40 +32,64 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
     }
 
     @Override
-    public Flux<String> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        // 1. 创建 WebClient (非 Spring 环境需手动构建)
-        WebClient client = WebClient.builder()
-                .baseUrl(aiSupplierConfig.getBaseUrl())
-                .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
-                .build();
-
-        // 2. 发送流式请求并处理 SSE 响应
-        Flux<String> sseStream = client.post()
-                .uri(CHAT_COMPLETIONS_ENDPOINT)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受SSE
-                .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
-                .retrieve()
-                .bodyToFlux(String.class)
-                // 打印原始数据
-                .doOnNext(line -> System.out.println("RAW SSE LINE: " + line))
-                .doOnError(error -> {
-                    // 打印异常信息（包括堆栈）
-                    log.error("SSE Stream Error: " + error);
-                })
-                .onErrorResume(error -> {
-                    // 可选：返回一个备用的 Flux（例如错误提示或空流）
-                    return Flux.just("[ERROR] Stream failed , please rechat again !");
-                });
-
-        return sseStream;
-    }
-
-    @Override
-    public OpenAIChatRespCommand blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+    public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
         try {
-            // 1. 创建 WebClient (非Spring环境需手动构建)
+            // 1. 创建 WebClient
+            WebClient client = WebClient.builder()
+                    .baseUrl(aiSupplierConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
+                    .build();
+
+            // 2. 发送流式请求并处理 SSE 响应
+            Flux<String> stringFlux = client.post()
+                    .uri(CHAT_COMPLETIONS_ENDPOINT)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受 SSE
+                    .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
+                    .retrieve()
+                    // 检查 HTTP 状态码，如果不是 200，则返回错误信息
+                    .onStatus(
+                            status -> status != HttpStatus.OK,
+                            response -> {
+                                // 尝试读取错误信息（如 API 返回的错误 JSON）
+                                return response.bodyToMono(String.class)
+                                        .defaultIfEmpty("No error details provided")
+                                        .flatMap(errorBody -> {
+                                            log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
+                                            return Mono.error(new RuntimeException(
+                                                    "invoke deepSeek API Error: HTTP " + response.statusCode() + " - " + errorBody
+                                            ));
+                                        });
+                            }
+                    )
+                    .bodyToFlux(String.class)
+                    // 错误处理（如网络异常）
+                    .doOnError(error -> {
+                        log.error("SSE Stream Error: ", error);
+                    })
+                    // 如果发生错误，返回一个错误提示消息
+                    .onErrorResume(error -> {
+                        return Flux.just("[ERROR] Stream failed: " + error.getMessage());
+                    });
+            System.out.println(1111);
+            respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
+            respCommand.setData(stringFlux);
+            return respCommand;
+        } catch (Exception e) {
+            log.error("deepseek invoke api error:", e);
+            respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
+            respCommand.setData(e.getMessage());
+            return respCommand;
+        }
+    }
+
+
+    @Override
+    public OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
+        OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
+        try {
+            // 1. 创建 WebClient
             WebClient client = WebClient.builder()
                     .baseUrl(aiSupplierConfig.getBaseUrl())
                     .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
@@ -92,10 +117,6 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
         return respCommand;
     }
 
-    @Override
-    public void destroy() {
-    }
-
     public static void main(String[] args) {
         AISupplierConfig aiSupplierConfig = new AISupplierConfig();
         aiSupplierConfig.setBaseUrl("https://api.deepseek.com/v1/");
@@ -106,7 +127,7 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
         openAIChatReqCommand.setModel("deepseek-chat");
-        openAIChatReqCommand.setStream(false);
+        openAIChatReqCommand.setStream(true);
         openAIChatReqCommand.setTemperature(0.7);
 
         // 添加消息列表
@@ -115,10 +136,20 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
         chatMessageList.add(chatMessage);
         openAIChatReqCommand.setMessages(chatMessageList);
 
-        OpenAIChatRespCommand openAIChatCompletions = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
-        System.out.println(JSON.toJSONString(openAIChatCompletions));
+        OpenAIChatRespCommand<Flux<String>> respCommand = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
 
-        aiSupplierChatClient.destroy();
+
+        respCommand.getData().subscribe(
+                line -> System.out.println(line),       // onNext
+                error -> System.err.println(error),     // onError
+                () -> System.out.println("Stream completed!")  // onComplete
+        );
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
