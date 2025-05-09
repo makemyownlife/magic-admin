@@ -15,78 +15,89 @@
     <packaging>jar</packaging>
 
     <dependencies>
-
-        <!-- 依赖 framework 相关包 -->
+        <!-- ========== 框架核心模块 ========== -->
+        <!-- 多租户支持 (SaaS系统常用) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
         </dependency>
 
+        <!-- 分布式ID生成器 (解决雪花ID、UUID等生成问题) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-idgenerator</artifactId>
         </dependency>
 
+        <!-- IP地址解析工具 (地理位置、黑名单等) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-biz-ip</artifactId>
         </dependency>
 
-        <!-- Web 相关 -->
+        <!-- ========== Web 相关 ========== -->
+        <!-- 安全认证模块 (JWT/OAuth2/权限控制) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- 参数校验 (Bean Validation 规范实现) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
+        <!-- 响应式Web支持 (高性能IO场景) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-        <!-- DB 相关 -->
+        <!-- ========== 数据持久化 ========== -->
+        <!-- MyBatis增强套件 (分页/动态SQL等) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-mybatis</artifactId>
         </dependency>
 
+        <!-- Redis集成 (缓存/分布式锁等) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-redis</artifactId>
         </dependency>
 
+        <!-- 公共工具库 (异常处理/通用DTO等) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-common</artifactId>
         </dependency>
 
-        <!-- Job 定时任务相关 -->
+        <!-- ========== 定时任务 ========== -->
+        <!-- 分布式任务调度 (类似XXL-JOB) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-job</artifactId>
         </dependency>
 
-        <!-- 消息队列相关 -->
+        <!-- ========== 消息队列 ========== -->
+        <!-- 消息中间件抽象层 (支持Kafka/RabbitMQ等) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-mq</artifactId>
         </dependency>
 
-        <!-- 工具类相关 -->
+        <!-- ========== 工具类 ========== -->
+        <!-- Excel导入导出 (基于Apache POI封装) -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-excel</artifactId>
         </dependency>
 
+        <!-- 邮件发送服务 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>
