@@ -29,4 +29,18 @@ INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_i
 
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2773, '平台配置', '', 2, 0, 2758, 'platform', 'fa:user-secret', 'ai/model/platform/index.vue', 'AiPlatform', 0, b'1', b'1', b'1', '', '2024-05-13 12:39:28', '1', '2024-05-13 20:41:45', b'0');
 
-
+CREATE TABLE `ai_platform` (
+                               `id` bigint NOT NULL AUTO_INCREMENT,
+                               `platform` varchar(255) DEFAULT NULL COMMENT '平台代码/标识',
+                               `name` varchar(50) NOT NULL DEFAULT '' COMMENT '平台显示名称',
+                               `base_url` varchar(512) DEFAULT NULL COMMENT '平台基础API地址',
+                               `model_mapping_json` json DEFAULT NULL COMMENT '模型映射配置(JSON格式)',
+                               `sort` int DEFAULT NULL COMMENT '排序值',
+                               `status` int DEFAULT NULL COMMENT '状态',
+                               `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                               `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                               `creator` varchar(64) DEFAULT NULL COMMENT '创建者',
+                               `updater` varchar(64) DEFAULT NULL COMMENT '更新者',
+                               `deleted` bit(1) DEFAULT NULL COMMENT '是否删除 (0-未删除 1-已删除)',
+                               PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='AI平台表';
