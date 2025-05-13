@@ -62,12 +62,13 @@ public class AiPlatformDO extends BaseDO {
         String modelId;
 
         // 标准模型名称 模型表 ai_model name 字段
-        String modelName ;
+        String modelName;
 
         // 目标模型参数 比如 标准模型名称是： gpt-3.5-turbo-0301，
-        String modelParamName ;
-        
+        String modelParamName;
+
     }
+
 
 
 }
