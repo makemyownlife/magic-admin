@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Getter
 @AllArgsConstructor
 public enum AiPlatformEnum implements ArrayValuable<String> {
-
+    
     // ========== 国内平台 ==========
 
     TONG_YI("TongYi", "通义千问"), // 阿里
@@ -36,7 +36,6 @@ public enum AiPlatformEnum implements ArrayValuable<String> {
     STABLE_DIFFUSION("StableDiffusion", "StableDiffusion"), // Stability AI
     MIDJOURNEY("Midjourney", "Midjourney"), // Midjourney
     SUNO("Suno", "Suno"), // Suno AI
-
     ;
 
     /**
