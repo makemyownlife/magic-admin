@@ -29,3 +29,4 @@ INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_i
 
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2773, '平台配置', '', 2, 0, 2758, 'platform', 'fa:user-secret', 'ai/model/platform/index.vue', 'AiPlatform', 0, b'1', b'1', b'1', '', '2024-05-13 12:39:28', '1', '2024-05-13 20:41:45', b'0');
 
+

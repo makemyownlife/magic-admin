@@ -25,7 +25,7 @@ import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 
 @Tag(name = "后台AI管理-模型配置")
-@RestController("AdminAIController")
+@RestController("AdminAIModelController")
 @RequestMapping("/ai/model/")
 @Slf4j
 public class AdminAiModelController {
