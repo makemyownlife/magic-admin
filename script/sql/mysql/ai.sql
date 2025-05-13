@@ -1,8 +1,8 @@
 CREATE TABLE `ai_model` (
                             `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-                            `name` varchar(255) DEFAULT NULL COMMENT '模型名称',
-                            `model` varchar(255) DEFAULT NULL COMMENT '模型标志',
-                            `platform` varchar(50) DEFAULT NULL COMMENT '平台',
+                            `name` varchar(50) DEFAULT NULL COMMENT '模型名称',
+                            `model` varchar(50) DEFAULT NULL COMMENT '模型标志',
+                            `platform` varchar(20) DEFAULT NULL COMMENT '平台',
                             `type` int DEFAULT NULL COMMENT '类型',
                             `sort` int DEFAULT NULL COMMENT '排序值',
                             `status` int DEFAULT NULL COMMENT '状态',

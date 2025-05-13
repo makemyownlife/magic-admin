@@ -10,10 +10,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * AI 模型 Service 接口
+ * AI 平台配置（baseUrl 、模型绑定） Service 接口
  */
 public interface AiPlatformService {
-
 
 
 }
