@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,13 +44,13 @@ public class AdminAiModelController {
 
     @GetMapping("/simple-list")
     @Operation(summary = "获得模型列表")
-    @Parameter(name = "type", description = "类型", required = true, example = "1")
-    @Parameter(name = "platform", description = "平台", example = "midjourney")
+    @Parameter(name = "type", description = "类型", required = false, example = "1")
+    @Parameter(name = "platform", description = "平台", required = false, example = "midjourney")
     public CommonResult<List<AiModelRespVO>> getModelSimpleList(
-            @RequestParam("type") Integer type,
+            @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "platform", required = false) String platform) {
         List<AiModelDO> list = modelService.getModelListByStatusAndType(
-                CommonStatusEnum.ENABLE.getStatus(), type, platform);
+                CommonStatusEnum.ENABLE.getStatus(), StringUtils.isEmpty(type) ? null : Integer.valueOf(type), platform);
         return success(convertList(list, model -> new AiModelRespVO().setId(model.getId())
                 .setName(model.getName()).setModel(model.getModel()).setPlatform(model.getPlatform())));
     }

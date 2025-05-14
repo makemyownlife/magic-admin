@@ -12,6 +12,7 @@ import cn.javayong.magic.module.ai.mapper.AiPlatformMapper;
 import cn.javayong.magic.module.ai.service.AiPlatformService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.Resource;
@@ -41,14 +42,19 @@ public class AiPlatformServiceImpl implements AiPlatformService {
     }
 
     @Override
+    @Transactional
     public Long createPlatform(AiPlatformSaveReqVO createReqVO) {
         // 1. 校验
         AiPlatformEnum.validatePlatform(createReqVO.getPlatform());
 
-        // 2. 插入
+        // 2. 插入 ai_platform
         AiPlatformDO platformDO = BeanUtils.toBean(createReqVO, AiPlatformDO.class);
         platformDO.setDeleted(false);
         aiPlatformMapper.insert(platformDO);
+
+        // 3. 插入到 ai_platform_model_mapping
+
+
         return platformDO.getId();
     }
 

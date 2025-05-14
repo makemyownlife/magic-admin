@@ -43,7 +43,7 @@ public interface AiModelMapper extends BaseMapperX<AiModelDO> {
                                                       @Nullable String platform) {
         return selectList(new LambdaQueryWrapperX<AiModelDO>()
                 .eq(AiModelDO::getStatus, status)
-                .eq(AiModelDO::getType, type)
+                .eqIfPresent(AiModelDO::getType, type)
                 .eqIfPresent(AiModelDO::getPlatform, platform)
                 .orderByAsc(AiModelDO::getSort));
     }
