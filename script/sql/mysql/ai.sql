@@ -34,7 +34,7 @@ CREATE TABLE `ai_platform` (
                                `platform` varchar(255) DEFAULT NULL COMMENT '平台代码/标识',
                                `name` varchar(50) NOT NULL DEFAULT '' COMMENT '平台显示名称',
                                `base_url` varchar(512) DEFAULT NULL COMMENT '平台基础API地址',
-                               `model_mapping_json` json DEFAULT NULL COMMENT '模型映射配置(JSON格式)',
+                               `model_ids` json DEFAULT NULL COMMENT '模型 id 数组 ，比如 [1,2]',
                                `sort` int DEFAULT NULL COMMENT '排序值',
                                `status` int DEFAULT NULL COMMENT '状态',
                                `create_time` datetime DEFAULT NULL COMMENT '创建时间',

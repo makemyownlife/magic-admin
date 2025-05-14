@@ -14,7 +14,7 @@ public class AiPlatformRespVO {
     private String name;
 
     @Schema(description = "模型映射 JSON 格式", example = "")
-    private String modelMappingJson;
+    private String modelIds;
 
     @Schema(description = "模型平台", example = "OpenAI")
     private String platform;

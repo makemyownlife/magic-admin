@@ -26,7 +26,7 @@ public class AiPlatformDO extends BaseDO {
     /**
      * 模型映射 JSON 格式
      */
-    private String modelMappingJson;
+    private String modelIds;
 
     /**
      * 平台配置名称
@@ -65,7 +65,7 @@ public class AiPlatformDO extends BaseDO {
         String modelName;
 
         // 目标模型参数 比如 标准模型名称是： gpt-3.5-turbo-0301，
-        String modelParamName;
+        String modelMappingName;
 
     }
 
