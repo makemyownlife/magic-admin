@@ -1,13 +1,12 @@
-package cn.javayong.magic.module.ai.adapter.supplier;
+package cn.javayong.magic.module.ai.adapter.platform;
 
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
-import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
-import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
+import cn.javayong.magic.module.ai.adapter.core.AIPlatformChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AIPlatformConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,14 +23,14 @@ import java.util.concurrent.TimeUnit;
  * 标准 DeepSeek 供应商 API ，兼容 openai 协议
  */
 @Slf4j
-public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
+public class DeepSeekChatClient implements AIPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AISupplierConfig aiSupplierConfig;
+    private AIPlatformConfig aiSupplierConfig;
 
     @Override
-    public void init(AISupplierConfig aiSupplierConfig) {
+    public void init(AIPlatformConfig aiSupplierConfig) {
         this.aiSupplierConfig = aiSupplierConfig;
     }
 
@@ -135,12 +134,12 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
     }
 
     public static void main(String[] args) {
-        AISupplierConfig aiSupplierConfig = new AISupplierConfig();
-        aiSupplierConfig.setBaseUrl("https://api.deepseek.com/v1/");
-        aiSupplierConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
+        AIPlatformConfig aiPlatformConfig = new AIPlatformConfig();
+        aiPlatformConfig.setBaseUrl("https://api.deepseek.com/v1/");
+        aiPlatformConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
 
-        AISupplierChatClient aiSupplierChatClient = new DeepSeekAISupplierChatClient();
-        aiSupplierChatClient.init(aiSupplierConfig);
+        AIPlatformChatClient aiPlatformChatClient = new DeepSeekChatClient();
+        aiPlatformChatClient.init(aiPlatformConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
         openAIChatReqCommand.setModel("deepseek-chat");
@@ -153,7 +152,7 @@ public class DeepSeekAISupplierChatClient implements AISupplierChatClient {
         chatMessageList.add(chatMessage);
         openAIChatReqCommand.setMessages(chatMessageList);
 
-        OpenAIChatRespCommand<Flux<String>> respCommand = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
+        OpenAIChatRespCommand<Flux<String>> respCommand = aiPlatformChatClient.streamChatCompletion(openAIChatReqCommand);
 
         respCommand.getData().subscribe(
                 line -> System.out.println(line),       // onNext

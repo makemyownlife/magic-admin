@@ -3,6 +3,8 @@ package cn.javayong.magic.module.ai.domain.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.util.List;
+
 @Schema(description = "管理后台 - AI 平台配置 Response VO")
 @Data
 public class AiPlatformRespVO {
@@ -14,7 +16,7 @@ public class AiPlatformRespVO {
     private String name;
 
     @Schema(description = "模型映射 JSON 格式", example = "")
-    private String modelIds;
+    private List<Long> modelIds;
 
     @Schema(description = "模型平台", example = "OpenAI")
     private String platform;

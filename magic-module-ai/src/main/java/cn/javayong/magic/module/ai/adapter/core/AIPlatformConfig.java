@@ -6,7 +6,7 @@ import lombok.Data;
  * AI 厂商配置
  */
 @Data
-public class AISupplierConfig {
+public class AIPlatformConfig {
 
     private String baseUrl;
 

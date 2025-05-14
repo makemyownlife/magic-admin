@@ -8,9 +8,9 @@ import reactor.core.publisher.Flux;
 /**
  * 大模型 API 供应商对话客户端
  */
-public interface AISupplierChatClient {
+public interface AIPlatformChatClient {
 
-    void init(AISupplierConfig aiSupplierConfig);
+    void init(AIPlatformConfig aiSupplierConfig);
 
     OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
 

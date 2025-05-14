@@ -1,11 +1,11 @@
-package cn.javayong.magic.module.ai.adapter.supplier;
+package cn.javayong.magic.module.ai.adapter.platform;
 
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
-import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
-import cn.javayong.magic.module.ai.adapter.core.AISupplierChatClient;
-import cn.javayong.magic.module.ai.adapter.core.AISupplierConfig;
+import cn.javayong.magic.module.ai.adapter.core.AIPlatformChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AIPlatformConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,14 +20,14 @@ import java.util.List;
  * 阿里千问 AI 供应商 API 实现
  */
 @Slf4j
-public class QwenAISupplierChatClient implements AISupplierChatClient {
+public class DouBaoChatClient implements AIPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AISupplierConfig aiSupplierConfig;
+    private AIPlatformConfig aiSupplierConfig;
 
     @Override
-    public void init(AISupplierConfig aiSupplierConfig) {
+    public void init(AIPlatformConfig aiSupplierConfig) {
         this.aiSupplierConfig = aiSupplierConfig;
     }
 
@@ -58,7 +58,7 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
                                         .flatMap(errorBody -> {
                                             log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
                                             return Mono.error(new RuntimeException(
-                                                    "invoke Qwen API Error: HTTP " + response.statusCode() + " - " + errorBody
+                                                    "invoke deepSeek API Error: HTTP " + response.statusCode() + " - " + errorBody
                                             ));
                                         });
                             }
@@ -77,7 +77,7 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
             respCommand.setData(stringFlux);
             return respCommand;
         } catch (Exception e) {
-            log.error("Qwen invoke api error:", e);
+            log.error("DouBao invoke api error:", e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setData(e.getMessage());
             return respCommand;
@@ -88,45 +88,61 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
     public OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
         try {
-            // 1. 创建 WebClient (非Spring环境需手动构建)
+            // 1. 创建 WebClient
             WebClient client = WebClient.builder()
                     .baseUrl(aiSupplierConfig.getBaseUrl())
                     .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                     .build();
 
             // 2. 发送阻塞请求并处理 JSON 响应
-            OpenAIChatCompletions completions =
-                    client.post()
-                            .uri(CHAT_COMPLETIONS_ENDPOINT)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON)
-                            .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
-                            .retrieve()
-                            .bodyToMono(OpenAIChatCompletions.class)
-                            .block();
+            OpenAIChatCompletions completions = client.post()
+                    .uri(CHAT_COMPLETIONS_ENDPOINT)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
+                    .exchangeToMono(response -> {
+                        HttpStatus status = response.statusCode();
+                        if (status == HttpStatus.OK) {
+                            return response.bodyToMono(OpenAIChatCompletions.class)
+                                    .doOnNext(body -> log.info("API调用成功，返回值: {}", JsonUtils.toJsonString(body)));
+                        } else {
+                            return response.bodyToMono(String.class)
+                                    .defaultIfEmpty("") // 如果响应体为空，使用空字符串
+                                    .flatMap(body -> {
+                                        log.error("API调用失败，HTTP状态码: {}，错误响应: {}", status.value(), body);
+                                        return Mono.error(new RuntimeException("API调用失败，状态码: " + status.value() + "，错误信息: " + body));
+                                    });
+                        }
+                    })
+                    .block();
 
             respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
             respCommand.setData(completions);
             return respCommand;
         } catch (Exception e) {
-            log.error("QianWen blockChatCompletion invoke error:", e);
+            log.error("DouBao blockChatCompletion invoke error:", e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
-            respCommand.setMessage("调用 阿里云千问官网API服务异常，请确保 API KEY 正确 和网络正常!");
+            // 如果异常是RuntimeException且包含API错误信息，则使用该信息
+            if (e instanceof RuntimeException && e.getMessage() != null && e.getMessage().contains("API调用失败")) {
+                respCommand.setMessage(e.getMessage());
+            } else {
+                respCommand.setMessage("调用豆包官网API服务异常，请确保 API KEY 正确和网络正常!");
+            }
         }
         return respCommand;
     }
 
     public static void main(String[] args) throws InterruptedException {
 
-        AISupplierConfig aiSupplierConfig = new AISupplierConfig();
-        aiSupplierConfig.setBaseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1/");
-        aiSupplierConfig.setApiKey("sk-f49ab9cd447e433c8862dc9f66cf432a");
+        AIPlatformConfig aiPlatformConfig = new AIPlatformConfig();
+        aiPlatformConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
+        aiPlatformConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
 
-        AISupplierChatClient aiSupplierChatClient = new QwenAISupplierChatClient();
-        aiSupplierChatClient.init(aiSupplierConfig);
+        AIPlatformChatClient aiSupplierChatClient = new DouBaoChatClient();
+        aiSupplierChatClient.init(aiPlatformConfig);
 
-        OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
-        openAIChatReqCommand.setModel("qwen-turbo"); // 模型列表：https://www.alibabacloud.com/help/zh/model-studio/models
+        OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();  //https://www.volcengine.com/docs/82379/1494384?redirect=1
+        openAIChatReqCommand.setModel("doubao-1.5-pro-32k-250115"); // 选择真实的模型列表：https://www.volcengine.com/docs/82379/1330310#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90
         openAIChatReqCommand.setStream(false);
         openAIChatReqCommand.setTemperature(0.7);
 
@@ -139,8 +155,6 @@ public class QwenAISupplierChatClient implements AISupplierChatClient {
         // 调用同步阻塞接口
         OpenAIChatRespCommand openAIChatCompletions = aiSupplierChatClient.blockChatCompletion(openAIChatReqCommand);
         System.out.println(JsonUtils.toJsonString(openAIChatCompletions));
-
-        // Flux<String> openAIChatCompletions = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
     }
 
 }
