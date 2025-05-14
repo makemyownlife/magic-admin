@@ -71,7 +71,7 @@ public class AiModelServiceImpl implements AiModelService {
 
     private AiModelDO validateModelExists(Long id) {
         AiModelDO model = modelMapper.selectById(id);
-        if (modelMapper.selectById(id) == null) {
+        if (model == null) {
             throw ServiceExceptionUtil.exception(MODEL_NOT_EXISTS);
         }
         return model;

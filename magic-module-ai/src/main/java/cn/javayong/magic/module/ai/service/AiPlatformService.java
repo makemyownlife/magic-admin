@@ -6,6 +6,7 @@ import cn.javayong.magic.module.ai.domain.AiPlatformDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelSaveReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
+import cn.javayong.magic.module.ai.domain.vo.AiPlatformSaveReqVO;
 
 import javax.annotation.Nullable;
 import javax.validation.Valid;
@@ -19,5 +20,10 @@ public interface AiPlatformService {
     PageResult<AiPlatformDO> getModelPage(AiPlatformPageReqVO pageReqVO);
 
     AiPlatformDO getPlatform(Long id);
+
+    Long createPlatform(@Valid AiPlatformSaveReqVO createReqVO);
+
+
+    void updatePlatform(@Valid AiPlatformSaveReqVO createReqVO);
 
 }

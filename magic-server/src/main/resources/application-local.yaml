@@ -162,11 +162,8 @@ logging:
     name: ${user.home}/logs/${spring.application.name}.log # 日志文件名，全路径
   level:
     # 配置自己写的 MyBatis Mapper 打印日志
-    cn.javayong.magic.module.bpm.dal.mysql: debug
-    cn.javayong.magic.module.infra.dal.mysql: debug
-    cn.javayong.magic.module.infra.dal.mysql.job.JobLogMapper: INFO # 配置 JobLogMapper 的日志级别为 info
-    cn.javayong.magic.module.infra.dal.mysql.file.FileConfigMapper: INFO # 配置 FileConfigMapper 的日志级别为 info
-    cn.javayong.magic.module.system.dal.mysql: debug
+    cn.javayong.magic.module.infra.mapper: DEBUG
+    cn.javayong.magic.module.ai.mapper: DEBUG
 
 debug: false
 

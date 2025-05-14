@@ -19,5 +19,7 @@ public interface ErrorCodeConstants {
     ErrorCode MODEL_DEFAULT_NOT_EXISTS = new ErrorCode(1_040_001_002, "操作失败，找不到默认模型");
     ErrorCode MODEL_USE_TYPE_ERROR = new ErrorCode(1_040_001_003, "操作失败，该模型的模型类型不正确");
 
+    // ========== 平台 1-040-002-000 ==========
+    ErrorCode PLATFORM_NOT_EXISTS = new ErrorCode(1_040_002_000, "平台不存在!");
 
 }

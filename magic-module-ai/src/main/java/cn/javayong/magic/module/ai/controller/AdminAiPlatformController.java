@@ -2,12 +2,11 @@ package cn.javayong.magic.module.ai.controller;
 
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
+import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
-import cn.javayong.magic.module.ai.domain.vo.AiModelRespVO;
-import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
-import cn.javayong.magic.module.ai.domain.vo.AiPlatformRespVO;
+import cn.javayong.magic.module.ai.domain.vo.*;
 import cn.javayong.magic.module.ai.service.AiPlatformService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -39,12 +38,29 @@ public class AdminAiPlatformController {
     }
 
     @GetMapping("/get")
-    @Operation(summary = "获得模型")
+    @Operation(summary = "获得平台配置")
     @Parameter(name = "id", description = "编号", required = true, example = "1024")
     @PreAuthorize("@ss.hasPermission('ai:platform:query')")
-    public CommonResult<AiPlatformRespVO> getModel(@RequestParam("id") Long id) {
+    public CommonResult<AiPlatformRespVO> getPlatform(@RequestParam("id") Long id) {
         AiPlatformDO platformDO = aiPlatformService.getPlatform(id);
         return success(BeanUtils.toBean(platformDO, AiPlatformRespVO.class));
+    }
+
+    @PostMapping("/create")
+    @Operation(summary = "创建平台配置")
+    @PreAuthorize("@ss.hasPermission('ai:platform:create')")
+    public CommonResult<Long> createPlatform(@Valid @RequestBody AiPlatformSaveReqVO createReqVO) {
+        log.info("创建平台配置:" + JsonUtils.toJsonString(createReqVO));
+        return success(aiPlatformService.createPlatform(createReqVO));
+    }
+
+    @PostMapping("/update")
+    @Operation(summary = "修改平台配置")
+    @PreAuthorize("@ss.hasPermission('ai:platform:update')")
+    public CommonResult<Boolean> updatePlatform(@Valid @RequestBody AiPlatformSaveReqVO createReqVO) {
+        log.info("修改平台配置:" + JsonUtils.toJsonString(createReqVO));
+        aiPlatformService.updatePlatform(createReqVO);
+        return success(true);
     }
 
 }
