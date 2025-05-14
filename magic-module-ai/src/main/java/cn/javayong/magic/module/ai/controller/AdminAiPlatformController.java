@@ -4,7 +4,6 @@ import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
 import cn.javayong.magic.module.ai.domain.vo.*;
 import cn.javayong.magic.module.ai.service.AiPlatformService;
@@ -54,7 +53,7 @@ public class AdminAiPlatformController {
         return success(aiPlatformService.createPlatform(createReqVO));
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @Operation(summary = "修改平台配置")
     @PreAuthorize("@ss.hasPermission('ai:platform:update')")
     public CommonResult<Boolean> updatePlatform(@Valid @RequestBody AiPlatformSaveReqVO createReqVO) {
