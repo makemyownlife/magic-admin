@@ -57,7 +57,6 @@ CREATE TABLE `ai_platform_model_mapping` (
                                              `updater` varchar(64) DEFAULT NULL COMMENT '更新人',
                                              `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '逻辑删除',
                                              PRIMARY KEY (`id`),
-                                             UNIQUE KEY `uk_platform_model` (`platform_id`,`model_id`,`deleted`),
                                              KEY `idx_model` (`model_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='AI平台模型映射表';
 

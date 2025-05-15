@@ -27,7 +27,8 @@ public class AiPlatformRespVO {
     @Schema(description = "排序", example = "1")
     private Integer sort;
 
-    @Schema(description = "状态", example = "2")
+    @Schema(description = "状态", example = "0")
     private Integer status;
+
 
 }
