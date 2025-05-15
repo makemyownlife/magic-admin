@@ -2,8 +2,11 @@ package cn.javayong.magic.module.ai.domain;
 
 import cn.javayong.magic.framework.mybatis.core.dataobject.BaseDO;
 import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
+
+import java.util.function.LongFunction;
 
 /**
  * AI平台模型映射 DO
@@ -19,19 +22,19 @@ public class AiPlatformModelMappingDO extends BaseDO {
     /**
      * 主键ID
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 平台ID
      * <p>
      * 关联 {@link AiPlatformDO#id}
      */
-    private Integer platformId;
+    private Long platformId;
 
     /**
      * 模型ID
      */
-    private Integer modelId;
+    private Long modelId;
 
     /**
      * 模型名称（冗余存储）
@@ -42,5 +45,11 @@ public class AiPlatformModelMappingDO extends BaseDO {
      * 映射名称
      */
     private String mappingName;
+
+    /**
+     * 是否删除 (覆盖父类)
+     */
+    private Boolean deleted;
+
 
 }

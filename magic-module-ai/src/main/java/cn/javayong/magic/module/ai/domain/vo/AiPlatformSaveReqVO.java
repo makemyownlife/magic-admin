@@ -29,6 +29,11 @@ public class AiPlatformSaveReqVO {
     @NotEmpty(message = "API请求URL不能为空")
     private String baseUrl;
 
+
+    @Schema(description = "api 请求 key", required = true, example = "sk-xxxxxxxxxxxxxxxx")
+    @NotEmpty(message = "api 请求 key不能为空")
+    private String apiKey;
+
     @Schema(description = "平台类型，枚举：AiPlatformEnum", required = true, example = "OPEN_AI")
     @NotEmpty(message = "平台类型不能为空")
     private String platform;
@@ -39,5 +44,19 @@ public class AiPlatformSaveReqVO {
     @Schema(description = "状态，枚举：CommonStatusEnum", required = true, example = "1")
     @NotNull(message = "状态不能为空")
     private Integer status;
+
+    @Schema(description = "模型映射列表", example = "")
+    private List<AiPlatformSaveReqVO.ModelMapping> modelMappings;
+
+    @Data
+    public static class ModelMapping {
+
+        private Long id;
+
+        private String model;
+
+        private String mappingName;
+
+    }
 
 }

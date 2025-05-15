@@ -39,6 +39,11 @@ public class AiPlatformDO extends BaseDO {
     private String baseUrl;
 
     /**
+     * api 请求 key
+     */
+    private String apiKey ;
+
+    /**
      * 平台
      * <p>
      * 枚举 {@link cn.javayong.magic.module.ai.domain.enums.AiPlatformEnum}

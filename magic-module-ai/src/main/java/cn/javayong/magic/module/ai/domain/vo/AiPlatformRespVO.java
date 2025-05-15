@@ -30,5 +30,18 @@ public class AiPlatformRespVO {
     @Schema(description = "状态", example = "0")
     private Integer status;
 
+    @Schema(description = "模型映射列表", example = "")
+    private List<ModelMapping> modelMappings;
+
+    @Data
+    public static class ModelMapping {
+
+        private Long id;
+
+        private String model;
+
+        private String mappingName;
+
+    }
 
 }

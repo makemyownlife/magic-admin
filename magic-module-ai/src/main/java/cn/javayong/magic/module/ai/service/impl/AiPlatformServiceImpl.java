@@ -10,6 +10,7 @@ import cn.javayong.magic.module.ai.domain.enums.AiPlatformEnum;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformSaveReqVO;
 import cn.javayong.magic.module.ai.mapper.AiPlatformMapper;
+import cn.javayong.magic.module.ai.mapper.AiPlatformModelMappingMapper;
 import cn.javayong.magic.module.ai.service.AiPlatformService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class AiPlatformServiceImpl implements AiPlatformService {
     @Resource
     private AiPlatformMapper aiPlatformMapper;
 
+    @Resource
+    AiPlatformModelMappingMapper aiPlatformModelMappingMapper;
+
     @Override
     public PageResult<AiPlatformDO> getModelPage(AiPlatformPageReqVO pageReqVO) {
         return aiPlatformMapper.selectPage(pageReqVO);
@@ -45,7 +49,7 @@ public class AiPlatformServiceImpl implements AiPlatformService {
 
     @Override
     public List<AiPlatformModelMappingDO> getModelMappingList(Long platformId) {
-        return null;
+        return aiPlatformModelMappingMapper.getModelMappingList(platformId);
     }
 
     @Override
@@ -61,11 +65,21 @@ public class AiPlatformServiceImpl implements AiPlatformService {
         aiPlatformMapper.insert(platformDO);
 
         // 3. 插入到 ai_platform_model_mapping
+        List<AiPlatformSaveReqVO.ModelMapping> modelMappings = createReqVO.getModelMappings();
+        for (AiPlatformSaveReqVO.ModelMapping modelMapping : modelMappings) {
+            AiPlatformModelMappingDO aiPlatformModelMappingDO = new AiPlatformModelMappingDO();
+            aiPlatformModelMappingDO.setPlatformId(platformDO.getId());
+            aiPlatformModelMappingDO.setModelId(modelMapping.getId());
+            aiPlatformModelMappingDO.setModel(modelMapping.getModel());
+            aiPlatformModelMappingDO.setMappingName(modelMapping.getMappingName());
+            aiPlatformModelMappingMapper.insert(aiPlatformModelMappingDO);
+        }
 
         return platformDO.getId();
     }
 
     @Override
+    @Transactional
     public void updatePlatform(AiPlatformSaveReqVO saveReqVO) {
         // 1. 校验
         validatePlatformExists(saveReqVO.getId());
@@ -74,13 +88,26 @@ public class AiPlatformServiceImpl implements AiPlatformService {
         // 2. 更新
         AiPlatformDO updateObj = BeanUtils.toBean(saveReqVO, AiPlatformDO.class);
         updateObj.setModelIds(JsonUtils.toJsonString(saveReqVO.getModelIds()));
-
         aiPlatformMapper.updateById(updateObj);
+
+        // 3. 映射表
+        // 先删除表，然后新增
+        aiPlatformModelMappingMapper.delete(AiPlatformModelMappingDO::getPlatformId, saveReqVO.getId());
+        List<AiPlatformSaveReqVO.ModelMapping> modelMappings = saveReqVO.getModelMappings();
+        for (AiPlatformSaveReqVO.ModelMapping modelMapping : modelMappings) {
+            AiPlatformModelMappingDO aiPlatformModelMappingDO = new AiPlatformModelMappingDO();
+            aiPlatformModelMappingDO.setPlatformId(saveReqVO.getId());
+            aiPlatformModelMappingDO.setModelId(modelMapping.getId());
+            aiPlatformModelMappingDO.setModel(modelMapping.getModel());
+            aiPlatformModelMappingDO.setMappingName(modelMapping.getMappingName());
+            aiPlatformModelMappingMapper.insert(aiPlatformModelMappingDO);
+        }
+
     }
 
     private AiPlatformDO validatePlatformExists(Long id) {
         AiPlatformDO platformDO = aiPlatformMapper.selectById(id);
-        if (platformDO  == null) {
+        if (platformDO == null) {
             throw ServiceExceptionUtil.exception(PLATFORM_NOT_EXISTS);
         }
         return platformDO;

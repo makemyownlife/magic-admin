@@ -5,17 +5,23 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
+import cn.javayong.magic.module.ai.domain.AiPlatformModelMappingDO;
 import cn.javayong.magic.module.ai.domain.vo.*;
 import cn.javayong.magic.module.ai.service.AiPlatformService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
@@ -42,6 +48,25 @@ public class AdminAiPlatformController {
     @PreAuthorize("@ss.hasPermission('ai:platform:query')")
     public CommonResult<AiPlatformRespVO> getPlatform(@RequestParam("id") Long id) {
         AiPlatformDO platformDO = aiPlatformService.getPlatform(id);
+        List<AiPlatformModelMappingDO> modelMappingDOList = aiPlatformService.getModelMappingList(id);
+
+        AiPlatformRespVO respVO = BeanUtils.toBean(platformDO, AiPlatformRespVO.class);
+
+        // 补充 modelMapping 的映射 AiPlatformRespVO
+        if (!CollectionUtils.isEmpty(modelMappingDOList)) {
+            respVO.setModelMappings(modelMappingDOList.stream()
+                    .map(mapping -> {
+                        AiPlatformRespVO.ModelMapping modelMapping = new AiPlatformRespVO.ModelMapping();
+                        modelMapping.setId(mapping.getId());
+                        modelMapping.setModel(mapping.getModel());
+                        modelMapping.setMappingName(mapping.getMappingName());
+                        return modelMapping;
+                    })
+                    .collect(Collectors.toList()));
+        } else {
+            respVO.setModelMappings(Collections.emptyList());
+        }
+
         return success(BeanUtils.toBean(platformDO, AiPlatformRespVO.class));
     }
 

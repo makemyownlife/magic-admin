@@ -31,9 +31,10 @@ INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_i
 
 CREATE TABLE `ai_platform` (
                                `id` int NOT NULL AUTO_INCREMENT,
-                               `platform` varchar(255) DEFAULT NULL COMMENT '平台代码/标识',
+                               `platform` varchar(50) DEFAULT NULL COMMENT '平台代码/标识',
                                `name` varchar(50) NOT NULL DEFAULT '' COMMENT '平台显示名称',
-                               `base_url` varchar(512) DEFAULT NULL COMMENT '平台基础API地址',
+                               `base_url` varchar(100) DEFAULT NULL COMMENT '平台基础API地址',
+                               `api_key` varchar(100) DEFAULT NULL COMMENT '平台基础API请求key',
                                `model_ids` json DEFAULT NULL COMMENT '模型 id 数组 ，比如 [1,2]',
                                `sort` int DEFAULT NULL COMMENT '排序值',
                                `status` int DEFAULT NULL COMMENT '状态',
