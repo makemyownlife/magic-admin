@@ -24,6 +24,9 @@ public class AiPlatformRespVO {
     @Schema(description = "api请求地址", example = "")
     private String baseUrl;
 
+    @Schema(description = "api请求key", example = "sz-xxxxxxxxxxxxxxxxxx")
+    private String apiKey;
+
     @Schema(description = "排序", example = "1")
     private Integer sort;
 
