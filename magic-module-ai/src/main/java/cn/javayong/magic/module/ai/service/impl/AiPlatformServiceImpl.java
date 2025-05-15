@@ -5,6 +5,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
+import cn.javayong.magic.module.ai.domain.AiPlatformModelMappingDO;
 import cn.javayong.magic.module.ai.domain.enums.AiPlatformEnum;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformSaveReqVO;
@@ -16,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static cn.javayong.magic.module.ai.domain.enums.ErrorCodeConstants.PLATFORM_NOT_EXISTS;
 
@@ -38,6 +41,11 @@ public class AiPlatformServiceImpl implements AiPlatformService {
     @Override
     public AiPlatformDO getPlatform(Long id) {
         return aiPlatformMapper.selectById(id);
+    }
+
+    @Override
+    public List<AiPlatformModelMappingDO> getModelMappingList(Long platformId) {
+        return null;
     }
 
     @Override

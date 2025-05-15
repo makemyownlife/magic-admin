@@ -3,6 +3,7 @@ package cn.javayong.magic.module.ai.service;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
+import cn.javayong.magic.module.ai.domain.AiPlatformModelMappingDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelSaveReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
@@ -21,9 +22,10 @@ public interface AiPlatformService {
 
     AiPlatformDO getPlatform(Long id);
 
+    List<AiPlatformModelMappingDO> getModelMappingList(Long platformId);
+
     Long createPlatform(@Valid AiPlatformSaveReqVO createReqVO);
 
-
     void updatePlatform(@Valid AiPlatformSaveReqVO createReqVO);
-
+    
 }
