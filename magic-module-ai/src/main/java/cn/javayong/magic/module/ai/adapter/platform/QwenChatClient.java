@@ -4,8 +4,8 @@ import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
-import cn.javayong.magic.module.ai.adapter.core.AIPlatformChatClient;
-import cn.javayong.magic.module.ai.adapter.core.AIPlatformConfig;
+import cn.javayong.magic.module.ai.adapter.core.AiPlatformChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AiPlatformConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,14 +20,14 @@ import java.util.List;
  * 阿里千问 AI 供应商 API 实现
  */
 @Slf4j
-public class QwenChatClient implements AIPlatformChatClient {
+public class QwenChatClient implements AiPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AIPlatformConfig aiSupplierConfig;
+    private AiPlatformConfig aiSupplierConfig;
 
     @Override
-    public void init(AIPlatformConfig aiSupplierConfig) {
+    public void init(AiPlatformConfig aiSupplierConfig) {
         this.aiSupplierConfig = aiSupplierConfig;
     }
 
@@ -118,11 +118,11 @@ public class QwenChatClient implements AIPlatformChatClient {
 
     public static void main(String[] args) throws InterruptedException {
 
-        AIPlatformConfig aiSupplierConfig = new AIPlatformConfig();
+        AiPlatformConfig aiSupplierConfig = new AiPlatformConfig();
         aiSupplierConfig.setBaseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1/");
         aiSupplierConfig.setApiKey("sk-f49ab9cd447e433c8862dc9f66cf432a");
 
-        AIPlatformChatClient aiPlatformChatClient = new QwenChatClient();
+        AiPlatformChatClient aiPlatformChatClient = new QwenChatClient();
         aiPlatformChatClient.init(aiSupplierConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();

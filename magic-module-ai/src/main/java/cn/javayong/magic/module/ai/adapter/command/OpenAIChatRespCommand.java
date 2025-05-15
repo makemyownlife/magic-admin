@@ -1,5 +1,6 @@
 package cn.javayong.magic.module.ai.adapter.command;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data

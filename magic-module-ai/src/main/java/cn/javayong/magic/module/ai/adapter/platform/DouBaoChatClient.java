@@ -4,8 +4,8 @@ import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
-import cn.javayong.magic.module.ai.adapter.core.AIPlatformChatClient;
-import cn.javayong.magic.module.ai.adapter.core.AIPlatformConfig;
+import cn.javayong.magic.module.ai.adapter.core.AiPlatformChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AiPlatformConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,14 +20,14 @@ import java.util.List;
  * 阿里千问 AI 供应商 API 实现
  */
 @Slf4j
-public class DouBaoChatClient implements AIPlatformChatClient {
+public class DouBaoChatClient implements AiPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AIPlatformConfig aiSupplierConfig;
+    private AiPlatformConfig aiSupplierConfig;
 
     @Override
-    public void init(AIPlatformConfig aiSupplierConfig) {
+    public void init(AiPlatformConfig aiSupplierConfig) {
         this.aiSupplierConfig = aiSupplierConfig;
     }
 
@@ -134,11 +134,11 @@ public class DouBaoChatClient implements AIPlatformChatClient {
 
     public static void main(String[] args) throws InterruptedException {
 
-        AIPlatformConfig aiPlatformConfig = new AIPlatformConfig();
+        AiPlatformConfig aiPlatformConfig = new AiPlatformConfig();
         aiPlatformConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
         aiPlatformConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
 
-        AIPlatformChatClient aiSupplierChatClient = new DouBaoChatClient();
+        AiPlatformChatClient aiSupplierChatClient = new DouBaoChatClient();
         aiSupplierChatClient.init(aiPlatformConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();  //https://www.volcengine.com/docs/82379/1494384?redirect=1
