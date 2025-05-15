@@ -2,8 +2,8 @@ package cn.javayong.magic.module.ai.service.impl;
 
 import cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil;
 import cn.javayong.magic.framework.common.pojo.PageResult;
+import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
 import cn.javayong.magic.module.ai.domain.enums.AiPlatformEnum;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
@@ -17,7 +17,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.Resource;
 
-import static cn.javayong.magic.module.ai.domain.enums.ErrorCodeConstants.MODEL_NOT_EXISTS;
 import static cn.javayong.magic.module.ai.domain.enums.ErrorCodeConstants.PLATFORM_NOT_EXISTS;
 
 /**
@@ -50,10 +49,10 @@ public class AiPlatformServiceImpl implements AiPlatformService {
         // 2. 插入 ai_platform
         AiPlatformDO platformDO = BeanUtils.toBean(createReqVO, AiPlatformDO.class);
         platformDO.setDeleted(false);
+        platformDO.setModelIds(JsonUtils.toJsonString(createReqVO.getModelIds()));
         aiPlatformMapper.insert(platformDO);
 
         // 3. 插入到 ai_platform_model_mapping
-
 
         return platformDO.getId();
     }
@@ -66,6 +65,8 @@ public class AiPlatformServiceImpl implements AiPlatformService {
 
         // 2. 更新
         AiPlatformDO updateObj = BeanUtils.toBean(saveReqVO, AiPlatformDO.class);
+        updateObj.setModelIds(JsonUtils.toJsonString(saveReqVO.getModelIds()));
+
         aiPlatformMapper.updateById(updateObj);
     }
 

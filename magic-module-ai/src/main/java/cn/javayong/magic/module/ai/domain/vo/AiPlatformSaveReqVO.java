@@ -9,6 +9,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Schema(description = "管理后台 - API 平台新增/修改 Request VO")
 @Data
@@ -17,8 +18,8 @@ public class AiPlatformSaveReqVO {
     @Schema(description = "主键ID", example = "1")
     private Long id;
 
-    @Schema(description = "模型映射 JSON 格式", example = "{\"gpt-3.5\": \"gpt-3.5-turbo\"}")
-    private String modelMappingJson;
+    @Schema(description = "模型映射 JSON 格式", example = "[1,2,3]")
+    private List<Integer> modelIds;
 
     @Schema(description = "平台配置名称", required = true, example = "OpenAI平台")
     @NotEmpty(message = "平台配置名称不能为空")
