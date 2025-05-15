@@ -57,7 +57,7 @@ public class AdminAiPlatformController {
             respVO.setModelMappings(modelMappingDOList.stream()
                     .map(mapping -> {
                         AiPlatformRespVO.ModelMapping modelMapping = new AiPlatformRespVO.ModelMapping();
-                        modelMapping.setId(mapping.getId());
+                        modelMapping.setId(mapping.getModelId());
                         modelMapping.setModel(mapping.getModel());
                         modelMapping.setMappingName(mapping.getMappingName());
                         return modelMapping;
@@ -67,7 +67,7 @@ public class AdminAiPlatformController {
             respVO.setModelMappings(Collections.emptyList());
         }
 
-        return success(BeanUtils.toBean(platformDO, AiPlatformRespVO.class));
+        return success(respVO);
     }
 
     @PostMapping("/create")
