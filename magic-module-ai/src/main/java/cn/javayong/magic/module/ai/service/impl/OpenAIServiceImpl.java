@@ -60,7 +60,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         // step3: 随机选择一个平台配置
         Collections.shuffle(aiPlatformDOLIst);
         AiPlatformDO aiPlatformDO = aiPlatformDOLIst.get(0);
-        log.info("本次聊天平台是：" + aiPlatformDO.getPlatform() + " 请求地址：" + aiPlatformDO.getBaseUrl());
 
         // step4 : 创建对话客户端配置
         AiPlatformConfig aiPlatformConfig = new AiPlatformConfig();
@@ -72,7 +71,15 @@ public class OpenAIServiceImpl implements OpenAIService {
         AiPlatformChatClient aiPlatformChatClient = AiPlatformClientFactory.createChatClient(aiPlatformConfig);
 
         // step6 : 重定向 模型名称（因为标准模型名 在不同平台的名称可能不相同）
+        String targetModelName = platformModelMappingDOList.stream()
+                .filter(mapping -> mapping.getPlatformId().equals(aiPlatformDO.getId()))
+                .filter(mapping -> mapping.getModel().equals(openAIChatReqCommand.getModel()))
+                .findFirst()
+                .map(AiPlatformModelMappingDO::getMappingName)
+                .orElse(openAIChatReqCommand.getModel()); // 如果找不到映射，使用原始模型名
+        openAIChatReqCommand.setModel(targetModelName);
 
+        log.info("本次聊天平台是：" + aiPlatformDO.getPlatform() + " 请求地址：" + aiPlatformDO.getBaseUrl() + " stream:" + openAIChatReqCommand.isStream() + " 目标模型：" + targetModelName);
 
         // step7-1 封装 SSE 流
         if (openAIChatReqVO.isStream()) {
