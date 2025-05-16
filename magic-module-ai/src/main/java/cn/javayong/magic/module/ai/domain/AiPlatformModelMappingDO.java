@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
-import java.util.function.LongFunction;
-
 /**
  * AI平台模型映射 DO
  */

@@ -29,9 +29,8 @@ public class DeepSeekChatClient implements AiPlatformChatClient {
 
     private AiPlatformConfig aiSupplierConfig;
 
-    @Override
-    public void init(AiPlatformConfig aiSupplierConfig) {
-        this.aiSupplierConfig = aiSupplierConfig;
+    public DeepSeekChatClient(AiPlatformConfig aiPlatformConfig) {
+        this.aiSupplierConfig = aiPlatformConfig;
     }
 
     public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
@@ -138,8 +137,7 @@ public class DeepSeekChatClient implements AiPlatformChatClient {
         aiPlatformConfig.setBaseUrl("https://api.deepseek.com/v1/");
         aiPlatformConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
 
-        AiPlatformChatClient aiPlatformChatClient = new DeepSeekChatClient();
-        aiPlatformChatClient.init(aiPlatformConfig);
+        AiPlatformChatClient aiPlatformChatClient = new DeepSeekChatClient(aiPlatformConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
         openAIChatReqCommand.setModel("deepseek-chat");

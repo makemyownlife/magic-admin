@@ -5,6 +5,7 @@ import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AiPlatformChatClient;
+import cn.javayong.magic.module.ai.adapter.core.AiPlatformClientFactory;
 import cn.javayong.magic.module.ai.adapter.core.AiPlatformConfig;
 import cn.javayong.magic.module.ai.adapter.platform.DouBaoChatClient;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
@@ -45,10 +46,11 @@ public class OpenAIServiceImpl implements OpenAIService {
         // step2 : 平台配置列表
         List<Long> platformIds = platformModelMappingDOList.stream()
                 .map(AiPlatformModelMappingDO::getPlatformId)
-                .distinct()  // 去重
+                .distinct()
                 .collect(Collectors.toList());
         List<AiPlatformDO> aiPlatformDOLIst = aiPlatformMapper.selectByIds(platformIds);
         if (CollectionUtils.isEmpty(aiPlatformDOLIst)) {
+            log.error("幻视后台没有配置模型:" + openAIChatReqCommand.getModel() + " 支持的平台");
             OpenAIChatRespCommand<OpenAIChatCompletions> respCommand = new OpenAIChatRespCommand();
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setMessage("幻视后台没有配置该模型的平台");
@@ -57,15 +59,23 @@ public class OpenAIServiceImpl implements OpenAIService {
 
         // step3: 随机选择一个平台配置
         Collections.shuffle(aiPlatformDOLIst);
+        AiPlatformDO aiPlatformDO = aiPlatformDOLIst.get(0);
+        log.info("本次聊天平台是：" + aiPlatformDO.getPlatform() + " 请求地址：" + aiPlatformDO.getBaseUrl());
 
+        // step4 : 创建对话客户端配置
         AiPlatformConfig aiPlatformConfig = new AiPlatformConfig();
-        aiPlatformConfig.setBaseUrl("https://api.deepseek.com/v1/");
-        aiPlatformConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
+        aiPlatformConfig.setBaseUrl(aiPlatformDO.getBaseUrl());
+        aiPlatformConfig.setApiKey(aiPlatformDO.getApiKey());
+        aiPlatformConfig.setPlatform(aiPlatformDO.getPlatform());
 
-        AiPlatformChatClient aiPlatformChatClient = new DouBaoChatClient();
-        aiPlatformChatClient.init(aiPlatformConfig);
+        //  step5  : 工厂模式创建对话客户端
+        AiPlatformChatClient aiPlatformChatClient = AiPlatformClientFactory.createChatClient(aiPlatformConfig);
 
-        // 封装 SSE 流
+        // step6 : 重定向 模型名称（因为标准模型名 在不同平台的名称可能不相同）
+
+
+
+        // step7-1 封装 SSE 流
         if (openAIChatReqVO.isStream()) {
             OpenAIChatRespCommand<Flux<String>> respCommand = aiPlatformChatClient.streamChatCompletion(openAIChatReqCommand);
             if (respCommand.getCode() != OpenAIChatRespCommand.SUCCESS_CODE) {
@@ -74,7 +84,7 @@ public class OpenAIServiceImpl implements OpenAIService {
             return respCommand.getData().map(data -> ServerSentEvent.builder(data).build());
         }
 
-        // 返回 JSON 实体
+        //step7-2 返回 JSON 实体
         else {
             OpenAIChatRespCommand<OpenAIChatCompletions> respCommand = aiPlatformChatClient.blockChatCompletion(openAIChatReqCommand);
             if (respCommand.getData() != null) {

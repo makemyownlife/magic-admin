@@ -24,11 +24,10 @@ public class QwenChatClient implements AiPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AiPlatformConfig aiSupplierConfig;
+    private AiPlatformConfig aiPlatformConfig;
 
-    @Override
-    public void init(AiPlatformConfig aiSupplierConfig) {
-        this.aiSupplierConfig = aiSupplierConfig;
+    public QwenChatClient(AiPlatformConfig aiPlatformConfig) {
+        this.aiPlatformConfig = aiPlatformConfig;
     }
 
     @Override
@@ -37,8 +36,8 @@ public class QwenChatClient implements AiPlatformChatClient {
         try {
             // 1. 创建 WebClient
             WebClient client = WebClient.builder()
-                    .baseUrl(aiSupplierConfig.getBaseUrl())
-                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
+                    .baseUrl(aiPlatformConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
                     .build();
 
             // 2. 发送流式请求并处理 SSE 响应
@@ -90,8 +89,8 @@ public class QwenChatClient implements AiPlatformChatClient {
         try {
             // 1. 创建 WebClient (非Spring环境需手动构建)
             WebClient client = WebClient.builder()
-                    .baseUrl(aiSupplierConfig.getBaseUrl())
-                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
+                    .baseUrl(aiPlatformConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
                     .build();
 
             // 2. 发送阻塞请求并处理 JSON 响应
@@ -122,8 +121,7 @@ public class QwenChatClient implements AiPlatformChatClient {
         aiSupplierConfig.setBaseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1/");
         aiSupplierConfig.setApiKey("sk-f49ab9cd447e433c8862dc9f66cf432a");
 
-        AiPlatformChatClient aiPlatformChatClient = new QwenChatClient();
-        aiPlatformChatClient.init(aiSupplierConfig);
+        AiPlatformChatClient aiPlatformChatClient = new QwenChatClient(aiSupplierConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
         openAIChatReqCommand.setModel("qwen-turbo"); // 模型列表：https://www.alibabacloud.com/help/zh/model-studio/models

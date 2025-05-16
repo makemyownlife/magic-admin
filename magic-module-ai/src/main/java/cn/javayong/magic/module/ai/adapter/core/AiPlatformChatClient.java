@@ -10,8 +10,6 @@ import reactor.core.publisher.Flux;
  */
 public interface AiPlatformChatClient {
 
-    void init(AiPlatformConfig aiSupplierConfig);
-
     OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);
 
     OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand);

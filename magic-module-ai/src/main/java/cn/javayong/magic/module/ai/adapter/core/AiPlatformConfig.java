@@ -12,5 +12,7 @@ public class AiPlatformConfig {
 
     private String apiKey;
 
+    private String platform;
+
 }
 

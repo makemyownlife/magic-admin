@@ -24,11 +24,10 @@ public class DouBaoChatClient implements AiPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AiPlatformConfig aiSupplierConfig;
+    private AiPlatformConfig aiPlatformConfig;
 
-    @Override
-    public void init(AiPlatformConfig aiSupplierConfig) {
-        this.aiSupplierConfig = aiSupplierConfig;
+    public DouBaoChatClient(AiPlatformConfig aiPlatformConfig) {
+        this.aiPlatformConfig = aiPlatformConfig;
     }
 
     @Override
@@ -37,8 +36,8 @@ public class DouBaoChatClient implements AiPlatformChatClient {
         try {
             // 1. 创建 WebClient
             WebClient client = WebClient.builder()
-                    .baseUrl(aiSupplierConfig.getBaseUrl())
-                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
+                    .baseUrl(aiPlatformConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
                     .build();
 
             // 2. 发送流式请求并处理 SSE 响应
@@ -90,8 +89,8 @@ public class DouBaoChatClient implements AiPlatformChatClient {
         try {
             // 1. 创建 WebClient
             WebClient client = WebClient.builder()
-                    .baseUrl(aiSupplierConfig.getBaseUrl())
-                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
+                    .baseUrl(aiPlatformConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
                     .build();
 
             // 2. 发送阻塞请求并处理 JSON 响应
@@ -138,8 +137,7 @@ public class DouBaoChatClient implements AiPlatformChatClient {
         aiPlatformConfig.setBaseUrl("https://ark.cn-beijing.volces.com/api/v3/");
         aiPlatformConfig.setApiKey("11515f06-c8fe-4532-83b8-7d5145bd3132");
 
-        AiPlatformChatClient aiSupplierChatClient = new DouBaoChatClient();
-        aiSupplierChatClient.init(aiPlatformConfig);
+        AiPlatformChatClient aiSupplierChatClient = new DouBaoChatClient(aiPlatformConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();  //https://www.volcengine.com/docs/82379/1494384?redirect=1
         openAIChatReqCommand.setModel("doubao-1.5-pro-32k-250115"); // 选择真实的模型列表：https://www.volcengine.com/docs/82379/1330310#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90
