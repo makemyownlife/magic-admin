@@ -48,7 +48,7 @@ public class OpenAIServiceImpl implements OpenAIService {
                 .map(AiPlatformModelMappingDO::getPlatformId)
                 .distinct()
                 .collect(Collectors.toList());
-        List<AiPlatformDO> aiPlatformDOLIst = aiPlatformMapper.selectByIds(platformIds);
+        List<AiPlatformDO> aiPlatformDOLIst = aiPlatformMapper.selectAvailablePlatformList(platformIds);
         if (CollectionUtils.isEmpty(aiPlatformDOLIst)) {
             log.error("幻视后台没有配置模型:" + openAIChatReqCommand.getModel() + " 支持的平台");
             OpenAIChatRespCommand<OpenAIChatCompletions> respCommand = new OpenAIChatRespCommand();
@@ -72,7 +72,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         AiPlatformChatClient aiPlatformChatClient = AiPlatformClientFactory.createChatClient(aiPlatformConfig);
 
         // step6 : 重定向 模型名称（因为标准模型名 在不同平台的名称可能不相同）
-
 
 
         // step7-1 封装 SSE 流

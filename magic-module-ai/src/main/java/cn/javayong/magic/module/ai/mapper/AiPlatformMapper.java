@@ -1,11 +1,16 @@
 package cn.javayong.magic.module.ai.mapper;
 
+import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.module.ai.domain.AiPlatformDO;
 import cn.javayong.magic.module.ai.domain.vo.AiPlatformPageReqVO;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 平台配置 Mapper
@@ -27,6 +32,19 @@ public interface AiPlatformMapper extends BaseMapperX<AiPlatformDO> {
                         // 添加排序规则（按 sort 字段升序）
                         .orderByAsc(AiPlatformDO::getSort)
         );
+    }
+
+    default List<AiPlatformDO> selectAvailablePlatformList(List<Long> platformIds) {
+        if (platformIds == null || platformIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        LambdaQueryWrapper<AiPlatformDO> wrapper = new LambdaQueryWrapper<AiPlatformDO>()
+                .in(AiPlatformDO::getId, platformIds)
+                .eq(AiPlatformDO::getStatus, CommonStatusEnum.ENABLE.getStatus())
+                .orderByAsc(AiPlatformDO::getSort);
+
+        return selectList(wrapper);
     }
 
 }
