@@ -543,73 +543,19 @@
                 </exclusions>
             </dependency>
 
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-pay</artifactId>
-                <version>${weixin-java.version}</version>
-            </dependency>
 
-            <!-- 积木报表-->
-            <dependency>
-                <groupId>org.jeecgframework.jimureport</groupId>
-                <artifactId>jimureport-spring-boot-starter</artifactId>
-                <version>${jimureport.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.alibaba</groupId>
-                        <artifactId>druid</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <!-- PF4J -->
-            <dependency>
-                <groupId>org.pf4j</groupId>
-                <artifactId>pf4j-spring</artifactId>
-                <version>${pf4j-spring.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <!-- Vert.x -->
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-core</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-web</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-mqtt</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-
-            <!-- MQTT -->
-            <dependency>
-                <groupId>org.eclipse.paho</groupId>
-                <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-                <version>${mqtt.version}</version>
-            </dependency>
-
-            <!-- 专属于 JDK8 安全漏洞升级 -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
