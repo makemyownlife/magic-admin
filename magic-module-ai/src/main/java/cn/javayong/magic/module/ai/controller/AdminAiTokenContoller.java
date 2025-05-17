@@ -13,7 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/ai/oneapi/")
 @Slf4j
 public class AdminAiTokenContoller {
-
-
-
+    
 }
