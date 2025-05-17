@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 类似 oneapi 提供
  */
 @Tag(name = "兼容 openai 的核心接口")
-@RestController("OpenAIController")
+@RestController("AdminAiTokenContoller")
 @RequestMapping("/ai/oneapi/")
 @Slf4j
 public class AdminAiTokenContoller {
