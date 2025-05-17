@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 类似 oneapi 提供
+ * 类似 oneapi 提供 token 管理的接口
  */
 @Tag(name = "兼容 openai 的核心接口")
 @RestController("AdminAiTokenContoller")
