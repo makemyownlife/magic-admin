@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 阿里千问 AI 供应商 API 实现
+ * 字节豆包 AI 供应商 API 实现
  */
 @Slf4j
 public class DouBaoChatClient implements AiPlatformChatClient {

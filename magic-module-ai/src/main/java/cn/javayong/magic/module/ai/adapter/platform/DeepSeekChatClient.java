@@ -102,7 +102,7 @@ public class DeepSeekChatClient implements AiPlatformChatClient {
 
     @Override
     public OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
+        OpenAIChatRespCommand<OpenAIChatCompletions> respCommand = new OpenAIChatRespCommand<OpenAIChatCompletions>();
         try {
             // 1. 创建 WebClient
             WebClient client = WebClient.builder()
