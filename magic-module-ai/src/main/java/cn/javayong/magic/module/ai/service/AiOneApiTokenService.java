@@ -2,7 +2,11 @@ package cn.javayong.magic.module.ai.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.ai.domain.AiOneApiTokenDO;
+import cn.javayong.magic.module.ai.domain.vo.AiModelSaveReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
+import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenSaveReqVO;
+
+import javax.validation.Valid;
 
 /**
  * one API token 配置
@@ -10,5 +14,7 @@ import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
 public interface AiOneApiTokenService {
 
     PageResult<AiOneApiTokenDO> getOneApiTokenPage(AiOneApiTokenPageReqVO pageReqVO);
+
+    Long createOneApiToken(@Valid AiOneApiTokenSaveReqVO createReqVO);
 
 }

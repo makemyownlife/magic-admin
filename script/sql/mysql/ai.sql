@@ -68,7 +68,7 @@ INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_i
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2776, '平台删除', 'ai:platform:delete', 3, 4, 2773, '', '', '', '', 0, b'1', b'1', b'1', '', '2024-05-10 14:42:48', '1', '2025-03-03 09:20:27', b'0');
 
 CREATE TABLE `ai_oneapi_token` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `id` bigint NOT NULL COMMENT '主键ID',
   `name` varchar(64) NOT NULL COMMENT '令牌名称',
   `token` varchar(128) NOT NULL COMMENT '令牌值',
   `model_ids` json DEFAULT NULL COMMENT '模型范围(JSON数组)',
