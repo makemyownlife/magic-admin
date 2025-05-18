@@ -5,7 +5,6 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.ai.domain.AiOneApiTokenDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelRespVO;
-import cn.javayong.magic.module.ai.domain.vo.AiModelSaveReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenSaveReqVO;
 import cn.javayong.magic.module.ai.service.AiOneApiTokenService;
