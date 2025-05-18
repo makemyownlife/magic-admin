@@ -35,4 +35,9 @@ public class AiOneApiTokenServiceImpl implements AiOneApiTokenService {
         return oneApiTokenDO.getId();
     }
 
+    @Override
+    public void deleteOneApiToken(Long id) {
+        oneApiTokenMapper.deleteById(id);
+    }
+
 }

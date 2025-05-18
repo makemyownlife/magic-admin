@@ -10,6 +10,7 @@ import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenSaveReqVO;
 import cn.javayong.magic.module.ai.service.AiOneApiTokenService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -45,6 +46,15 @@ public class AdminOneApiTokenContoller {
     @PreAuthorize("@ss.hasPermission('ai:oneapitoken:create')")
     public CommonResult<Long> createOneApiToken(@Valid @RequestBody AiOneApiTokenSaveReqVO saveReqVO) {
         return success(oneApiTokenService.createOneApiToken(saveReqVO));
+    }
+
+    @PutMapping("/delete")
+    @Operation(summary = "删除 oneapi token")
+    @Parameter(name = "id", description = "编号", required = true)
+    @PreAuthorize("@ss.hasPermission('ai:oneapitoken:delete')")
+    public CommonResult<Boolean> deleteOneApiToken(@RequestParam("id") Long id) {
+        oneApiTokenService.deleteOneApiToken(id);
+        return success(true);
     }
 
 }
