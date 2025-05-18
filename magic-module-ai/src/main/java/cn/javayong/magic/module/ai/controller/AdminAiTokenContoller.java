@@ -7,6 +7,7 @@ import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.AiOneApiTokenDO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelRespVO;
+import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
 import cn.javayong.magic.module.ai.service.AiModelService;
 import cn.javayong.magic.module.ai.service.AiOneApiTokenService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +26,7 @@ import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 /**
  * 类似 oneapi 提供 token 管理的接口
  */
-@Tag(name = "兼容 openai 的核心接口")
+@Tag(name = "类似 oneapi 提供 token 管理的接口")
 @RestController("AdminAiTokenContoller")
 @RequestMapping("/ai/oneapitoken/")
 @Slf4j
@@ -37,7 +38,7 @@ public class AdminAiTokenContoller {
     @GetMapping("/page")
     @Operation(summary = "获得 oneapi token 分页")
     @PreAuthorize("@ss.hasPermission('ai:oneapitoken:query')")
-    public CommonResult<PageResult> getModelPage(@Valid AiModelPageReqVO pageReqVO) {
+    public CommonResult<PageResult> getOneApiTokenPage(@Valid AiOneApiTokenPageReqVO pageReqVO) {
         PageResult<AiOneApiTokenDO> pageResult = oneApiTokenService.getOneApiTokenPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, AiModelRespVO.class));
     }

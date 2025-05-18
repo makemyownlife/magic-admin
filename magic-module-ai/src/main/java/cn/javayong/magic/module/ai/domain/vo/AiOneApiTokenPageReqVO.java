@@ -8,6 +8,4 @@ import lombok.Data;
 @Data
 public class AiOneApiTokenPageReqVO extends PageParam {
 
-
-
 }
