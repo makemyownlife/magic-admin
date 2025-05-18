@@ -3,12 +3,9 @@ package cn.javayong.magic.module.ai.controller;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.ai.domain.AiModelDO;
 import cn.javayong.magic.module.ai.domain.AiOneApiTokenDO;
-import cn.javayong.magic.module.ai.domain.vo.AiModelPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiModelRespVO;
 import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
-import cn.javayong.magic.module.ai.service.AiModelService;
 import cn.javayong.magic.module.ai.service.AiOneApiTokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,10 +24,10 @@ import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
  * 类似 oneapi 提供 token 管理的接口
  */
 @Tag(name = "类似 oneapi 提供 token 管理的接口")
-@RestController("AdminAiTokenContoller")
+@RestController("AdminOneApiTokenContoller")
 @RequestMapping("/ai/oneapitoken/")
 @Slf4j
-public class AdminAiTokenContoller {
+public class AdminOneApiTokenContoller {
 
     @Resource
     private AiOneApiTokenService oneApiTokenService;
