@@ -26,10 +26,10 @@ import java.util.stream.Collectors;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "后台AI管理-平台配置")
-@RestController("AdminAIPlatformController")
+@RestController("AdminPlatformController")
 @RequestMapping("/ai/platform/")
 @Slf4j
-public class AdminAiPlatformController {
+public class AdminPlatformController {
 
     @Resource
     private AiPlatformService aiPlatformService;

@@ -26,10 +26,10 @@ import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 
 @Tag(name = "后台AI管理-模型配置")
-@RestController("AdminAIModelController")
+@RestController("AdminModelController")
 @RequestMapping("/ai/model/")
 @Slf4j
-public class AdminAiModelController {
+public class AdminModelController {
 
     @Resource
     private AiModelService modelService;
