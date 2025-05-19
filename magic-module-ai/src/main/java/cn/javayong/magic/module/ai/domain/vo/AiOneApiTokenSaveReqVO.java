@@ -16,6 +16,9 @@ import static cn.javayong.magic.framework.common.util.date.DateUtils.FORMAT_YEAR
 @Data
 public class AiOneApiTokenSaveReqVO {
 
+    @Schema(description = "编号", example = "雪花算法生成的唯一 ID")
+    private Long id;
+
     @Schema(description = "模型列表", example = "[1,2]")
     private List<Integer> modelIds;
 
@@ -26,5 +29,5 @@ public class AiOneApiTokenSaveReqVO {
     @Schema(description = "过期时间", example = "2025-12-31 23:59:59")
     @NotNull(message = "过期时间不能为空")  // 用于对象类型验证
     private LocalDateTime expireTime;
-    
+
 }
