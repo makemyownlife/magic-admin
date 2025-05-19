@@ -39,7 +39,7 @@ public class AdminOneApiTokenContoller {
         return success(BeanUtils.toBean(pageResult, AiModelRespVO.class));
     }
 
-    @PutMapping("/create")
+    @PostMapping("/create")
     @Operation(summary = "更新oneapi token")
     @PreAuthorize("@ss.hasPermission('ai:oneapitoken:create')")
     public CommonResult<Long> createOneApiToken(@Valid @RequestBody AiOneApiTokenSaveReqVO saveReqVO) {

@@ -73,7 +73,6 @@ CREATE TABLE `ai_oneapi_token` (
   `token` varchar(128) NOT NULL COMMENT '令牌值',
   `model_ids` json DEFAULT NULL COMMENT '模型范围(JSON数组)',
   `expire_time` datetime DEFAULT NULL COMMENT '过期时间',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注信息',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `creator` varchar(64) DEFAULT NULL COMMENT '创建人',

@@ -8,6 +8,7 @@ import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenPageReqVO;
 import cn.javayong.magic.module.ai.domain.vo.AiOneApiTokenSaveReqVO;
 import cn.javayong.magic.module.ai.mapper.AiOneApiTokenMapper;
 import cn.javayong.magic.module.ai.service.AiOneApiTokenService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
  */
 @Service
 @Validated
+@Slf4j
 public class AiOneApiTokenServiceImpl implements AiOneApiTokenService {
 
     @Resource
@@ -44,6 +46,7 @@ public class AiOneApiTokenServiceImpl implements AiOneApiTokenService {
         oneApiTokenDO.setToken(UUID.randomUUID().toString());
 
         oneApiTokenDO.setDeleted(false);
+
 
         oneApiTokenMapper.insert(oneApiTokenDO);
 
