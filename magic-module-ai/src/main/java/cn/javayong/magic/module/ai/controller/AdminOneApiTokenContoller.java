@@ -64,7 +64,7 @@ public class AdminOneApiTokenContoller {
         return success(BeanUtils.toBean(aiOneApiTokenDO, AiOneApiTokenRespVO.class));
     }
 
-    @PutMapping("/delete")
+    @DeleteMapping("/delete")
     @Operation(summary = "删除 oneapi token")
     @Parameter(name = "id", description = "编号", required = true, example = "1024")
     @PreAuthorize("@ss.hasPermission('ai:oneapitoken:delete')")

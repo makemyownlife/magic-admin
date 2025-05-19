@@ -38,6 +38,7 @@ public class OpenAIServiceImpl implements OpenAIService {
 
     @Override
     public Object completions(OpenAIChatReqVO openAIChatReqVO) {
+
         OpenAIChatReqCommand openAIChatReqCommand = ChatConvert.INSTANCE.convert(openAIChatReqVO);
 
         // step1 : 根据 model 名称查询 平台和模型映射表
