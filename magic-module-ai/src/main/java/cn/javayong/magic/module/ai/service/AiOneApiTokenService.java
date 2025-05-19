@@ -16,6 +16,10 @@ public interface AiOneApiTokenService {
 
     Long createOneApiToken(@Valid AiOneApiTokenSaveReqVO createReqVO);
 
+    void updateOneApiToken(@Valid AiOneApiTokenSaveReqVO createReqVO);
+
     void deleteOneApiToken(Long id);
+
+    AiOneApiTokenDO getOneApiToken(Long id);
 
 }

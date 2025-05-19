@@ -1,6 +1,7 @@
 package cn.javayong.magic.module.ai.service.impl;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
+import cn.javayong.magic.framework.common.util.json.JsonUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.idgenerator.core.service.IdGeneratorService;
 import cn.javayong.magic.module.ai.domain.AiOneApiTokenDO;
@@ -45,8 +46,10 @@ public class AiOneApiTokenServiceImpl implements AiOneApiTokenService {
         // 通过 UUID 生成唯一 token
         oneApiTokenDO.setToken(UUID.randomUUID().toString());
 
-        oneApiTokenDO.setDeleted(false);
+        // 设置模型列表
+        oneApiTokenDO.setModelIds(JsonUtils.toJsonString(createReqVO.getModelIds()));
 
+        oneApiTokenDO.setDeleted(false);
 
         oneApiTokenMapper.insert(oneApiTokenDO);
 
@@ -54,8 +57,23 @@ public class AiOneApiTokenServiceImpl implements AiOneApiTokenService {
     }
 
     @Override
+    public void updateOneApiToken(AiOneApiTokenSaveReqVO saveReqVO) {
+        AiOneApiTokenDO oneApiTokenDO = BeanUtils.toBean(saveReqVO, AiOneApiTokenDO.class);
+
+        // 设置模型列表
+        oneApiTokenDO.setModelIds(JsonUtils.toJsonString(saveReqVO.getModelIds()));
+
+        oneApiTokenMapper.updateById(oneApiTokenDO);
+    }
+
+    @Override
     public void deleteOneApiToken(Long id) {
         oneApiTokenMapper.deleteById(id);
+    }
+
+    @Override
+    public AiOneApiTokenDO getOneApiToken(Long id) {
+        return oneApiTokenMapper.selectById(id);
     }
 
 }
