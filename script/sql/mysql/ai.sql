@@ -68,18 +68,18 @@ INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_i
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2776, '平台删除', 'ai:platform:delete', 3, 4, 2773, '', '', '', '', 0, b'1', b'1', b'1', '', '2024-05-10 14:42:48', '1', '2025-03-03 09:20:27', b'0');
 
 CREATE TABLE `ai_oneapi_token` (
-  `id` bigint NOT NULL COMMENT '主键ID',
-  `name` varchar(64) NOT NULL COMMENT '令牌名称',
-  `token` varchar(128) NOT NULL COMMENT '令牌值',
-  `model_ids` json DEFAULT NULL COMMENT '模型范围(JSON数组)',
-  `expire_time` datetime DEFAULT NULL COMMENT '过期时间',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `creator` varchar(64) DEFAULT NULL COMMENT '创建人',
-  `updater` varchar(64) DEFAULT NULL COMMENT '更新人',
-  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '逻辑删除',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_token` (`token`) COMMENT '令牌唯一索引'
+                                   `id` bigint NOT NULL COMMENT '主键ID',
+                                   `name` varchar(64) NOT NULL COMMENT '令牌名称',
+                                   `token` varchar(128) NOT NULL COMMENT '令牌值',
+                                   `model_ids` json DEFAULT NULL COMMENT '模型范围(JSON数组)',
+                                   `expire_time` datetime DEFAULT NULL COMMENT '过期时间',
+                                   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                                   `creator` varchar(64) DEFAULT NULL COMMENT '创建人',
+                                   `updater` varchar(64) DEFAULT NULL COMMENT '更新人',
+                                   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '逻辑删除',
+                                   PRIMARY KEY (`id`),
+                                   UNIQUE KEY `uk_token` (`token`) COMMENT '令牌唯一索引'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='AI OneAPI令牌表';
 
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `component_name`, `status`, `visible`, `keep_alive`, `always_show`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (2780, 'OneApi 令牌', '', 2, 0, 2758, 'OneApi-Token', 'ep:key', 'ai/model/oneapitoken/index.vue', 'AiOneApiToken', 0, b'1', b'1', b'1', '', '2024-05-09 14:52:56', '1', '2024-05-10 22:44:08', b'0');

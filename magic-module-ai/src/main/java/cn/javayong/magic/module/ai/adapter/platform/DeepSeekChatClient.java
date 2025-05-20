@@ -16,6 +16,7 @@ import reactor.core.publisher.Sinks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -34,68 +35,83 @@ public class DeepSeekChatClient implements AiPlatformChatClient {
     }
 
     public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        OpenAIChatRespCommand<Flux<String>> respCommand = new OpenAIChatRespCommand<Flux<String>>();
+        final String requestId = UUID.randomUUID().toString(); // 唯一请求标识
+        OpenAIChatRespCommand<Flux<String>> respCommand = new OpenAIChatRespCommand<>();
         Sinks.Many<String> sink = Sinks.many().unicast().onBackpressureBuffer();
+        CountDownLatch countDownLatch = new CountDownLatch(1);
 
-        CountDownLatch countDownLatch = new CountDownLatch(1);  // 用于阻塞，当返回 HTTP code = 200 才读取流，本来可以直接返回的，但还是细粒度的控制一下，看看后面有没有更好的方式。
         try {
-            // 1. 创建 WebClient
+            String requestBody = JsonUtils.toJsonString(openAIChatReqCommand);
+            log.info("[{}] Starting stream request to {} | Headers: Authorization: Bearer ***** | Request: {}",
+                    requestId, CHAT_COMPLETIONS_ENDPOINT, requestBody);
+
             WebClient client = WebClient.builder()
                     .baseUrl(aiSupplierConfig.getBaseUrl())
                     .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                     .build();
 
-            // 2. 发送流式请求（阻塞直到响应完成）
             client.post()
                     .uri(CHAT_COMPLETIONS_ENDPOINT)
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.TEXT_EVENT_STREAM)
-                    .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
+                    .bodyValue(requestBody)
                     .retrieve()
                     .onStatus(
                             status -> {
-                                if (status == HttpStatus.OK) {
-                                    respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
-                                } else {
-                                    respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
-                                }
+                                boolean isError = status != HttpStatus.OK;
+                                log.info("[{}] Received HTTP status: {} | Is error: {}",
+                                        requestId, status.value(), isError);
+                                respCommand.setCode(isError ?
+                                        OpenAIChatRespCommand.INTERNAL_ERROR_CODE :
+                                        OpenAIChatRespCommand.SUCCESS_CODE);
                                 countDownLatch.countDown();
-                                return status != HttpStatus.OK;  // 非 200 时触发错误处理
+                                return isError;
                             },
-                            response -> response.bodyToMono(String.class)
-                                    .defaultIfEmpty("No error details")
-                                    .flatMap(errorBody -> {
-                                        respCommand.setMessage(errorBody);
-                                        log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
-                                        return Mono.error(new RuntimeException(
-                                                "API Error: HTTP " + response.statusCode() + " - " + errorBody
-                                        ));
-                                    })
+                            response -> {
+                                return response.bodyToMono(String.class)
+                                        .defaultIfEmpty("No error details")
+                                        .flatMap(errorBody -> {
+                                            log.error("[{}] API Error Response | HTTP {} | Body: {}",
+                                                    requestId, response.statusCode(), errorBody);
+                                            respCommand.setMessage(errorBody);
+                                            return Mono.error(new RuntimeException(
+                                                    "HTTP " + response.statusCode() + " - " + errorBody
+                                            ));
+                                        });
+                            }
                     )
                     .bodyToFlux(String.class)
                     .subscribe(
                             data -> {
-                                // 3 在接收到数据后，实时推送到 Sinks
+                                log.info("[{}] Received SSE data: {}", requestId, data);
                                 sink.tryEmitNext(data);
                             },
                             error -> {
-                                log.error("SSE Stream Error: ", error);
+                                log.error("[{}] SSE Stream Error: ", requestId, error);
                                 sink.tryEmitError(error);
                             },
                             () -> {
+                                log.info("[{}] SSE Stream completed successfully", requestId);
                                 sink.tryEmitComplete();
                             }
                     );
 
-            // 阻塞，直到接收到 HTTP 响应码
-            countDownLatch.await(5000L, TimeUnit.MILLISECONDS);  // 在这里进行阻塞，直到 Sinks 完成处理
+            // 等待初始响应（5秒超时）
+            if (!countDownLatch.await(5000L, TimeUnit.MILLISECONDS)) {
+                log.warn("[{}] Timeout waiting for initial response", requestId);
+            }
 
-            // 将 Sinks 转为 Flux
-            respCommand.setData(sink.asFlux());
+            respCommand.setData(sink.asFlux().doOnSubscribe(sub ->
+                    log.info("[{}] Client subscribed to response stream", requestId)
+            ));
+
+            log.info("[{}] Returning response with code: {}", requestId, respCommand.getCode());
             return respCommand;
         } catch (Exception e) {
-            log.error("Deepseek invoke api error:", e);
+            log.error("[{}] Exception during API call: ", requestId, e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
+            respCommand.setMessage(e.getMessage());
+            sink.tryEmitError(e); // 确保异常传播到流
             return respCommand;
         }
     }

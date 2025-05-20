@@ -60,7 +60,7 @@ public class AdminOneApiTokenContoller {
     @Operation(summary = "获得oneapi token")
     @PreAuthorize("@ss.hasPermission('ai:oneapitoken:query')")
     public CommonResult<AiOneApiTokenRespVO> getOneApiToken(@RequestParam("id") Long id) {
-        AiOneApiTokenDO aiOneApiTokenDO = oneApiTokenService.getOneApiToken(id);
+        AiOneApiTokenDO aiOneApiTokenDO = oneApiTokenService.getOneApiTokenById(id);
         return success(BeanUtils.toBean(aiOneApiTokenDO, AiOneApiTokenRespVO.class));
     }
 

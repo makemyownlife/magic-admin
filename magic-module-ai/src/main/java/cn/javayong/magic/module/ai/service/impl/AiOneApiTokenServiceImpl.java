@@ -72,7 +72,12 @@ public class AiOneApiTokenServiceImpl implements AiOneApiTokenService {
     }
 
     @Override
-    public AiOneApiTokenDO getOneApiToken(Long id) {
+    public AiOneApiTokenDO getOneApiTokenByToken(String token) {
+        return oneApiTokenMapper.selectOne(AiOneApiTokenDO::getToken, token);
+    }
+
+    @Override
+    public AiOneApiTokenDO getOneApiTokenById(Long id) {
         return oneApiTokenMapper.selectById(id);
     }
 

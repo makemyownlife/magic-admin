@@ -23,19 +23,15 @@ public class OpenAIChatReqVO {
     private String model;
 
     @Schema(description = "采样温度，0-2，越高越随机", example = "1.0")
-    private Double temperature;
+    private Double temperature = 0.7;
 
     @JsonProperty("presence_penalty")
     @Schema(description = "存在惩罚，-2.0到2.0，越高越避免新话题", example = "0.0")
-    private Double presencePenalty;
-
-    @JsonProperty("frequency_penalty")
-    @Schema(description = "频率惩罚，-2.0到2.0，越高越避免重复", example = "0.0")
-    private Double frequencyPenalty;
+    private Double presencePenalty = 0.0;
 
     @JsonProperty("top_p")
     @Schema(description = "核心采样，0-1，与temperature二选一", example = "1.0")
-    private Double topP;
+    private Double topP = 1.0;
 
     @Data
     @Schema(description = "聊天消息")
