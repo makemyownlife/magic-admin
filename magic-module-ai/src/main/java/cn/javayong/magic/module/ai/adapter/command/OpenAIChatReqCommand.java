@@ -4,9 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class OpenAIChatReqCommand {
+
+    private String requestId; // 唯一请求标识
 
     private List<OpenAIChatReqCommand.ChatMessage> messages;
 

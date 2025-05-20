@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 标准 AI 对话格式
@@ -12,6 +13,8 @@ import java.util.List;
 @Data
 @Schema(description = "OpenAI 聊天请求参数")
 public class OpenAIChatReqVO {
+
+    private String requestId = UUID.randomUUID().toString();
 
     @Schema(description = "消息列表", requiredMode = Schema.RequiredMode.REQUIRED)
     private List<ChatMessage> messages;

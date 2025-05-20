@@ -16,4 +16,6 @@ public class OpenAIChatRespCommand<T> {
 
     private T data;
 
+    private Boolean stream;
+
 }
