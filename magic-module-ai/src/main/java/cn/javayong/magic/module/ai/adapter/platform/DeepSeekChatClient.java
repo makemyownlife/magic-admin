@@ -35,7 +35,7 @@ public class DeepSeekChatClient implements AiPlatformChatClient {
     }
 
     public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        final String requestId = UUID.randomUUID().toString(); // 唯一请求标识
+        final String requestId = openAIChatReqCommand.getRequestId(); // 唯一请求标识
         OpenAIChatRespCommand<Flux<String>> respCommand = new OpenAIChatRespCommand<>();
         Sinks.Many<String> sink = Sinks.many().unicast().onBackpressureBuffer();
         CountDownLatch countDownLatch = new CountDownLatch(1);

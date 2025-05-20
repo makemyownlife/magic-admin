@@ -4,6 +4,7 @@ package cn.javayong.magic.module.ai.adapter.core;
 import cn.javayong.magic.module.ai.adapter.platform.DeepSeekChatClient;
 import cn.javayong.magic.module.ai.adapter.platform.DouBaoChatClient;
 import cn.javayong.magic.module.ai.adapter.platform.QwenChatClient;
+import cn.javayong.magic.module.ai.adapter.platform.SiliconFlowChatClient;
 import cn.javayong.magic.module.ai.domain.enums.AiPlatformEnum;
 
 /**
@@ -23,6 +24,8 @@ public class AiPlatformClientFactory {
                 return new DouBaoChatClient(config);
             case TONG_YI:
                 return new QwenChatClient(config);
+            case SILICON_FLOW:
+                return new SiliconFlowChatClient(config);
             default:
                 throw new UnsupportedOperationException("Unsupported platform: " + config.getPlatform());
         }

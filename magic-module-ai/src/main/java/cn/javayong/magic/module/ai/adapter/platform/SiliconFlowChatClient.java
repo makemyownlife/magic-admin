@@ -1,8 +1,8 @@
 package cn.javayong.magic.module.ai.adapter.platform;
 
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
-import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatCompletions;
+import cn.javayong.magic.module.ai.adapter.command.OpenAIChatReqCommand;
 import cn.javayong.magic.module.ai.adapter.command.OpenAIChatRespCommand;
 import cn.javayong.magic.module.ai.adapter.core.AiPlatformChatClient;
 import cn.javayong.magic.module.ai.adapter.core.AiPlatformConfig;
@@ -20,20 +20,19 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 阿里千问 AI 供应商 API 实现
+ * 硅基流动 供应商 API ，兼容 openai 协议
  */
 @Slf4j
-public class QwenChatClient implements AiPlatformChatClient {
+public class SiliconFlowChatClient implements AiPlatformChatClient {
 
     private static final String CHAT_COMPLETIONS_ENDPOINT = "/chat/completions";
 
-    private AiPlatformConfig aiPlatformConfig;
+    private AiPlatformConfig aiSupplierConfig;
 
-    public QwenChatClient(AiPlatformConfig aiPlatformConfig) {
-        this.aiPlatformConfig = aiPlatformConfig;
+    public SiliconFlowChatClient(AiPlatformConfig aiPlatformConfig) {
+        this.aiSupplierConfig = aiPlatformConfig;
     }
 
-    @Override
     public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
         final String requestId = openAIChatReqCommand.getRequestId(); // 唯一请求标识
         OpenAIChatRespCommand<Flux<String>> respCommand = new OpenAIChatRespCommand<>();
@@ -46,8 +45,8 @@ public class QwenChatClient implements AiPlatformChatClient {
                     requestId, CHAT_COMPLETIONS_ENDPOINT, requestBody);
 
             WebClient client = WebClient.builder()
-                    .baseUrl(aiPlatformConfig.getBaseUrl())
-                    .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
+                    .baseUrl(aiSupplierConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                     .build();
 
             client.post()
@@ -108,7 +107,7 @@ public class QwenChatClient implements AiPlatformChatClient {
             log.info("[{}] Returning response with code: {}", requestId, respCommand.getCode());
             return respCommand;
         } catch (Exception e) {
-            log.error(" [{}] Exception during QWen API call: ", requestId, e);
+            log.error("[{}] Exception during 硅基流动 API call: ", requestId, e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setMessage(e.getMessage());
             sink.tryEmitError(e); // 确保异常传播到流
@@ -118,12 +117,12 @@ public class QwenChatClient implements AiPlatformChatClient {
 
     @Override
     public OpenAIChatRespCommand<OpenAIChatCompletions> blockChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
+        OpenAIChatRespCommand<OpenAIChatCompletions> respCommand = new OpenAIChatRespCommand<OpenAIChatCompletions>();
         try {
-            // 1. 创建 WebClient (非Spring环境需手动构建)
+            // 1. 创建 WebClient
             WebClient client = WebClient.builder()
-                    .baseUrl(aiPlatformConfig.getBaseUrl())
-                    .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
+                    .baseUrl(aiSupplierConfig.getBaseUrl())
+                    .defaultHeader("Authorization", "Bearer " + aiSupplierConfig.getApiKey())
                     .build();
 
             // 2. 发送阻塞请求并处理 JSON 响应
@@ -141,24 +140,23 @@ public class QwenChatClient implements AiPlatformChatClient {
             respCommand.setData(completions);
             return respCommand;
         } catch (Exception e) {
-            log.error("QianWen blockChatCompletion invoke error:", e);
+            log.error("硅基流动 blockChatCompletion invoke error:", e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
-            respCommand.setMessage("调用 阿里云千问官网API服务异常，请确保 API KEY 正确 和网络正常!");
+            respCommand.setMessage("调用 硅基流动 官网API服务异常，请确保 API KEY 正确 和网络正常!");
         }
         return respCommand;
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
+        AiPlatformConfig aiPlatformConfig = new AiPlatformConfig();
+        aiPlatformConfig.setBaseUrl("https://api.deepseek.com/v1/");
+        aiPlatformConfig.setApiKey("sk-31da87a7c6eb40188fb1a71f98fa6fbd");
 
-        AiPlatformConfig aiSupplierConfig = new AiPlatformConfig();
-        aiSupplierConfig.setBaseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1/");
-        aiSupplierConfig.setApiKey("sk-f49ab9cd447e433c8862dc9f66cf432a");
-
-        AiPlatformChatClient aiPlatformChatClient = new QwenChatClient(aiSupplierConfig);
+        AiPlatformChatClient aiPlatformChatClient = new SiliconFlowChatClient(aiPlatformConfig);
 
         OpenAIChatReqCommand openAIChatReqCommand = new OpenAIChatReqCommand();
-        openAIChatReqCommand.setModel("qwen-turbo"); // 模型列表：https://www.alibabacloud.com/help/zh/model-studio/models
-        openAIChatReqCommand.setStream(false);
+        openAIChatReqCommand.setModel("deepseek-chat");
+        openAIChatReqCommand.setStream(true);
         openAIChatReqCommand.setTemperature(0.7);
 
         // 添加消息列表
@@ -167,11 +165,19 @@ public class QwenChatClient implements AiPlatformChatClient {
         chatMessageList.add(chatMessage);
         openAIChatReqCommand.setMessages(chatMessageList);
 
-        // 调用同步阻塞接口
-        OpenAIChatRespCommand openAIChatCompletions = aiPlatformChatClient.blockChatCompletion(openAIChatReqCommand);
-        System.out.println(JsonUtils.toJsonString(openAIChatCompletions));
+        OpenAIChatRespCommand<Flux<String>> respCommand = aiPlatformChatClient.streamChatCompletion(openAIChatReqCommand);
 
-        // Flux<String> openAIChatCompletions = aiSupplierChatClient.streamChatCompletion(openAIChatReqCommand);
+        respCommand.getData().subscribe(
+                line -> System.out.println(line),       // onNext
+                error -> System.err.println(error),     // onError
+                () -> System.out.println("Stream completed!")  // onComplete
+        );
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

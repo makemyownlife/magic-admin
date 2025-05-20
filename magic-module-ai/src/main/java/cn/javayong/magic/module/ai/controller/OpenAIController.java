@@ -20,15 +20,10 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 
 @Tag(name = "兼容 openai 的核心接口")
 @RestController("OpenAIController")
@@ -40,6 +35,7 @@ public class OpenAIController {
     private OpenAIService openAIService;
 
     /**
+     * 统一接口支持两种类型
      * 创建文本对话请求 参考 deepseek 文档：  https://api-docs.deepseek.com/zh-cn/
      * 或者 硅基流动  https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions
      */
@@ -47,25 +43,48 @@ public class OpenAIController {
             produces = {MediaType.TEXT_EVENT_STREAM_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @PermitAll
     public void completions(@RequestBody OpenAIChatReqVO openAIChatReqVO,
-                            @RequestHeader(value = "Authorization", required = false) String oneApiToken,
-                            HttpServletResponse response) throws IOException {
+                              @RequestHeader(value = "Authorization", required = false) String oneApiToken,
+                              HttpServletResponse response) throws IOException {
+
         log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO) + " oneApiToken:" + oneApiToken);
 
-        // 流式或者非流式 设置不同的 ContentType
+        // 流式
         if (openAIChatReqVO.isStream()) {
-            response.setContentType(MediaType.TEXT_EVENT_STREAM.getType());
+            response.setContentType(MediaType.TEXT_EVENT_STREAM_VALUE);
             OpenAIChatRespCommand<Flux<String>> streamedRespCommand = openAIService.streamCompletions(openAIChatReqVO);
             Flux<String> dataStream = streamedRespCommand.getData();
-
-        } else {
-            response.setContentType(MediaType.APPLICATION_JSON.getType());
-            OpenAIChatRespCommand<OpenAIChatCompletions> blockRespCommand = openAIService.blockCompletions(openAIChatReqVO);
-            // Write JSON response
+            response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
-            writer.write(JsonUtils.toJsonString(blockRespCommand));
+            // 关键点：切换到当前线程执行
+            dataStream
+                    .publishOn(Schedulers.immediate()) // 确保操作在当前线程
+                    .doOnNext(data -> {
+                        writer.write("data: " + data + "\n\n"); // SSE格式
+                        writer.flush();
+                    })
+                    .doOnError(e -> {
+                        writer.write("event: error\ndata: " + e.getMessage() + "\n\n");
+                        writer.flush();
+                    })
+                    .doOnComplete(() -> {
+                        writer.write("event: done\ndata: [DONE]\n\n");
+                        writer.flush();
+                        writer.close();
+                    })
+                    .blockLast(); // 阻塞直到流结束
+        }
+
+        // 非流式
+        else {
+            OpenAIChatRespCommand<OpenAIChatCompletions> blockRespCommand = openAIService.blockCompletions(openAIChatReqVO);
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.write(JsonUtils.toJsonString(blockRespCommand.getData()));
             writer.flush();
             writer.close();
         }
+
     }
 
 }

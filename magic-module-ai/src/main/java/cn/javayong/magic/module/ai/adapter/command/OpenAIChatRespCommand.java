@@ -18,4 +18,6 @@ public class OpenAIChatRespCommand<T> {
 
     private Boolean stream;
 
+    private Exception exception;
+
 }

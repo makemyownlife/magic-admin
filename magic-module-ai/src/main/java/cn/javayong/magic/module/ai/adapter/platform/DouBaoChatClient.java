@@ -12,9 +12,12 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Sinks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 字节豆包 AI 供应商 API 实现
@@ -32,53 +35,83 @@ public class DouBaoChatClient implements AiPlatformChatClient {
 
     @Override
     public OpenAIChatRespCommand<Flux<String>> streamChatCompletion(OpenAIChatReqCommand openAIChatReqCommand) {
-        OpenAIChatRespCommand respCommand = new OpenAIChatRespCommand();
+        final String requestId = openAIChatReqCommand.getRequestId(); // 唯一请求标识
+        OpenAIChatRespCommand<Flux<String>> respCommand = new OpenAIChatRespCommand<>();
+        Sinks.Many<String> sink = Sinks.many().unicast().onBackpressureBuffer();
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+
         try {
-            // 1. 创建 WebClient
+            String requestBody = JsonUtils.toJsonString(openAIChatReqCommand);
+            log.info("[{}] Starting stream request to {} | Headers: Authorization: Bearer ***** | Request: {}",
+                    requestId, CHAT_COMPLETIONS_ENDPOINT, requestBody);
+
             WebClient client = WebClient.builder()
                     .baseUrl(aiPlatformConfig.getBaseUrl())
                     .defaultHeader("Authorization", "Bearer " + aiPlatformConfig.getApiKey())
                     .build();
 
-            // 2. 发送流式请求并处理 SSE 响应
-            Flux<String> stringFlux = client.post()
+            client.post()
                     .uri(CHAT_COMPLETIONS_ENDPOINT)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.TEXT_EVENT_STREAM) // 关键：声明接受 SSE
-                    .bodyValue(JsonUtils.toJsonString(openAIChatReqCommand))
+                    .accept(MediaType.TEXT_EVENT_STREAM)
+                    .bodyValue(requestBody)
                     .retrieve()
-                    // 检查 HTTP 状态码，如果不是 200，则返回错误信息
                     .onStatus(
-                            status -> status != HttpStatus.OK,
+                            status -> {
+                                boolean isError = status != HttpStatus.OK;
+                                log.info("[{}] Received HTTP status: {} | Is error: {}",
+                                        requestId, status.value(), isError);
+                                respCommand.setCode(isError ?
+                                        OpenAIChatRespCommand.INTERNAL_ERROR_CODE :
+                                        OpenAIChatRespCommand.SUCCESS_CODE);
+                                countDownLatch.countDown();
+                                return isError;
+                            },
                             response -> {
-                                // 尝试读取错误信息（如 API 返回的错误 JSON）
                                 return response.bodyToMono(String.class)
-                                        .defaultIfEmpty("No error details provided")
+                                        .defaultIfEmpty("No error details")
                                         .flatMap(errorBody -> {
-                                            log.error("API Error (HTTP {}): {}", response.statusCode(), errorBody);
+                                            log.error("[{}] API Error Response | HTTP {} | Body: {}",
+                                                    requestId, response.statusCode(), errorBody);
+                                            respCommand.setMessage(errorBody);
                                             return Mono.error(new RuntimeException(
-                                                    "invoke deepSeek API Error: HTTP " + response.statusCode() + " - " + errorBody
+                                                    "HTTP " + response.statusCode() + " - " + errorBody
                                             ));
                                         });
                             }
                     )
                     .bodyToFlux(String.class)
-                    // 错误处理（如网络异常）
-                    .doOnError(error -> {
-                        log.error("SSE Stream Error: ", error);
-                    })
-                    // 如果发生错误，返回一个错误提示消息
-                    .onErrorResume(error -> {
-                        return Flux.just("[ERROR] Stream failed: " + error.getMessage());
-                    });
+                    .subscribe(
+                            data -> {
+                                log.info("[{}] Received SSE data: {}", requestId, data);
+                                sink.tryEmitNext(data);
+                            },
+                            error -> {
+                                log.error("[{}] SSE Stream Error: ", requestId, error);
+                                sink.tryEmitError(error);
+                            },
+                            () -> {
+                                log.info("[{}] SSE Stream completed successfully", requestId);
+                                sink.tryEmitComplete();
+                            }
+                    );
 
-            respCommand.setCode(OpenAIChatRespCommand.SUCCESS_CODE);
-            respCommand.setData(stringFlux);
+            // 等待初始响应（5秒超时）
+            if (!countDownLatch.await(5000L, TimeUnit.MILLISECONDS)) {
+                log.warn("[{}] Timeout waiting for initial response", requestId);
+            }
+
+            respCommand.setData(sink.asFlux().doOnSubscribe(sub ->
+                    log.info("[{}] Client subscribed to response stream", requestId)
+            ));
+
+            log.info("[{}] Returning response with code: {}", requestId, respCommand.getCode());
             return respCommand;
         } catch (Exception e) {
-            log.error("DouBao invoke api error:", e);
+            log.error("[{}] Exception during API call: ", requestId, e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
-            respCommand.setData(e.getMessage());
+            respCommand.setMessage(e.getMessage());
+            sink.tryEmitError(e); // 确保异常传播到流
             return respCommand;
         }
     }
