@@ -108,7 +108,7 @@ public class DouBaoChatClient implements AiPlatformChatClient {
             log.info("[{}] Returning response with code: {}", requestId, respCommand.getCode());
             return respCommand;
         } catch (Exception e) {
-            log.error("[{}] Exception during API call: ", requestId, e);
+            log.error("[{}] Exception during 豆包 API call: ", requestId, e);
             respCommand.setCode(OpenAIChatRespCommand.INTERNAL_ERROR_CODE);
             respCommand.setMessage(e.getMessage());
             sink.tryEmitError(e); // 确保异常传播到流
@@ -136,12 +136,12 @@ public class DouBaoChatClient implements AiPlatformChatClient {
                         HttpStatus status = response.statusCode();
                         if (status == HttpStatus.OK) {
                             return response.bodyToMono(OpenAIChatCompletions.class)
-                                    .doOnNext(body -> log.info("API调用成功，返回值: {}", JsonUtils.toJsonString(body)));
+                                    .doOnNext(body -> log.info("豆包 API调用成功，返回值: {}", JsonUtils.toJsonString(body)));
                         } else {
                             return response.bodyToMono(String.class)
                                     .defaultIfEmpty("") // 如果响应体为空，使用空字符串
                                     .flatMap(body -> {
-                                        log.error("API调用失败，HTTP状态码: {}，错误响应: {}", status.value(), body);
+                                        log.error("豆包 API调用失败，HTTP状态码: {}，错误响应: {}", status.value(), body);
                                         return Mono.error(new RuntimeException("API调用失败，状态码: " + status.value() + "，错误信息: " + body));
                                     });
                         }
