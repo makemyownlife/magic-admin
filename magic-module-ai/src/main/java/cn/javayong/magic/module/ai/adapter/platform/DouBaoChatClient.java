@@ -71,7 +71,7 @@ public class DouBaoChatClient implements AiPlatformChatClient {
                                 return response.bodyToMono(String.class)
                                         .defaultIfEmpty("No error details")
                                         .flatMap(errorBody -> {
-                                            log.error("[{}] API Error Response | HTTP {} | Body: {}",
+                                            log.error("[{}] DOUBAO API Error Response | HTTP {} | Body: {}",
                                                     requestId, response.statusCode(), errorBody);
                                             respCommand.setMessage(errorBody);
                                             return Mono.error(new RuntimeException(
@@ -83,21 +83,21 @@ public class DouBaoChatClient implements AiPlatformChatClient {
                     .bodyToFlux(String.class)
                     .subscribe(
                             data -> {
-                                log.info("[{}] Received SSE data: {}", requestId, data);
+                                log.info("[{}] DOUBAO Received SSE data: {}", requestId, data);
                                 sink.tryEmitNext(data);
                             },
                             error -> {
-                                log.error("[{}] SSE Stream Error: ", requestId, error);
+                                log.error("[{}] DOUBAO SSE Stream Error: ", requestId, error);
                                 sink.tryEmitError(error);
                             },
                             () -> {
-                                log.info("[{}] SSE Stream completed successfully", requestId);
+                                log.info("[{}] DOUBAO SE Stream completed successfully", requestId);
                                 sink.tryEmitComplete();
                             }
                     );
 
-            // 等待初始响应（5秒超时）
-            if (!countDownLatch.await(5000L, TimeUnit.MILLISECONDS)) {
+            // 等待初始响应（10秒超时）
+            if (!countDownLatch.await(10000L, TimeUnit.MILLISECONDS)) {
                 log.warn("[{}] Timeout waiting for initial response", requestId);
             }
 
