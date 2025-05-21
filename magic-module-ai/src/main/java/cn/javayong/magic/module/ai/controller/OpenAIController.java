@@ -10,6 +10,7 @@ import cn.javayong.magic.module.ai.service.OpenAIService;
 import cn.javayong.magic.module.ai.util.ResponseUtils;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils.AUTHORIZATION_BEARER;
+
 @Tag(name = "兼容 openai 的核心接口")
 @RestController("OpenAIController")
 @RequestMapping("/chat")
@@ -34,6 +37,9 @@ public class OpenAIController {
 
     @Autowired
     private OpenAIService openAIService;
+
+    @Autowired
+    private AiOneApiTokenService aiOneApiTokenService;
 
     /**
      * 统一接口支持两种类型
@@ -44,10 +50,21 @@ public class OpenAIController {
             produces = {MediaType.TEXT_EVENT_STREAM_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @PermitAll
     public void completions(@RequestBody OpenAIChatReqVO openAIChatReqVO,
-                            @RequestHeader(value = "Authorization", required = false) String oneApiToken,
+                            @RequestHeader(value = "Authorization", required = false) String authorization,
                             HttpServletResponse response) throws IOException {
 
-        log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO) + " oneApiToken:" + oneApiToken);
+        log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO) + " authorization:" + authorization);
+
+        // 1. 获取 token
+        int index = authorization.indexOf(AUTHORIZATION_BEARER + " ");
+        String token = index >= 0 ? authorization.substring(index + 7).trim() : authorization;
+
+        // 2. 验证 token 是否存在
+        AiOneApiTokenDO aiOneApiTokenDO = aiOneApiTokenService.getOneApiTokenByToken(token);
+        if (aiOneApiTokenDO == null || aiOneApiTokenDO.getDeleted()) {
+            ResponseUtils.writeUnauthorized(response, "Unauthorized: Invalid API Key");
+            return;
+        }
 
         // 流式 SSE 模式
         if (openAIChatReqVO.isStream()) {

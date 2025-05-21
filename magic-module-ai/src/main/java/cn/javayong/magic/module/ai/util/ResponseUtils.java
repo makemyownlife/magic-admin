@@ -10,6 +10,14 @@ import java.io.PrintWriter;
 
 public class ResponseUtils {
 
+    public static void writeUnauthorized(HttpServletResponse response, String content) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.getWriter().write(content);
+        response.getWriter().flush();
+        response.getWriter().close();
+    }
+
     public static void writeSSE(HttpServletResponse response, Flux<String> dataStream) throws IOException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType(MediaType.TEXT_EVENT_STREAM_VALUE);
