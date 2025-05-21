@@ -7,6 +7,7 @@ import cn.javayong.magic.module.ai.domain.AiOneApiTokenDO;
 import cn.javayong.magic.module.ai.domain.vo.OpenAIChatReqVO;
 import cn.javayong.magic.module.ai.service.AiOneApiTokenService;
 import cn.javayong.magic.module.ai.service.OpenAIService;
+import cn.javayong.magic.module.ai.util.ResponseUtils;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,46 +44,22 @@ public class OpenAIController {
             produces = {MediaType.TEXT_EVENT_STREAM_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @PermitAll
     public void completions(@RequestBody OpenAIChatReqVO openAIChatReqVO,
-                              @RequestHeader(value = "Authorization", required = false) String oneApiToken,
-                              HttpServletResponse response) throws IOException {
+                            @RequestHeader(value = "Authorization", required = false) String oneApiToken,
+                            HttpServletResponse response) throws IOException {
 
         log.info("openAIChatReqVO:" + JsonUtils.toJsonString(openAIChatReqVO) + " oneApiToken:" + oneApiToken);
 
-        // 流式
+        // 流式 SSE 模式
         if (openAIChatReqVO.isStream()) {
-            response.setContentType(MediaType.TEXT_EVENT_STREAM_VALUE);
             OpenAIChatRespCommand<Flux<String>> streamedRespCommand = openAIService.streamCompletions(openAIChatReqVO);
             Flux<String> dataStream = streamedRespCommand.getData();
-            response.setCharacterEncoding("UTF-8");
-            PrintWriter writer = response.getWriter();
-            // 关键点：切换到当前线程执行
-            dataStream
-                    .publishOn(Schedulers.immediate()) // 确保操作在当前线程
-                    .doOnNext(data -> {
-                        writer.write("data: " + data + "\n\n"); // SSE格式
-                        writer.flush();
-                    })
-                    .doOnError(e -> {
-                        writer.write("event: error\ndata: " + e.getMessage() + "\n\n");
-                        writer.flush();
-                    })
-                    .doOnComplete(() -> {
-                        writer.write("event: done\ndata: [DONE]\n\n");
-                        writer.flush();
-                        writer.close();
-                    })
-                    .blockLast(); // 阻塞直到流结束
+            ResponseUtils.writeSSE(response, dataStream);
         }
 
-        // 非流式
+        // 非流式 模式
         else {
             OpenAIChatRespCommand<OpenAIChatCompletions> blockRespCommand = openAIService.blockCompletions(openAIChatReqVO);
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            response.setCharacterEncoding("UTF-8");
-            PrintWriter writer = response.getWriter();
-            writer.write(JsonUtils.toJsonString(blockRespCommand.getData()));
-            writer.flush();
-            writer.close();
+            ResponseUtils.writeJSON(response, JsonUtils.toJsonString(blockRespCommand.getData()));
         }
 
     }
