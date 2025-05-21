@@ -26,6 +26,8 @@ import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils.AUTHORIZATION_BEARER;
 
@@ -61,7 +63,7 @@ public class OpenAIController {
 
         // 2. 验证 token 是否存在
         AiOneApiTokenDO aiOneApiTokenDO = aiOneApiTokenService.getOneApiTokenByToken(token);
-        if (aiOneApiTokenDO == null || aiOneApiTokenDO.getDeleted()) {
+        if (aiOneApiTokenDO == null || aiOneApiTokenDO.getDeleted() || aiOneApiTokenDO.getExpireTime().isBefore(LocalDateTime.now())) {
             ResponseUtils.writeUnauthorized(response, "Unauthorized: Invalid API Key");
             return;
         }
@@ -69,14 +71,24 @@ public class OpenAIController {
         // 流式 SSE 模式
         if (openAIChatReqVO.isStream()) {
             OpenAIChatRespCommand<Flux<String>> streamedRespCommand = openAIService.streamCompletions(openAIChatReqVO);
-            Flux<String> dataStream = streamedRespCommand.getData();
-            ResponseUtils.writeSSE(response, dataStream);
+            if (Objects.equals(streamedRespCommand.getCode(), OpenAIChatRespCommand.SUCCESS_CODE)) {
+                Flux<String> dataStream = streamedRespCommand.getData();
+                ResponseUtils.writeSSE(response, dataStream);
+            } else {
+                // 流式出现异常，返回 JSON 格式
+                ResponseUtils.writeJSON(response, JsonUtils.toJsonString(streamedRespCommand));
+            }
         }
 
         // 非流式 模式
         else {
             OpenAIChatRespCommand<OpenAIChatCompletions> blockRespCommand = openAIService.blockCompletions(openAIChatReqVO);
-            ResponseUtils.writeJSON(response, JsonUtils.toJsonString(blockRespCommand.getData()));
+            if (Objects.equals(blockRespCommand.getCode(), OpenAIChatRespCommand.SUCCESS_CODE)) {
+                ResponseUtils.writeJSON(response, JsonUtils.toJsonString(blockRespCommand.getData()));
+            } else {
+                // 非流式请求出现异常，返回 JSON 格式
+                ResponseUtils.writeJSON(response, JsonUtils.toJsonString(blockRespCommand));
+            }
         }
 
     }
