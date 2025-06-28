@@ -6,12 +6,11 @@ import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.util.monitor.TracerUtils;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
-import cn.javayong.magic.framework.tenant.core.context.TenantContextHolder;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
 import cn.javayong.magic.framework.token.core.dto.SecurityCreateTokenDTO;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.module.system.domain.convert.AuthConvert;
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 import cn.javayong.magic.module.system.domain.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.domain.vo.*;
 import cn.javayong.magic.module.system.domain.enums.LoginLogTypeEnum;
@@ -146,8 +145,7 @@ public class AdminAuthServiceImpl implements AdminAuthService {
         // 创建访问令牌
         SecurityCreateTokenDTO securityCreateTokenDTO = new SecurityCreateTokenDTO();
         securityCreateTokenDTO.setUserId(userId).
-                                setUserType(UserTypeEnum.ADMIN.getValue()).
-                                setTenantId(TenantContextHolder.getTenantId());
+                                setUserType(UserTypeEnum.ADMIN.getValue());
         SecurityAccessTokenDTO securityAccessTokenDTO = securityTokenService.createAccessToken(securityCreateTokenDTO);
 
         // 构建返回结果

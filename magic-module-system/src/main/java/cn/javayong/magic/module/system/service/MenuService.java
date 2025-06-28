@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.service;
 
 import cn.javayong.magic.module.system.domain.vo.MenuSaveVO;
 import cn.javayong.magic.module.system.domain.vo.MenuListReqVO;
-import cn.javayong.magic.module.system.domain.MenuDO;
+import cn.javayong.magic.module.system.domain.dataobject.MenuDO;
 
 import java.util.Collection;
 import java.util.List;

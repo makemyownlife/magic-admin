@@ -3,7 +3,7 @@ package cn.javayong.magic.module.infra.domain.convert;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.domain.vo.ConfigRespVO;
 import cn.javayong.magic.module.infra.domain.vo.ConfigSaveReqVO;
-import cn.javayong.magic.module.infra.domain.ConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.ConfigDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.module.system.domain.vo.TenantPackagePageReqVO;
-import cn.javayong.magic.module.system.domain.TenantPackageDO;
+import cn.javayong.magic.module.system.domain.dataobject.TenantPackageDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

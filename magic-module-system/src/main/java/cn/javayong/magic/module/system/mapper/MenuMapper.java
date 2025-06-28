@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.mapper;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.module.system.domain.vo.MenuListReqVO;
-import cn.javayong.magic.module.system.domain.MenuDO;
+import cn.javayong.magic.module.system.domain.dataobject.MenuDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

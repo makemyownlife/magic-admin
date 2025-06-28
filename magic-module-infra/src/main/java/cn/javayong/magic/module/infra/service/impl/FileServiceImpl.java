@@ -11,7 +11,7 @@ import cn.javayong.magic.module.infra.framework.file.core.utils.FileTypeUtils;
 import cn.javayong.magic.module.infra.domain.vo.FileCreateReqVO;
 import cn.javayong.magic.module.infra.domain.vo.FilePageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.FilePresignedUrlRespVO;
-import cn.javayong.magic.module.infra.domain.FileDO;
+import cn.javayong.magic.module.infra.domain.dataobject.FileDO;
 import cn.javayong.magic.module.infra.mapper.FileMapper;
 import cn.javayong.magic.module.infra.service.FileConfigService;
 import cn.javayong.magic.module.infra.service.FileService;

@@ -13,7 +13,7 @@
 
     <name>${project.artifactId}</name>
     <description>数据库连接池、多数据源、事务、MyBatis 拓展</description>
-    <url>https://github.com/makemyownlife/magic-admin</url>
+    <url>https://gitcode.com/javayong/vision-ai-admin</url>
 
     <dependencies>
         <dependency>

@@ -13,7 +13,7 @@
 
     <name>${project.artifactId}</name>
     <description>定义基础 pojo 类、枚举、工具类等等</description>
-    <url>https://github.com/makemyownlife/magic-admin</url>
+    <url>https://gitcode.com/javayong/vision-ai-admin</url>
 
     <dependencies>
         <!-- Spring 核心 -->

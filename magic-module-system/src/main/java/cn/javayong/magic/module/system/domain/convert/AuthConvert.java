@@ -3,9 +3,9 @@ package cn.javayong.magic.module.system.domain.convert;
 import cn.hutool.core.collection.CollUtil;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
-import cn.javayong.magic.module.system.domain.MenuDO;
-import cn.javayong.magic.module.system.domain.RoleDO;
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.MenuDO;
+import cn.javayong.magic.module.system.domain.dataobject.RoleDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 import cn.javayong.magic.module.system.domain.vo.AuthLoginRespVO;
 import cn.javayong.magic.module.system.domain.vo.AuthPermissionInfoRespVO;
 import cn.javayong.magic.module.system.domain.enums.MenuTypeEnum;
@@ -17,7 +17,7 @@ import java.util.*;
 
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertSet;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.filterList;
-import static cn.javayong.magic.module.system.domain.MenuDO.ID_ROOT;
+import static cn.javayong.magic.module.system.domain.dataobject.MenuDO.ID_ROOT;
 
 @Mapper
 public interface AuthConvert {

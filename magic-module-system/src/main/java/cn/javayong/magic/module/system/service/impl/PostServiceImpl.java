@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.vo.PostPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.PostSaveReqVO;
-import cn.javayong.magic.module.system.domain.PostDO;
+import cn.javayong.magic.module.system.domain.dataobject.PostDO;
 import cn.javayong.magic.module.system.mapper.PostMapper;
 import cn.javayong.magic.module.system.service.PostService;
 import org.springframework.stereotype.Service;

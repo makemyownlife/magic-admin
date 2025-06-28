@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.domain.vo.LoginLogPageReqVO;
-import cn.javayong.magic.module.system.domain.LoginLogDO;
+import cn.javayong.magic.module.system.domain.dataobject.LoginLogDO;
 import cn.javayong.magic.module.system.mapper.LoginLogMapper;
 import cn.javayong.magic.module.system.service.LoginLogService;
 import org.springframework.stereotype.Service;

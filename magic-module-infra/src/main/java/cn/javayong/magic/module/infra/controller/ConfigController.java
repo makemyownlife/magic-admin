@@ -5,7 +5,7 @@ import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.infra.domain.convert.ConfigConvert;
-import cn.javayong.magic.module.infra.domain.ConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.ConfigDO;
 import cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants;
 import cn.javayong.magic.module.infra.domain.vo.ConfigPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.ConfigRespVO;

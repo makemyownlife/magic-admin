@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.service.impl;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.domain.vo.OperateLogPageReqVO;
-import cn.javayong.magic.module.system.domain.OperateLogDO;
+import cn.javayong.magic.module.system.domain.dataobject.OperateLogDO;
 import cn.javayong.magic.module.system.mapper.OperateLogMapper;
 import cn.javayong.magic.module.system.service.OperateLogService;
 import lombok.extern.slf4j.Slf4j;

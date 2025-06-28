@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.service;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.domain.vo.OperateLogPageReqVO;
-import cn.javayong.magic.module.system.domain.OperateLogDO;
+import cn.javayong.magic.module.system.domain.dataobject.OperateLogDO;
 
 /**
  * 操作日志 Service 接口

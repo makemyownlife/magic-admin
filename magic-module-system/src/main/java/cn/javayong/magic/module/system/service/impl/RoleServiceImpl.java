@@ -11,7 +11,7 @@ import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.vo.RolePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.RoleSaveReqVO;
-import cn.javayong.magic.module.system.domain.RoleDO;
+import cn.javayong.magic.module.system.domain.dataobject.RoleDO;
 import cn.javayong.magic.module.system.mapper.RoleMapper;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.domain.enums.DataScopeEnum;

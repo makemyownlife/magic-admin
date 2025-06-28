@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.infra.mapper;
 
-import cn.javayong.magic.module.infra.domain.FileContentDO;
+import cn.javayong.magic.module.infra.domain.dataobject.FileContentDO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;

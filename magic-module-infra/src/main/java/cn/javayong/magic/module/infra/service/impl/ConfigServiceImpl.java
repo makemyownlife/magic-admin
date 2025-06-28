@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.domain.vo.ConfigPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.ConfigSaveReqVO;
 import cn.javayong.magic.module.infra.domain.convert.ConfigConvert;
-import cn.javayong.magic.module.infra.domain.ConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.ConfigDO;
 import cn.javayong.magic.module.infra.mapper.ConfigMapper;
 import cn.javayong.magic.module.infra.domain.enums.ConfigTypeEnum;
 import cn.javayong.magic.module.infra.service.ConfigService;

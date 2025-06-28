@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
-import cn.javayong.magic.module.system.domain.RoleDO;
+import cn.javayong.magic.module.system.domain.dataobject.RoleDO;
 import cn.javayong.magic.module.system.domain.vo.RolePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.RoleRespVO;
 import cn.javayong.magic.module.system.domain.vo.RoleSaveReqVO;

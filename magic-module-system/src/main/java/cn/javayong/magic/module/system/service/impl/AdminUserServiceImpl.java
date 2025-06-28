@@ -10,7 +10,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.common.util.validation.ValidationUtils;
-import cn.javayong.magic.module.infra.domain.ConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.ConfigDO;
 import cn.javayong.magic.module.infra.service.ConfigService;
 import cn.javayong.magic.module.infra.service.FileService;
 import cn.javayong.magic.module.system.domain.vo.AuthRegisterReqVO;
@@ -20,9 +20,9 @@ import cn.javayong.magic.module.system.domain.vo.UserImportExcelVO;
 import cn.javayong.magic.module.system.domain.vo.UserImportRespVO;
 import cn.javayong.magic.module.system.domain.vo.UserPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.UserSaveReqVO;
-import cn.javayong.magic.module.system.domain.DeptDO;
-import cn.javayong.magic.module.system.domain.UserPostDO;
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.UserPostDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 import cn.javayong.magic.module.system.mapper.UserPostMapper;
 import cn.javayong.magic.module.system.mapper.AdminUserMapper;
 import cn.javayong.magic.module.system.service.*;
@@ -31,7 +31,6 @@ import com.mzt.logapi.context.LogRecordContext;
 import com.mzt.logapi.service.impl.DiffParseFunction;
 import com.mzt.logapi.starter.annotation.LogRecord;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,9 +68,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     private PermissionService permissionService;
     @Resource
     private PasswordEncoder passwordEncoder;
-    @Resource
-    @Lazy // 延迟，避免循环依赖报错
-    private TenantService tenantService;
 
     @Resource
     private UserPostMapper userPostMapper;
@@ -87,14 +83,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @LogRecord(type = SYSTEM_USER_TYPE, subType = SYSTEM_USER_CREATE_SUB_TYPE, bizNo = "{{#user.id}}",
             success = SYSTEM_USER_CREATE_SUCCESS)
     public Long createUser(UserSaveReqVO createReqVO) {
-        // 1.1 校验账户配合
-        tenantService.handleTenantInfo(tenant -> {
-            long count = userMapper.selectCount();
-            if (count >= tenant.getAccountCount()) {
-                throw exception(USER_COUNT_MAX, tenant.getAccountCount());
-            }
-        });
-        // 1.2 校验正确性
+        // 1.1 校验正确性
         validateUserForCreateOrUpdate(null, createReqVO.getUsername(),
                 createReqVO.getMobile(), createReqVO.getEmail(), createReqVO.getDeptId(), createReqVO.getPostIds());
         // 2.1 插入用户
@@ -115,13 +104,6 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public Long registerUser(AuthRegisterReqVO registerReqVO) {
-        // 1.1 校验账户配合
-        tenantService.handleTenantInfo(tenant -> {
-            long count = userMapper.selectCount();
-            if (count >= tenant.getAccountCount()) {
-                throw exception(USER_COUNT_MAX, tenant.getAccountCount());
-            }
-        });
         // 1.2 校验正确性
         validateUserForCreateOrUpdate(null, registerReqVO.getUsername(), null, null, null, null);
 

@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.util.date.LocalDateTimeUtils;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.vo.DictTypePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.DictTypeSaveReqVO;
-import cn.javayong.magic.module.system.domain.DictTypeDO;
+import cn.javayong.magic.module.system.domain.dataobject.DictTypeDO;
 import cn.javayong.magic.module.system.mapper.DictTypeMapper;
 import cn.javayong.magic.module.system.service.DictDataService;
 import cn.javayong.magic.module.system.service.DictTypeService;

@@ -7,7 +7,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.infra.domain.vo.JobLogPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.JobLogRespVO;
-import cn.javayong.magic.module.infra.domain.JobLogDO;
+import cn.javayong.magic.module.infra.domain.dataobject.JobLogDO;
 import cn.javayong.magic.module.infra.service.JobLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

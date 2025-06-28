@@ -7,19 +7,17 @@ import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.vo.MenuListReqVO;
 import cn.javayong.magic.module.system.domain.vo.MenuSaveVO;
-import cn.javayong.magic.module.system.domain.MenuDO;
+import cn.javayong.magic.module.system.domain.dataobject.MenuDO;
 import cn.javayong.magic.module.system.mapper.MenuMapper;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.domain.enums.MenuTypeEnum;
 import cn.javayong.magic.module.system.service.MenuService;
 import cn.javayong.magic.module.system.service.PermissionService;
-import cn.javayong.magic.module.system.service.TenantService;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +27,7 @@ import java.util.*;
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertMap;
-import static cn.javayong.magic.module.system.domain.MenuDO.ID_ROOT;
+import static cn.javayong.magic.module.system.domain.dataobject.MenuDO.ID_ROOT;
 import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.*;
 
 /**
@@ -45,9 +43,7 @@ public class MenuServiceImpl implements MenuService {
     private MenuMapper menuMapper;
     @Resource
     private PermissionService permissionService;
-    @Resource
-    @Lazy // 延迟，避免循环依赖报错
-    private TenantService tenantService;
+
 
     @Override
     @CacheEvict(value = RedisKeyConstants.PERMISSION_MENU_ID_LIST, key = "#createReqVO.permission",
@@ -115,8 +111,6 @@ public class MenuServiceImpl implements MenuService {
     public List<MenuDO> getMenuListByTenant(MenuListReqVO reqVO) {
         // 查询所有菜单，并过滤掉关闭的节点
         List<MenuDO> menus = getMenuList(reqVO);
-        // 开启多租户的情况下，需要过滤掉未开通的菜单
-        tenantService.handleTenantMenu(menuIds -> menus.removeIf(menu -> !CollUtil.contains(menuIds, menu.getId())));
         return menus;
     }
 

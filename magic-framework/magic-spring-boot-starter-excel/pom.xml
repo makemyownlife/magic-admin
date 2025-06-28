@@ -13,7 +13,7 @@
 
     <name>${project.artifactId}</name>
     <description>Excel 拓展</description>
-    <url>https://github.com/makemyownlife/magic-admin</url>
+    <url>https://gitcode.com/javayong/vision-ai-admin</url>
 
     <dependencies>
         <dependency>

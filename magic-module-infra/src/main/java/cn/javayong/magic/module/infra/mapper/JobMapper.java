@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.module.infra.domain.vo.JobPageReqVO;
-import cn.javayong.magic.module.infra.domain.JobDO;
+import cn.javayong.magic.module.infra.domain.dataobject.JobDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

@@ -3,7 +3,7 @@ package cn.javayong.magic.module.infra.service;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.quartz.core.service.JobLogFrameworkService;
 import cn.javayong.magic.module.infra.domain.vo.JobLogPageReqVO;
-import cn.javayong.magic.module.infra.domain.JobLogDO;
+import cn.javayong.magic.module.infra.domain.dataobject.JobLogDO;
 
 /**
  * Job 日志 Service 接口

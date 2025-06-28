@@ -18,7 +18,7 @@
         1. security：用户的认证、权限的校验，实现「谁」可以做「什么事」
     </description>
 
-    <url>https://github.com/makemyownlife/magic-admin</url>
+    <url>https://gitcode.com/javayong/vision-ai-admin</url>
 
     <dependencies>
         <dependency>

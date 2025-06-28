@@ -22,12 +22,6 @@
 
     <dependencies>
 
-        <!-- 业务组件 -->
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
-        </dependency>
-
         <!-- Web 相关 -->
         <dependency>
             <groupId>cn.javayong</groupId>
@@ -78,15 +72,16 @@
             <artifactId>velocity-engine-core</artifactId> <!-- 实现代码生成 -->
         </dependency>
 
-        <!-- 三方云服务相关 -->
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId> <!-- 文件客户端：解决 ftp 连接 -->
         </dependency>
+
         <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId> <!-- 文件客户端：解决 sftp 连接 -->
         </dependency>
+
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-s3</artifactId><!-- 文件客户端：解决阿里云、腾讯云、minio 等 S3 连接 -->

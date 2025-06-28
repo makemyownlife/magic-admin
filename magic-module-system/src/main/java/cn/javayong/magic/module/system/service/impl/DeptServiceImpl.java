@@ -6,7 +6,7 @@ import cn.javayong.magic.framework.common.enums.CommonStatusEnum;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.vo.DeptListReqVO;
 import cn.javayong.magic.module.system.domain.vo.DeptSaveReqVO;
-import cn.javayong.magic.module.system.domain.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
 import cn.javayong.magic.module.system.mapper.DeptMapper;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.service.DeptService;
