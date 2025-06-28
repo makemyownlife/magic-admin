@@ -342,16 +342,6 @@
                 </exclusions>
             </dependency>
 
-            <!-- 监控相关 -->
-
-            <!-- Test 测试相关 -->
-            <dependency>
-                <groupId>cn.javayong</groupId>
-                <artifactId>magic-spring-boot-starter-test</artifactId>
-                <version>${revision}</version>
-                <scope>test</scope>
-            </dependency>
-
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-inline</artifactId>
