@@ -40,7 +40,109 @@ public class ProjectReactor {
             "xdb"); // IP 库
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
 
+        String projectBaseDir = getProjectBaseDir();
+        log.info("[main][原项目路劲改地址 ({})]", projectBaseDir);
+
+        // 定义 group 组
+        String groupIdNew = "cn.star.pp";
+        // 定义 比如项目名是 magic-admin 修改成 star-admin
+        String artifactIdNew = "star";
+        // 标志 包名
+        String packageNameNew = "cn.star.pp";
+        String titleNew = "土豆管理系统";
+        String projectBaseDirNew = projectBaseDir + "-new"; // 一键改名后，“新”项目所在的目录
+        log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);
+        if (FileUtil.exist(projectBaseDirNew)) {
+            log.error("[main][新项目目录检测 ({})已存在，请更改新的目录！程序退出]", projectBaseDirNew);
+            return;
+        }
+
+        log.info("[main][完成新项目目录检测，新项目路径地址 ({})]", projectBaseDirNew);
+        // 获得需要复制的文件
+        log.info("[main][开始获得需要重写的文件，预计需要 10-20 秒]");
+        Collection<File> files = listFiles(projectBaseDir);
+        log.info("[main][需要重写的文件数量：{}，预计需要 15-30 秒]", files.size());
+        // 写入文件
+        files.forEach(file -> {
+            // 如果是白名单的文件类型，不进行重写，直接拷贝
+            String fileType = getFileType(file);
+            if (WHITE_FILE_TYPES.contains(fileType)) {
+                copyFile(file, projectBaseDir, projectBaseDirNew, packageNameNew, artifactIdNew);
+                return;
+            }
+            // 如果非白名单的文件类型，重写内容，在生成文件
+            String content = replaceFileContent(file, groupIdNew, artifactIdNew, packageNameNew, titleNew);
+            writeFile(file, content, projectBaseDir, projectBaseDirNew, packageNameNew, artifactIdNew);
+        });
+        log.info("[main][重写完成]共耗时：{} 秒", (System.currentTimeMillis() - start) / 1000);
     }
+
+    private static String getProjectBaseDir() {
+        String baseDir = System.getProperty("user.dir");
+        if (StrUtil.isEmpty(baseDir)) {
+            throw new NullPointerException("项目基础路径不存在");
+        }
+        return baseDir;
+    }
+
+    private static Collection<File> listFiles(String projectBaseDir) {
+        Collection<File> files = FileUtil.loopFiles(projectBaseDir);
+        // 移除 IDEA、Git 自身的文件、Node 编译出来的文件
+        files = files.stream()
+                .filter(file -> !file.getPath().contains(separator + "target" + separator)
+                        && !file.getPath().contains(separator + "node_modules" + separator)
+                        && !file.getPath().contains(separator + ".idea" + separator)
+                        && !file.getPath().contains(separator + ".git" + separator)
+                        && !file.getPath().contains(separator + "dist" + separator)
+                        && !file.getPath().contains(".iml")
+                        && !file.getPath().contains(".html.gz"))
+                .collect(Collectors.toList());
+        return files;
+    }
+
+    private static String replaceFileContent(File file, String groupIdNew,
+                                             String artifactIdNew, String packageNameNew,
+                                             String titleNew) {
+        String content = FileUtil.readString(file, StandardCharsets.UTF_8);
+        // 如果是白名单的文件类型，不进行重写
+        String fileType = getFileType(file);
+        if (WHITE_FILE_TYPES.contains(fileType)) {
+            return content;
+        }
+        // 执行文件内容都重写
+        return content.replaceAll(GROUP_ID, groupIdNew)
+                .replaceAll(PACKAGE_NAME, packageNameNew)
+                .replaceAll(ARTIFACT_ID, artifactIdNew) // 必须放在最后替换，因为 ARTIFACT_ID 太短！
+                .replaceAll(StrUtil.upperFirst(ARTIFACT_ID), StrUtil.upperFirst(artifactIdNew))
+                .replaceAll(TITLE, titleNew);
+    }
+
+    private static void writeFile(File file, String fileContent, String projectBaseDir,
+                                  String projectBaseDirNew, String packageNameNew, String artifactIdNew) {
+        String newPath = buildNewFilePath(file, projectBaseDir, projectBaseDirNew, packageNameNew, artifactIdNew);
+        FileUtil.writeUtf8String(fileContent, newPath);
+    }
+
+    private static void copyFile(File file, String projectBaseDir,
+                                 String projectBaseDirNew, String packageNameNew, String artifactIdNew) {
+        String newPath = buildNewFilePath(file, projectBaseDir, projectBaseDirNew, packageNameNew, artifactIdNew);
+        FileUtil.copyFile(file, new File(newPath));
+    }
+
+    private static String buildNewFilePath(File file, String projectBaseDir,
+                                           String projectBaseDirNew, String packageNameNew, String artifactIdNew) {
+        return file.getPath().replace(projectBaseDir, projectBaseDirNew) // 新目录
+                .replace(PACKAGE_NAME.replaceAll("\\.", Matcher.quoteReplacement(separator)),
+                        packageNameNew.replaceAll("\\.", Matcher.quoteReplacement(separator)))
+                .replace(ARTIFACT_ID, artifactIdNew) //
+                .replaceAll(StrUtil.upperFirst(ARTIFACT_ID), StrUtil.upperFirst(artifactIdNew));
+    }
+
+    private static String getFileType(File file) {
+        return file.length() > 0 ? FileTypeUtil.getType(file) : "";
+    }
+
 
 }

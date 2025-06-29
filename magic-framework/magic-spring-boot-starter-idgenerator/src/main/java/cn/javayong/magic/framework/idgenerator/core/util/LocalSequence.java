@@ -1,4 +1,4 @@
-package cn.javayong.magic.idgenerator.core.util;
+package cn.javayong.magic.framework.idgenerator.core.util;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 

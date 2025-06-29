@@ -1,10 +1,10 @@
-package cn.javayong.magic.idgenerator.core.service.impl;
+package cn.javayong.magic.framework.idgenerator.core.service.impl;
 
-import cn.javayong.magic.idgenerator.core.service.IdGeneratorService;
-import cn.javayong.magic.idgenerator.core.util.LocalSequence;
-import cn.javayong.magic.idgenerator.core.util.ShardingConstants;
-import cn.javayong.magic.idgenerator.core.util.SnowFlakeIdGenerator;
-import cn.javayong.magic.idgenerator.core.util.StringHashUtil;
+import cn.javayong.magic.framework.idgenerator.core.service.IdGeneratorService;
+import cn.javayong.magic.framework.idgenerator.core.util.LocalSequence;
+import cn.javayong.magic.framework.idgenerator.core.util.ShardingConstants;
+import cn.javayong.magic.framework.idgenerator.core.util.SnowFlakeIdGenerator;
+import cn.javayong.magic.framework.idgenerator.core.util.StringHashUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;

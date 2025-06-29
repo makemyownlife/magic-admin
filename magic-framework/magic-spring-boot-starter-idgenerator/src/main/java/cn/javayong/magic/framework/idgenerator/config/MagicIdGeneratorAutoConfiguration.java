@@ -1,8 +1,8 @@
-package cn.javayong.magic.idgenerator.config;
+package cn.javayong.magic.framework.idgenerator.config;
 
 import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
-import cn.javayong.magic.idgenerator.core.service.IdGeneratorService;
-import cn.javayong.magic.idgenerator.core.service.impl.RedisIdGeneratorServiceImpl;
+import cn.javayong.magic.framework.idgenerator.core.service.IdGeneratorService;
+import cn.javayong.magic.framework.idgenerator.core.service.impl.RedisIdGeneratorServiceImpl;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;

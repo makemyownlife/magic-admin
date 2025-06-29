@@ -1,4 +1,4 @@
-package cn.javayong.magic.idgenerator.core.service;
+package cn.javayong.magic.framework.idgenerator.core.service;
 
 /**
  *  编号生成器
