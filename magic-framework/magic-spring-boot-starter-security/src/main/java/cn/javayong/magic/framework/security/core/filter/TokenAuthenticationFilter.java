@@ -27,8 +27,6 @@ import java.util.HashMap;
 /**
  * Token 过滤器，验证 token 的有效性
  * 验证通过后，获得 {@link LoginUser} 信息，并加入到 Spring Security 上下文
- *
-
  */
 @RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
@@ -77,7 +75,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 return null;
             }
             // 用户类型不匹配，无权限
-            // 注意：只有 /admin-api/* 和 /app-api/* 有 userType，才需要比对用户类型
+            // 注意：只有 /api/* 和 /app-api/* 有 userType，才需要比对用户类型
             // 类似 WebSocket 的 /ws/* 连接地址，是不需要比对用户类型的
             if (userType != null
                     && ObjectUtil.notEqual(accessTokenDTO.getUserType(), userType)) {
@@ -86,7 +84,6 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             // 构建登录用户
             return new LoginUser().setId(accessTokenDTO.getUserId()).setUserType(accessTokenDTO.getUserType())
                     .setInfo(new HashMap<>()) // 额外的用户信息
-                    .setTenantId(accessTokenDTO.getTenantId())
                     .setScopes(Collections.EMPTY_LIST)
                     .setExpiresTime(accessTokenDTO.getExpiresTime());
         } catch (ServiceException serviceException) {
@@ -115,8 +112,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         }
         // 构建模拟用户
         Long userId = Long.valueOf(token.substring(securityProperties.getMockSecret().length()));
-        return new LoginUser().setId(userId).setUserType(userType)
-                .setTenantId(WebFrameworkUtils.getTenantId(request));
+        return new LoginUser().setId(userId).setUserType(userType);
     }
 
 }

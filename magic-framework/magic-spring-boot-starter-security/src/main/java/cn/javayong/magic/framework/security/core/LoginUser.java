@@ -36,11 +36,6 @@ public class LoginUser {
     private Map<String, String> info;
 
     /**
-     * 租户编号
-     */
-    private Long tenantId;
-
-    /**
      * 授权范围
      */
     private List<String> scopes;
