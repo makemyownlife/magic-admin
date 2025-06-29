@@ -12,9 +12,7 @@ import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 默认 Controller，解决部分 module 未开启时的 404 提示。
- * 例如说，/bpm/** 路径，工作流
- *
+ * 默认 Controller 做测试用
  * @author zhangyong
  */
 @RestController
