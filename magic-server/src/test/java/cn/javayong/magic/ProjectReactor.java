@@ -45,10 +45,10 @@ public class ProjectReactor {
         log.info("[main][原项目路劲改地址 ({})]", projectBaseDir);
 
         // 定义 group 组
-        String groupIdNew = "cn.star.gg";
-        String artifactIdNew = "star";
-        String packageNameNew = "cn.start.pp";
-        String titleNew = "土豆管理系统";
+        String groupIdNew = "cn.javayong";
+        String artifactIdNew = "smspro";
+        String packageNameNew = "cn.javayong";
+        String titleNew = "短信平台Pro";
         String projectBaseDirNew = projectBaseDir + "-new"; // 一键改名后，“新”项目所在的目录
         log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);
         if (FileUtil.exist(projectBaseDirNew)) {
