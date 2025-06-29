@@ -19,16 +19,15 @@ import static java.io.File.separator;
  * 项目修改器，一键替换 Maven 的 groupId、artifactId，项目的 package 等
  * <p>
  * 通过修改 groupIdNew、artifactIdNew、projectBaseDirNew 三个变量
- *
-
  */
 @Slf4j
 public class ProjectReactor {
 
     private static final String GROUP_ID = "cn.javayong";
+
     private static final String ARTIFACT_ID = "magic";
 
-    private static final String PACKAGE_NAME = "cn.javayong.magic";
+    private static final String PACKAGE_NAME = "cn.javayong";
 
     private static final String TITLE = "magic-admin管理系统";
 
@@ -46,23 +45,14 @@ public class ProjectReactor {
         log.info("[main][原项目路劲改地址 ({})]", projectBaseDir);
 
         // 定义 group 组
-        String groupIdNew = "cn.star.pp";
-        // 定义 比如项目名是 magic-admin 修改成 star-admin
+        String groupIdNew = "cn.star.gg";
         String artifactIdNew = "star";
-        // 标志 包名
-        String packageNameNew = "cn.star.pp";
+        String packageNameNew = "cn.start.pp";
         String titleNew = "土豆管理系统";
         String projectBaseDirNew = projectBaseDir + "-new"; // 一键改名后，“新”项目所在的目录
         log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);
         if (FileUtil.exist(projectBaseDirNew)) {
             log.error("[main][新项目目录检测 ({})已存在，请更改新的目录！程序退出]", projectBaseDirNew);
-            return;
-        }
-
-        // 如果新目录中存在 PACKAGE_NAME，ARTIFACT_ID 等关键字，路径会被替换，导致生成的文件不在预期目录
-        if (StrUtil.containsAny(projectBaseDirNew, PACKAGE_NAME, ARTIFACT_ID, StrUtil.upperFirst(ARTIFACT_ID))) {
-            log.error("[main][新项目目录 `projectBaseDirNew` 检测 ({}) 存在冲突名称「{}」或者「{}」，请更改新的目录！程序退出]",
-                    projectBaseDirNew, PACKAGE_NAME, ARTIFACT_ID);
             return;
         }
 
