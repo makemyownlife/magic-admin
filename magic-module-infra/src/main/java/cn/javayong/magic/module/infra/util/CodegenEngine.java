@@ -29,6 +29,7 @@ import cn.javayong.magic.module.infra.domain.dataobject.CodegenTableDO;
 import cn.javayong.magic.module.infra.domain.enums.CodegenFrontTypeEnum;
 import cn.javayong.magic.module.infra.domain.enums.CodegenSceneEnum;
 import cn.javayong.magic.module.infra.domain.enums.CodegenTemplateTypeEnum;
+import cn.javayong.magic.module.infra.domain.enums.CodegenVOTypeEnum;
 import cn.javayong.magic.module.infra.framework.codegen.config.CodegenProperties;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableTable;
@@ -36,6 +37,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ClassUtils;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -50,7 +52,7 @@ import static cn.hutool.core.text.CharSequenceUtil.*;
  *
  * 考虑到 Java 模板引擎的框架非常多，Freemarker、Velocity、Thymeleaf 等等，所以我们采用 hutool 封装的 {@link cn.hutool.extra.template.Template} 抽象
  *
-
+ * @author 芋道源码
  */
 @Component
 public class CodegenEngine {
@@ -62,26 +64,26 @@ public class CodegenEngine {
      * value：生成的路径
      */
     private static final Map<String, String> SERVER_TEMPLATES = MapUtil.<String, String>builder(new LinkedHashMap<>()) // 有序
-            // Java module-biz Main
+            // Java module-biz(server) Main
             .put(javaTemplatePath("controller/vo/pageReqVO"), javaModuleImplVOFilePath("PageReqVO"))
             .put(javaTemplatePath("controller/vo/listReqVO"), javaModuleImplVOFilePath("ListReqVO"))
             .put(javaTemplatePath("controller/vo/respVO"), javaModuleImplVOFilePath("RespVO"))
             .put(javaTemplatePath("controller/vo/saveReqVO"), javaModuleImplVOFilePath("SaveReqVO"))
             .put(javaTemplatePath("controller/controller"), javaModuleImplControllerFilePath())
-            .put(javaTemplatePath("mapper/do"),
-                    javaModuleImplMainFilePath("mapper/dataobject/${table.businessName}/${table.className}DO"))
-            .put(javaTemplatePath("mapper/do_sub"), // 特殊：主子表专属逻辑
-                    javaModuleImplMainFilePath("mapper/dataobject/${table.businessName}/${subTable.className}DO"))
-            .put(javaTemplatePath("mapper/mapper"),
-                    javaModuleImplMainFilePath("mapper/mysql/${table.businessName}/${table.className}Mapper"))
-            .put(javaTemplatePath("mapper/mapper_sub"), // 特殊：主子表专属逻辑
-                    javaModuleImplMainFilePath("mapper/mysql/${table.businessName}/${subTable.className}Mapper"))
-            .put(javaTemplatePath("mapper/mapper.xml"), mapperXmlFilePath())
+            .put(javaTemplatePath("dal/do"),
+                    javaModuleImplMainFilePath("dal/dataobject/${table.businessName}/${table.className}DO"))
+            .put(javaTemplatePath("dal/do_sub"), // 特殊：主子表专属逻辑
+                    javaModuleImplMainFilePath("dal/dataobject/${table.businessName}/${subTable.className}DO"))
+            .put(javaTemplatePath("dal/mapper"),
+                    javaModuleImplMainFilePath("dal/mysql/${table.businessName}/${table.className}Mapper"))
+            .put(javaTemplatePath("dal/mapper_sub"), // 特殊：主子表专属逻辑
+                    javaModuleImplMainFilePath("dal/mysql/${table.businessName}/${subTable.className}Mapper"))
+            .put(javaTemplatePath("dal/mapper.xml"), mapperXmlFilePath())
             .put(javaTemplatePath("service/serviceImpl"),
                     javaModuleImplMainFilePath("service/${table.businessName}/${table.className}ServiceImpl"))
             .put(javaTemplatePath("service/service"),
                     javaModuleImplMainFilePath("service/${table.businessName}/${table.className}Service"))
-            // Java module-biz Test
+            // Java module-biz(server) Test
             .put(javaTemplatePath("test/serviceTest"),
                     javaModuleImplTestFilePath("service/${table.businessName}/${table.className}ServiceImplTest"))
             // Java module-api Main
@@ -99,49 +101,121 @@ public class CodegenEngine {
      * value：生成的路径
      */
     private static final Table<Integer, String, String> FRONT_TEMPLATES = ImmutableTable.<Integer, String, String>builder()
-            // Vue2 标准模版
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/index.vue"),
+            // VUE2_ELEMENT_UI
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/index.vue"),
                     vueFilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("api/api.js"),
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("api/api.js"),
                     vueFilePath("api/${table.moduleName}/${table.businessName}/index.js"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/form.vue"),
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/form.vue"),
                     vueFilePath("views/${table.moduleName}/${table.businessName}/${simpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/components/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
                     vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/components/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
                     vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/components/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
                     vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/components/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
                     vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}List.vue"))
-            .put(CodegenFrontTypeEnum.VUE2.getType(), vueTemplatePath("views/components/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
                     vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}List.vue"))
-            // Vue3 标准模版
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/index.vue"),
+            // VUE3_ELEMENT_PLUS
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/index.vue"),
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/form.vue"),
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/form.vue"),
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/${simpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/components/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/components/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/components/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/components/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/components/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/components/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/components/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/components/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}List.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("views/components/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/components/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}List.vue"))
-            .put(CodegenFrontTypeEnum.VUE3.getType(), vue3TemplatePath("api/api.ts"),
+            .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("api/api.ts"),
                     vue3FilePath("api/${table.moduleName}/${table.businessName}/index.ts"))
-            // Vue3 vben 模版
-            .put(CodegenFrontTypeEnum.VUE3_VBEN.getType(), vue3VbenTemplatePath("views/data.ts"),
+            // VUE3_VBEN2_ANTD_SCHEMA
+            .put(CodegenFrontTypeEnum.VUE3_VBEN2_ANTD_SCHEMA.getType(), vue3VbenTemplatePath("views/data.ts"),
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/${classNameVar}.data.ts"))
-            .put(CodegenFrontTypeEnum.VUE3_VBEN.getType(), vue3VbenTemplatePath("views/index.vue"),
+            .put(CodegenFrontTypeEnum.VUE3_VBEN2_ANTD_SCHEMA.getType(), vue3VbenTemplatePath("views/index.vue"),
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
-            .put(CodegenFrontTypeEnum.VUE3_VBEN.getType(), vue3VbenTemplatePath("views/form.vue"),
+            .put(CodegenFrontTypeEnum.VUE3_VBEN2_ANTD_SCHEMA.getType(), vue3VbenTemplatePath("views/form.vue"),
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/${simpleClassName}Modal.vue"))
-            .put(CodegenFrontTypeEnum.VUE3_VBEN.getType(), vue3VbenTemplatePath("api/api.ts"),
+            .put(CodegenFrontTypeEnum.VUE3_VBEN2_ANTD_SCHEMA.getType(), vue3VbenTemplatePath("api/api.ts"),
                     vue3FilePath("api/${table.moduleName}/${table.businessName}/index.ts"))
+            // VUE3_VBEN5_ANTD_SCHEMA
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/data.ts"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/data.ts"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/index.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/form.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("api/api.ts"),
+                    vue3FilePath("api/${table.moduleName}/${table.businessName}/index.ts"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/modules/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/modules/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/modules/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/modules/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_SCHEMA.getType(), vue3Vben5AntdSchemaTemplatePath("views/modules/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            // VUE3_VBEN5_ANTD
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/index.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/form.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("api/api.ts"),
+                    vue3FilePath("api/${table.moduleName}/${table.businessName}/index.ts"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/modules/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/modules/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/modules/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/modules/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_ANTD_GENERAL.getType(), vue3Vben5AntdGeneralTemplatePath("views/modules/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            // VUE3_VBEN5_EP_SCHEMA
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/data.ts"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/data.ts"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/index.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/form.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("api/api.ts"),
+                    vue3FilePath("api/${table.moduleName}/${table.businessName}/index.ts"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/modules/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/modules/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/modules/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/modules/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_SCHEMA.getType(), vue3Vben5EpSchemaTemplatePath("views/modules/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            // VUE3_VBEN5_EP
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/index.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/form.vue"),
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("api/api.ts"),
+                    vue3FilePath("api/${table.moduleName}/${table.businessName}/index.ts"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/modules/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/modules/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/modules/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-form.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/modules/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
+            .put(CodegenFrontTypeEnum.VUE3_VBEN5_EP_GENERAL.getType(), vue3Vben5EpGeneralTemplatePath("views/modules/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
+                    vue3FilePath("views/${table.moduleName}/${table.businessName}/modules/${subSimpleClassName_strikeCase}-list.vue"))
             .build();
 
     @Resource
@@ -155,6 +229,15 @@ public class CodegenEngine {
      */
     @Setter // 允许设置的原因，是因为单测需要手动改变
     private Boolean jakartaEnable;
+
+    /**
+     * 是否为 yudao-cloud 项目，用于解决 Boot 和 Cloud 的 api 模块兼容性问题
+     *
+     * true  - 需要有 yudao-module-xxx-api 模块
+     * false - 不需要有，使用 api、enum 包即可
+     */
+    @Setter
+    private Boolean cloudEnable;
 
     /**
      * 模板引擎，由 hutool 实现
@@ -171,7 +254,11 @@ public class CodegenEngine {
         config.setResourceMode(TemplateConfig.ResourceMode.CLASSPATH);
         this.templateEngine = new VelocityEngine(config);
         // 设置 javaxEnable，按照是否使用 JDK17 来判断
-        this.jakartaEnable = SystemUtil.getJavaInfo().isJavaVersionAtLeast(1700); // 17.00 * 100
+        this.jakartaEnable = SystemUtil.getJavaInfo().isJavaVersionAtLeast(1700) // 17.00 * 100
+                && ClassUtils.isPresent("jakarta.annotation.Resource", ClassUtils.getDefaultClassLoader());
+        // 设置 cloudEnable，按照是否使用 Spring Cloud 来判断
+        this.cloudEnable = ClassUtils.isPresent("cn.iocoder.yudao.module.infra.framework.rpc.config.RpcConfiguration",
+                ClassUtils.getDefaultClassLoader());
     }
 
     @PostConstruct
@@ -182,6 +269,8 @@ public class CodegenEngine {
         globalBindingMap.put("baseFrameworkPackage", codegenProperties.getBasePackage()
                 + '.' + "framework"); // 用于后续获取测试类的 package 地址
         globalBindingMap.put("jakartaPackage", jakartaEnable ? "jakarta" : "javax");
+        globalBindingMap.put("voType", codegenProperties.getVoType());
+        globalBindingMap.put("deleteBatchEnable", codegenProperties.getDeleteBatchEnable());
         // 全局 Java Bean
         globalBindingMap.put("CommonResultClassName", CommonResult.class.getName());
         globalBindingMap.put("PageResultClassName", PageResult.class.getName());
@@ -200,15 +289,19 @@ public class CodegenEngine {
         globalBindingMap.put("LocalDateTimeUtilsClassName", LocalDateTimeUtils.class.getName());
         globalBindingMap.put("ObjectUtilsClassName", ObjectUtils.class.getName());
         globalBindingMap.put("DictConvertClassName", DictConvert.class.getName());
+
+        //  globalBindingMap.put("OperateTypeEnumClassName", OperateTypeEnum.class.getName());
+
         globalBindingMap.put("BeanUtils", BeanUtils.class.getName());
+        globalBindingMap.put("CollectionUtilsClassName", CollectionUtils.class.getName());
     }
 
     /**
      * 生成代码
      *
-     * @param table 表定义
-     * @param columns table 的字段定义数组
-     * @param subTables 子表数组，当且仅当主子表时使用
+     * @param table          表定义
+     * @param columns        table 的字段定义数组
+     * @param subTables      子表数组，当且仅当主子表时使用
      * @param subColumnsList subTables 的字段定义数组
      * @return 生成的代码，key 是路径，value 是对应代码
      */
@@ -326,14 +419,15 @@ public class CodegenEngine {
         bindingMap.put("columns", columns);
         bindingMap.put("primaryColumn", CollectionUtils.findFirst(columns, CodegenColumnDO::getPrimaryKey)); // 主键字段
         bindingMap.put("sceneEnum", CodegenSceneEnum.valueOf(table.getScene()));
-
         // className 相关
         // 去掉指定前缀，将 TestDictType 转换成 DictType. 因为在 create 等方法后，不需要带上 Test 前缀
+        String className = table.getClassName();
         String simpleClassName = equalsAnyIgnoreCase(table.getClassName(), table.getModuleName()) ? table.getClassName()
                 : removePrefix(table.getClassName(), upperFirst(table.getModuleName()));
+        String classNameVar = lowerFirst(simpleClassName);
         bindingMap.put("simpleClassName", simpleClassName);
         bindingMap.put("simpleClassName_underlineCase", toUnderlineCase(simpleClassName)); // 将 DictType 转换成 dict_type
-        bindingMap.put("classNameVar", lowerFirst(simpleClassName)); // 将 DictType 转换成 dictType，用于变量
+        bindingMap.put("classNameVar", classNameVar); // 将 DictType 转换成 dictType，用于变量
         // 将 DictType 转换成 dict-type
         String simpleClassNameStrikeCase = toSymbolCase(simpleClassName, '-');
         bindingMap.put("simpleClassName_strikeCase", simpleClassNameStrikeCase);
@@ -387,6 +481,22 @@ public class CodegenEngine {
             bindingMap.put("subClassNameVars", subClassNameVars);
             bindingMap.put("subSimpleClassName_strikeCases", subSimpleClassNameStrikeCases);
         }
+
+        // 多个 vm 公用的 VO 变量
+        if (ObjectUtil.equal(codegenProperties.getVoType(), CodegenVOTypeEnum.VO.getType())) {
+            String prefixClass = CodegenSceneEnum.valueOf(table.getScene()).getPrefixClass();
+            bindingMap.put("saveReqVOClass", prefixClass + className + "SaveReqVO");
+            bindingMap.put("updateReqVOClass", prefixClass + className + "SaveReqVO");
+            bindingMap.put("respVOClass", prefixClass + className + "RespVO");
+            bindingMap.put("saveReqVOVar", "createReqVO");
+            bindingMap.put("updateReqVOVar", "updateReqVO");
+        } else if (ObjectUtil.equal(codegenProperties.getVoType(), CodegenVOTypeEnum.DO.getType())) {
+            bindingMap.put("saveReqVOClass", className + "DO");
+            bindingMap.put("updateReqVOClass", className + "DO");
+            bindingMap.put("respVOClass", className + "DO");
+            bindingMap.put("saveReqVOVar", classNameVar);
+            bindingMap.put("updateReqVOVar", classNameVar);
+        }
         return bindingMap;
     }
 
@@ -394,10 +504,23 @@ public class CodegenEngine {
         Map<String, String> templates = new LinkedHashMap<>();
         templates.putAll(SERVER_TEMPLATES);
         templates.putAll(FRONT_TEMPLATES.row(frontType));
+        // 如果是 Boot 项目，则不使用 api/server 模块
+        if (Boolean.FALSE.equals(cloudEnable)) {
+            SERVER_TEMPLATES.forEach((templatePath, filePath) -> {
+                filePath = StrUtil.replace(filePath, "/yudao-module-${table.moduleName}-api", "");
+                filePath = StrUtil.replace(filePath, "/yudao-module-${table.moduleName}-server", "");
+                templates.put(templatePath, filePath);
+            });
+        }
         // 如果禁用单元测试，则移除对应的模版
         if (Boolean.FALSE.equals(codegenProperties.getUnitTestEnable())) {
             templates.remove(javaTemplatePath("test/serviceTest"));
             templates.remove("codegen/sql/h2.vm");
+        }
+        // 如果禁用 VO 类型，则移除对应的模版
+        if (ObjectUtil.notEqual(codegenProperties.getVoType(), CodegenVOTypeEnum.VO.getType())) {
+            templates.remove(javaTemplatePath("controller/vo/respVO"));
+            templates.remove(javaTemplatePath("controller/vo/saveReqVO"));
         }
         return templates;
     }
@@ -428,6 +551,8 @@ public class CodegenEngine {
             filePath = StrUtil.replace(filePath, "${subTable.className}", subTable.getClassName());
             filePath = StrUtil.replace(filePath, "${subSimpleClassName}",
                     ((List<String>) bindingMap.get("subSimpleClassNames")).get(subIndex));
+            filePath = StrUtil.replace(filePath, "${subSimpleClassName_strikeCase}",
+                    ((List<String>) bindingMap.get("subSimpleClassName_strikeCases")).get(subIndex));
         }
         return filePath;
     }
@@ -438,16 +563,16 @@ public class CodegenEngine {
 
     private static String javaModuleImplVOFilePath(String path) {
         return javaModuleFilePath("controller/${sceneEnum.basePackage}/${table.businessName}/" +
-                "vo/${sceneEnum.prefixClass}${table.className}" + path, "biz", "main");
+                "vo/${sceneEnum.prefixClass}${table.className}" + path, "server", "main");
     }
 
     private static String javaModuleImplControllerFilePath() {
         return javaModuleFilePath("controller/${sceneEnum.basePackage}/${table.businessName}/" +
-                "${sceneEnum.prefixClass}${table.className}Controller", "biz", "main");
+                "${sceneEnum.prefixClass}${table.className}Controller", "server", "main");
     }
 
     private static String javaModuleImplMainFilePath(String path) {
-        return javaModuleFilePath(path, "biz", "main");
+        return javaModuleFilePath(path, "server", "main");
     }
 
     private static String javaModuleApiMainFilePath(String path) {
@@ -455,18 +580,18 @@ public class CodegenEngine {
     }
 
     private static String javaModuleImplTestFilePath(String path) {
-        return javaModuleFilePath(path, "biz", "test");
+        return javaModuleFilePath(path, "server", "test");
     }
 
     private static String javaModuleFilePath(String path, String module, String src) {
-        return "magic-module-${table.moduleName}/" + // 顶级模块
-                "magic-module-${table.moduleName}-" + module + "/" + // 子模块
+        return "yudao-module-${table.moduleName}/" + // 顶级模块
+                "yudao-module-${table.moduleName}-" + module + "/" + // 子模块
                 "src/" + src + "/java/${basePackage}/module/${table.moduleName}/" + path + ".java";
     }
 
     private static String mapperXmlFilePath() {
-        return "magic-module-${table.moduleName}/" + // 顶级模块
-                "magic-module-${table.moduleName}-biz/" + // 子模块
+        return "yudao-module-${table.moduleName}/" + // 顶级模块
+                "yudao-module-${table.moduleName}-server/" + // 子模块
                 "src/main/resources/mapper/${table.businessName}/${table.className}Mapper.xml";
     }
 
@@ -475,7 +600,7 @@ public class CodegenEngine {
     }
 
     private static String vueFilePath(String path) {
-        return "magic-ui-${sceneEnum.basePackage}-vue2/" + // 顶级目录
+        return "yudao-ui-${sceneEnum.basePackage}-vue2/" + // 顶级目录
                 "src/" + path;
     }
 
@@ -484,12 +609,28 @@ public class CodegenEngine {
     }
 
     private static String vue3FilePath(String path) {
-        return "magic-ui-${sceneEnum.basePackage}-vue3/" + // 顶级目录
+        return "yudao-ui-${sceneEnum.basePackage}-vue3/" + // 顶级目录
                 "src/" + path;
     }
 
     private static String vue3VbenTemplatePath(String path) {
         return "codegen/vue3_vben/" + path + ".vm";
+    }
+
+    private static String vue3Vben5AntdSchemaTemplatePath(String path) {
+        return "codegen/vue3_vben5_antd/schema/" + path + ".vm";
+    }
+
+    private static String vue3Vben5AntdGeneralTemplatePath(String path) {
+        return "codegen/vue3_vben5_antd/general/" + path + ".vm";
+    }
+
+    private static String vue3Vben5EpSchemaTemplatePath(String path) {
+        return "codegen/vue3_vben5_ele/schema/" + path + ".vm";
+    }
+
+    private static String vue3Vben5EpGeneralTemplatePath(String path) {
+        return "codegen/vue3_vben5_ele/general/" + path + ".vm";
     }
 
     private static boolean isSubTemplate(String path) {

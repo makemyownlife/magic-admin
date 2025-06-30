@@ -3,12 +3,12 @@ package cn.javayong.magic.module.infra.domain.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static cn.hutool.core.util.ArrayUtil.*;
+import static cn.hutool.core.util.ArrayUtil.firstMatch;
 
 /**
  * 代码生成的场景枚举
  *
-
+ * @author 芋道源码
  */
 @AllArgsConstructor
 @Getter

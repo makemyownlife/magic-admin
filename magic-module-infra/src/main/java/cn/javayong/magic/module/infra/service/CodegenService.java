@@ -1,7 +1,5 @@
 package cn.javayong.magic.module.infra.service;
 
-
-
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.domain.dataobject.CodegenColumnDO;
 import cn.javayong.magic.module.infra.domain.dataobject.CodegenTableDO;

@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.infra.framework.codegen.config;
 
-import cn.javayong.magic.module.infra.domain.enums.CodegenFrontTypeEnum;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
@@ -29,10 +28,24 @@ public class CodegenProperties {
     /**
      * 代码生成的前端类型（默认）
      *
-     * 枚举 {@link CodegenFrontTypeEnum#getType()}
+     * 枚举 {@link cn.javayong.magic.module.infra.domain.enums.CodegenFrontTypeEnum#getType()}
      */
     @NotNull(message = "代码生成的前端类型不能为空")
     private Integer frontType;
+
+    /**
+     * 代码生成的 VO 类型
+     *
+     * 枚举 {@link cn.javayong.magic.module.infra.domain.enums.CodegenVOTypeEnum#getType()}
+     */
+    @NotNull(message = "代码生成的 VO 类型不能为空")
+    private Integer voType;
+
+    /**
+     * 是否生成批量删除接口
+     */
+    @NotNull(message = "是否生成批量删除接口不能为空")
+    private Boolean deleteBatchEnable;
 
     /**
      * 是否生成单元测试

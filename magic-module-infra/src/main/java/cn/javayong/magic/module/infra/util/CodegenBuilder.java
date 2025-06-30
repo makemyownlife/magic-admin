@@ -42,7 +42,7 @@ public class CodegenBuilder {
                     .build();
 
     /**
-     * 字段名与 {@link CodegenColumnHtmlTypeEnum} 的默认映射
+     * 字段名与 {@link cn.javayong.magic.module.infra.domain.enums.CodegenColumnHtmlTypeEnum} 的默认映射
      * 注意，字段的匹配以后缀的方式
      */
     private static final Map<String, CodegenColumnHtmlTypeEnum> COLUMN_HTML_TYPE_MAPPINGS =
@@ -214,7 +214,6 @@ public class CodegenBuilder {
         // description、memo、remark
         if (StrUtil.endWithAnyIgnoreCase(column.getColumnName(), "description", "memo", "remark")) {
             column.setExample(randomEle(new String[]{"你猜", "随便", "你说的对"}));
-            return;
         }
     }
 
