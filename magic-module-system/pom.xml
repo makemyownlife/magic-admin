@@ -76,12 +76,6 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
-        <!-- 三方云服务相关 -->
-        <dependency>
-            <groupId>com.xingyuv</groupId>
-            <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
-        </dependency>
-
         <dependency>
             <groupId>com.xingyuv</groupId>
             <artifactId>spring-boot-starter-captcha-plus</artifactId> <!-- 验证码，一般用于登录使用 -->
