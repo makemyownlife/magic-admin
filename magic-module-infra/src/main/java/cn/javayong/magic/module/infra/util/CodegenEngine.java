@@ -101,23 +101,6 @@ public class CodegenEngine {
      * value：生成的路径
      */
     private static final Table<Integer, String, String> FRONT_TEMPLATES = ImmutableTable.<Integer, String, String>builder()
-            // VUE2_ELEMENT_UI
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/index.vue"),
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("api/api.js"),
-                    vueFilePath("api/${table.moduleName}/${table.businessName}/index.js"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/form.vue"),
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/${simpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/form_sub_normal.vue"),  // 特殊：主子表专属逻辑
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/form_sub_inner.vue"),  // 特殊：主子表专属逻辑
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/form_sub_erp.vue"),  // 特殊：主子表专属逻辑
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}Form.vue"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/list_sub_inner.vue"),  // 特殊：主子表专属逻辑
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}List.vue"))
-            .put(CodegenFrontTypeEnum.VUE2_ELEMENT_UI.getType(), vueTemplatePath("views/components/list_sub_erp.vue"),  // 特殊：主子表专属逻辑
-                    vueFilePath("views/${table.moduleName}/${table.businessName}/components/${subSimpleClassName}List.vue"))
             // VUE3_ELEMENT_PLUS
             .put(CodegenFrontTypeEnum.VUE3_ELEMENT_PLUS.getType(), vue3TemplatePath("views/index.vue"),
                     vue3FilePath("views/${table.moduleName}/${table.businessName}/index.vue"))
@@ -231,9 +214,9 @@ public class CodegenEngine {
     private Boolean jakartaEnable;
 
     /**
-     * 是否为 yudao-cloud 项目，用于解决 Boot 和 Cloud 的 api 模块兼容性问题
+     * 是否为 magic-cloud 项目，用于解决 Boot 和 Cloud 的 api 模块兼容性问题
      *
-     * true  - 需要有 yudao-module-xxx-api 模块
+     * true  - 需要有 magic-module-xxx-api 模块
      * false - 不需要有，使用 api、enum 包即可
      */
     @Setter
@@ -257,7 +240,7 @@ public class CodegenEngine {
         this.jakartaEnable = SystemUtil.getJavaInfo().isJavaVersionAtLeast(1700) // 17.00 * 100
                 && ClassUtils.isPresent("jakarta.annotation.Resource", ClassUtils.getDefaultClassLoader());
         // 设置 cloudEnable，按照是否使用 Spring Cloud 来判断
-        this.cloudEnable = ClassUtils.isPresent("cn.iocoder.yudao.module.infra.framework.rpc.config.RpcConfiguration",
+        this.cloudEnable = ClassUtils.isPresent("cn.iocoder.magic.module.infra.framework.rpc.config.RpcConfiguration",
                 ClassUtils.getDefaultClassLoader());
     }
 
@@ -507,8 +490,8 @@ public class CodegenEngine {
         // 如果是 Boot 项目，则不使用 api/server 模块
         if (Boolean.FALSE.equals(cloudEnable)) {
             SERVER_TEMPLATES.forEach((templatePath, filePath) -> {
-                filePath = StrUtil.replace(filePath, "/yudao-module-${table.moduleName}-api", "");
-                filePath = StrUtil.replace(filePath, "/yudao-module-${table.moduleName}-server", "");
+                filePath = StrUtil.replace(filePath, "/magic-module-${table.moduleName}-api", "");
+                filePath = StrUtil.replace(filePath, "/magic-module-${table.moduleName}-server", "");
                 templates.put(templatePath, filePath);
             });
         }
@@ -584,14 +567,14 @@ public class CodegenEngine {
     }
 
     private static String javaModuleFilePath(String path, String module, String src) {
-        return "yudao-module-${table.moduleName}/" + // 顶级模块
-                "yudao-module-${table.moduleName}-" + module + "/" + // 子模块
+        return "magic-module-${table.moduleName}/" + // 顶级模块
+                "magic-module-${table.moduleName}-" + module + "/" + // 子模块
                 "src/" + src + "/java/${basePackage}/module/${table.moduleName}/" + path + ".java";
     }
 
     private static String mapperXmlFilePath() {
-        return "yudao-module-${table.moduleName}/" + // 顶级模块
-                "yudao-module-${table.moduleName}-server/" + // 子模块
+        return "magic-module-${table.moduleName}/" + // 顶级模块
+                "magic-module-${table.moduleName}-server/" + // 子模块
                 "src/main/resources/mapper/${table.businessName}/${table.className}Mapper.xml";
     }
 
@@ -600,7 +583,7 @@ public class CodegenEngine {
     }
 
     private static String vueFilePath(String path) {
-        return "yudao-ui-${sceneEnum.basePackage}-vue2/" + // 顶级目录
+        return "magic-ui-${sceneEnum.basePackage}-vue2/" + // 顶级目录
                 "src/" + path;
     }
 
@@ -609,7 +592,7 @@ public class CodegenEngine {
     }
 
     private static String vue3FilePath(String path) {
-        return "yudao-ui-${sceneEnum.basePackage}-vue3/" + // 顶级目录
+        return "magic-ui-${sceneEnum.basePackage}-vue3/" + // 顶级目录
                 "src/" + path;
     }
 

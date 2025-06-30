@@ -8,8 +8,6 @@ import cn.javayong.magic.module.infra.domain.dataobject.FileDO;
 
 /**
  * 文件 Service 接口
- *
-
  */
 public interface FileService {
 
