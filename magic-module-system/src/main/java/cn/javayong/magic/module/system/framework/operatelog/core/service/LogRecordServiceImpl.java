@@ -5,6 +5,7 @@ import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.security.core.LoginUser;
 import cn.javayong.magic.framework.security.core.util.SecurityFrameworkUtils;
 import cn.javayong.magic.module.system.framework.operatelog.core.dto.OperateLogCreateReqDTO;
+import cn.javayong.magic.module.system.service.OperateLogService;
 import com.mzt.logapi.beans.LogRecord;
 import com.mzt.logapi.service.ILogRecordService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +17,13 @@ import java.util.List;
 /**
  * 操作日志 ILogRecordService 实现类
  *
- * 基于 {@link OperateLogCommonApi} 实现，记录操作日志
- *
  * @author HUIHUI
  */
 @Slf4j
 public class LogRecordServiceImpl implements ILogRecordService {
 
     @Resource
-    private OperateLogCommonApi operateLogApi;
+    private OperateLogService operateLogService;
 
     @Override
     public void record(LogRecord logRecord) {
@@ -39,9 +38,9 @@ public class LogRecordServiceImpl implements ILogRecordService {
             fillRequestFields(reqDTO);
 
             // 2. 异步记录日志
-            operateLogApi.createOperateLogAsync(reqDTO);
+            operateLogService.createOperateLog(reqDTO);
         } catch (Throwable ex) {
-            // 由于 @Async 异步调用，这里打印下日志，更容易跟进
+            // 由于 异步调用，这里打印下日志，更容易跟进
             log.error("[record][url({}) log({}) 发生异常]", reqDTO.getRequestUrl(), reqDTO, ex);
         }
     }
