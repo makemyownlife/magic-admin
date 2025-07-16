@@ -2,8 +2,6 @@ package cn.javayong.magic.module.system.domain.enums;
 
 /**
  * System Redis Key 枚举类
- *
-
  */
 public interface RedisKeyConstants {
 
