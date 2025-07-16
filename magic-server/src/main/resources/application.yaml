@@ -1,6 +1,6 @@
 spring:
   application:
-    name: vision-ai-admin
+    name: magic-admin
 
   profiles:
     active: local
@@ -28,6 +28,8 @@ spring:
     type: REDIS
     redis:
       time-to-live: 1h # 设置过期时间为 1 小时
+      key-prefix: "${spring.application.name}:"  # 自动添加应用名前缀
+      use-key-prefix: true  # 启用前缀（默认就是 true，可省略）
 
 server:
   servlet:
