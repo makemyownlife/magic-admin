@@ -1638,11 +1638,11 @@ COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-DROP  table  `sys_client`;
+DROP  table  `system_client`;
 -- ----------------------------
 -- 系统授权表 sys_client（去掉 client_id 的版本）
 -- ----------------------------
-CREATE TABLE `sys_client` (
+CREATE TABLE `system_client` (
     -- 基础字段（主键 + 客户端认证信息）
                               `id`                BIGINT(20)      NOT NULL AUTO_INCREMENT COMMENT '主键ID',
                               `client_key`        VARCHAR(32)     DEFAULT NULL COMMENT '客户端KEY',
