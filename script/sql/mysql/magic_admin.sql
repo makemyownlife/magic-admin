@@ -1638,6 +1638,7 @@ COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+DROP  table  `sys_client`;
 -- ----------------------------
 -- 系统授权表 sys_client（去掉 client_id 的版本）
 -- ----------------------------
