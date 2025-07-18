@@ -1662,4 +1662,4 @@ CREATE TABLE `sys_client` (
     -- 索引
                               PRIMARY KEY (`id`) USING BTREE,
                               KEY `idx_client_key` (`client_key`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统授权表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统客户端表';
