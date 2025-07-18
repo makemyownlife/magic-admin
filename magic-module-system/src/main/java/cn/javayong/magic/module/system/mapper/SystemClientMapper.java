@@ -1,11 +1,9 @@
-package cn.javayong.magic.module.system.dal.mysql.client;
-
-import java.util.*;
+package cn.javayong.magic.module.system.mapper;
 
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
-import cn.javayong.magic.module.system.dal.dataobject.client.SystemClientDO;
+import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientPageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 

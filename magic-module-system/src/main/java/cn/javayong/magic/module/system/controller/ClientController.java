@@ -1,5 +1,6 @@
 package cn.javayong.magic.module.system.controller;
 
+import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientRespVO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientSaveReqVO;
@@ -23,7 +24,6 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
-import cn.javayong.magic.module.system.dal.dataobject.client.SystemClientDO;
 import cn.javayong.magic.module.system.service.client.SystemClientService;
 
 @Tag(name = "管理后台 - 系统客户端")

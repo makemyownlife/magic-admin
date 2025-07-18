@@ -1,24 +1,18 @@
 package cn.javayong.magic.module.system.service.client;
 
-import cn.hutool.core.collection.CollUtil;
+import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientSaveReqVO;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.*;
-import cn.javayong.magic.module.system.dal.dataobject.client.SystemClientDO;
 import cn.javayong.magic.framework.common.pojo.PageResult;
-import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-
-import cn.javayong.magic.module.system.dal.mysql.client.SystemClientMapper;
+import cn.javayong.magic.module.system.mapper.SystemClientMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
-import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.diffList;
 import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.CLIENT_NOT_EXISTS;
 
 /**
@@ -61,11 +55,10 @@ public class SystemClientServiceImpl implements SystemClientService {
     }
 
     @Override
-        public void deleteClientListByIds(List<Long> ids) {
+    public void deleteClientListByIds(List<Long> ids) {
         // 删除
         clientMapper.deleteByIds(ids);
-        }
-
+    }
 
     private void validateClientExists(Long id) {
         if (clientMapper.selectById(id) == null) {
