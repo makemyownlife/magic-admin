@@ -1637,3 +1637,29 @@ INSERT INTO `system_users` (`id`, `username`, `password`, `nickname`, `remark`, 
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- 系统授权表 sys_client（去掉 client_id 的版本）
+-- ----------------------------
+CREATE TABLE `sys_client` (
+    -- 基础字段（主键 + 客户端认证信息）
+                              `id`                BIGINT(20)      NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                              `client_key`        VARCHAR(32)     DEFAULT NULL COMMENT '客户端KEY',
+                              `client_secret`     VARCHAR(255)    DEFAULT NULL COMMENT '客户端密钥',
+                              `grant_type`        VARCHAR(255)    DEFAULT NULL COMMENT '授权类型',
+                              `device_type`       VARCHAR(32)     DEFAULT NULL COMMENT '设备类型',
+    -- Token 超时控制字段
+                              `access_timeout`    INT(11)         DEFAULT 7200 COMMENT 'Token访问超时时间（秒）',
+                              `refresh_timeout`   INT(11)         DEFAULT 604800 COMMENT 'Token刷新超时时间（秒）',
+    -- 状态字段
+                              `status`            CHAR(1)         DEFAULT '0' COMMENT '状态（0 正常 1 停用）',
+    -- 标准字段（你指定保留的字段）
+                              `creator`           VARCHAR(64)     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+                              `create_time`       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                              `updater`           VARCHAR(64)     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+                              `update_time`       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                              `deleted`           BIT(1)          NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    -- 索引
+                              PRIMARY KEY (`id`) USING BTREE,
+                              KEY `idx_client_key` (`client_key`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统授权表';
