@@ -30,7 +30,7 @@ public class SystemClientRespVO {
 
     @Schema(description = "设备类型", example = "2")
     @ExcelProperty("设备类型")
-    private String deviceType;
+    private Integer deviceType;
 
     @Schema(description = "Token访问超时时间（秒）")
     @ExcelProperty("Token访问超时时间（秒）")

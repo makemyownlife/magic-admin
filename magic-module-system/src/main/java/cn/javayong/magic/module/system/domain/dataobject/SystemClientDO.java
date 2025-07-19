@@ -41,7 +41,7 @@ public class SystemClientDO extends BaseDO {
     /**
      * 设备类型
      */
-    private String deviceType;
+    private Integer deviceType;
 
     /**
      * Token访问超时时间（秒）
