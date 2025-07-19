@@ -19,6 +19,8 @@ public interface ErrorCodeConstants {
 
     ErrorCode CLIENT_NOT_EXISTS = new ErrorCode(1_002_002_009, "客户端不存在");
 
+    ErrorCode DEFAULT_CLIENT_CANT_DELETE = new ErrorCode(1_002_002_010, "默认客户端不能删除");
+
     // ========== 菜单模块 1-002-001-000 ==========
     ErrorCode MENU_NAME_DUPLICATE = new ErrorCode(1_002_001_000, "已经存在该名字的菜单");
     ErrorCode MENU_PARENT_NOT_EXISTS = new ErrorCode(1_002_001_001, "父菜单不存在");

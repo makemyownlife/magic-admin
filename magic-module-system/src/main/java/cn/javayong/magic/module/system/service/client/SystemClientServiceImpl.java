@@ -6,14 +6,18 @@ import cn.javayong.magic.module.system.domain.vo.SystemClientSaveReqVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
 import org.springframework.validation.annotation.Validated;
+
 import java.util.*;
+
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.mapper.SystemClientMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.CLIENT_NOT_EXISTS;
+import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.DEFAULT_CLIENT_CANT_DELETE;
 
 /**
  * 系统客户端 Service 实现类
@@ -48,6 +52,9 @@ public class SystemClientServiceImpl implements SystemClientService {
 
     @Override
     public void deleteClient(Long id) {
+        if (id == 1L) {
+            throw exception(DEFAULT_CLIENT_CANT_DELETE);
+        }
         // 校验存在
         validateClientExists(id);
         // 删除
