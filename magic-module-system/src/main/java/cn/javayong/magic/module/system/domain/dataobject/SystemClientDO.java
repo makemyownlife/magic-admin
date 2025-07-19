@@ -42,18 +42,20 @@ public class SystemClientDO extends BaseDO {
      * 设备类型
      */
     private String deviceType;
+
     /**
      * Token访问超时时间（秒）
      */
     private Integer accessTimeout;
+
     /**
      * Token刷新超时时间（秒）
      */
     private Integer refreshTimeout;
+
     /**
-     * 状态（0 关闭 1 开启）
+     * 状态（0 开启 1 关闭）
      */
     private Integer status;
-
 
 }
