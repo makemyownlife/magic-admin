@@ -1653,7 +1653,7 @@ CREATE TABLE `system_client` (
                               `access_timeout`    INT(11)         DEFAULT 7200 COMMENT 'Token访问超时时间（秒）',
                               `refresh_timeout`   INT(11)         DEFAULT 604800 COMMENT 'Token刷新超时时间（秒）',
     -- 状态字段
-                              `status`            CHAR(1)         DEFAULT '0' COMMENT '状态（0 正常 1 停用）',
+                              `status`            TINYINT(3)         DEFAULT 1 COMMENT '状态（0 停用 1 启用）',
     -- 标准字段（你指定保留的字段）
                               `creator`           VARCHAR(64)     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
                               `create_time`       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

@@ -51,9 +51,9 @@ public class SystemClientDO extends BaseDO {
      */
     private Integer refreshTimeout;
     /**
-     * 状态（0 正常 1 停用）
+     * 状态（0 关闭 1 开启）
      */
-    private String status;
+    private Integer status;
 
 
 }
