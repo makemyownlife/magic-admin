@@ -1655,9 +1655,9 @@ CREATE TABLE `system_client` (
     -- 状态字段
                               `status`            TINYINT(3)         DEFAULT 1 COMMENT '状态（0 停用 1 启用）',
     -- 标准字段（你指定保留的字段）
-                              `creator`           VARCHAR(64)     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+                              `creator`           VARCHAR(64)     DEFAULT '' COMMENT '创建者',
                               `create_time`       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-                              `updater`           VARCHAR(64)     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+                              `updater`           VARCHAR(64)     DEFAULT '' COMMENT '更新者',
                               `update_time`       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
                               `deleted`           BIT(1)          NOT NULL DEFAULT b'0' COMMENT '是否删除',
     -- 索引
