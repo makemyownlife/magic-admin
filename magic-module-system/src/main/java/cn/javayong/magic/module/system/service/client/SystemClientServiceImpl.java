@@ -1,8 +1,12 @@
 package cn.javayong.magic.module.system.service.client;
 
+import cn.javayong.magic.module.system.domain.dataobject.MenuDO;
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
+import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.domain.vo.SystemClientPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientSaveReqVO;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +20,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.mapper.SystemClientMapper;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception;
+import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertList;
 import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.CLIENT_NOT_EXISTS;
 import static cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants.DEFAULT_CLIENT_CANT_DELETE;
 
@@ -32,6 +37,7 @@ public class SystemClientServiceImpl implements SystemClientService {
     private SystemClientMapper clientMapper;
 
     @Override
+    @CacheEvict(value = RedisKeyConstants.SYSTEM_CLIENT_LIST, allEntries = true)
     public Long createClient(SystemClientSaveReqVO createReqVO) {
         // 插入
         SystemClientDO client = BeanUtils.toBean(createReqVO, SystemClientDO.class);
@@ -42,6 +48,8 @@ public class SystemClientServiceImpl implements SystemClientService {
     }
 
     @Override
+    @CacheEvict(value = RedisKeyConstants.SYSTEM_CLIENT_LIST,
+            allEntries = true)
     public void updateClient(SystemClientSaveReqVO updateReqVO) {
         // 校验存在
         validateClientExists(updateReqVO.getId());
@@ -51,6 +59,7 @@ public class SystemClientServiceImpl implements SystemClientService {
     }
 
     @Override
+    @CacheEvict(value = RedisKeyConstants.SYSTEM_CLIENT_LIST, allEntries = true)
     public void deleteClient(Long id) {
         if (id == 1L) {
             throw exception(DEFAULT_CLIENT_CANT_DELETE);
@@ -62,9 +71,15 @@ public class SystemClientServiceImpl implements SystemClientService {
     }
 
     @Override
+    @CacheEvict(value = RedisKeyConstants.SYSTEM_CLIENT_LIST, allEntries = true)
     public void deleteClientListByIds(List<Long> ids) {
         // 删除
         clientMapper.deleteByIds(ids);
+    }
+
+    @Cacheable(value = RedisKeyConstants.SYSTEM_CLIENT_LIST, key = "#clientKey")
+    public SystemClientDO getSystemClientByClientKeyFromCache(String clientKey) {
+        return clientMapper.selectOne(SystemClientDO::getClientKey, clientKey);
     }
 
     private void validateClientExists(Long id) {

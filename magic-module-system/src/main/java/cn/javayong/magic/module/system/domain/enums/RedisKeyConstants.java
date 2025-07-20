@@ -45,4 +45,12 @@ public interface RedisKeyConstants {
      */
     String PERMISSION_MENU_ID_LIST = "permission_menu_ids";
 
+    /**
+     * 系统客户端编号数组的缓存
+     * <p>
+     * KEY ： system_client_list
+     * VALUE 数据类型：String 系统客户端编号数组
+     */
+    String SYSTEM_CLIENT_LIST = "system_client_list";
+
 }

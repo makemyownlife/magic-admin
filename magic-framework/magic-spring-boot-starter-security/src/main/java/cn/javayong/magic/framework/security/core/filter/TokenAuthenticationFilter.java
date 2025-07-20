@@ -41,6 +41,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @SuppressWarnings("NullableProblems")
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+
+        // step1 : 从请求头获取 客户端 KEY
+        String clientKey = WebFrameworkUtils.getRequest().getHeader(securityProperties.getClientKeyHeader());
+
         String token = SecurityFrameworkUtils.obtainAuthorization(request,
                 securityProperties.getTokenHeader(), securityProperties.getTokenParameter());
         if (StrUtil.isNotEmpty(token)) {
@@ -48,10 +52,6 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             try {
                 // 1.1 基于 token 构建登录用户
                 LoginUser loginUser = buildLoginUserByToken(token, userType);
-                // 1.2 模拟 Login 功能，方便日常开发调试
-                if (loginUser == null) {
-                    loginUser = mockLoginUser(request, token, userType);
-                }
 
                 // 2. 设置当前用户
                 if (loginUser != null) {

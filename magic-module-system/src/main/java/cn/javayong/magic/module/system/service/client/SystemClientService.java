@@ -38,10 +38,10 @@ public interface SystemClientService {
     void deleteClient(Long id);
 
     /**
-    * 批量删除系统客户端
-    *
-    * @param ids 编号
-    */
+     * 批量删除系统客户端
+     *
+     * @param ids 编号
+     */
     void deleteClientListByIds(List<Long> ids);
 
     /**
@@ -51,6 +51,14 @@ public interface SystemClientService {
      * @return 系统客户端
      */
     SystemClientDO getClient(Long id);
+
+    /**
+     * 获得系统客户端
+     *
+     * @param clientKey 客户端KEY
+     * @return 系统客户端
+     */
+    SystemClientDO getSystemClientByClientKeyFromCache(String clientKey);
 
     /**
      * 获得系统客户端分页
