@@ -5,6 +5,9 @@ import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ 重点：不同客户端登录获取到的token不同与其他端不互通(例如: app登录获取到的token无法用于pc端接口查询)
+ **/
 @Component
 @Slf4j
 public class SystemClientAdapter implements ClientAdapter {
