@@ -1,13 +1,12 @@
 package cn.javayong.magic.framework.token.core.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
 import cn.javayong.magic.framework.common.util.date.DateUtils;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
+import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
 import cn.javayong.magic.framework.token.core.dto.SecurityCreateTokenDTO;
 import cn.javayong.magic.framework.token.core.dto.SecurityRefreshTokenDTO;
@@ -19,12 +18,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 import static cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil.exception0;
-import static cn.javayong.magic.framework.common.util.collection.CollectionUtils.convertSet;
 
 public class SecurityTokenServiceImpl implements SecurityTokenService {
-
-    // 默认 登录客户端平台  1： admin后台
-    private String DEFAULT_CLINET_ID =  "1";
 
     // 访问令牌
     private final static String SECURITY_ACCESS_TOKEN = "security_access_token:%s";
@@ -34,7 +29,10 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
 
     private StringRedisTemplate stringRedisTemplate;
 
-    public SecurityTokenServiceImpl(StringRedisTemplate stringRedisTemplate) {
+    private ClientAdapter clientAdapter;
+
+    public SecurityTokenServiceImpl(ClientAdapter clientAdapter, StringRedisTemplate stringRedisTemplate) {
+        this.clientAdapter = clientAdapter;
         this.stringRedisTemplate = stringRedisTemplate;
     }
 
@@ -47,7 +45,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityRefreshTokenDTO refreshTokenDTO = new SecurityRefreshTokenDTO().setRefreshToken(generateRefreshToken())
                 .setUserId(securityCreateTokenDTO.getUserId())
                 .setUserType(UserTypeEnum.ADMIN.getValue())
-                .setClientId(DEFAULT_CLINET_ID)
+                .setClientId("1")
                 .setExpiresTime(LocalDateTime.now().plusSeconds(2592000)).setTenantId(securityCreateTokenDTO.getTenantId());
 
         // step2 : 保存 refreshToken 到 Redis
@@ -62,7 +60,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
                 .setUserId(refreshTokenDTO.getUserId()).setUserType(refreshTokenDTO.getUserType())
                 .setClientId(refreshTokenDTO.getClientId())
                 .setRefreshToken(refreshTokenDTO.getRefreshToken())
-                .setExpiresTime(LocalDateTime.now().plusSeconds(1800)).setTenantId(securityCreateTokenDTO.getTenantId());
+                .setExpiresTime(LocalDateTime.now().plusSeconds(1800));
 
         // step4 : 保存 accessToken 到 Redis
         String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, accessTokenDTO.getAccessToken());
@@ -71,7 +69,8 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
             stringRedisTemplate.opsForValue().set(accessTokenKey, JsonUtils.toJsonString(accessTokenDTO), timeDiff2, TimeUnit.SECONDS);
         }
 
-        return accessTokenDTO;    }
+        return accessTokenDTO;
+    }
 
     @Override
     public SecurityAccessTokenDTO refreshAccessToken(String refreshToken) {
@@ -96,7 +95,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
                 .setUserId(refreshTokenDTO.getUserId()).setUserType(refreshTokenDTO.getUserType())
                 .setClientId(refreshTokenDTO.getClientId())
                 .setRefreshToken(refreshTokenDTO.getRefreshToken())
-                .setExpiresTime(LocalDateTime.now().plusSeconds(1800)).setTenantId(refreshTokenDTO.getTenantId());
+                .setExpiresTime(LocalDateTime.now().plusSeconds(1800));
 
         // step4 : 保存 accessToken 到 Redis
         String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, accessTokenDTO.getAccessToken());

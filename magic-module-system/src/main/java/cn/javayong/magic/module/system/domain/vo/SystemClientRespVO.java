@@ -41,8 +41,7 @@ public class SystemClientRespVO {
     private Integer refreshTimeout;
 
     @Schema(description = "状态（0 正常 1 停用）", example = "2")
-    @ExcelProperty("状态（0 正常 1 停用）")
-    private String status;
+    private Integer status;
 
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("创建时间")

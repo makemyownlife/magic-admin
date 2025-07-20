@@ -11,11 +11,6 @@ import java.time.LocalDateTime;
 public class SecurityAccessTokenDTO {
 
     /**
-     * 多租户编号
-     */
-    private Long tenantId;
-
-    /**
      * 访问令牌
      */
     private String accessToken;
