@@ -23,7 +23,6 @@ import static ${CommonResultClassName}.success;
 
 import ${ExcelUtilsClassName};
 
-import ${ApiAccessLogClassName};
 import static ${OperateTypeEnumClassName}.*;
 
 import ${basePackage}.module.${table.moduleName}.controller.${sceneEnum.basePackage}.${table.businessName}.vo.*;

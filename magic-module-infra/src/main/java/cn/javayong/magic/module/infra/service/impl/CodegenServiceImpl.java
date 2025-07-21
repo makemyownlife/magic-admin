@@ -22,6 +22,7 @@ import cn.javayong.magic.module.infra.util.CodegenEngine;
 import com.baomidou.mybatisplus.generator.config.po.TableField;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.google.common.annotations.VisibleForTesting;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,10 +39,9 @@ import static cn.javayong.magic.module.infra.domain.enums.ErrorCodeConstants.*;
 
 /**
  * 代码生成 Service 实现类
- *
- * 
  */
 @Service
+@Slf4j
 public class CodegenServiceImpl implements CodegenService {
 
     @Resource
