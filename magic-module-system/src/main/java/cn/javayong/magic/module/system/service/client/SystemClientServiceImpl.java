@@ -1,6 +1,5 @@
 package cn.javayong.magic.module.system.service.client;
 
-import cn.javayong.magic.module.system.domain.dataobject.MenuDO;
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.domain.vo.SystemClientPageReqVO;
@@ -77,7 +76,9 @@ public class SystemClientServiceImpl implements SystemClientService {
         clientMapper.deleteByIds(ids);
     }
 
-    @Cacheable(value = RedisKeyConstants.SYSTEM_CLIENT_LIST, key = "#clientKey")
+    @Cacheable(value = RedisKeyConstants.SYSTEM_CLIENT_LIST,
+            key = "'cacheKey:' + #clientKey",
+            unless = "#clientKey == null")  // 显式排除null情况
     public SystemClientDO getSystemClientByClientKeyFromCache(String clientKey) {
         return clientMapper.selectOne(SystemClientDO::getClientKey, clientKey);
     }
@@ -90,6 +91,12 @@ public class SystemClientServiceImpl implements SystemClientService {
 
     @Override
     public SystemClientDO getClient(Long id) {
+        return clientMapper.selectById(id);
+    }
+
+    @Override
+    @Cacheable(value = RedisKeyConstants.SYSTEM_CLIENT_LIST, key = "'id:' + #id" ,unless = "#id == null")
+    public SystemClientDO getClientByIdFromCache(Long id) {
         return clientMapper.selectById(id);
     }
 

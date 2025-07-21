@@ -35,7 +35,7 @@ public class SecurityAccessTokenDTO {
     /**
      * 客户端编号
      */
-    private String clientId;
+    private Long clientId;
 
     /**
      * 过期时间

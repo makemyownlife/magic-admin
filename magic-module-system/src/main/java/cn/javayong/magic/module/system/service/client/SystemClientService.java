@@ -53,6 +53,14 @@ public interface SystemClientService {
     SystemClientDO getClient(Long id);
 
     /**
+     * 获得系统客户端 (缓存)
+     *
+     * @param id 编号
+     * @return 系统客户端
+     */
+    SystemClientDO getClientByIdFromCache(Long id);
+
+    /**
      * 获得系统客户端
      *
      * @param clientKey 客户端KEY

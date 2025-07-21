@@ -16,11 +16,18 @@ import lombok.experimental.Accessors;
 public class SecurityClientDTO {
 
     /**
+     * 命名空间
+     * <p>
+     * 用于区分不同业务系统的客户端
+     */
+    private String namespace;
+
+    /**
      * 客户端唯一标识ID
      * <p>
      * 用于唯一标识一个客户端实例
      */
-    private String clientId;
+    private Long clientId;
 
     /**
      * 客户端密钥标识
@@ -37,5 +44,15 @@ public class SecurityClientDTO {
      * 注意：应妥善保管，建议加密存储
      */
     private String clientSecret;
+
+    /**
+     * Token访问超时时间（秒）
+     */
+    private Integer accessTimeout;
+
+    /**
+     * Token刷新超时时间（秒）
+     */
+    private Integer refreshTimeout;
 
 }
