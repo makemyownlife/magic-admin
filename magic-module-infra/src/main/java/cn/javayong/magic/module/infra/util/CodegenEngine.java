@@ -553,8 +553,7 @@ public class CodegenEngine {
     }
 
     private static String javaModuleImplVOFilePath(String path) {
-        return javaModuleFilePath("domain/${table.businessName}/" +
-                "vo/${sceneEnum.prefixClass}${table.className}" + path, "server", "main");
+        return javaModuleFilePath("domain/vo/${sceneEnum.prefixClass}${table.className}" + path, "server", "main");
     }
 
     private static String javaModuleImplControllerFilePath() {
