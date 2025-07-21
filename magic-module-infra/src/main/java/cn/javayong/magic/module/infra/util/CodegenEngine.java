@@ -64,30 +64,38 @@ public class CodegenEngine {
      * value：生成的路径
      */
     private static final Map<String, String> SERVER_TEMPLATES = MapUtil.<String, String>builder(new LinkedHashMap<>()) // 有序
+
             // Java module-biz(server) Main
-            .put(javaTemplatePath("controller/vo/pageReqVO"), javaModuleImplVOFilePath("PageReqVO"))
-            .put(javaTemplatePath("controller/vo/listReqVO"), javaModuleImplVOFilePath("ListReqVO"))
-            .put(javaTemplatePath("controller/vo/respVO"), javaModuleImplVOFilePath("RespVO"))
-            .put(javaTemplatePath("controller/vo/saveReqVO"), javaModuleImplVOFilePath("SaveReqVO"))
+            .put(javaTemplatePath("domain/vo/pageReqVO"), javaModuleImplVOFilePath("PageReqVO"))
+
+            .put(javaTemplatePath("domain/vo/listReqVO"), javaModuleImplVOFilePath("ListReqVO"))
+
+            .put(javaTemplatePath("domain/vo/respVO"), javaModuleImplVOFilePath("RespVO"))
+
+            .put(javaTemplatePath("domain/vo/saveReqVO"), javaModuleImplVOFilePath("SaveReqVO"))
+
             .put(javaTemplatePath("controller/controller"), javaModuleImplControllerFilePath())
-            .put(javaTemplatePath("dal/do"),
-                    javaModuleImplMainFilePath("dal/dataobject/${table.businessName}/${table.className}DO"))
-            .put(javaTemplatePath("dal/do_sub"), // 特殊：主子表专属逻辑
-                    javaModuleImplMainFilePath("dal/dataobject/${table.businessName}/${subTable.className}DO"))
-            .put(javaTemplatePath("dal/mapper"),
-                    javaModuleImplMainFilePath("dal/mysql/${table.businessName}/${table.className}Mapper"))
-            .put(javaTemplatePath("dal/mapper_sub"), // 特殊：主子表专属逻辑
-                    javaModuleImplMainFilePath("dal/mysql/${table.businessName}/${subTable.className}Mapper"))
-            .put(javaTemplatePath("dal/mapper.xml"), mapperXmlFilePath())
+
+            .put(javaTemplatePath("domain/dataobject/do"),
+                    javaModuleImplMainFilePath("domain/dataobject/${table.className}DO"))
+
+            .put(javaTemplatePath("domain/dataobject/do_sub"), // 特殊：主子表专属逻辑
+                    javaModuleImplMainFilePath("domain/dataobject/${subTable.className}DO"))
+
+            .put(javaTemplatePath("mapper/mapper"),
+                    javaModuleImplMainFilePath("mapper/${table.className}Mapper"))
+
+            .put(javaTemplatePath("mapper/mapper_sub"), // 特殊：主子表专属逻辑
+                    javaModuleImplMainFilePath("mapper/${subTable.className}Mapper"))
+
+            .put(javaTemplatePath("mapper/mapper.xml"), mapperXmlFilePath())
+
             .put(javaTemplatePath("service/serviceImpl"),
-                    javaModuleImplMainFilePath("service/${table.businessName}/${table.className}ServiceImpl"))
+                    javaModuleImplMainFilePath("service/impl/${table.className}ServiceImpl"))
             .put(javaTemplatePath("service/service"),
-                    javaModuleImplMainFilePath("service/${table.businessName}/${table.className}Service"))
-            // Java module-biz(server) Test
-            .put(javaTemplatePath("test/serviceTest"),
-                    javaModuleImplTestFilePath("service/${table.businessName}/${table.className}ServiceImplTest"))
+                    javaModuleImplMainFilePath("service/${table.className}Service"))
             // Java module-api Main
-            .put(javaTemplatePath("enums/errorcode"), javaModuleApiMainFilePath("enums/ErrorCodeConstants_手动操作"))
+            .put(javaTemplatePath("domain/enums/errorcode"), javaModuleApiMainFilePath("domain/enums/ErrorCodeConstants_手动操作"))
             // SQL
             .put("codegen/sql/sql.vm", "sql/sql.sql")
             .put("codegen/sql/h2.vm", "sql/h2.sql")
@@ -545,12 +553,12 @@ public class CodegenEngine {
     }
 
     private static String javaModuleImplVOFilePath(String path) {
-        return javaModuleFilePath("controller/${sceneEnum.basePackage}/${table.businessName}/" +
+        return javaModuleFilePath("domain/${table.businessName}/" +
                 "vo/${sceneEnum.prefixClass}${table.className}" + path, "server", "main");
     }
 
     private static String javaModuleImplControllerFilePath() {
-        return javaModuleFilePath("controller/${sceneEnum.basePackage}/${table.businessName}/" +
+        return javaModuleFilePath("controller/" +
                 "${sceneEnum.prefixClass}${table.className}Controller", "server", "main");
     }
 
@@ -575,7 +583,7 @@ public class CodegenEngine {
     private static String mapperXmlFilePath() {
         return "magic-module-${table.moduleName}/" + // 顶级模块
                 "magic-module-${table.moduleName}-server/" + // 子模块
-                "src/main/resources/mapper/${table.businessName}/${table.className}Mapper.xml";
+                "src/main/resources/mapper/${table.className}Mapper.xml";
     }
 
     private static String vueTemplatePath(String path) {
