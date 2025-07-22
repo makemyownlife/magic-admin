@@ -39,4 +39,18 @@
         <appender-ref ref="ADMIN-ROOT" />
     </root>
 
+    <!-- 定义Spring Profile变量 -->
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+    <!-- Prod环境：文件输出 + INFO级别 -->
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="ADMIN-ROOT" />
+        </root>
+    </springProfile>
+
 </configuration>
