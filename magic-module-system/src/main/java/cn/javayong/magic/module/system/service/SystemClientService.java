@@ -1,4 +1,4 @@
-package cn.javayong.magic.module.system.service.client;
+package cn.javayong.magic.module.system.service;
 
 import java.util.*;
 import javax.validation.*;

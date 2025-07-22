@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.framework.web.adapter;
 import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
-import cn.javayong.magic.module.system.service.client.SystemClientService;
+import cn.javayong.magic.module.system.service.SystemClientService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;

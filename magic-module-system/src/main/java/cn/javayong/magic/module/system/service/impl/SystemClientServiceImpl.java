@@ -1,9 +1,10 @@
-package cn.javayong.magic.module.system.service.client;
+package cn.javayong.magic.module.system.service.impl;
 
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
 import cn.javayong.magic.module.system.domain.enums.RedisKeyConstants;
 import cn.javayong.magic.module.system.domain.vo.SystemClientPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.SystemClientSaveReqVO;
+import cn.javayong.magic.module.system.service.SystemClientService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

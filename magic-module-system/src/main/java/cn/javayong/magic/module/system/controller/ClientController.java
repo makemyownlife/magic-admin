@@ -24,7 +24,7 @@ import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import static cn.javayong.magic.framework.common.pojo.CommonResult.success;
 
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
-import cn.javayong.magic.module.system.service.client.SystemClientService;
+import cn.javayong.magic.module.system.service.SystemClientService;
 
 @Tag(name = "管理后台 - 系统客户端")
 @RestController
