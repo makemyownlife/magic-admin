@@ -43,7 +43,7 @@ public class OperateLogRespVO implements VO {
     @ExcelProperty("操作模块业务编号")
     private Long bizId;
 
-    @Schema(description = "操作明细", example = "修改编号为 1 的用户信息，将性别从男改成女，将姓名从芋道改成源码。")
+    @Schema(description = "操作明细", example = "修改编号为 1 的用户信息，将性别从男改成女，将姓名从magic改成源码。")
     private String action;
 
     @Schema(description = "拓展字段", example = "{'orderId': 1}")

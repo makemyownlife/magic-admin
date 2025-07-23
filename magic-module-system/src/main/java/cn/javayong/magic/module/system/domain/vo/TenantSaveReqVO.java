@@ -19,7 +19,7 @@ public class TenantSaveReqVO {
     @Schema(description = "租户编号", example = "1024")
     private Long id;
 
-    @Schema(description = "租户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋道")
+    @Schema(description = "租户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "magic")
     @NotNull(message = "租户名不能为空")
     private String name;
 

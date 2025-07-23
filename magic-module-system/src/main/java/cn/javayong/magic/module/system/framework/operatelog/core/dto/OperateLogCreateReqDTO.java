@@ -54,7 +54,7 @@ public class OperateLogCreateReqDTO {
 
     /**
      * 操作内容，记录整个操作的明细
-     * 例如说，修改编号为 1 的用户信息，将性别从男改成女，将姓名从芋道改成源码。
+     * 例如说，修改编号为 1 的用户信息，将性别从男改成女，将姓名从magic改成源码。
      */
     @NotEmpty(message = "操作内容不能为空")
     private String action;
