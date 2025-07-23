@@ -29,7 +29,7 @@
     <url>https://github.com/makemyownlife/magic-admin</url>
 
     <properties>
-        <revision>0.0.1-jdk8-SNAPSHOT</revision>
+        <revision>1.0.0-jdk8</revision>
         <!-- Maven 相关 -->
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
