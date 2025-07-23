@@ -7,6 +7,9 @@ import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
  */
 public interface ClientAdapter {
 
+    /**
+     * 获取客户端信息
+     */
     SecurityClientDTO getClient();
 
 }
