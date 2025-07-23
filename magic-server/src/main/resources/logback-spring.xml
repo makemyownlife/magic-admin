@@ -32,13 +32,6 @@
         </sift>
     </appender>
 
-    <root level="INFO">
-        <!-- 控制台日志 -->
-        <appender-ref ref="STDOUT"/>
-        <!-- 文件日志 -->
-        <appender-ref ref="ADMIN-ROOT" />
-    </root>
-
     <!-- 定义Spring Profile变量 -->
     <springProfile name="local">
         <root level="INFO">
