@@ -3,6 +3,8 @@
 <img src="https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507241651691.jpeg" style="zoom:33%;" />
 > 前端地址：https://github.com/makemyownlife/magic-admin-ui
 
+>
+
 # 项目背景
 
 从职业生涯伊始，我一直是微服务架构的坚定拥趸，这很大程度上源于长期深耕互联网行业，习惯了高并发、分布式架构下的开发模式。
@@ -107,7 +109,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 下图是 ruoyi-vue-pro 的 Token 记录表 即：数据库是 Token 的存储容器 ，当然每次查询 accessToken 都会先从 Redis 中获取。
 
-![image-20250724233746347](../../../../../../../Library/Application Support/typora-user-images/image-20250724233746347.png)
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250056444.png)
 
 我自己的经验，一个互联网应用会有大量的 Token 读写操作，假如使用数据库存储，可能会有点性能风险，主要是缓存雪崩的风险。
 
@@ -134,3 +136,4 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 同时，我也修改了代码生成逻辑，生成的目录也完全按照上面的标准。
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250052662.png)
+
