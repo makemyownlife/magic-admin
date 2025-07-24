@@ -1,9 +1,7 @@
 > 演示地址：http://14.103.184.174/index 
 > 演示账号请关注公众号：勇哥Java实战，回复：magic 即可获取。
 <img src="https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507241651691.jpeg" style="zoom:33%;" />
-> 前端地址：https://github.com/makemyownlife/magic-admin-ui
-
->
+>  前端地址：https://github.com/makemyownlife/magic-admin-ui
 
 # 项目背景
 
@@ -19,7 +17,7 @@
 
 因此，我想自己写一个单体开发框架，但考虑到从零开始，会花费较长的时间，最终决定在成熟的单体开发框架上定制开发。
 
-在知乎、Github 上搜索【快速开发框架】 ，很多的话题都绕不开若依 RuoYi 。开源世界 RuoYi 单体框架有三个不同的项目，分别是：**ruoyi-vue 、ruoyi-vue-plus 、ruoyi-vue-pro **。
+在知乎、Github 上搜索【快速开发框架】 ，很多的话题都绕不开若依 RuoYi 。开源世界 RuoYi 单体框架有三个不同的项目，分别是：**ruoyi-vue** 、**ruoyi-vue-plus** 、**ruoyi-vue-pro** 。
 
 这三个项目源码，我都仔细研读过了，功能对比细节如下表 ：
 
