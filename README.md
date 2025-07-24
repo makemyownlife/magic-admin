@@ -1,6 +1,6 @@
 > 演示地址：http://14.103.184.174/index 
 > 演示账号请关注公众号：勇哥Java实战，回复：magic 即可获取。
-> ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507241651691.jpeg)
+<img src="https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507241651691.jpeg" style="zoom:33%;" />
 > 前端地址：https://github.com/makemyownlife/magic-admin-ui
 
 # 项目背景
