@@ -27,20 +27,24 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
      * 格式化参数说明：
      * 第一个参数: 应用名称 (appName)
      * 第二个参数: 令牌类型 (固定为"security_access_token")
-     * 第三个参数: 令牌值 (tokenValue)
-     * 最终格式示例: "myapp:security_access_token:abc123"
+     * 第三个参数: 客户端标识 (clientId)
+     * 第四个参数: 令牌值 (tokenValue)
+     * 最终格式: {appName}:security_access_token:{clientId}:{tokenValue}
+     * 示例: "myapp:security_access_token:client123:abc123"
      */
-    private final static String SECURITY_ACCESS_TOKEN = "%s:security_access_token:%s";
+    private static final String SECURITY_ACCESS_TOKEN = "%s:security_access_token:%s:%s";
 
     /**
      * 刷新令牌的Redis Key模板
      * 格式化参数说明：
      * 第一个参数: 应用名称 (appName)
      * 第二个参数: 令牌类型 (固定为"security_refresh_token")
-     * 第三个参数: 令牌值 (tokenValue)
-     * 最终格式示例: "myapp:security_refresh_token:xyz456"
+     * 第三个参数: 客户端标识 (clientId)
+     * 第四个参数: 令牌值 (tokenValue)
+     * 最终格式: {appName}:security_refresh_token:{clientId}:{tokenValue}
+     * 示例: "myapp:security_refresh_token:client123:xyz456"
      */
-    private final static String SECURITY_REFRESH_TOKEN = "%s:security_refresh_token:%s";
+    private static final String SECURITY_REFRESH_TOKEN = "%s:security_refresh_token:%s:%s";
 
     private final StringRedisTemplate stringRedisTemplate;
 
@@ -63,7 +67,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityRefreshTokenDTO refreshTokenDTO = new SecurityRefreshTokenDTO().setRefreshToken(generateRefreshToken()).setUserId(securityCreateTokenDTO.getUserId()).setUserType(securityCreateTokenDTO.getUserType()).setClientId(securityClientDTO.getClientId()).setExpiresTime(LocalDateTime.now().plusSeconds(securityClientDTO.getRefreshTimeout()));
 
         // step3 : 保存 refreshToken 到 Redis
-        String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, securityClientDTO.getNamespace(), refreshTokenDTO.getRefreshToken());
+        String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), refreshTokenDTO.getRefreshToken());
         long timeDiff1 = LocalDateTimeUtil.between(LocalDateTime.now(), refreshTokenDTO.getExpiresTime(), ChronoUnit.SECONDS);
         if (timeDiff1 > 0) {
             stringRedisTemplate.opsForValue().set(refreshTokenKey, JsonUtils.toJsonString(refreshTokenDTO), timeDiff1, TimeUnit.SECONDS);
@@ -73,7 +77,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityAccessTokenDTO accessTokenDTO = new SecurityAccessTokenDTO().setAccessToken(generateAccessToken()).setUserId(refreshTokenDTO.getUserId()).setUserType(refreshTokenDTO.getUserType()).setClientId(refreshTokenDTO.getClientId()).setRefreshToken(refreshTokenDTO.getRefreshToken()).setExpiresTime(LocalDateTime.now().plusSeconds(securityClientDTO.getAccessTimeout()));
 
         // step5 : 保存 accessToken 到 Redis
-        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), accessTokenDTO.getAccessToken());
+        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), accessTokenDTO.getAccessToken());
         long timeDiff2 = LocalDateTimeUtil.between(LocalDateTime.now(), accessTokenDTO.getExpiresTime(), ChronoUnit.SECONDS);
         if (timeDiff2 > 0) {
             stringRedisTemplate.opsForValue().set(accessTokenKey, JsonUtils.toJsonString(accessTokenDTO), timeDiff2, TimeUnit.SECONDS);
@@ -89,7 +93,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityClientDTO securityClientDTO = clientAdapter.getClient();
 
         // step2:从 Redis 查看刷新令牌
-        String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, securityClientDTO.getNamespace(), refreshToken);
+        String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), refreshToken);
         SecurityAccessTokenDTO refreshTokenDTO = JsonUtils.parseObject(stringRedisTemplate.opsForValue().get(refreshTokenKey), SecurityAccessTokenDTO.class);
         if (refreshTokenDTO == null) {
             throw exception0(GlobalErrorCodeConstants.BAD_REQUEST.getCode(), "无效的刷新令牌");
@@ -105,7 +109,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityAccessTokenDTO accessTokenDTO = new SecurityAccessTokenDTO().setAccessToken(generateAccessToken()).setUserId(refreshTokenDTO.getUserId()).setUserType(refreshTokenDTO.getUserType()).setClientId(refreshTokenDTO.getClientId()).setRefreshToken(refreshTokenDTO.getRefreshToken()).setExpiresTime(LocalDateTime.now().plusSeconds(1800));
 
         // step5 : 保存 accessToken 到 Redis
-        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), accessTokenDTO.getAccessToken());
+        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), accessTokenDTO.getAccessToken());
         long timeDiff2 = LocalDateTimeUtil.between(LocalDateTime.now(), accessTokenDTO.getExpiresTime(), ChronoUnit.SECONDS);
         if (timeDiff2 > 0) {
             stringRedisTemplate.opsForValue().set(accessTokenKey, JsonUtils.toJsonString(accessTokenDTO), timeDiff2, TimeUnit.SECONDS);
@@ -121,7 +125,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         SecurityClientDTO securityClientDTO = clientAdapter.getClient();
 
         // step2:从 Redis 获取 访问令牌对象
-        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), accessToken);
+        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), accessToken);
         SecurityAccessTokenDTO securityAccessTokenDTO = JsonUtils.parseObject(stringRedisTemplate.opsForValue().get(accessTokenKey), SecurityAccessTokenDTO.class);
         if (securityAccessTokenDTO == null) {
             return null;
@@ -131,7 +135,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
         stringRedisTemplate.delete(accessTokenKey);
 
         // step4:从 Redis 删除刷新令牌
-        String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, securityClientDTO.getNamespace(), securityAccessTokenDTO.getRefreshToken());
+        String refreshTokenKey = String.format(SECURITY_REFRESH_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), securityAccessTokenDTO.getRefreshToken());
         stringRedisTemplate.delete(refreshTokenKey);
 
         return securityAccessTokenDTO;
@@ -141,7 +145,7 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
     public SecurityAccessTokenDTO getAccessToken(String accessToken) {
         SecurityClientDTO securityClientDTO = clientAdapter.getClient();
 
-        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), accessToken);
+        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), accessToken);
 
         SecurityAccessTokenDTO securityAccessTokenDTO = JsonUtils.parseObject(stringRedisTemplate.opsForValue().get(accessTokenKey), SecurityAccessTokenDTO.class);
 

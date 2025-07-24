@@ -115,7 +115,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 我的做法是所有的 Token 都通过 Redis 来存储，同时每个客户端都有独立的 namespace ，见下图：
 
-![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250034715.png)
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250034715.png?1=2)
 
 **4、包层级结构**
 
