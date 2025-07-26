@@ -142,3 +142,103 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 1、客户端管理优化（加密增强）
 
 2、添加流程引擎模块（企业级工作流支持）
+
+# 启动服务端
+
+本地电脑上项目运行环境依赖组件以及版本信息如下：
+
+- IntelliJ IDEA  版本 2019 +
+- Git 代码版本管理工具
+- JDK 8 +
+- Maven（如果 IntelliJ IDEA 2021 版本及以上，内置了 Maven 组件）
+
+## 1 克隆项目
+
+打开 Github 项目地址， 复制对应的 SSH 或 HTTP 克隆地址。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507251313290.png)
+
+打开 IntelliJ IDEA，菜单栏顶部找到 Git -> Clone 选项。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506011100762.png)
+
+点击 Clone 后，URL 文本框填写项目的 HTTP 或 SSH 地址，比如 HTTP 的地址：`git@github.com:makemyownlife/magic-admin.git`，Directory 填写项目存储在本地的目录地址。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507251314960.png)
+
+等待克隆及 Maven 初始化即可。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507251317417.png)
+
+拉下来后，可在项目根目录执行 `mvn clean install` 测试是否具备运行环境。
+
+## 2 初始化 MySQL
+
+项目当前支持 MySQL 5.7 +  ，首先需要创建一个名字为 `magic-admin` 数据库 。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507251331097.png)
+
+然后分别导入 magic_admin.sql ，quartz.sql 这两个文件。
+
+-  **magic_admin.sql**：用于创建或初始化 MagicAdmin 后台管理系统所需的数据库结构和初始数据 。
+
+-  **quartz.sql** : Quartz 调度框架的数据库脚本，用于在数据库中创建 Quartz 所需的表结构，以便支持持久化任务调度 。
+
+## 3 项目启动
+
+项目依赖 JDK 1.8 + ，因此理论上兼容性非常强。
+
+配置文件分为 生产 prod 、本地开发 local 两个环境文件，在本地运行，需要修改本地环境文件。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506011137860.png)
+
+**1、修改 MySQL 数据库信息：**
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506011456669.png)
+
+**2、修改 Redis 数据库信息：**
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506011510109.png)
+
+**个人本地环境，一般笔者并不会开启密码，建议生产环境开启。**
+
+启动 MagicAdminApplication.java 即可。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506011542130.png)
+
+# 启动 admin UI
+
+前端 UI 需要在本机安装 NodeJs ，可参考：
+
+>  https://www.runoob.com/nodejs/nodejs-install-setup.html
+>
+>  https://blog.csdn.net/weixin_45565886/article/details/141828707
+
+----
+
+打开 Githu 项目地址：https://github.com/makemyownlife/magic-admin-ui  复制对应的 SSH 或 HTTP 克隆地址。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507251609783.png)
+
+通过 git clone 命令克隆到本地自定义目录，然后执行如下命令：
+
+```bash
+# 安装 pnpm，提升依赖的安装速度
+npm config set registry https://registry.npmjs.org
+npm install -g pnpm
+# 安装依赖
+pnpm install
+
+# 启动服务
+npm run dev
+```
+
+启动完成后，浏览器会自动打开 http://localhost:80 ，可以看到前端界面。
+
+![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506012008714.png)
+
+> 默认账号密码：admin/gaohui0601
+
+
+
+
