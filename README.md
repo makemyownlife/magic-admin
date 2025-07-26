@@ -3,7 +3,7 @@
 <img src="https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507241651691.jpeg" style="zoom:33%;" />
 >  前端地址：https://github.com/makemyownlife/magic-admin-ui
 
-# 项目背景
+# 1 项目背景
 
 从职业生涯伊始，我一直是微服务架构的坚定拥趸，这很大程度上源于长期深耕互联网行业，习惯了高并发、分布式架构下的开发模式。
 
@@ -33,7 +33,7 @@
 
 项目的名称：magic-admin   ,  保留了 RuoYi-Vue-Pro 的基础功能 ，同时在**客户端管理**、**代码组织结构**、 **多租户管理**这三个层面做了定制。
 
-# 设计概览
+# 2 设计概览
 
 后端单体开发平台基于开源项目 ruoyi-vue-pro 重构 。
 
@@ -81,7 +81,7 @@
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507242052362.gif)
 
-# 定制功能
+# 3 定制功能
 
 **1、删除多租户功能**
 
@@ -135,7 +135,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250052662.png)
 
-# 框架设计规划
+# 4 框架设计规划
 
 框架设计的原则还是要简洁和易于维护，未来会在如下两个层面持续优化：
 
@@ -143,7 +143,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 2、添加流程引擎模块（企业级工作流支持）
 
-# 启动服务端
+# 5 启动服务端
 
 本地电脑上项目运行环境依赖组件以及版本信息如下：
 
@@ -152,7 +152,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 - JDK 8 +
 - Maven（如果 IntelliJ IDEA 2021 版本及以上，内置了 Maven 组件）
 
-## 1 克隆项目
+## 01 克隆项目
 
 打开 Github 项目地址， 复制对应的 SSH 或 HTTP 克隆地址。
 
@@ -172,7 +172,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 拉下来后，可在项目根目录执行 `mvn clean install` 测试是否具备运行环境。
 
-## 2 初始化 MySQL
+## 02 初始化 MySQL
 
 项目当前支持 MySQL 5.7 +  ，首先需要创建一个名字为 `magic-admin` 数据库 。
 
@@ -184,7 +184,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 -  **quartz.sql** : Quartz 调度框架的数据库脚本，用于在数据库中创建 Quartz 所需的表结构，以便支持持久化任务调度 。
 
-## 3 项目启动
+## 03 项目启动
 
 项目依赖 JDK 1.8 + ，因此理论上兼容性非常强。
 
@@ -206,7 +206,7 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506011542130.png)
 
-# 启动 admin UI
+# 6 启动 admin UI
 
 前端 UI 需要在本机安装 NodeJs ，可参考：
 
@@ -237,8 +237,7 @@ npm run dev
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202506012008714.png)
 
-> 默认账号密码：admin/gaohui0601
-
+> 默认账号密码：admin/magic123456
 
 
 
