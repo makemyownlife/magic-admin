@@ -1624,7 +1624,7 @@ CREATE TABLE `system_users` (
 -- Records of system_users
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_users` (`id`, `username`, `password`, `nickname`, `remark`, `dept_id`, `post_ids`, `email`, `mobile`, `sex`, `avatar`, `status`, `login_ip`, `login_date`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1, 'admin', '$2a$04$360poG67pqaEWbvXWhgOe.bdV5R30UW.e7/0p5OzAXh52IvllkkC2', '勇哥Java实战', '管理员', 103, '[1,2]', 'zhangyong7120180@163.com', '15011319235', 2, 'https://javayong.cn/logo.png', 0, '0:0:0:0:0:0:0:1', '2025-07-01 21:41:03', 'admin', '2021-01-05 17:03:47', NULL, '2025-07-01 21:41:03', b'0');
+INSERT INTO `system_users` (`id`, `username`, `password`, `nickname`, `remark`, `dept_id`, `post_ids`, `email`, `mobile`, `sex`, `avatar`, `status`, `login_ip`, `login_date`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1, 'admin', '$2a$04$XH9Ckgls87.zmR5K/v0I.OqpPrevyrENsdYO6v0yIKSFoUAZK17Vq', '勇哥Java实战', '管理员', 103, '[1,2]', 'zhangyong7120180@163.com', '15011319235', 2, 'https://javayong.cn/logo.png', 0, '0:0:0:0:0:0:0:1', '2025-07-01 21:41:03', 'admin', '2021-01-05 17:03:47', NULL, '2025-07-01 21:41:03', b'0');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
