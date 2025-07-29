@@ -17,6 +17,8 @@ import ${PageResultClassName};
 import ${PageParamClassName};
 import ${BeanUtils};
 
+import ${basePackage}.module.${table.moduleName}.service.${table.className}Service;
+
 import ${basePackage}.module.${table.moduleName}.mapper.${table.className}Mapper;
 ## 特殊：主子表专属逻辑
 #foreach ($subTable in $subTables)
