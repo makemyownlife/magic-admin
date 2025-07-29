@@ -24,21 +24,21 @@ public interface SecurityTokenService {
     SecurityAccessTokenDTO refreshAccessToken(String refreshToken);
 
     /**
-     * 主动使令牌失效（如用户登出时调用）
+     * 主动使令牌失效
      * @param accessToken 需要失效的令牌
-     * @return 被移除的令牌信息（含失效前的元数据）
+     * @return 被移除的令牌信息
      */
     SecurityAccessTokenDTO removeAccessToken(String accessToken);
 
     /**
-     * 获取令牌详细信息（不验证有效性）
+     * 获取令牌详细信息
      * @param accessToken 待查询的令牌
      * @return 令牌完整信息（含用户ID、过期时间等）
      */
     SecurityAccessTokenDTO getAccessToken(String accessToken);
 
     /**
-     * 验证令牌有效性（含黑名单检查）
+     * 验证令牌有效性
      * @param accessToken 待验证的令牌
      * @return 令牌信息
      */
