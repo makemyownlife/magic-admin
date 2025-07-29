@@ -105,11 +105,11 @@ ruoyi-vue-pro 是采用了第三种方式来实现的，每张表需要添加 te
 
 **3、Token 管理**
 
-下图是 ruoyi-vue-pro 的 Token 记录表 即：数据库是 Token 的存储容器 ，当然每次查询 accessToken 都会先从 Redis 中获取。
+下图是 ruoyi-vue-pro 的 Token 记录表 即：数据库是 Token 的存储容器 。
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250056444.png)
 
-我自己的经验，一个互联网应用会有大量的 Token 读写操作，假如使用数据库存储，可能会有点性能风险，主要是缓存雪崩的风险。
+虽然每次查询 accessToken 都会先从 Redis 先查询一次 ，但假如在同一时刻有大量 Token 失效，那么数据库就会成为瓶颈，可能会有缓存雪崩的风险。
 
 ![](https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507250032951.png)
 
