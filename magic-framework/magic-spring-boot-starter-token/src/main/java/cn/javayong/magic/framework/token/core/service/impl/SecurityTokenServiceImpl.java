@@ -2,7 +2,6 @@ package cn.javayong.magic.framework.token.core.service.impl;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.javayong.magic.framework.common.enums.UserTypeEnum;
 import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
 import cn.javayong.magic.framework.common.util.date.DateUtils;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
@@ -105,17 +104,12 @@ public class SecurityTokenServiceImpl implements SecurityTokenService {
             throw exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "刷新令牌已过期");
         }
 
-        // step4 ：创建 accessToken
-        SecurityAccessTokenDTO accessTokenDTO = new SecurityAccessTokenDTO().setAccessToken(generateAccessToken()).setUserId(refreshTokenDTO.getUserId()).setUserType(refreshTokenDTO.getUserType()).setClientId(refreshTokenDTO.getClientId()).setRefreshToken(refreshTokenDTO.getRefreshToken()).setExpiresTime(LocalDateTime.now().plusSeconds(1800));
+        // step4: 创建 accessToken
+        SecurityCreateTokenDTO securityCreateTokenDTO = new SecurityCreateTokenDTO();
+        securityCreateTokenDTO.setUserType(refreshTokenDTO.getUserType())
+                .setUserId(refreshTokenDTO.getUserId());
 
-        // step5 : 保存 accessToken 到 Redis
-        String accessTokenKey = String.format(SECURITY_ACCESS_TOKEN, securityClientDTO.getNamespace(), securityClientDTO.getClientId(), accessTokenDTO.getAccessToken());
-        long timeDiff2 = LocalDateTimeUtil.between(LocalDateTime.now(), accessTokenDTO.getExpiresTime(), ChronoUnit.SECONDS);
-        if (timeDiff2 > 0) {
-            stringRedisTemplate.opsForValue().set(accessTokenKey, JsonUtils.toJsonString(accessTokenDTO), timeDiff2, TimeUnit.SECONDS);
-        }
-
-        return accessTokenDTO;
+        return createAccessToken(securityCreateTokenDTO);
     }
 
     @Override
