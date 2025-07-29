@@ -1,5 +1,6 @@
 package cn.javayong.magic.module.system.framework.web.adapter;
 
+import cn.javayong.magic.framework.security.config.SecurityProperties;
 import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
@@ -30,13 +31,16 @@ public class SystemClientAdapter implements ClientAdapter {
     @Value("#{'${spring.application.name}'}")  // 明确使用 SpEL
     private String appName;
 
+    @Resource
+    private SecurityProperties securityProperties;
+
     @Override
     public SecurityClientDTO getClient() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
         SystemClientDO systemClientDO = null;
-        String clientKey = request.getHeader("x-client-key");
+        String clientKey = request.getHeader(securityProperties.getClientKeyHeader());
 
         if (StringUtils.isEmpty(clientKey)) {
             // 若 客户端没有传输 clientKey 则默认为 1： admin PC 后台
