@@ -95,7 +95,8 @@ public class CodegenEngine {
             .put(javaTemplatePath("service/service"),
                     javaModuleImplMainFilePath("service/${table.className}Service"))
             // Java module-api Main
-            .put(javaTemplatePath("domain/enums/errorcode"), javaModuleApiMainFilePath("domain/enums/ErrorCodeConstants_手动操作"))
+           // .put(javaTemplatePath("domain/enums/errorcode"), javaModuleApiMainFilePath("domain/enums/ErrorCodeConstants_手动操作"))
+            .put(javaTemplatePath("domain/enums/errorcode"), javaModuleApiMainFilePath("domain/enums/ErrorCodeConstants"))
             // SQL
             .put("codegen/sql/sql.vm", "sql/sql.sql")
             .put("codegen/sql/h2.vm", "sql/h2.sql")

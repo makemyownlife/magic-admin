@@ -1,5 +1,12 @@
 // TODO 待办：请将下面的错误码复制到 magic-module-${table.moduleName} 模块的 ErrorCodeConstants 类中。注意，请给“TODO 补充编号”设置一个错误码编号！！！
 // ========== ${table.classComment} TODO 补充编号 ==========
+
+package ${basePackage}.module.${table.moduleName}.domain.dataobject.enums;
+
+import ${basePackage}.framework.common.exception.ErrorCode;
+
+public interface ErrorCodeConstants {
+
 ErrorCode ${simpleClassName_underlineCase.toUpperCase()}_NOT_EXISTS = new ErrorCode(TODO 补充编号, "${table.classComment}不存在");
 ## 特殊：树表专属逻辑
 #if ( $table.templateType == 2 )
@@ -20,3 +27,5 @@ ErrorCode ${simpleClassNameUnderlineCase.toUpperCase()}_EXISTS = new ErrorCode(T
 #end
 #end
 #end
+
+}
