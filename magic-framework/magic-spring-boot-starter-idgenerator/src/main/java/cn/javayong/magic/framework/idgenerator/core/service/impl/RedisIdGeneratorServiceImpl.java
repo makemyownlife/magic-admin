@@ -46,7 +46,7 @@ public class RedisIdGeneratorServiceImpl implements IdGeneratorService {
         // 当前自增的最小 id
         long cursor = counter - ShardingConstants.STEP_LENGTH + 1;
         while (cursor <= Math.min(counter, ShardingConstants.MAX_SEQ)) {
-            LocalSequence.SequenceEntity newSequenceEntity = new LocalSequence.SequenceEntity(currentTime, new Long(cursor).intValue());
+            LocalSequence.SequenceEntity newSequenceEntity = new LocalSequence.SequenceEntity(currentTime, Long.valueOf(cursor).intValue());
             LocalSequence.addSeqEntity(newSequenceEntity);
             cursor++;
         }
