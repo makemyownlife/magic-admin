@@ -21,9 +21,16 @@
 
     <dependencies>
 
+        <!-- ID 生成器 -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-idgenerator</artifactId>
+        </dependency>
+
+        <!-- 安全组件 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-protection</artifactId>
         </dependency>
 
         <dependency>
