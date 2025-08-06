@@ -7,6 +7,7 @@ import cn.javayong.magic.framework.idempotent.core.keyresolver.IdempotentKeyReso
 import cn.javayong.magic.framework.idempotent.core.keyresolver.impl.UserIdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.redis.IdempotentRedisDAO;
 import cn.javayong.magic.framework.token.config.MagicTokenAutoConfiguration;
+import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,8 +18,8 @@ import java.util.List;
 public class MagicIdempotentConfiguration {
 
     @Bean
-    public IdempotentAspect idempotentAspect(List<IdempotentKeyResolver> keyResolvers, IdempotentRedisDAO idempotentRedisDAO) {
-        return new IdempotentAspect(keyResolvers, idempotentRedisDAO);
+    public IdempotentAspect idempotentAspect(List<IdempotentKeyResolver> keyResolvers, ClientAdapter clientAdapter, IdempotentRedisDAO idempotentRedisDAO) {
+        return new IdempotentAspect(keyResolvers, clientAdapter, idempotentRedisDAO);
     }
 
     @Bean

@@ -6,6 +6,7 @@ import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.idempotent.core.annotation.Idempotent;
 import cn.javayong.magic.framework.idempotent.core.keyresolver.IdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.redis.IdempotentRedisDAO;
+import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,7 +18,6 @@ import java.util.Map;
 
 /**
  * 拦截声明了 {@link Idempotent} 注解的方法，实现幂等操作
- *
  */
 @Aspect
 @Slf4j
@@ -28,10 +28,14 @@ public class IdempotentAspect {
      */
     private final Map<Class<? extends IdempotentKeyResolver>, IdempotentKeyResolver> keyResolvers;
 
+    private final ClientAdapter clientAdapter;
+
     private final IdempotentRedisDAO idempotentRedisDAO;
 
-    public IdempotentAspect(List<IdempotentKeyResolver> keyResolvers, IdempotentRedisDAO idempotentRedisDAO) {
+
+    public IdempotentAspect(List<IdempotentKeyResolver> keyResolvers, ClientAdapter clientAdapter, IdempotentRedisDAO idempotentRedisDAO) {
         this.keyResolvers = CollectionUtils.convertMap(keyResolvers, IdempotentKeyResolver::getClass);
+        this.clientAdapter = clientAdapter;
         this.idempotentRedisDAO = idempotentRedisDAO;
     }
 
@@ -43,8 +47,11 @@ public class IdempotentAspect {
         // 解析 Key
         String key = keyResolver.resolver(joinPoint, idempotent);
 
+        // 应用名
+        String appName = clientAdapter.getClient().getNamespace();
+
         // 1. 锁定 Key
-        boolean success = idempotentRedisDAO.setIfAbsent(key, idempotent.timeout(), idempotent.timeUnit());
+        boolean success = idempotentRedisDAO.setIfAbsent(appName, key, idempotent.timeout(), idempotent.timeUnit());
         // 锁定失败，抛出异常
         if (!success) {
             log.info("[aroundPointCut][方法({}) 参数({}) 存在重复请求]", joinPoint.getSignature().toString(), joinPoint.getArgs());
@@ -58,7 +65,7 @@ public class IdempotentAspect {
             // 3. 异常时，删除 Key
             // 参考美团 GTIS 思路：https://tech.meituan.com/2016/09/29/distributed-system-mutually-exclusive-idempotence-cerberus-gtis.html
             if (idempotent.deleteKeyWhenException()) {
-                idempotentRedisDAO.delete(key);
+                idempotentRedisDAO.delete(appName, key);
             }
             throw throwable;
         }
