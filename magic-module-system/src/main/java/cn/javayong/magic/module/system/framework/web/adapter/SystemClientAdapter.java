@@ -1,9 +1,12 @@
 package cn.javayong.magic.module.system.framework.web.adapter;
 
+import cn.javayong.magic.framework.common.exception.ErrorCode;
+import cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil;
 import cn.javayong.magic.framework.security.config.SecurityProperties;
 import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
+import cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants;
 import cn.javayong.magic.module.system.service.SystemClientService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -51,7 +54,7 @@ public class SystemClientAdapter implements ClientAdapter {
 
         if (systemClientDO == null) {
             log.error("[SystemClientAdapter] 获取客户端信息失败，请检查客户端信息 clientKey:" + clientKey);
-            return null;
+            throw ServiceExceptionUtil.exception(ErrorCodeConstants.CLIENT_NOT_EXISTS);
         }
 
         SecurityClientDTO securityClientDTO = new SecurityClientDTO();
