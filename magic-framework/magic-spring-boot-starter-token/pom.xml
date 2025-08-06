@@ -13,6 +13,7 @@
     <artifactId>magic-spring-boot-starter-token</artifactId>
     <packaging>jar</packaging>
     <version>${parent.version}</version>
+    <name>${project.artifactId}</name>
 
     <dependencies>
 

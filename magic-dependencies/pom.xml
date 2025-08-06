@@ -151,9 +151,17 @@
                 <version>${revision}</version>
             </dependency>
 
+            <!-- 安全 相关 -->
             <dependency>
                 <groupId>cn.javayong</groupId>
                 <artifactId>magic-spring-boot-starter-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- token 管理相关 -->
+            <dependency>
+                <groupId>cn.javayong</groupId>
+                <artifactId>magic-spring-boot-starter-token</artifactId>
                 <version>${revision}</version>
             </dependency>
 

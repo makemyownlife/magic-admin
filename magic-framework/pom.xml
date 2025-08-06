@@ -14,7 +14,7 @@
         <!-- 基础通用模块，包含项目通用工具类、常量定义、基础DTO等 -->
         <module>magic-common</module>
 
-        <!-- MyBatis增强启动器，集成MyBatis-Plus及分页插件等 -->
+        <!-- MyBatis增强启动器，集成 MyBatis-Plus 及分页插件 等 -->
         <module>magic-spring-boot-starter-mybatis</module>
 
         <!-- Redis集成启动器，包含RedisTemplate封装和分布式锁等工具 -->

@@ -7,6 +7,7 @@
         <artifactId>magic-framework</artifactId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>magic-spring-boot-starter-protection</artifactId>
     <packaging>jar</packaging>
@@ -27,6 +28,12 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-token</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- 服务保障相关 -->
