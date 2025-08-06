@@ -37,9 +37,9 @@ public @interface ApiSignature {
     String message() default "签名不正确"; // 为空时，使用 BAD_REQUEST 错误提示
 
     /**
-     * 签名字段：appId 应用ID
+     * 签名字段：客户端 key
      */
-    String appId() default "appId";
+    String clientKey() default "clientKey";
 
     /**
      * 签名字段：timestamp 时间戳

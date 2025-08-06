@@ -1,12 +1,14 @@
 package cn.javayong.magic.framework.lock4j.config;
 
 import cn.javayong.magic.framework.lock4j.core.DefaultLockFailureStrategy;
+import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
+import cn.javayong.magic.framework.token.config.MagicTokenAutoConfiguration;
 import com.baomidou.lock.spring.boot.autoconfigure.LockAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 
-@AutoConfiguration(before = LockAutoConfiguration.class)
+@AutoConfiguration(before = LockAutoConfiguration.class, after = MagicTokenAutoConfiguration.class)
 @ConditionalOnClass(name = "com.baomidou.lock.annotation.Lock4j")
 public class MagicLock4jConfiguration {
 

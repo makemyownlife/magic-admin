@@ -9,6 +9,8 @@ import cn.javayong.magic.framework.common.exception.ServiceException;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.signature.core.annotation.ApiSignature;
 import cn.javayong.magic.framework.signature.core.redis.ApiSignatureRedisDAO;
+import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
+import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -33,6 +35,9 @@ import static cn.javayong.magic.framework.common.exception.enums.GlobalErrorCode
 @AllArgsConstructor
 public class ApiSignatureAspect {
 
+    private final ClientAdapter clientAdapter;
+
+
     private final ApiSignatureRedisDAO signatureRedisDAO;
 
     @Before("@annotation(signature)")
@@ -54,14 +59,14 @@ public class ApiSignatureAspect {
         if (!verifyHeaders(signature, request)) {
             return false;
         }
-        // 1.2 校验 appId 是否能获取到对应的 appSecret
-        String appId = request.getHeader(signature.appId());
-        String appSecret = signatureRedisDAO.getAppSecret(appId);
-        Assert.notNull(appSecret, "[appId({})] 找不到对应的 appSecret", appId);
+        // 1.2 校验 clientKey 是否能获取到对应的 appSecret
+        String clientKey = request.getHeader(signature.clientKey());
+        SecurityClientDTO securityClientDTO = clientAdapter.getClient();
+        Assert.notNull(securityClientDTO.getClientSecret(), "[clientKey({})] 找不到对应的 clientSecret", clientKey);
 
         // 2. 校验签名【重要！】
         String clientSignature = request.getHeader(signature.sign()); // 客户端签名
-        String serverSignatureString = buildSignatureString(signature, request, appSecret); // 服务端签名字符串
+        String serverSignatureString = buildSignatureString(signature, request, securityClientDTO.getClientSecret()); // 服务端签名字符串
         String serverSignature = DigestUtil.sha256Hex(serverSignatureString); // 服务端签名
         if (ObjUtil.notEqual(clientSignature, serverSignature)) {
             return false;
@@ -69,14 +74,14 @@ public class ApiSignatureAspect {
 
         // 3. 将 nonce 记入缓存，防止重复使用（重点二：此处需要将 ttl 设定为允许 timestamp 时间差的值 x 2 ）
         String nonce = request.getHeader(signature.nonce());
-        signatureRedisDAO.setNonce(appId, nonce, signature.timeout() * 2, signature.timeUnit());
+        signatureRedisDAO.setNonce(clientKey, nonce, signature.timeout() * 2, signature.timeUnit());
         return true;
     }
 
     /**
      * 校验请求头加签参数
-     *
-     * 1. appId 是否为空
+     * <p>
+     * 1. clientKey 是否为空
      * 2. timestamp 是否为空，请求是否已经超时，默认 10 分钟
      * 3. nonce 是否为空，随机数是否 10 位以上，是否在规定时间内已经访问过了
      * 4. sign 是否为空
@@ -87,8 +92,8 @@ public class ApiSignatureAspect {
      */
     private boolean verifyHeaders(ApiSignature signature, HttpServletRequest request) {
         // 1. 非空校验
-        String appId = request.getHeader(signature.appId());
-        if (StrUtil.isBlank(appId)) {
+        String clientKey = request.getHeader(signature.clientKey());
+        if (StrUtil.isBlank(clientKey)) {
             return false;
         }
         String timestamp = request.getHeader(signature.timestamp());
@@ -113,12 +118,12 @@ public class ApiSignatureAspect {
         }
 
         // 3. 检查 nonce 是否存在，有且仅能使用一次
-        return signatureRedisDAO.getNonce(appId, nonce) == null;
+        return signatureRedisDAO.getNonce(clientKey, nonce) == null;
     }
 
     /**
      * 构建签名字符串
-     *
+     * <p>
      * 格式为 = 请求参数 + 请求体 + 请求头 + 密钥
      *
      * @param signature signature
@@ -139,13 +144,13 @@ public class ApiSignatureAspect {
     /**
      * 获取请求头加签参数 Map
      *
-     * @param request 请求
+     * @param request   请求
      * @param signature 签名注解
      * @return signature params
      */
     private static SortedMap<String, String> getRequestHeaderMap(ApiSignature signature, HttpServletRequest request) {
         SortedMap<String, String> sortedMap = new TreeMap<>();
-        sortedMap.put(signature.appId(), request.getHeader(signature.appId()));
+        sortedMap.put(signature.clientKey(), request.getHeader(signature.clientKey()));
         sortedMap.put(signature.timestamp(), request.getHeader(signature.timestamp()));
         sortedMap.put(signature.nonce(), request.getHeader(signature.nonce()));
         return sortedMap;

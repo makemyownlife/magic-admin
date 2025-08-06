@@ -6,14 +6,14 @@ import cn.javayong.magic.framework.idempotent.core.keyresolver.impl.ExpressionId
 import cn.javayong.magic.framework.idempotent.core.keyresolver.IdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.keyresolver.impl.UserIdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.redis.IdempotentRedisDAO;
+import cn.javayong.magic.framework.token.config.MagicTokenAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.List;
 
-@AutoConfiguration(after = MagicRedisAutoConfiguration.class)
+@AutoConfiguration(after = MagicTokenAutoConfiguration.class)
 public class MagicIdempotentConfiguration {
 
     @Bean

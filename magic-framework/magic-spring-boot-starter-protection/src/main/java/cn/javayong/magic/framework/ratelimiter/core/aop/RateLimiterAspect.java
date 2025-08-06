@@ -1,5 +1,6 @@
 package cn.javayong.magic.framework.ratelimiter.core.aop;
 
+import ch.qos.logback.core.net.server.Client;
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.framework.common.exception.ServiceException;
 import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
@@ -7,6 +8,7 @@ import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.ratelimiter.core.annotation.RateLimiter;
 import cn.javayong.magic.framework.ratelimiter.core.keyresolver.RateLimiterKeyResolver;
 import cn.javayong.magic.framework.ratelimiter.core.redis.RateLimiterRedisDAO;
+import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,8 +20,6 @@ import java.util.Map;
 
 /**
  * 拦截声明了 {@link RateLimiter} 注解的方法，实现限流操作
- *
-
  */
 @Aspect
 @Slf4j
@@ -30,10 +30,13 @@ public class RateLimiterAspect {
      */
     private final Map<Class<? extends RateLimiterKeyResolver>, RateLimiterKeyResolver> keyResolvers;
 
+    private final ClientAdapter clientAdapter;
+
     private final RateLimiterRedisDAO rateLimiterRedisDAO;
 
-    public RateLimiterAspect(List<RateLimiterKeyResolver> keyResolvers, RateLimiterRedisDAO rateLimiterRedisDAO) {
+    public RateLimiterAspect(List<RateLimiterKeyResolver> keyResolvers, ClientAdapter clientAdapter, RateLimiterRedisDAO rateLimiterRedisDAO) {
         this.keyResolvers = CollectionUtils.convertMap(keyResolvers, RateLimiterKeyResolver::getClass);
+        this.clientAdapter = clientAdapter;
         this.rateLimiterRedisDAO = rateLimiterRedisDAO;
     }
 
@@ -45,9 +48,17 @@ public class RateLimiterAspect {
         // 解析 Key
         String key = keyResolver.resolver(joinPoint, rateLimiter);
 
+        // 应用名
+        String appName = clientAdapter.getClient().getNamespace();
         // 获取 1 次限流
-        boolean success = rateLimiterRedisDAO.tryAcquire(key,
-                rateLimiter.count(), rateLimiter.time(), rateLimiter.timeUnit());
+        boolean success = rateLimiterRedisDAO.tryAcquire(
+                appName,
+                key,
+                rateLimiter.count(),
+                rateLimiter.time(),
+                rateLimiter.timeUnit()
+        );
+
         if (!success) {
             log.info("[beforePointCut][方法({}) 参数({}) 请求过于频繁]", joinPoint.getSignature().toString(), joinPoint.getArgs());
             String message = StrUtil.blankToDefault(rateLimiter.message(),

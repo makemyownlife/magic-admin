@@ -5,18 +5,20 @@ import cn.javayong.magic.framework.ratelimiter.core.keyresolver.RateLimiterKeyRe
 import cn.javayong.magic.framework.ratelimiter.core.keyresolver.impl.*;
 import cn.javayong.magic.framework.ratelimiter.core.redis.RateLimiterRedisDAO;
 import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
+import cn.javayong.magic.framework.token.config.MagicTokenAutoConfiguration;
+import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import org.redisson.api.RedissonClient;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-@AutoConfiguration(after = MagicRedisAutoConfiguration.class)
+@AutoConfiguration(after = MagicTokenAutoConfiguration.class)
 public class MagicRateLimiterConfiguration {
 
     @Bean
-    public RateLimiterAspect rateLimiterAspect(List<RateLimiterKeyResolver> keyResolvers, RateLimiterRedisDAO rateLimiterRedisDAO) {
-        return new RateLimiterAspect(keyResolvers, rateLimiterRedisDAO);
+    public RateLimiterAspect rateLimiterAspect(List<RateLimiterKeyResolver> keyResolvers, ClientAdapter clientAdapter, RateLimiterRedisDAO rateLimiterRedisDAO) {
+        return new RateLimiterAspect(keyResolvers, clientAdapter, rateLimiterRedisDAO);
     }
 
     @Bean
