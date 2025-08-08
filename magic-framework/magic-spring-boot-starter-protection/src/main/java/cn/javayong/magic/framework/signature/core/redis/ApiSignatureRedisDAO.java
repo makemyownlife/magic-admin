@@ -36,22 +36,16 @@ public class ApiSignatureRedisDAO {
 
     // ========== 验签随机数 ==========
 
-    public String getNonce(String appId, String nonce) {
-        return stringRedisTemplate.opsForValue().get(formatNonceKey(appId, nonce));
+    public String getNonce(String clientKey, String nonce) {
+        return stringRedisTemplate.opsForValue().get(formatNonceKey(clientKey, nonce));
     }
 
-    public void setNonce(String appId, String nonce, int time, TimeUnit timeUnit) {
-        stringRedisTemplate.opsForValue().set(formatNonceKey(appId, nonce), "", time, timeUnit);
+    public void setNonce(String clientKey, String nonce, int time, TimeUnit timeUnit) {
+        stringRedisTemplate.opsForValue().set(formatNonceKey(clientKey, nonce), "", time, timeUnit);
     }
 
-    private static String formatNonceKey(String appId, String nonce) {
-        return String.format(SIGNATURE_NONCE, appId, nonce);
-    }
-
-    // ========== 签名密钥 ==========
-
-    public String getAppSecret(String appId) {
-        return (String) stringRedisTemplate.opsForHash().get(SIGNATURE_APPID, appId);
+    private static String formatNonceKey(String clientKey, String nonce) {
+        return String.format(SIGNATURE_NONCE, clientKey, nonce);
     }
 
 }
