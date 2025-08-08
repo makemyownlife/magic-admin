@@ -22,6 +22,11 @@
             <artifactId>magic-spring-boot-starter-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-client</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

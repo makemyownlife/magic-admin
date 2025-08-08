@@ -1,10 +1,9 @@
 package cn.javayong.magic.framework.signature.config;
 
-import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
+import cn.javayong.magic.framework.client.config.MagicClientConfiguration;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.signature.core.aop.ApiSignatureAspect;
 import cn.javayong.magic.framework.signature.core.redis.ApiSignatureRedisDAO;
-import cn.javayong.magic.framework.token.config.MagicTokenAutoConfiguration;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -14,7 +13,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  *
  * @author Zhougang
  */
-@AutoConfiguration(after = MagicTokenAutoConfiguration.class)
+@AutoConfiguration(after = MagicClientConfiguration.class)
 public class MagicApiSignatureAutoConfiguration {
 
     @Bean

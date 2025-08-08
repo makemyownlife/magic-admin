@@ -2,12 +2,12 @@ package cn.javayong.magic.framework.token.core.service.impl;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
+import cn.javayong.magic.framework.client.core.dto.SecurityClientDTO;
 import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
 import cn.javayong.magic.framework.common.util.date.DateUtils;
 import cn.javayong.magic.framework.common.util.json.JsonUtils;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.token.core.dto.SecurityAccessTokenDTO;
-import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import cn.javayong.magic.framework.token.core.dto.SecurityCreateTokenDTO;
 import cn.javayong.magic.framework.token.core.dto.SecurityRefreshTokenDTO;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;

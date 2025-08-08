@@ -5,12 +5,12 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
+import cn.javayong.magic.framework.client.core.dto.SecurityClientDTO;
 import cn.javayong.magic.framework.common.exception.ServiceException;
 import cn.javayong.magic.framework.common.util.servlet.ServletUtils;
 import cn.javayong.magic.framework.signature.core.annotation.ApiSignature;
 import cn.javayong.magic.framework.signature.core.redis.ApiSignatureRedisDAO;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
-import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -36,7 +36,6 @@ import static cn.javayong.magic.framework.common.exception.enums.GlobalErrorCode
 public class ApiSignatureAspect {
 
     private final ClientAdapter clientAdapter;
-
 
     private final ApiSignatureRedisDAO signatureRedisDAO;
 

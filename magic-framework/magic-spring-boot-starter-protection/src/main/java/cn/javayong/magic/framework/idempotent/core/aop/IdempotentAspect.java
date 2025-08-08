@@ -1,12 +1,12 @@
 package cn.javayong.magic.framework.idempotent.core.aop;
 
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.common.exception.ServiceException;
 import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.idempotent.core.annotation.Idempotent;
 import cn.javayong.magic.framework.idempotent.core.keyresolver.IdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.redis.IdempotentRedisDAO;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

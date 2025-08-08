@@ -23,6 +23,9 @@
         <!-- 分布式ID生成器启动器，集成雪花算法等ID生成方案 -->
         <module>magic-spring-boot-starter-idgenerator</module>
 
+        <!-- 客户端管理  -->
+        <module>magic-spring-boot-starter-client</module>
+
         <!-- 认证授权启动器，集成认证方案 -->
         <module>magic-spring-boot-starter-token</module>
 

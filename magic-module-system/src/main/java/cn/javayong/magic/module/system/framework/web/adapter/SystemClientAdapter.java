@@ -1,10 +1,9 @@
 package cn.javayong.magic.module.system.framework.web.adapter;
 
-import cn.javayong.magic.framework.common.exception.ErrorCode;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
+import cn.javayong.magic.framework.client.core.dto.SecurityClientDTO;
 import cn.javayong.magic.framework.common.exception.util.ServiceExceptionUtil;
 import cn.javayong.magic.framework.security.config.SecurityProperties;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
-import cn.javayong.magic.framework.token.core.dto.SecurityClientDTO;
 import cn.javayong.magic.module.system.domain.dataobject.SystemClientDO;
 import cn.javayong.magic.module.system.domain.enums.ErrorCodeConstants;
 import cn.javayong.magic.module.system.service.SystemClientService;

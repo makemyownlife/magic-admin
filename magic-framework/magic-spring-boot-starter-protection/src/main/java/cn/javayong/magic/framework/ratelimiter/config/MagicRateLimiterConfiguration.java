@@ -1,19 +1,18 @@
 package cn.javayong.magic.framework.ratelimiter.config;
 
+import cn.javayong.magic.framework.client.config.MagicClientConfiguration;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.ratelimiter.core.aop.RateLimiterAspect;
 import cn.javayong.magic.framework.ratelimiter.core.keyresolver.RateLimiterKeyResolver;
 import cn.javayong.magic.framework.ratelimiter.core.keyresolver.impl.*;
 import cn.javayong.magic.framework.ratelimiter.core.redis.RateLimiterRedisDAO;
-import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
-import cn.javayong.magic.framework.token.config.MagicTokenAutoConfiguration;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import org.redisson.api.RedissonClient;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-@AutoConfiguration(after = MagicTokenAutoConfiguration.class)
+@AutoConfiguration(after = MagicClientConfiguration.class)
 public class MagicRateLimiterConfiguration {
 
     @Bean

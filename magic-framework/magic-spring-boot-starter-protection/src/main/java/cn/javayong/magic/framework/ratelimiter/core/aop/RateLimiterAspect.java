@@ -2,13 +2,13 @@ package cn.javayong.magic.framework.ratelimiter.core.aop;
 
 import ch.qos.logback.core.net.server.Client;
 import cn.hutool.core.util.StrUtil;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.common.exception.ServiceException;
 import cn.javayong.magic.framework.common.exception.enums.GlobalErrorCodeConstants;
 import cn.javayong.magic.framework.common.util.collection.CollectionUtils;
 import cn.javayong.magic.framework.ratelimiter.core.annotation.RateLimiter;
 import cn.javayong.magic.framework.ratelimiter.core.keyresolver.RateLimiterKeyResolver;
 import cn.javayong.magic.framework.ratelimiter.core.redis.RateLimiterRedisDAO;
-import cn.javayong.magic.framework.token.core.adapter.ClientAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

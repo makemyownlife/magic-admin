@@ -1,4 +1,4 @@
-package cn.javayong.magic.framework.token.core.dto;
+package cn.javayong.magic.framework.client.core.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
  * <p>
  * 用于在系统间传递客户端认证相关信息
  *
- * @author YourName
+ * @author courage
  * @date 2023-11-15
  */
 @Data // Lombok 注解，自动生成 getter/setter、toString、equals 和 hashCode 方法
