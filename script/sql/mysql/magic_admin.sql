@@ -262,13 +262,6 @@ CREATE TABLE `infra_job` (
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='定时任务表';
 
 -- ----------------------------
--- Records of infra_job
--- ----------------------------
-BEGIN;
-INSERT INTO `infra_job` (`id`, `name`, `status`, `handler_name`, `handler_param`, `cron_expression`, `retry_count`, `retry_interval`, `monitor_timeout`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (33, 'demoJob', 2, 'demoJob', '', '0 * * * * ?', 1, 1, 0, '1', '2024-10-27 19:38:46', '1', '2024-10-27 19:40:23', b'0');
-COMMIT;
-
--- ----------------------------
 -- Table structure for infra_job_log
 -- ----------------------------
 DROP TABLE IF EXISTS `infra_job_log`;
