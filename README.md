@@ -1,4 +1,6 @@
-> 演示地址：http://14.103.184.174/index  
+> 演示地址：http://14.103.184.174/index
+> 
+> 视频演示： https://www.bilibili.com/video/BV1xQbvziE28/
 >
 > 前端地址：https://github.com/makemyownlife/magic-admin-ui
 >
