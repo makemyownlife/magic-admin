@@ -4,6 +4,8 @@
 >
 > 前端地址：https://github.com/makemyownlife/magic-admin-ui
 >
+> magic-admin的实战项目 Boss直聘求职助手视频： https://www.bilibili.com/video/BV1vYYjz6Edy/
+> 
 > 演示账号请关注公众号：勇哥Java实战，回复：magic 即可获取。
 > <img src="https://courage-zhang.oss-cn-beijing.aliyuncs.com/custom202504/202507241651691.jpeg" style="zoom:33%;" />
 
