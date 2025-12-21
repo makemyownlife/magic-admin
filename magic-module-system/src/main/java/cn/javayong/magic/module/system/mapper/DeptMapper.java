@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.mapper;
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.javayong.magic.module.system.domain.vo.DeptListReqVO;
-import cn.javayong.magic.module.system.domain.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;

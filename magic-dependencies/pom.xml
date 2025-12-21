@@ -14,13 +14,14 @@
     <url>https://github.com/makemyownlife/magic-admin</url>
 
     <properties>
-        <revision>0.0.1-jdk8-SNAPSHOT</revision>
+        <revision>1.0.0-jdk8</revision>
 
         <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
         <!-- 统一依赖管理 -->
         <spring.framework.version>5.3.39</spring.framework.version>
         <spring.security.version>5.8.14</spring.security.version>
         <spring.boot.version>2.7.18</spring.boot.version>
+        <spring.boot.webfulx.version>5.3.39</spring.boot.webfulx.version>
         <!-- Web 相关 -->
         <springdoc.version>1.8.0</springdoc.version>
         <knife4j.version>4.5.0</knife4j.version>
@@ -131,12 +132,6 @@
 
             <dependency>
                 <groupId>cn.javayong</groupId>
-                <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.javayong</groupId>
                 <artifactId>magic-spring-boot-starter-biz-ip</artifactId>
                 <version>${revision}</version>
             </dependency>
@@ -156,9 +151,24 @@
                 <version>${revision}</version>
             </dependency>
 
+            <!-- 安全 相关 -->
             <dependency>
                 <groupId>cn.javayong</groupId>
                 <artifactId>magic-spring-boot-starter-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 客户端 管理 -->
+            <dependency>
+                <groupId>cn.javayong</groupId>
+                <artifactId>magic-spring-boot-starter-client</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- token 管理相关 -->
+            <dependency>
+                <groupId>cn.javayong</groupId>
+                <artifactId>magic-spring-boot-starter-token</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -278,6 +288,12 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-data-27</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webflux</artifactId>
+                <version>${spring.boot.webfulx.version}</version>
             </dependency>
 
             <!--

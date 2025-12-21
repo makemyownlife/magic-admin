@@ -1,5 +1,7 @@
 package cn.javayong.magic.framework.idempotent.config;
 
+import cn.javayong.magic.framework.client.config.MagicClientConfiguration;
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.idempotent.core.aop.IdempotentAspect;
 import cn.javayong.magic.framework.idempotent.core.keyresolver.impl.DefaultIdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.keyresolver.impl.ExpressionIdempotentKeyResolver;
@@ -7,18 +9,17 @@ import cn.javayong.magic.framework.idempotent.core.keyresolver.IdempotentKeyReso
 import cn.javayong.magic.framework.idempotent.core.keyresolver.impl.UserIdempotentKeyResolver;
 import cn.javayong.magic.framework.idempotent.core.redis.IdempotentRedisDAO;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.List;
 
-@AutoConfiguration(after = MagicRedisAutoConfiguration.class)
+@AutoConfiguration(after = MagicClientConfiguration.class)
 public class MagicIdempotentConfiguration {
 
     @Bean
-    public IdempotentAspect idempotentAspect(List<IdempotentKeyResolver> keyResolvers, IdempotentRedisDAO idempotentRedisDAO) {
-        return new IdempotentAspect(keyResolvers, idempotentRedisDAO);
+    public IdempotentAspect idempotentAspect(List<IdempotentKeyResolver> keyResolvers, ClientAdapter clientAdapter, IdempotentRedisDAO idempotentRedisDAO) {
+        return new IdempotentAspect(keyResolvers, clientAdapter, idempotentRedisDAO);
     }
 
     @Bean

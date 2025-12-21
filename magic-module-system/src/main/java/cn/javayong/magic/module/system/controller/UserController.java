@@ -7,8 +7,8 @@ import cn.javayong.magic.framework.common.pojo.PageParam;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.excel.core.util.ExcelUtils;
 import cn.javayong.magic.module.system.domain.convert.UserConvert;
-import cn.javayong.magic.module.system.domain.DeptDO;
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 import cn.javayong.magic.module.system.domain.vo.*;
 import cn.javayong.magic.module.system.domain.enums.SexEnum;
 import cn.javayong.magic.module.system.service.DeptService;
@@ -145,7 +145,7 @@ public class UserController {
         // 手动创建导出 demo
         List<UserImportExcelVO> list = Arrays.asList(
                 UserImportExcelVO.builder().username("yunai").deptId(1L).email("yunai@iocoder.cn").mobile("15601691300")
-                        .nickname("芋道").status(CommonStatusEnum.ENABLE.getStatus()).sex(SexEnum.MALE.getSex()).build(),
+                        .nickname("magic").status(CommonStatusEnum.ENABLE.getStatus()).sex(SexEnum.MALE.getSex()).build(),
                 UserImportExcelVO.builder().username("yuanma").deptId(2L).email("yuanma@iocoder.cn").mobile("15601701300")
                         .nickname("源码").status(CommonStatusEnum.DISABLE.getStatus()).sex(SexEnum.FEMALE.getSex()).build()
         );

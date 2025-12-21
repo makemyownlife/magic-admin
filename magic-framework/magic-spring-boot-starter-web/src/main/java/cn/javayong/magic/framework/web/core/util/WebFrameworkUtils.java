@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 专属于 web 包的工具类
- *
-
  */
 public class WebFrameworkUtils {
 
@@ -25,8 +23,6 @@ public class WebFrameworkUtils {
     private static final String REQUEST_ATTRIBUTE_LOGIN_USER_TYPE = "login_user_type";
 
     private static final String REQUEST_ATTRIBUTE_COMMON_RESULT = "common_result";
-
-    public static final String HEADER_TENANT_ID = "tenant-id";
 
     /**
      * 终端的 Header
@@ -41,18 +37,6 @@ public class WebFrameworkUtils {
         WebFrameworkUtils.properties = webProperties;
     }
 
-    /**
-     * 获得租户编号，从 header 中
-     * 考虑到其它 framework 组件也会使用到租户编号，所以不得不放在 WebFrameworkUtils 统一提供
-     *
-     * @param request 请求
-     * @return 租户编号
-     */
-    public static Long getTenantId(HttpServletRequest request) {
-        String tenantId = request.getHeader(HEADER_TENANT_ID);
-        return NumberUtil.isNumber(tenantId) ? Long.valueOf(tenantId) : null;
-    }
-
     public static void setLoginUserId(ServletRequest request, Long userId) {
         request.setAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_ID, userId);
     }
@@ -60,7 +44,7 @@ public class WebFrameworkUtils {
     /**
      * 设置用户类型
      *
-     * @param request 请求
+     * @param request  请求
      * @param userType 用户类型
      */
     public static void setLoginUserType(ServletRequest request, Integer userType) {
@@ -92,14 +76,10 @@ public class WebFrameworkUtils {
         if (request == null) {
             return null;
         }
-        // 1. 优先，从 Attribute 中获取
+        // Attribute 中获取
         Integer userType = (Integer) request.getAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_TYPE);
         if (userType != null) {
             return userType;
-        }
-        // 2. 其次，基于 URL 前缀的约定
-        if (request.getServletPath().startsWith(properties.getAdminApi().getPrefix())) {
-            return UserTypeEnum.ADMIN.getValue();
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package cn.javayong.magic.framework.token.config;
 
+import cn.javayong.magic.framework.client.core.adapter.ClientAdapter;
 import cn.javayong.magic.framework.redis.config.MagicRedisAutoConfiguration;
 import cn.javayong.magic.framework.token.core.service.SecurityTokenService;
 import cn.javayong.magic.framework.token.core.service.impl.SecurityTokenServiceImpl;
@@ -11,9 +12,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 public class MagicTokenAutoConfiguration {
 
     @Bean(value = "securityTokenService")
-    public SecurityTokenService createSecurityTokenService(StringRedisTemplate stringRedisTemplate) {
-        SecurityTokenService securityTokenService = new SecurityTokenServiceImpl(stringRedisTemplate);
-        return securityTokenService;
+    public SecurityTokenService createSecurityTokenService(ClientAdapter clientAdapter, StringRedisTemplate stringRedisTemplate) {
+        return new SecurityTokenServiceImpl(clientAdapter, stringRedisTemplate);
     }
 
 }

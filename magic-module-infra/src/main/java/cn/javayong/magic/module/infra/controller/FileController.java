@@ -6,7 +6,7 @@ import cn.hutool.core.util.URLUtil;
 import cn.javayong.magic.framework.common.pojo.CommonResult;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
-import cn.javayong.magic.module.infra.domain.FileDO;
+import cn.javayong.magic.module.infra.domain.dataobject.FileDO;
 import cn.javayong.magic.module.infra.domain.vo.*;
 import cn.javayong.magic.module.infra.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;

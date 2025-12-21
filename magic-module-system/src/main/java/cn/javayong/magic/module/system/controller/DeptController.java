@@ -7,7 +7,7 @@ import cn.javayong.magic.module.system.domain.vo.DeptListReqVO;
 import cn.javayong.magic.module.system.domain.vo.DeptRespVO;
 import cn.javayong.magic.module.system.domain.vo.DeptSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.DeptSimpleRespVO;
-import cn.javayong.magic.module.system.domain.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
 import cn.javayong.magic.module.system.service.DeptService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

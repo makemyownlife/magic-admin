@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.service;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.domain.dto.LoginLogCreateReqDTO;
 import cn.javayong.magic.module.system.domain.vo.LoginLogPageReqVO;
-import cn.javayong.magic.module.system.domain.LoginLogDO;
+import cn.javayong.magic.module.system.domain.dataobject.LoginLogDO;
 
 import javax.validation.Valid;
 

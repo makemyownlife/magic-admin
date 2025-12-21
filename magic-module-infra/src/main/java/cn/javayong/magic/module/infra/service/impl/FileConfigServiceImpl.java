@@ -12,7 +12,7 @@ import cn.javayong.magic.module.infra.framework.file.core.enums.FileStorageEnum;
 import cn.javayong.magic.module.infra.domain.vo.FileConfigPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.FileConfigSaveReqVO;
 import cn.javayong.magic.module.infra.domain.convert.FileConfigConvert;
-import cn.javayong.magic.module.infra.domain.FileConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.FileConfigDO;
 import cn.javayong.magic.module.infra.mapper.FileConfigMapper;
 import cn.javayong.magic.module.infra.service.FileConfigService;
 import com.google.common.cache.CacheLoader;

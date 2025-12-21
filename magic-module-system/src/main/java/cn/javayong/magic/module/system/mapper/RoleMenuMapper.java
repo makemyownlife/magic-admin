@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.system.mapper;
 
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
-import cn.javayong.magic.module.system.domain.RoleMenuDO;
+import cn.javayong.magic.module.system.domain.dataobject.RoleMenuDO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.apache.ibatis.annotations.Mapper;
 

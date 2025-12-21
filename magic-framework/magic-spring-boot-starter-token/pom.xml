@@ -13,12 +13,18 @@
     <artifactId>magic-spring-boot-starter-token</artifactId>
     <packaging>jar</packaging>
     <version>${parent.version}</version>
+    <name>${project.artifactId}</name>
 
     <dependencies>
 
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-client</artifactId>
         </dependency>
 
     </dependencies>

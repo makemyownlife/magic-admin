@@ -9,7 +9,7 @@ import cn.javayong.magic.module.system.domain.vo.DictTypePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.DictTypeRespVO;
 import cn.javayong.magic.module.system.domain.vo.DictTypeSaveReqVO;
 import cn.javayong.magic.module.system.domain.vo.DictTypeSimpleRespVO;
-import cn.javayong.magic.module.system.domain.DictTypeDO;
+import cn.javayong.magic.module.system.domain.dataobject.DictTypeDO;
 import cn.javayong.magic.module.system.service.DictTypeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

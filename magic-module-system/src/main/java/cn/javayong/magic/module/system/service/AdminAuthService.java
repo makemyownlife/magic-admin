@@ -1,6 +1,6 @@
 package cn.javayong.magic.module.system.service;
 
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 import cn.javayong.magic.module.system.domain.vo.AuthLoginReqVO;
 import cn.javayong.magic.module.system.domain.vo.AuthLoginRespVO;
 import cn.javayong.magic.module.system.domain.vo.AuthRegisterReqVO;

@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.framework.operatelog.core;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
-import cn.javayong.magic.module.system.domain.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
 import cn.javayong.magic.module.system.service.DeptService;
 import com.mzt.logapi.service.IParseFunction;
 import lombok.extern.slf4j.Slf4j;

@@ -2,7 +2,7 @@ package cn.javayong.magic.module.system.mapper;
 
 import cn.javayong.magic.framework.mybatis.core.mapper.BaseMapperX;
 import cn.javayong.magic.framework.mybatis.core.query.LambdaQueryWrapperX;
-import cn.javayong.magic.module.system.domain.UserPostDO;
+import cn.javayong.magic.module.system.domain.dataobject.UserPostDO;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.apache.ibatis.annotations.Mapper;
 

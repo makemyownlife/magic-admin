@@ -1,7 +1,7 @@
 package cn.javayong.magic.module.infra.domain.convert;
 
 import cn.javayong.magic.module.infra.domain.vo.FileConfigSaveReqVO;
-import cn.javayong.magic.module.infra.domain.FileConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.FileConfigDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

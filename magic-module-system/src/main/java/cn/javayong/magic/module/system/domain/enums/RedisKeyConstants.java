@@ -2,8 +2,6 @@ package cn.javayong.magic.module.system.domain.enums;
 
 /**
  * System Redis Key 枚举类
- *
-
  */
 public interface RedisKeyConstants {
 
@@ -46,5 +44,13 @@ public interface RedisKeyConstants {
      * VALUE 数据类型：String 菜单编号数组
      */
     String PERMISSION_MENU_ID_LIST = "permission_menu_ids";
+
+    /**
+     * 系统客户端编号数组的缓存
+     * <p>
+     * KEY ： system_client_list
+     * VALUE 数据类型：String 系统客户端编号数组
+     */
+    String SYSTEM_CLIENT_LIST = "system_client_list";
 
 }

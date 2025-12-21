@@ -3,7 +3,7 @@ package cn.javayong.magic.module.infra.service.impl;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.framework.mybatis.core.util.JdbcUtils;
 import cn.javayong.magic.module.infra.domain.vo.DataSourceConfigSaveReqVO;
-import cn.javayong.magic.module.infra.domain.DataSourceConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.DataSourceConfigDO;
 import cn.javayong.magic.module.infra.mapper.DataSourceConfigMapper;
 import cn.javayong.magic.module.infra.service.DataSourceConfigService;
 import com.baomidou.dynamic.datasource.creator.DataSourceProperty;

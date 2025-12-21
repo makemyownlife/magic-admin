@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.framework.common.util.object.BeanUtils;
 import cn.javayong.magic.module.system.domain.vo.NoticePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.NoticeSaveReqVO;
-import cn.javayong.magic.module.system.domain.NoticeDO;
+import cn.javayong.magic.module.system.domain.dataobject.NoticeDO;
 import cn.javayong.magic.module.system.mapper.NoticeMapper;
 import cn.javayong.magic.module.system.service.NoticeService;
 import com.google.common.annotations.VisibleForTesting;

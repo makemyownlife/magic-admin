@@ -130,7 +130,6 @@ public class GlobalExceptionHandler {
         String errorMessage = null;
         FieldError fieldError = ex.getBindingResult().getFieldError();
         if (fieldError == null) {
-            // 组合校验，参考自 https://t.zsxq.com/3HVTx
             List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
             if (CollUtil.isNotEmpty(allErrors)) {
                 errorMessage = allErrors.get(0).getDefaultMessage();

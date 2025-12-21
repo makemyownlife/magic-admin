@@ -27,6 +27,9 @@ public class SecurityProperties {
     @NotEmpty(message = "Token Parameter 不能为空")
     private String tokenParameter = "token";
 
+    @NotEmpty(message = "客户端 KEY 不能为空")
+    private String clientKeyHeader = "clientKey";
+
     /**
      * mock 模式的开关
      */

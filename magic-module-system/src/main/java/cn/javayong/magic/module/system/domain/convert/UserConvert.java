@@ -9,10 +9,10 @@ import cn.javayong.magic.module.system.domain.vo.RoleSimpleRespVO;
 import cn.javayong.magic.module.system.domain.vo.UserProfileRespVO;
 import cn.javayong.magic.module.system.domain.vo.UserRespVO;
 import cn.javayong.magic.module.system.domain.vo.UserSimpleRespVO;
-import cn.javayong.magic.module.system.domain.DeptDO;
-import cn.javayong.magic.module.system.domain.PostDO;
-import cn.javayong.magic.module.system.domain.RoleDO;
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.DeptDO;
+import cn.javayong.magic.module.system.domain.dataobject.PostDO;
+import cn.javayong.magic.module.system.domain.dataobject.RoleDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

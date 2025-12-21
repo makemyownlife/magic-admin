@@ -21,14 +21,16 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-spring-boot-starter-biz-tenant</artifactId>
-        </dependency>
-
+        <!-- ID 生成器 -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-idgenerator</artifactId>
+        </dependency>
+
+        <!-- 安全组件 -->
+        <dependency>
+            <groupId>cn.javayong</groupId>
+            <artifactId>magic-spring-boot-starter-protection</artifactId>
         </dependency>
 
         <dependency>
@@ -79,12 +81,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-
-        <!-- 三方云服务相关 -->
-        <dependency>
-            <groupId>com.xingyuv</groupId>
-            <artifactId>spring-boot-starter-justauth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
         </dependency>
 
         <dependency>

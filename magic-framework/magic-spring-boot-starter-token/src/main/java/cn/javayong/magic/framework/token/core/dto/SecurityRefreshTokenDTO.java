@@ -15,11 +15,6 @@ import java.util.List;
 public class SecurityRefreshTokenDTO {
 
     /**
-     * 多租户编号
-     */
-    private Long tenantId;
-
-    /**
      * 刷新令牌
      */
     private String refreshToken;
@@ -36,7 +31,7 @@ public class SecurityRefreshTokenDTO {
     /**
      * 客户端编号
      */
-    private String clientId;
+    private Long clientId;
 
     /**
      * 过期时间

@@ -10,7 +10,7 @@ import cn.javayong.magic.module.system.domain.vo.UserImportExcelVO;
 import cn.javayong.magic.module.system.domain.vo.UserImportRespVO;
 import cn.javayong.magic.module.system.domain.vo.UserPageReqVO;
 import cn.javayong.magic.module.system.domain.vo.UserSaveReqVO;
-import cn.javayong.magic.module.system.domain.AdminUserDO;
+import cn.javayong.magic.module.system.domain.dataobject.AdminUserDO;
 
 import javax.validation.Valid;
 import java.io.InputStream;

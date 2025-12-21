@@ -3,7 +3,7 @@ package cn.javayong.magic.module.infra.service;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.domain.vo.ConfigPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.ConfigSaveReqVO;
-import cn.javayong.magic.module.infra.domain.ConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.ConfigDO;
 
 import javax.validation.Valid;
 

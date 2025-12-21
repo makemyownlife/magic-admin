@@ -3,7 +3,7 @@ package cn.javayong.magic.module.system.service;
 import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.system.domain.vo.RolePageReqVO;
 import cn.javayong.magic.module.system.domain.vo.RoleSaveReqVO;
-import cn.javayong.magic.module.system.domain.RoleDO;
+import cn.javayong.magic.module.system.domain.dataobject.RoleDO;
 
 import javax.validation.Valid;
 import java.util.Collection;

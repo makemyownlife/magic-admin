@@ -14,11 +14,6 @@ public class SecurityCreateTokenDTO {
     private Long userId;
 
     /**
-     * 多租户编号
-     */
-    private Long tenantId;
-
-    /**
      * 用户类型
      * <p>
      * 枚举 {@link UserTypeEnum}

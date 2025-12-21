@@ -4,7 +4,7 @@ import cn.javayong.magic.framework.common.pojo.PageResult;
 import cn.javayong.magic.module.infra.framework.file.core.client.FileClient;
 import cn.javayong.magic.module.infra.domain.vo.FileConfigPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.FileConfigSaveReqVO;
-import cn.javayong.magic.module.infra.domain.FileConfigDO;
+import cn.javayong.magic.module.infra.domain.dataobject.FileConfigDO;
 
 import javax.validation.Valid;
 

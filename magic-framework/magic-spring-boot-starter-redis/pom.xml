@@ -21,7 +21,7 @@
             <artifactId>magic-common</artifactId>
         </dependency>
 
-        <!-- DB 相关 -->
+        <!-- redis 相关 直接使用 redisson springboot starter  -->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
@@ -32,6 +32,7 @@
             <artifactId>redisson-spring-data-27</artifactId>
         </dependency>
 
+        <!-- Spring Cache starter  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId> <!-- 实现对 Caches 的自动化配置 -->

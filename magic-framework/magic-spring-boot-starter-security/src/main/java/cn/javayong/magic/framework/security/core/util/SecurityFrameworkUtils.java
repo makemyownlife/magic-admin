@@ -1,6 +1,5 @@
 package cn.javayong.magic.framework.security.core.util;
 
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.javayong.magic.framework.security.core.LoginUser;
 import cn.javayong.magic.framework.web.core.util.WebFrameworkUtils;
@@ -17,8 +16,6 @@ import java.util.Collections;
 
 /**
  * 安全服务工具类
- *
-
  */
 public class SecurityFrameworkUtils {
 

@@ -132,7 +132,7 @@ spring:
 # Lock4j 配置项
 lock4j:
   acquire-timeout: 3000 # 获取分布式锁超时时间，默认为 3000 毫秒
-  expire: 30000 # 分布式锁的超时时间，默认为 30 毫秒
+  expire: 30000 # 分布式锁的超时时间，默认为 30 秒
 
 # 日志文件配置
 logging:
@@ -141,7 +141,7 @@ logging:
   level:
     # 配置自己写的 MyBatis Mapper 打印日志
     cn.javayong.magic.module.infra.mapper: DEBUG
-    cn.javayong.magic.module.ai.mapper: DEBUG
+    cn.javayong.magic.module.oneapi.mapper: DEBUG
 
 debug: false
 

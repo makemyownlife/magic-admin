@@ -7,35 +7,36 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 幂等 Redis DAO
- *
-
  */
 @AllArgsConstructor
 public class IdempotentRedisDAO {
 
     /**
-     * 幂等操作
+     * 幂等性 Redis Key 模板（格式：{appName}:idempotent:{uniqueId}）
      *
-     * KEY 格式：idempotent:%s // 参数为 uuid
-     * VALUE 格式：String
-     * 过期时间：不固定
+     * @param appName  应用名称（如 "order-service"），用于多服务隔离
+     * @param uniqueId 唯一请求标识（如 UUID、业务ID），确保幂等性
+     *
+     * 示例：
+     *   String key = String.format(IDEMPOTENT_KEY_TEMPLATE, "payment", "txn-789abc");
+     *   // 生成："payment:idempotent:txn-789abc"
      */
-    private static final String IDEMPOTENT = "idempotent:%s";
+    private static final String IDEMPOTENT_KEY_TEMPLATE = "%s:idempotent:%s";
 
     private final StringRedisTemplate redisTemplate;
 
-    public Boolean setIfAbsent(String key, long timeout, TimeUnit timeUnit) {
-        String redisKey = formatKey(key);
+    public Boolean setIfAbsent(String appName, String key, long timeout, TimeUnit timeUnit) {
+        String redisKey = formatKey(appName, key);
         return redisTemplate.opsForValue().setIfAbsent(redisKey, "", timeout, timeUnit);
     }
 
-    public void delete(String key) {
-        String redisKey = formatKey(key);
+    public void delete(String appName, String key) {
+        String redisKey = formatKey(appName, key);
         redisTemplate.delete(redisKey);
     }
 
-    private static String formatKey(String key) {
-        return String.format(IDEMPOTENT, key);
+    private static String formatKey(String appName, String key) {
+        return String.format(IDEMPOTENT_KEY_TEMPLATE, appName, key);
     }
 
 }

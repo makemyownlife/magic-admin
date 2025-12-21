@@ -1,19 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : 127.0.0.1 MySQL
- Source Server Type    : MySQL
- Source Server Version : 80200 (8.2.0)
- Source Host           : 127.0.0.1:3306
- Source Schema         : ruoyi-vue-pro
-
- Target Server Type    : MySQL
- Target Server Version : 80200 (8.2.0)
- File Encoding         : 65001
-
- Date: 24/07/2024 08:52:41
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

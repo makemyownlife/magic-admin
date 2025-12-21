@@ -8,7 +8,7 @@ import cn.javayong.magic.framework.quartz.core.scheduler.SchedulerManager;
 import cn.javayong.magic.framework.quartz.core.util.CronUtils;
 import cn.javayong.magic.module.infra.domain.vo.JobPageReqVO;
 import cn.javayong.magic.module.infra.domain.vo.JobSaveReqVO;
-import cn.javayong.magic.module.infra.domain.JobDO;
+import cn.javayong.magic.module.infra.domain.dataobject.JobDO;
 import cn.javayong.magic.module.infra.mapper.JobMapper;
 import cn.javayong.magic.module.infra.domain.enums.JobStatusEnum;
 import cn.javayong.magic.module.infra.service.JobService;
