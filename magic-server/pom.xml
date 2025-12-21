@@ -26,25 +26,15 @@
     <url>https://github.com/makemyownlife/magic-admin</url>
 
     <dependencies>
-
-        <!-- 系统模块 -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-module-system</artifactId>
             <version>${revision}</version>
         </dependency>
 
-        <!-- 基础设施 -->
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-module-infra</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
-        <!-- 添加 AI 模块 -->
-        <dependency>
-            <groupId>cn.javayong</groupId>
-            <artifactId>magic-module-ai</artifactId>
             <version>${revision}</version>
         </dependency>
 
@@ -59,18 +49,6 @@
         <dependency>
             <groupId>cn.javayong</groupId>
             <artifactId>magic-spring-boot-starter-protection</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webflux</artifactId>
-            <version>5.3.39</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.8</version>
         </dependency>
 
     </dependencies>
